@@ -41,20 +41,28 @@ local function Serialize(value: Font): (string, number, number, string?)
     return value.Family, value.Weight.Value, value.Style.Value, value.CacheId;
 end
 
+function Font.load(family: string?, weight: EnumItem?, style: EnumItem?): Font
+    local family_str = family or "rbxasset://fonts/families/SourceSansPro.json";
+    local weight_enum = weight or Enum.FontWeight.Regular;
+    local style_enum = style or Enum.FontStyle.Normal;
+    print(typeof(weight_enum), typeof(style_enum))
+    return Font.new(family_str, weight_enum, style_enum);
+end
+
 local function Deserialize(
     family: string,
     weight: number,
     style: number,
     cacheId: string
 ): Font
-    local weightEnum = Enum.FontWeight.Normal;
+    local weightEnum = Enum.FontWeight.Regular;
     for _, item in Enum.FontWeight:GetEnumItems() do
         if (item.Value == weight) then
             weightEnum = item;
             break;
         end
     end
-    local font = Font.new(
+    local font = Font.load(
         family,
         weightEnum,
         if (style == 0) then

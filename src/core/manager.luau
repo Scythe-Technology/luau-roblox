@@ -5,9 +5,15 @@ local roblox = require("./types/roblox");
 
 local dom = require("../dom");
 
+local reflection = require("../reflection");
+
 local manager = {};
 
-function manager.instanceFromDOM(instance: dom.DOMInstance): roblox.Instance
+function manager.instanceFromDOM(instance: dom.DOMInstance): roblox.Instance?
+    local className = instance.className;
+    if (instance.isService and reflection:GetClass(className) == nil) then
+        return nil
+    end
     local obj = object.dom(instance);
     object.LoadDefaultProperties(obj, instance.className);
     return obj::any;
@@ -23,6 +29,11 @@ function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
         local object = instances[instance.referent];
         if (instance.parent) then
             local parent = instances[instance.parent];
+            if (not parent) then
+                print("[rbx-manager] Parent instance not found (instance dropped)");
+                instances[instance.referent] = nil;
+                continue;
+            end
             rawset(object::any, "@parent", parent);
             table.insert(rawget(parent::any, "@children"), object);
             valid -= 1;
@@ -37,9 +48,9 @@ function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
             end
         end
     end
-    local list = table.create(valid);
+    local list: {roblox.Instance} = table.create(valid);
     for _, instance in instances do
-        if (rawget(instance::any, "@parent") == nil) then
+        if (instance and rawget(instance::any, "@parent") == nil) then
             table.insert(list, instance);
         end
     end

@@ -217,7 +217,7 @@ local function loadDefaultProperties(self: object, className: string)
                 if (custom and member.Default ~= "__api_dump_class_not_creatable__") then
                     default = custom(member.Default);
                 else
-                    local ok, err = pcall(datatype.new);
+                    local ok, err = pcall(datatype.load);
                     if (ok) then
                         default = err;
                     else
