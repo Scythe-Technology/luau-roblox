@@ -102,6 +102,6 @@ export type ApiDump = {
 }
 
 return {
-    Version = "0.663.0.6630659",
+    Version = "0.667.0.6670665",
     DumpJson = require("./json-dump"),
 }
