@@ -18,6 +18,6 @@ for type, datatype in datatypes do
 end
 
 return (types::any)::{
-    Enum: enums.Enums,
+    Enums: enums.Enums,
     [string]: DataType,
 };

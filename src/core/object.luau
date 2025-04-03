@@ -61,6 +61,7 @@ export type object = typeof(blankFromClass(""));
 
 local TYPE_MAP = {
     ["BinaryString"] = "String",
+    ["ContentId"] = "String",
     ["int64"] = "Int64",
     ["bool"] = "Bool",
     ["string"] = "String",
@@ -71,6 +72,9 @@ local TYPE_MAP = {
 
 local DEFAULT_TYPE_MAP = {
     ["BinaryString"] = function(className: string, superclass: string, property: string)
+        return "";
+    end,
+    ["ContentId"] = function(className: string, superclass: string, property: string)
         return "";
     end,
     ["int64"] = function(className: string, superclass: string, property: string)
@@ -143,8 +147,15 @@ end
 local IGNORE_PROPERTIES_TYPE = {
     "SecurityCapabilities",
     "PhysicalProperties",
-    "Content", -- TODO: fix?
+    -- TODO: add support for these
+    "Region3",
+    "Region3int16",
 };
+
+local MAPPED_TYPE = {
+    ["BinaryString"] = "Primitive",
+    ["ContentId"] = "Primitive",
+}
 
 local function loadDefaultProperties(self: object, className: string)
     local instance = self["@instance"];
@@ -192,7 +203,8 @@ local function loadDefaultProperties(self: object, className: string)
 
         local default = nil;
         local serializeId = dom.roblox.PropertyTypes[member.ValueType.Name];
-        if (member.ValueType.Category == "Enum") then
+        local Category = MAPPED_TYPE[member.ValueType.Name] or member.ValueType.Category;
+        if (Category == "Enum") then
             serializeId = dom.roblox.PropertyTypes.Enum;
             local enum = datatypes.Enums[member.ValueType.Name];
             if (enum) then
@@ -205,12 +217,12 @@ local function loadDefaultProperties(self: object, className: string)
             else
                 error(`Enum '{member.ValueType.Name}' not found`);
             end
-        elseif (member.ValueType.Category == "Primitive") then
+        elseif (Category == "Primitive") then
             serializeId = dom.roblox.PropertyTypes[TYPE_MAP[member.ValueType.Name]];
             if (DEFAULT_TYPE_MAP[member.ValueType.Name]) then
                 default = DEFAULT_TYPE_MAP[member.ValueType.Name](instance.className, className, member.Name);
             end
-        elseif (member.ValueType.Category == "DataType") then
+        elseif (Category == "DataType") then
             local datatype = datatypes[member.ValueType.Name];
             if (datatype) then
                 local custom = DEFAULT_VALUE[member.ValueType.Name];
@@ -232,7 +244,7 @@ local function loadDefaultProperties(self: object, className: string)
                 end
                 continue;
             end
-        elseif (member.ValueType.Category == "Class") then
+        elseif (Category == "Class") then
             serializeId = dom.roblox.PropertyTypes.Ref;
             default = nil;
         end

@@ -52,6 +52,10 @@ function NumberSequence.new(...): NumberSequence
     error("No matching 'NumberSequence' constructor");
 end
 
+function NumberSequence.load(): NumberSequence
+    return NumberSequence.new(0, 0);
+end
+
 export type NumberSequence = typeof(NumberSequence.new(0, 0));
 
 NumberSequence.__tostring = function(self: NumberSequence): string

@@ -1,7 +1,7 @@
 --!strict
 local datatypes = require("../datatypes");
 
-local Enum = datatypes.Enum;
+local Enum = datatypes.Enums;
 
 local impl = {};
 impl.object = nil::any;

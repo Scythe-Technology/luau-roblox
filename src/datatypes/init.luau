@@ -46,6 +46,8 @@ local Vector3 = require("./Vector3");
 export type Vector3 = Vector3.Vector3;
 local Vector3int16 = require("./Vector3int16");
 export type Vector3int16 = Vector3int16.Vector3int16;
+local Content = require("./Content");
+export type Content = Content.Content;
 
 return {
     Axes = Axes,
@@ -72,4 +74,5 @@ return {
     Vector2int16 = Vector2int16,
     Vector3 = Vector3,
     Vector3int16 = Vector3int16,
+    Content = Content,
 };

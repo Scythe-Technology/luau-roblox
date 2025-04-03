@@ -81,6 +81,7 @@ local PROPERTY_TYPES = {
     UniqueId = 31,
     Font = 32,
     SecurityCapabilities = 33,
+    Content = 34,
 }
 
 return {

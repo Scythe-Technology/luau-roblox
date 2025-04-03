@@ -23,7 +23,8 @@ local reset = stdio.reset;
 local SER_TAG = `[dom{style("dim")}::{stdio.color("yellow")}serialize{reset()}]`;
 local DES_TAG = `[dom{style("dim")}::{stdio.color("green")}deserialize{reset()}]`;
 
-local print = print;
+local print = function(...)
+end;
 
 local BinaryChunkType = {
     INST = 0,
@@ -654,6 +655,36 @@ local PropertySerializerMap = {
             capabilities[i] = value.value;
         end
         stream:writebuffer(WriteInterleavedu64(capabilities));
+    end,
+    [RobloxPropertyType.Content] = function(values: {Property}, stream: BufferStream)
+        local len = #values;
+        local source_types = table.create(len);
+        local uris: {string} = table.create(len);
+        local objects = table.create(len);
+
+        for i, value in values do
+            local source_type, uri, object = datatypes.Content.Serialize(value.value);
+            source_types[i] = source_type;
+            if (source_type == 1) then
+                table.insert(uris, uri :: string);
+            elseif (source_type == 2) then
+                if (type(object) ~= "number") then
+                    error("Invalid object type, must be a reference");
+                end
+                table.insert(objects, object);
+            end
+        end
+
+        stream:writebuffer(WriteInterleavedi32(source_types));
+
+        stream:writeu32(#uris);
+        for _, uri in uris do
+            stream:writestring(uri);
+        end
+        stream:writeu32(#objects);
+        stream:writebuffer(WriteInstances(objects));
+
+        stream:writeu32(0);
     end,
 }
 
@@ -1352,6 +1383,27 @@ local PropertyDeserializerMap = {
         local capabilities = ReadInterleavedu64(stream, len);
         for i = 1, len do
             values[i] = capabilities[i];
+        end
+    end,
+    [RobloxPropertyType.Content] = function(values: {any}, property_name: string, stream: BufferStream)
+        local len = #values;
+        local source_types = ReadInterleavedi32(stream, len);
+        local uri_count = stream:readu32();
+        local uris = table.create(uri_count);
+        for i = 1, uri_count do
+            uris[i] = stream:readstring();
+        end
+        local object_count = stream:readu32();
+        local objects = ReadInstances(stream, object_count);
+
+        local extern_count = stream:readu32();
+        local _ = stream:readbuffer(extern_count * 4);
+        for i = 1, len do
+            values[i] = datatypes.Content.Deserialize(
+                source_types[i],
+                if (source_types[i] == 1) then table.remove(uris) else nil,
+                if (source_types[i] == 2) then table.remove(objects) else nil
+            );
         end
     end,
 }

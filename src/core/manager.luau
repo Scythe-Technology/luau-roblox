@@ -4,8 +4,11 @@ local object = require("./object");
 local roblox = require("./types/roblox");
 
 local dom = require("../dom");
+local datatypes = require("./datatypes");
 
 local reflection = require("../reflection");
+
+local Enum = datatypes.Enums;
 
 local manager = {};
 
@@ -43,6 +46,10 @@ function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
         for name, property in (instance::any)["@instance"].properties do
             if (property.type == dom.roblox.PropertyTypes.Ref and property.value) then
                 property.value = instances[property.value];
+            elseif (property.type == dom.roblox.PropertyTypes.Content and property.value) then
+                if (type(property.value.Object) == "number") then
+                    property.value.Object = instances[property.value.Object];
+                end
             elseif (property.type == dom.roblox.PropertyTypes.SharedString and property.value) then
                 property.value = doc.sharedstrings[property.value];
             end
@@ -114,6 +121,17 @@ function manager.domFromInstances(
                         value = descendants_map[value];
                         if (not value) then
                             error(`Reference to non-existent instance at '{descendant:GetFullName()}' (from another DataModel?)`);
+                        end
+                    elseif (property.type == dom.roblox.PropertyTypes.Content and value) then
+                        if (value.SourceType == Enum.ContentSourceType.Object) then
+                            if (value.Object) then
+                                value = descendants_map[value.Object];
+                                if (not value) then
+                                    error(`Content.Object Reference to non-existent instance at '{descendant:GetFullName()}' (from another DataModel?)`);
+                                end
+                            else
+                                value = nil;
+                            end
                         end
                     elseif (property.type == dom.roblox.PropertyTypes.SharedString) then
                         if (type(property.value) ~= "table") then
