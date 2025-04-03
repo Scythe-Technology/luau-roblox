@@ -41,4 +41,13 @@ function dom.serialize(document: roblox.Document, format: ("XML" | "BINARY")?): 
     end
 end
 
+function dom.setDebugCallback(format: "XML" | "BINARY", callback: (...any) -> ()): ()
+    format = format or "BINARY";
+    if (format == "BINARY") then
+        binary.debug(callback);
+    else
+        error("Not implemented");
+    end
+end
+
 return dom;

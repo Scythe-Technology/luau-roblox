@@ -150,9 +150,12 @@ local function saveDump(version: string, dump: string)
     });
 end
 
-local hash = crypto.hash.md5(`{version.body}({URL})`);
-if (fs.isFile(`scripts/.cache/{hash}`)) then
-    local dump_compressed = fs.readFile(`scripts/.cache/{hash}`);
+local hasher = crypto.createHash("md5")
+hasher:update(`{version.body}({URL})`);
+local hash = hasher:digest("hex");
+local ok, file = pcall(fs.openFile, `scripts/.cache/{hash}`)
+if (ok) then
+    local dump_compressed = file:read();
     local dump = serde.gzip.decompress(dump_compressed);
     saveDump(version.body, dump);
     print(`Roblox API Dump saved at {TARGET_PATH}/dump.json (from cache)`);

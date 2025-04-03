@@ -3,7 +3,11 @@
 --!optimize 2
 if (type(_VERSION) == "string") then
     if (string.sub(_VERSION, 1, 4) == "Zune") then
-        return zune.crypto.hash.md5;
+        return function(input)
+            local hash = zune.crypto.createHash("md5");
+            hash:update(input);
+            return hash:digest("hex");
+        end;
     elseif (string.sub(_VERSION, 1, 4) == "Lune") then
         local serde = require("@lune/serde")::any;
         return function(value: string)
