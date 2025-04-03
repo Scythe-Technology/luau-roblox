@@ -45,7 +45,6 @@ function Font.load(family: string?, weight: EnumItem?, style: EnumItem?): Font
     local family_str = family or "rbxasset://fonts/families/SourceSansPro.json";
     local weight_enum = weight or Enum.FontWeight.Regular;
     local style_enum = style or Enum.FontStyle.Normal;
-    print(typeof(weight_enum), typeof(style_enum))
     return Font.new(family_str, weight_enum, style_enum);
 end
 
