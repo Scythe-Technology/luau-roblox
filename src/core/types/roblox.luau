@@ -17,6 +17,14 @@ export type Capture = Object & {
 export type ScreenshotCapture = Capture & {
 }
 
+export type ConfigSnapshot = Object & {
+    Error: enum.Enum_ConfigSnapshotErrorState,
+    Outdated: boolean,
+    GetValue: (self: ConfigSnapshot, key: string, defaultValue: any) -> any,
+    GetValueChangedSignal: (self: ConfigSnapshot, key: string) -> any,
+    Refresh: (self: ConfigSnapshot) -> (),
+}
+
 export type EditableImage = Object & {
     ImageData: buffer,
     IsReplicatedCopy: boolean,
@@ -57,15 +65,26 @@ export type EditableMesh = Object & {
     GetFaceUVs: (self: EditableMesh, faceId: buffer) -> {any},
     GetFaceVertices: (self: EditableMesh, faceId: buffer) -> {any},
     GetFaces: (self: EditableMesh) -> {any},
-    GetFacesWithAttribute: (self: EditableMesh, id: buffer) -> {any},
+    GetFacesWithColor: (self: EditableMesh, colorId: buffer) -> {any},
+    GetFacesWithNormal: (self: EditableMesh, normalId: buffer) -> {any},
+    GetFacesWithUV: (self: EditableMesh, uvId: buffer) -> {any},
     GetNormal: (self: EditableMesh, normalId: buffer) -> datatypes.Vector3?,
     GetNormals: (self: EditableMesh) -> {any},
     GetPosition: (self: EditableMesh, vertexId: buffer) -> datatypes.Vector3,
     GetSize: (self: EditableMesh) -> datatypes.Vector3,
     GetUV: (self: EditableMesh, uvId: buffer) -> datatypes.Vector2?,
     GetUVs: (self: EditableMesh) -> {any},
+    GetVertexColors: (self: EditableMesh, vertexId: buffer) -> {any},
+    GetVertexFaceColor: (self: EditableMesh, vertexId: buffer, faceId: buffer) -> buffer,
+    GetVertexFaceNormal: (self: EditableMesh, vertexId: buffer, faceId: buffer) -> buffer,
+    GetVertexFaceUV: (self: EditableMesh, vertexId: buffer, faceId: buffer) -> buffer,
+    GetVertexFaces: (self: EditableMesh, vertexId: buffer) -> {any},
+    GetVertexNormals: (self: EditableMesh, vertexId: buffer) -> {any},
+    GetVertexUVs: (self: EditableMesh, vertexId: buffer) -> {any},
     GetVertices: (self: EditableMesh) -> {any},
-    GetVerticesWithAttribute: (self: EditableMesh, id: buffer) -> {any},
+    GetVerticesWithColor: (self: EditableMesh, colorId: buffer) -> {any},
+    GetVerticesWithNormal: (self: EditableMesh, normalId: buffer) -> {any},
+    GetVerticesWithUV: (self: EditableMesh, uvId: buffer) -> {any},
     IdDebugString: (self: EditableMesh, id: buffer) -> string,
     MergeVertices: (self: EditableMesh, mergeTolerance: number) -> any,
     RaycastLocal: (self: EditableMesh, origin: datatypes.Vector3, direction: datatypes.Vector3) -> ...any,
@@ -81,6 +100,9 @@ export type EditableMesh = Object & {
     SetNormal: (self: EditableMesh, normalId: buffer, normal: datatypes.Vector3) -> (),
     SetPosition: (self: EditableMesh, vertexId: buffer, p: datatypes.Vector3) -> (),
     SetUV: (self: EditableMesh, uvId: buffer, uv: datatypes.Vector2) -> (),
+    SetVertexFaceColor: (self: EditableMesh, vertexId: buffer, faceId: buffer, colorId: buffer) -> (),
+    SetVertexFaceNormal: (self: EditableMesh, vertexId: buffer, faceId: buffer, normalId: buffer) -> (),
+    SetVertexFaceUV: (self: EditableMesh, vertexId: buffer, faceId: buffer, uvId: buffer) -> (),
     Triangulate: (self: EditableMesh) -> (),
 }
 
@@ -123,9 +145,9 @@ export type Instance = Object & {
     HasTag: (self: Instance, tag: string) -> boolean,
     IsAncestorOf: (self: Instance, descendant: any) -> boolean,
     IsDescendantOf: (self: Instance, ancestor: any) -> boolean,
-    IsPropertyModified: (self: Instance, name: string) -> boolean,
+    IsPropertyModified: (self: Instance, property: string) -> boolean,
     RemoveTag: (self: Instance, tag: string) -> (),
-    ResetPropertyToDefault: (self: Instance, name: string) -> (),
+    ResetPropertyToDefault: (self: Instance, property: string) -> (),
     SetAttribute: (self: Instance, attribute: string, value: any) -> (),
     WaitForChild: (self: Instance, childName: string, timeOut: number) -> any,
 }
@@ -296,8 +318,11 @@ export type AnimationTrack = Instance & {
     AdjustSpeed: (self: AnimationTrack, speed: number) -> (),
     AdjustWeight: (self: AnimationTrack, weight: number, fadeTime: number) -> (),
     GetMarkerReachedSignal: (self: AnimationTrack, name: string) -> any,
+    GetTargetInstance: (self: AnimationTrack, name: string) -> any,
+    GetTargetNames: (self: AnimationTrack) -> {any},
     GetTimeOfKeyframe: (self: AnimationTrack, keyframeName: string) -> number,
     Play: (self: AnimationTrack, fadeTime: number, weight: number, speed: number) -> (),
+    SetTargetInstance: (self: AnimationTrack, name: string, target: any) -> (),
     Stop: (self: AnimationTrack, fadeTime: number) -> (),
 }
 
@@ -350,10 +375,11 @@ export type AnnotationsService = Instance & {
     Selected: Annotation,
     CreateAnnotation: (self: AnnotationsService, annotation: Annotation) -> (),
     DEPRECATED_EditAnnotation: (self: AnnotationsService, uniqueId: string, contents: string) -> (),
+    DEPRECATED_LoadAnnotationReplies: (self: AnnotationsService, annotation: Annotation) -> (),
     DeleteAnnotation: (self: AnnotationsService, annotation: Annotation) -> (),
     EditAnnotation: (self: AnnotationsService, uniqueId: string, contents: string, taggedUsers: string) -> (),
     GetAnnotationThreads: (self: AnnotationsService) -> any,
-    LoadAnnotationReplies: (self: AnnotationsService, annotation: Annotation) -> (),
+    LoadAnnotationReplies: (self: AnnotationsService, annotation: Annotation, reverseOrder: boolean, loadAll: boolean) -> (),
     LoadResolvedAnnotations: (self: AnnotationsService, count: number) -> (),
     ResolveAnnotation: (self: AnnotationsService, annotation: Annotation, resolved: boolean) -> (),
 }
@@ -448,6 +474,7 @@ export type AssetService = Instance & {
     DeserializeInstance: (self: AssetService, serializedInstance: string) -> any,
     GetBundleDetailsSync: (self: AssetService, bundleId: buffer) -> {[string]: any},
     RegisterUGCValidationFunction: (self: AssetService, callback: any) -> (),
+    CanEditAssetAsync: (self: AssetService, content: any) -> boolean,
     CheckTextureAlphaAsync: (self: AssetService, textureId: any) -> boolean,
     CreateAssetAsync: (self: AssetService, object: Object, assetType: enum.Enum_AssetType, requestParameters: {[string]: any}) -> ...any,
     CreateAssetVersionAsync: (self: AssetService, object: Object, assetType: enum.Enum_AssetType, assetId: buffer, requestParameters: {[string]: any}) -> ...any,
@@ -743,10 +770,29 @@ export type AudioSearchParams = Instance & {
     Title: string,
 }
 
+export type AudioTextToSpeech = Instance & {
+    IsLoaded: boolean,
+    IsPlaying: boolean,
+    Looping: boolean,
+    Pitch: number,
+    PlaybackSpeed: number,
+    Speed: number,
+    Text: string,
+    TimeLength: number,
+    TimePosition: number,
+    VoiceId: string,
+    Volume: number,
+    GetConnectedWires: (self: AudioTextToSpeech, pin: string) -> any,
+    Pause: (self: AudioTextToSpeech) -> (),
+    Play: (self: AudioTextToSpeech) -> (),
+    Unload: (self: AudioTextToSpeech) -> (),
+    GetWaveformAsync: (self: AudioTextToSpeech, timeRange: datatypes.NumberRange, samples: number) -> {any},
+    LoadAsync: (self: AudioTextToSpeech) -> enum.Enum_AssetFetchStatus,
+}
+
 export type AuroraScriptService = Instance & {
     BufferSize: number,
-    LocalFrameId: number,
-    RemoteFrameId: number,
+    GetLocalFrameId: (self: AuroraScriptService) -> number,
     GetProperty: (self: AuroraScriptService, instance: any, name: string) -> any,
     GetTime: (self: AuroraScriptService) -> number,
     SendMessage: (self: AuroraScriptService, instance: any, behaviorName: string, functionName: string, ...any) -> (),
@@ -754,14 +800,11 @@ export type AuroraScriptService = Instance & {
 }
 
 export type AuroraService = Instance & {
-    RollbackEnabled: boolean,
-    GetDesyncedInstances: (self: AuroraService) -> {any},
+    GetPredictedInstances: (self: AuroraService) -> {any},
     GetRemoteWorldStepId: (self: AuroraService) -> number,
     GetServerView: (self: AuroraService, target: any) -> any,
     GetWorldStepId: (self: AuroraService) -> number,
-    IsDesynced: (self: AuroraService, target: any) -> boolean,
-    NetDesync: (self: AuroraService, target: any) -> (),
-    NetSync: (self: AuroraService, target: any) -> (),
+    IsPredicted: (self: AuroraService, target: any) -> boolean,
     SetIncomingReplicationLag: (self: AuroraService, seconds: number) -> (),
     SetPropertyIsInput: (self: AuroraService, target: any, propertyName: string, isInput: boolean) -> (),
     StartPrediction: (self: AuroraService, target: any) -> (),
@@ -774,6 +817,7 @@ export type AvatarChatService = Instance & {
     ClientFeatures: number,
     ClientFeaturesInitialized: boolean,
     ServerFeatures: number,
+    DebugCounterGet: (self: AvatarChatService, label: string, playerId: buffer) -> buffer,
     EnableVoice: (self: AvatarChatService) -> boolean,
     IsEnabled: (self: AvatarChatService, mask: number, feature: enum.Enum_AvatarChatServiceFeature) -> boolean,
     IsPlaceEnabled: (self: AvatarChatService) -> boolean,
@@ -983,6 +1027,7 @@ export type StarterGui = BasePlayerGui & {
     RtlTextSupport: enum.Enum_RtlTextSupport,
     ScreenOrientation: enum.Enum_ScreenOrientation,
     ShowDevelopmentGui: boolean,
+    StudioDefaultStyleSheet: StyleSheet,
     StudioInsertWidgetLayerCollectorAutoLinkStyleSheet: StyleSheet,
     VirtualCursorMode: enum.Enum_VirtualCursorMode,
     GetCoreGuiEnabled: (self: StarterGui, coreGuiType: enum.Enum_CoreGuiType) -> boolean,
@@ -1205,33 +1250,6 @@ export type CalloutService = Instance & {
     DetachCalloutsByDefinitionId: (self: CalloutService, definitionId: string) -> (),
 }
 
-export type Camera = Instance & {
-    CFrame: datatypes.CFrame,
-    CameraSubject: any,
-    CameraType: enum.Enum_CameraType,
-    DiagonalFieldOfView: number,
-    FieldOfView: number,
-    FieldOfViewMode: enum.Enum_FieldOfViewMode,
-    Focus: datatypes.CFrame,
-    HeadLocked: boolean,
-    HeadScale: number,
-    MaxAxisFieldOfView: number,
-    NearPlaneZ: number,
-    VRTiltAndRollEnabled: boolean,
-    ViewportSize: datatypes.Vector2,
-    GetPartsObscuringTarget: (self: Camera, castPoints: {any}, ignoreList: any) -> any,
-    GetRenderCFrame: (self: Camera) -> datatypes.CFrame,
-    GetRoll: (self: Camera) -> number,
-    ScreenPointToRay: (self: Camera, x: number, y: number, depth: number) -> datatypes.Ray,
-    SetImageServerView: (self: Camera, modelCoord: datatypes.CFrame) -> (),
-    SetRoll: (self: Camera, rollAngle: number) -> (),
-    ViewportPointToRay: (self: Camera, x: number, y: number, depth: number) -> datatypes.Ray,
-    WorldToScreenPoint: (self: Camera, worldPoint: datatypes.Vector3) -> ...any,
-    WorldToViewportPoint: (self: Camera, worldPoint: datatypes.Vector3) -> ...any,
-    Zoom: (self: Camera, distance: number) -> boolean,
-    ZoomToExtents: (self: Camera, boundingBoxCFrame: datatypes.CFrame, boundingBoxSize: datatypes.Vector3) -> (),
-}
-
 export type CaptureService = Instance & {
     CaptureScreenshot: (self: CaptureService, onCaptureReady: any) -> (),
     DeleteCapture: (self: CaptureService, capturePath: string) -> (),
@@ -1449,6 +1467,11 @@ export type CommerceService = Instance & {
     GetCommerceProductInfoAsync: (self: CommerceService, commerceProductId: string) -> {[string]: any},
     PrepareCommerceProductPurchase: (self: CommerceService, commerceProductId: string) -> {[string]: any},
     UserEligibleForRealWorldCommerceAsync: (self: CommerceService) -> boolean,
+}
+
+export type ConfigService = Instance & {
+    GetConfigAsync: (self: ConfigService) -> ConfigSnapshot,
+    GetConfigForPlayerAsync: (self: ConfigService, player: Player) -> ConfigSnapshot,
 }
 
 export type Configuration = Instance & {
@@ -1814,9 +1837,10 @@ export type ConversationalAIAcceptanceService = Instance & {
     RecordingActionEnded: (self: ConversationalAIAcceptanceService, requestId: string, waypointName: string) -> (),
     ReportJSONEncodeFailure: (self: ConversationalAIAcceptanceService, instanceName: string, className: string) -> (),
     SendCommandErrorTelemetry: (self: ConversationalAIAcceptanceService, requestId: string, commandName: string, errorMessage: string) -> (),
-    SendMeshGenMeshInsertedTelemetry: (self: ConversationalAIAcceptanceService) -> (),
-    SendMeshGenPublishedAssetsTelemetry: (self: ConversationalAIAcceptanceService) -> (),
-    SendMeshGenResultTelemetry: (self: ConversationalAIAcceptanceService, success: boolean) -> (),
+    SendMeshGenActivatedTelemetry: (self: ConversationalAIAcceptanceService) -> (),
+    SendMeshGenCompletedTelemetry: (self: ConversationalAIAcceptanceService, requestId: string, generationId: string, success: boolean, errorMessage: string, prompt: string) -> (),
+    SendMeshGenMeshInsertedTelemetry: (self: ConversationalAIAcceptanceService, requestId: string, generationId: string, success: boolean, errorMessage: string) -> (),
+    SendMeshGenPublishedAssetsTelemetry: (self: ConversationalAIAcceptanceService, requestId: string, generationId: string, success: boolean, errorMessage: string, meshId: buffer, imageId: buffer) -> (),
 }
 
 export type CookiesService = Instance & {
@@ -2487,7 +2511,7 @@ export type DataStore = GlobalDataStore & {
 }
 
 export type OrderedDataStore = GlobalDataStore & {
-    GetSortedAsync: (self: OrderedDataStore, ascending: boolean, pagesize: number, minValue: any, maxValue: any) -> any,
+    GetSortedAsync: (self: OrderedDataStore, ascending: boolean, pagesize: number, minValue: any, maxValue: any) -> DataStorePages,
 }
 
 export type GoogleAnalyticsConfiguration = Instance & {
@@ -2574,6 +2598,7 @@ export type Frame = GuiObject & {
 
 export type GuiButton = GuiObject & {
     AutoButtonColor: boolean,
+    HoverHapticEffect: HapticEffect,
     Modal: boolean,
     MouseButton1ClickConnectionCount: number,
     MouseButton1DownConnectionCount: number,
@@ -2581,6 +2606,7 @@ export type GuiButton = GuiObject & {
     MouseButton2ClickConnectionCount: number,
     MouseButton2DownConnectionCount: number,
     MouseButton2UpConnectionCount: number,
+    PressHapticEffect: HapticEffect,
     Selected: boolean,
     Style: enum.Enum_ButtonStyle,
 }
@@ -2703,9 +2729,11 @@ export type ScrollingFrame = GuiObject & {
     ScrollBarImageColor3: datatypes.Color3,
     ScrollBarImageTransparency: number,
     ScrollBarThickness: number,
+    ScrollRate: number,
     ScrollVelocity: datatypes.Vector2,
     ScrollingDirection: enum.Enum_ScrollingDirection,
     ScrollingEnabled: boolean,
+    SmoothScroll: boolean,
     TopImage: any,
     VerticalBarRect: datatypes.Rect,
     VerticalScrollBarInset: enum.Enum_ScrollBarInset,
@@ -3471,6 +3499,7 @@ export type IKControl = Instance & {
     GetNodeWorldCFrame: (self: IKControl, index: number) -> datatypes.CFrame,
     GetRawFinalTarget: (self: IKControl) -> datatypes.CFrame,
     GetSmoothedFinalTarget: (self: IKControl) -> datatypes.CFrame,
+    Solve: (self: IKControl) -> (),
 }
 
 export type ILegacyStudioBridge = Instance & {
@@ -3510,8 +3539,16 @@ export type InputAction = Instance & {
 }
 
 export type InputBinding = Instance & {
+    Down: enum.Enum_KeyCode,
     KeyCode: enum.Enum_KeyCode,
+    Left: enum.Enum_KeyCode,
+    PressedThreshold: number,
+    ReleasedThreshold: number,
+    Right: enum.Enum_KeyCode,
+    Scale: number,
     UIButton: GuiButton,
+    Up: enum.Enum_KeyCode,
+    Vector2Scale: datatypes.Vector2,
 }
 
 export type InputContext = Instance & {
@@ -3845,6 +3882,9 @@ export type AuroraScript = LuaSourceContainer & {
     RunInParallel: boolean,
     Source: string,
     Tag: string,
+    AddTo: (self: AuroraScript, instance: any) -> (),
+    IsOnInstance: (self: AuroraScript, instance: any) -> boolean,
+    RemoveFrom: (self: AuroraScript, instance: any) -> (),
 }
 
 export type BaseScript = LuaSourceContainer & {
@@ -3936,6 +3976,12 @@ export type MarketplaceService = Instance & {
     PlayerOwnsAsset: (self: MarketplaceService, player: any, assetId: buffer) -> boolean,
     PlayerOwnsBundle: (self: MarketplaceService, player: Player, bundleId: buffer) -> boolean,
     UserOwnsGamePassAsync: (self: MarketplaceService, userId: buffer, gamePassId: buffer) -> boolean,
+}
+
+export type MatchmakingService = Instance & {
+    GetServerAttribute: (self: MatchmakingService, name: string) -> ...any,
+    InitializeServerAttributesForStudio: (self: MatchmakingService, serverAttributes: {[string]: any}) -> ...any,
+    SetServerAttribute: (self: MatchmakingService, name: string, value: any) -> ...any,
 }
 
 export type MaterialGenerationService = Instance & {
@@ -4499,6 +4545,33 @@ export type VehicleSeat = BasePart & {
     Sit: (self: VehicleSeat, humanoid: any) -> (),
 }
 
+export type Camera = PVInstance & {
+    CFrame: datatypes.CFrame,
+    CameraSubject: any,
+    CameraType: enum.Enum_CameraType,
+    DiagonalFieldOfView: number,
+    FieldOfView: number,
+    FieldOfViewMode: enum.Enum_FieldOfViewMode,
+    Focus: datatypes.CFrame,
+    HeadLocked: boolean,
+    HeadScale: number,
+    MaxAxisFieldOfView: number,
+    NearPlaneZ: number,
+    VRTiltAndRollEnabled: boolean,
+    ViewportSize: datatypes.Vector2,
+    GetPartsObscuringTarget: (self: Camera, castPoints: {any}, ignoreList: any) -> any,
+    GetRenderCFrame: (self: Camera) -> datatypes.CFrame,
+    GetRoll: (self: Camera) -> number,
+    ScreenPointToRay: (self: Camera, x: number, y: number, depth: number) -> datatypes.Ray,
+    SetImageServerView: (self: Camera, modelCoord: datatypes.CFrame) -> (),
+    SetRoll: (self: Camera, rollAngle: number) -> (),
+    ViewportPointToRay: (self: Camera, x: number, y: number, depth: number) -> datatypes.Ray,
+    WorldToScreenPoint: (self: Camera, worldPoint: datatypes.Vector3) -> ...any,
+    WorldToViewportPoint: (self: Camera, worldPoint: datatypes.Vector3) -> ...any,
+    Zoom: (self: Camera, distance: number) -> boolean,
+    ZoomToExtents: (self: Camera, boundingBoxCFrame: datatypes.CFrame, boundingBoxSize: datatypes.Vector3) -> (),
+}
+
 export type Model = PVInstance & {
     LevelOfDetail: enum.Enum_ModelLevelOfDetail,
     LodEntity: LodDataEntity,
@@ -4574,7 +4647,7 @@ export type WorldRoot = Model & {
     IKMoveTo: (self: WorldRoot, part: BasePart, target: datatypes.CFrame, translateStiffness: number, rotateStiffness: number, collisionsMode: enum.Enum_IKCollisionsMode) -> (),
     Raycast: (self: WorldRoot, origin: datatypes.Vector3, direction: datatypes.Vector3, raycastParams: any) -> any,
     RaycastCachedTerrain: (self: WorldRoot, id: string, origin: datatypes.Vector3, direction: datatypes.Vector3, ignoreWater: boolean) -> any,
-    SetInsertPoint: (self: WorldRoot, point: datatypes.Vector3, ignoreGrid: boolean) -> (),
+    SetInsertPoint: (self: WorldRoot, point: datatypes.Vector3) -> (),
     Shapecast: (self: WorldRoot, part: BasePart, direction: datatypes.Vector3, params: any) -> any,
     Spherecast: (self: WorldRoot, position: datatypes.Vector3, radius: number, direction: datatypes.Vector3, params: any) -> any,
     StepPhysics: (self: WorldRoot, dt: number, parts: any) -> (),
@@ -4947,6 +5020,7 @@ export type Player = Instance & {
     NameDisplayDistance: number,
     Neutral: boolean,
     OsPlatform: string,
+    PartyId: string,
     PlatformName: string,
     RawJoinData: buffer,
     ReplicationFocus: any,
@@ -4968,6 +5042,7 @@ export type Player = Instance & {
     AddToBlockList: (self: Player, userIds: {any}) -> (),
     ClearCharacterAppearance: (self: Player) -> (),
     DistanceFromCharacter: (self: Player, point: datatypes.Vector3) -> number,
+    GetData: (self: Player) -> PlayerData,
     GetFriendStatus: (self: Player, player: Player) -> enum.Enum_FriendStatus,
     GetGameSessionID: (self: Player) -> string,
     GetJoinData: (self: Player) -> {[string]: any},
@@ -4978,6 +5053,7 @@ export type Player = Instance & {
     IsVerified: (self: Player) -> boolean,
     Kick: (self: Player, message: string) -> (),
     Move: (self: Player, walkDirection: datatypes.Vector3, relativeToCamera: boolean) -> (),
+    OverrideStreamingRadii: (self: Player, minRadius: number, targetRadius: number) -> (),
     RemoveCharacter: (self: Player) -> (),
     RemoveReplicationFocus: (self: Player, part: BasePart) -> (),
     RemoveReplicationFocusPosition: (self: Player, center: datatypes.Vector3, radius: number) -> (),
@@ -5005,7 +5081,7 @@ export type Player = Instance & {
 
 export type PlayerData = Instance & {
     GetPlayer: (self: PlayerData) -> Player,
-    GetRecord: (self: PlayerData, recordName: string) -> PlayerDataRecord,
+    GetRecordAsync: (self: PlayerData, recordName: string) -> PlayerDataRecord,
 }
 
 export type PlayerDataRecord = Instance & {
@@ -5023,11 +5099,10 @@ export type PlayerDataRecord = Instance & {
     GetPlayer: (self: PlayerDataRecord) -> Player,
     GetValue: (self: PlayerDataRecord, key: string) -> any,
     GetValueChangedSignal: (self: PlayerDataRecord, key: string) -> any,
-    Release: (self: PlayerDataRecord) -> (),
     RemoveValue: (self: PlayerDataRecord, key: string) -> (),
     SetValue: (self: PlayerDataRecord, key: string, value: any) -> (),
+    ReleaseAsync: (self: PlayerDataRecord) -> (),
     RequestFlushAsync: (self: PlayerDataRecord) -> (),
-    WaitForLoadAsync: (self: PlayerDataRecord) -> (),
 }
 
 export type PlayerDataRecordConfig = Instance & {
@@ -5904,6 +5979,7 @@ export type SnippetService = Instance & {
 }
 
 export type SocialService = Instance & {
+    GetPlayersByPartyId: (self: SocialService, partyId: string) -> any,
     HideSelfView: (self: SocialService) -> (),
     InvokeGameInvitePromptClosed: (self: SocialService, player: any, recipientIds: {any}) -> (),
     InvokeIrisInvite: (self: SocialService, player: any, tag: string, irisParticipants: {any}) -> (),
@@ -5911,6 +5987,7 @@ export type SocialService = Instance & {
     PromptGameInvite: (self: SocialService, player: any, experienceInviteOptions: any) -> (),
     PromptPhoneBook: (self: SocialService, player: any, tag: string) -> (),
     ShowSelfView: (self: SocialService, selfViewPosition: enum.Enum_SelfViewPosition) -> (),
+    UpdatePlayerPartyData: (self: SocialService, partyId: string) -> (),
     CanSendCallInviteAsync: (self: SocialService, player: any) -> boolean,
     CanSendGameInviteAsync: (self: SocialService, player: any, recipientId: buffer) -> boolean,
 }
@@ -6188,6 +6265,7 @@ export type Stats = Instance & {
     UI3DDrawcallCount: number,
     UI3DTriangleCount: number,
     GetBrowserTrackerId: (self: Stats) -> string,
+    GetHarmonyQualityLevel: (self: Stats) -> number,
     GetMemoryCategoryNames: (self: Stats) -> {any},
     GetMemoryUsageMbAllCategories: (self: Stats) -> {any},
     GetMemoryUsageMbForTag: (self: Stats, tag: enum.Enum_DeveloperMemoryTag) -> number,
@@ -6404,7 +6482,7 @@ export type StudioAssetService = Instance & {
     PublishPackage: (self: StudioAssetService, instance: any, publishInfo: {[string]: any}) -> (),
     ShowSaveToRoblox: (self: StudioAssetService, instances: any, assetType: any, hasSubsequent: boolean) -> (),
     UpdatePublishedPackage: (self: StudioAssetService, assetmetadata: {[string]: any}, rootInstance: any, isConvert: boolean, addUndoWaypoint: boolean) -> (),
-    AutoSetupAvatarAsync: (self: StudioAssetService, modelId: any, progressCallback: any) -> any,
+    AutoSetupAvatarAsync: (self: StudioAssetService, modelId: any, progressCallback: any, notificationCallback: any) -> any,
     CancelAutoSetupAvatarAsync: (self: StudioAssetService, jobId: string) -> (),
     DEPRECATED_SerializeInstances: (self: StudioAssetService, instances: any) -> string,
     RequestAvatarAutosetupAsync: (self: StudioAssetService, meshId: any, textureId: any, progressCallback: any) -> any,
@@ -6540,7 +6618,7 @@ export type StudioWidgetsService = Instance & {
 
 export type StyleBase = Instance & {
     GetStyleRules: (self: StyleBase) -> any,
-    InsertStyleRule: (self: StyleBase, rule: StyleRule, index: number) -> (),
+    InsertStyleRule: (self: StyleBase, rule: StyleRule, priority: number) -> (),
     SetStyleRules: (self: StyleBase, rules: any) -> (),
 }
 
@@ -6554,7 +6632,7 @@ export type StyleRule = StyleBase & {
     GetPropertiesResolved: (self: StyleRule) -> {[string]: any},
     GetProperty: (self: StyleRule, name: string) -> any,
     GetPropertyResolved: (self: StyleRule, name: string) -> any,
-    SetProperties: (self: StyleRule, table: {[string]: any}) -> (),
+    SetProperties: (self: StyleRule, styleProperties: {[string]: any}) -> (),
     SetProperty: (self: StyleRule, name: string, value: any) -> (),
 }
 
@@ -6919,6 +6997,7 @@ export type TextureGenerationUnwrappingRequest = Instance & {
 export type ThirdPartyUserService = Instance & {
     GetUserPlatformId: (self: ThirdPartyUserService) -> string,
     GetUserPlatformName: (self: ThirdPartyUserService) -> string,
+    GetVoiceChatRestrictionStatus: (self: ThirdPartyUserService) -> enum.Enum_ChatRestrictionStatus,
     HaveActiveUser: (self: ThirdPartyUserService) -> boolean,
     IsChatRestrictionSupported: (self: ThirdPartyUserService) -> boolean,
     IsOver13: (self: ThirdPartyUserService) -> boolean,
@@ -7029,6 +7108,8 @@ export type UGCAvatarService = Instance & {
 export type UGCValidationService = Instance & {
     CalculateAverageEditableCageMeshDistance: (self: UGCValidationService, innerCage: EditableMesh, outerCage: EditableMesh, refMesh: EditableMesh, innerTransform: datatypes.CFrame, outerTransform: datatypes.CFrame) -> number,
     CalculateEditableMeshInsideMeshPercentage: (self: UGCValidationService, editableMeshRoot: EditableMesh, editableMeshQuery: EditableMesh, meshQueryTransform: datatypes.CFrame, meshQueryScale: datatypes.Vector3) -> number,
+    CalculateEditableMeshModifiedCageBoundingBox: (self: UGCValidationService, referenceUVValues: {any}, innerCage: EditableMesh, innerTransform: datatypes.CFrame, outerCage: EditableMesh, outerTransform: datatypes.CFrame) -> ...any,
+    CalculateEditableMeshNumModifiedCageUVsInSet: (self: UGCValidationService, referenceUVValues: {any}, innerCage: EditableMesh, innerTransform: datatypes.CFrame, outerCage: EditableMesh, outerTransform: datatypes.CFrame) -> ...any,
     CalculateEditableMeshTotalSurfaceArea: (self: UGCValidationService, editableMesh: EditableMesh, meshScale: datatypes.Vector3) -> number,
     CalculateEditableMeshUniqueUVCount: (self: UGCValidationService, editableMesh: EditableMesh) -> number,
     CheckEditableMeshInCameraFrustum: (self: UGCValidationService, editableMesh: EditableMesh, meshScale: datatypes.Vector3, handleWorldCF: datatypes.CFrame, cameraWorldCF: datatypes.CFrame) -> boolean,
@@ -7637,18 +7718,36 @@ export type VoiceChatInternal = Instance & {
 }
 
 export type VoiceChatService = Instance & {
+    DefaultDistanceAttenuation: enum.Enum_VoiceChatDistanceAttenuationType,
     EnableDefaultVoice: boolean,
     UseAudioApi: enum.Enum_AudioApiRollout,
     UseNewAudioApi: boolean,
     UseNewControlPaths: boolean,
     UseNewJoinFlow: boolean,
-    UseRME: boolean,
     VoiceChatEnabledForPlaceOnRcc: boolean,
     VoiceChatEnabledForUniverseOnRcc: boolean,
+    getInternalChannelId: (self: VoiceChatService) -> string,
+    getInternalGroupId: (self: VoiceChatService) -> string,
+    getInternalPublishPause: (self: VoiceChatService) -> boolean,
+    getInternalSessionId: (self: VoiceChatService) -> string,
+    getInternalSubscribePause: (self: VoiceChatService, userId: buffer) -> boolean,
+    getInternalSubscribePauseAll: (self: VoiceChatService) -> boolean,
+    getInternalVoiceChatApiVersion: (self: VoiceChatService) -> number,
+    isInternalPublishPaused: (self: VoiceChatService) -> boolean,
     joinVoice: (self: VoiceChatService) -> (),
     leaveVoice: (self: VoiceChatService) -> (),
     rejoinVoice: (self: VoiceChatService) -> (),
     IsVoiceEnabledForUserIdAsync: (self: VoiceChatService, userId: buffer) -> boolean,
+}
+
+export type WebSocketClient = Instance & {
+    ConnectionState: enum.Enum_WebSocketState,
+    Close: (self: WebSocketClient) -> (),
+    Send: (self: WebSocketClient, data: string) -> (),
+}
+
+export type WebSocketService = Instance & {
+    CreateClient: (self: WebSocketService, uri: string) -> WebSocketClient,
 }
 
 export type WebViewService = Instance & {
@@ -7717,6 +7816,7 @@ export type NewConstructor =
     & (("AudioPlayer", parent: Instance?) -> AudioPlayer)
     & (("AudioReverb", parent: Instance?) -> AudioReverb)
     & (("AudioSearchParams", parent: Instance?) -> AudioSearchParams)
+    & (("AudioTextToSpeech", parent: Instance?) -> AudioTextToSpeech)
     & (("Backpack", parent: Instance?) -> Backpack)
     & (("RemoteEvent", parent: Instance?) -> RemoteEvent)
     & (("UnreliableRemoteEvent", parent: Instance?) -> UnreliableRemoteEvent)
@@ -7735,7 +7835,6 @@ export type NewConstructor =
     & (("RocketPropulsion", parent: Instance?) -> RocketPropulsion)
     & (("BodyPartDescription", parent: Instance?) -> BodyPartDescription)
     & (("Breakpoint", parent: Instance?) -> Breakpoint)
-    & (("Camera", parent: Instance?) -> Camera)
     & (("BodyColors", parent: Instance?) -> BodyColors)
     & (("CharacterMesh", parent: Instance?) -> CharacterMesh)
     & (("Pants", parent: Instance?) -> Pants)
@@ -7896,6 +7995,7 @@ export type NewConstructor =
     & (("UnionOperation", parent: Instance?) -> UnionOperation)
     & (("TrussPart", parent: Instance?) -> TrussPart)
     & (("VehicleSeat", parent: Instance?) -> VehicleSeat)
+    & (("Camera", parent: Instance?) -> Camera)
     & (("Model", parent: Instance?) -> Model)
     & (("Actor", parent: Instance?) -> Actor)
     & (("HopperBin", parent: Instance?) -> HopperBin)
