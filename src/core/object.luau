@@ -24,7 +24,7 @@ getmetatable(PROXY_MAP).__index = reflection.API_CLASS_MAP;
 local function blankFromClass(className: string): object
     local class = reflection:GetClass(className);
     if (not class) then
-        error("Class not found");
+        error(`Class "{className}" not found (maybe outdated?)`);
     end
     local is_service =
         if (class.Tags) then
