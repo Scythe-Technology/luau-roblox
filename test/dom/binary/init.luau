@@ -7,6 +7,7 @@ local test = testing.test;
 
 local binary = require("@roblox/dom/binary");
 local roblox = require("@roblox/dom/roblox");
+local reflection = require("@roblox/reflection");
 
 local RobloxPropertyTypeNameMap = {}
 for name: string, value: number in roblox.PropertyTypes::{[string]: number} do
@@ -18,11 +19,22 @@ local function getPropertyTypeName(type: number): string
 end
 
 local function similarProperties(
+    className: string,
     prop1: {[string]: roblox.Property},
     prop2: {[string]: roblox.Property},
     outdated: boolean?
 )
+    local class: reflection.ClassInfo = reflection:FindClass(className) or ({Members = {}} :: any);
+    local serializable = {};
+    for _, member in class.Members do
+        if (member.MemberType == "Property") then
+            serializable[member.Name] = member.Serialization.CanSave;
+        end
+    end
     for name, p1 in prop1 do
+        if (not serializable[name]) then
+            continue;
+        end
         local p2 = prop2[name];
         if (not p2) then
             if (not outdated) then
@@ -39,7 +51,7 @@ local function similarProperties(
         if (type(p1.value) ~= type(p2.value)) then
             return false, "Type mismatch";
         end
-        if (type(p1.value) == "buffer") then
+        if (type(p1.value) == "buffer" or type(p1.value) == "table") then
             continue;
         end
         if (p1.value ~= p2.value) then
@@ -71,7 +83,7 @@ local function isSimilar(instances1: {roblox.Instance}, instances2: {roblox.Inst
         if (inst1.parent ~= inst2.parent) then
             return false, i;
         end
-        local ok, msg = similarProperties(inst1.properties, inst2.properties, outdated);
+        local ok, msg = similarProperties(inst1.className, inst1.properties, inst2.properties, outdated);
         if (not ok) then
             return false, `{i}: {msg}`;
         end

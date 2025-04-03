@@ -21,6 +21,27 @@ test("Deserialize and serialize model", function()
     print(model, serialized);
 end)
 
+local function serializeDeserializeTest(name: string, path: string, outdated: boolean?)
+    test(name, function()
+        local file = fs.readFile(path, true);
+        local model = lib.deserializeModel(file);
+        local _ = lib.serializeModel(model);
+    end)
+end
+
+local RBX = "./rbx-test-files";
+
+local outdated_models = {
+    "three-screengui",
+    "gui-inset-and-font-migration",
+};
+for _, sample in fs.readDir(`{RBX}/models/`) do
+    local outdated = table.find(outdated_models, sample) ~= nil;
+    serializeDeserializeTest(
+        `models/{sample}`, `{RBX}/models/{sample}/binary.rbxm`, outdated
+    )
+end
+
 if (process.args[2] == "--all") then
     require("./dom/binary");
 end
