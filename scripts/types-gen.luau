@@ -179,14 +179,14 @@ for i, enum in api.Enums do
 end
 table.insert(end_enum_lines, `}`);
 table.move(end_enum_lines, 1, #end_enum_lines, #enum_lines + 1, enum_lines);
-table.insert(enum_lines, `return nil;`);
+table.insert(enum_lines, `return \{\};`);
 
 for i, class in api.Classes do
     table.insert(lines, generateObjectMembersType(class));
 end
 
 table.insert(lines, generateInstanceNewTypes());
-table.insert(lines, `return nil;`);
+table.insert(lines, `return \{\};`);
 
 if (not fs.isDir("./src/core/types")) then
     fs.writeDir("./src/core/types");

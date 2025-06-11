@@ -15,7 +15,8 @@ end
 
 local CACHE = setmetatable({}, {__mode = "v"});
 
-function newContent(uri: string?, object: any?, source_type: Enum.ContentSourceType): Content
+function newContent(uri: string?, object: any?, source_type: EnumItem): Content
+    assert(EnumItem.Is(source_type) and source_type.EnumType == Enum.ContentSourceType, "invalid argument #3, expected Enum.ContentSourceType");
     local hash = Helper.ValuesHash(uri, object, source_type.Value);
     local cached = CACHE[hash];
     if (cached) then
@@ -25,7 +26,7 @@ function newContent(uri: string?, object: any?, source_type: Enum.ContentSourceT
         Uri = uri,
         Object = object,
         SourceType = source_type,
-    }, Font);
+    }, Content);
     CACHE[hash] = self;
     return self;
 end

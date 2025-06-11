@@ -133,9 +133,78 @@ local version = net.http.request(VERSION_URL, {
 });
 assert(version.ok, `Invalid version response ({version.statusCode}): {version.body}`);
 
+local function count(t: {any}): number
+    local c = 0;
+    for _, _ in t do
+        c += 1;
+    end
+    return c;
+end
+
+local function jsonToLua(json_value: any, d: number?): string
+    local depth = d or 0;
+    if (type(json_value) == "table") then
+        local writer = {};
+        local fields = {};
+        local size = count(json_value);
+        local array_size = #json_value;
+        local array = array_size > 0 and next(json_value) ~= nil
+        table.insert(writer, "{")
+        if (array) then
+            for i, v in ipairs(json_value) do
+                local data = jsonToLua(v, depth + 1);
+                size = math.max(#data // 10, size);
+                table.insert(fields, jsonToLua(v, depth + 1))
+            end
+            if (size > 5) then
+                table.insert(writer, `\n{string.rep('\t', depth + 1)}`)
+            end
+            table.insert(writer, table.concat(fields, if (size > 5) then `,\n{string.rep('\t', depth + 1)}` else ","));
+            if (size > 5) then
+                table.insert(writer, `\n{string.rep('\t', depth)}`)
+            end
+        else
+            for i, v in pairs(json_value) do
+                local data = jsonToLua(v, depth + 1);
+                size = math.max(#data // 10, size);
+                if (string.find(i, "[\0-\64\91-\96\123-\255]")) then
+                    table.insert(fields, `["{i}"] = {data}`);
+                else
+                    table.insert(fields, `{i} = {data}`);
+                end
+            end
+            if (size > 5) then
+                table.insert(writer, `\n{string.rep('\t', depth + 1)}`)
+            end
+            table.insert(writer, table.concat(fields, if (size > 5) then `,\n{string.rep('\t', depth + 1)}` else ","));
+            if (size > 5) then
+                table.insert(writer, `\n{string.rep('\t', depth)}`)
+            end
+        end
+        table.insert(writer, "}")
+        return table.concat(writer, "");
+    elseif (type(json_value) == "string") then
+        local closing = "\"";
+        if (not json_value:find("\"", 1, true)) then
+            closing = "\"";
+        elseif (not json_value:find("'", 1, true)) then
+            closing = "'"
+        elseif (not json_value:find("`", 1, true)) then
+            closing = "`"
+        else
+            return `[===[{json_value}]===]`;
+        end
+        return `{closing}{json_value}{closing}`;
+    elseif (type(json_value) == "number" or type(json_value) == "boolean") then
+        return tostring(json_value);
+    end
+    return error(type(json_value));
+end
+
 local function saveDump(version: string, dump: string)
-    fs.writeFile(`{TARGET_PATH}/json-dump.luau`, build {
-        `return [===[{dump}]===]`,
+    local data = serde.json.decode(dump);
+    fs.writeFile(`{TARGET_PATH}/api-dump.luau`, build {
+        `return {jsonToLua(data)};`,
         ''
     });
     fs.writeFile(`{TARGET_PATH}/init.luau`, build {
@@ -144,7 +213,7 @@ local function saveDump(version: string, dump: string)
         TYPE_INFO,
         'return {',
         `    Version = "{version}",`,
-        '    DumpJson = require("./json-dump"),',
+        '    ApiDump = require("@self/api-dump") :: any,',
         '}',
         ''
     });

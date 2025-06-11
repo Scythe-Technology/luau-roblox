@@ -1,19 +1,19 @@
 --!strict
-local mem = require("../../polyfill/mem");
-local lz4 = require("../../polyfill/lz4");
-local zlib = require("../../polyfill/zlib");
-local zstd = require("../../polyfill/zstd");
-local base64 = require("../../polyfill/base64");
-local blake2 = require("../../polyfill/blake2");
-local stdio = require("../../polyfill/stdio");
+local mem = require("@polyfill/mem");
+local lz4 = require("@polyfill/lz4");
+local zlib = require("@polyfill/zlib");
+local zstd = require("@polyfill/zstd");
+local base64 = require("@polyfill/base64");
+local blake2 = require("@polyfill/blake2");
+local stdio = require("@polyfill/stdio");
+local sink = require("@polyfill/sink");
+local stream = require("@polyfill/stream");
 
-local Stream = require("./stream");
+local bit64 = require("./lib/bit64");
 
-local bit64 = require("../lib/bit64");
-
-local roblox = require("../roblox");
-local datatypes = require("../../datatypes");
-local reflection = require("../../reflection");
+local roblox = require("./roblox");
+local datatypes = require("../datatypes");
+local reflection = require("../reflection");
 
 local BinaryMagicHeader = "<roblox!\x89\xff\x0d\x0a\x1a\x0a";
 
@@ -53,8 +53,6 @@ type Document = roblox.Document;
 type Signature = roblox.Signature;
 type Property = roblox.Property;
 type DocumentInfo = roblox.DocumentInfo;
-
-type BufferStream = Stream.BufferStream;
 
 export type ChunkInfo = {
     type: number,
@@ -161,25 +159,25 @@ local function WriteInterleaved<T>(values: {T}, size: number, transform: (buffer
     return interleaved;
 end
 
-local function ReadInterleavedi32(stream: BufferStream, count: number): {number}
-    return ReadInterleaved(stream:readbuffer(count * 4), 0, count, 4, rotatei32);
+local function ReadInterleavedi32(stream: stream.IoReadable, count: number): {number}
+    return ReadInterleaved(stream:read(count * 4) :: buffer, 0, count, 4, rotatei32);
 end
-local function ReadInterleavedu32(stream: BufferStream, count: number): {number}
-    return ReadInterleaved(stream:readbuffer(count * 4), 0, count, 4, tou32);
-end
-
-local function ReadInterleavedi64(stream: BufferStream, count: number): {buffer}
-    return ReadInterleaved(stream:readbuffer(count * 8), 0, count, 8, rotatei64);
-end
-local function ReadInterleavedu64(stream: BufferStream, count: number): {buffer}
-    return ReadInterleaved(stream:readbuffer(count * 8), 0, count, 8, tou64);
+local function ReadInterleavedu32(stream: stream.IoReadable, count: number): {number}
+    return ReadInterleaved(stream:read(count * 4) :: buffer, 0, count, 4, tou32);
 end
 
-local function ReadInterleavedf32(stream: BufferStream, count: number): {number}
-    return ReadInterleaved(stream:readbuffer(count * 4), 0, count, 4, rotatef32);
+local function ReadInterleavedi64(stream: stream.IoReadable, count: number): {buffer}
+    return ReadInterleaved(stream:read(count * 8) :: buffer, 0, count, 8, rotatei64);
+end
+local function ReadInterleavedu64(stream: stream.IoReadable, count: number): {buffer}
+    return ReadInterleaved(stream:read(count * 8) :: buffer, 0, count, 8, tou64);
 end
 
-local function ReadInstances(stream: BufferStream, count: number): {number}
+local function ReadInterleavedf32(stream: stream.IoReadable, count: number): {number}
+    return ReadInterleaved(stream:read(count * 4) :: buffer, 0, count, 4, rotatef32);
+end
+
+local function ReadInstances(stream: stream.IoReadable, count: number): {number}
     local values = ReadInterleavedi32(stream, count);
     for i = 2, count do
         values[i] += values[i - 1];
@@ -258,24 +256,24 @@ local function size(t: {[any]: any}): number
 end
 
 local function writeChunk(
-    stream: BufferStream,
-    handle: (stream: BufferStream) -> boolean
+    stream: sink.IoWritable,
+    handle: (stream: sink.IoWritable) -> boolean
 ): ()
-    local chunk_stream = Stream.new(4);
-    local compressed = handle(chunk_stream);
-    chunk_stream:trim();
+    local chunk_stream = sink.create(4);
+    local compressed = handle(chunk_stream:writer());
 
-    local size = buffer.len(chunk_stream.buffer);
+    local bytes = chunk_stream:flush();
 
+    local size = buffer.len(bytes);
     local data = if (compressed) then
-        lz4.compress(chunk_stream.buffer)
+        lz4.compress(bytes)
     else
-        chunk_stream.buffer;
+        bytes;
 
     stream:writeu32(if (compressed) then buffer.len(data) else 0);
     stream:writeu32(size);
     stream:writeu32(0);
-    stream:writebuffer(data);
+    stream:write(data);
 end
 
 local function propertiesToValues(values: {Property}): {any}
@@ -286,7 +284,7 @@ local function propertiesToValues(values: {Property}): {any}
     return list;
 end
 
-local function cframeSerializer(type: number, values: {Property}, stream: BufferStream)
+local function cframeSerializer(type: number, values: {Property}, stream: sink.IoWritable)
     local len = #values;
     if (type == RobloxPropertyType.OptionalCFrame) then
         stream:writeu8(RobloxPropertyType.CFrame);
@@ -359,9 +357,9 @@ local function cframeSerializer(type: number, values: {Property}, stream: Buffer
             stream:writef32(r22);
         end
     end
-    stream:writebuffer(WriteInterleavedf32(xs));
-    stream:writebuffer(WriteInterleavedf32(ys));
-    stream:writebuffer(WriteInterleavedf32(zs));
+    stream:write(WriteInterleavedf32(xs));
+    stream:write(WriteInterleavedf32(ys));
+    stream:write(WriteInterleavedf32(zs));
 
     if (type == RobloxPropertyType.OptionalCFrame) then
         stream:writeu8(RobloxPropertyType.Bool);
@@ -372,33 +370,34 @@ local function cframeSerializer(type: number, values: {Property}, stream: Buffer
 end
 
 local PropertySerializerMap = {
-    [RobloxPropertyType.Unknown] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Unknown] = function(values: {Property}, stream: sink.IoWritable)
         error("Unknown Property Type not supported.")
     end,
-    [RobloxPropertyType.String] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.String] = function(values: {Property}, stream: sink.IoWritable)
         for _, value in values do
-            stream:writestring(value.value);
+            stream:writeu32(#value.value);
+            stream:write(value.value);
         end
     end,
-    [RobloxPropertyType.Bool] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + #values); -- preallocate
+    [RobloxPropertyType.Bool] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + #values); -- preallocate
         for _, value in values do
             stream:writeu8(if (value.value) then 1 else 0);
         end
     end,
-    [RobloxPropertyType.Int] = function(values: {Property}, stream: BufferStream)
-        stream:writebuffer(WriteInterleavedi32(propertiesToValues(values)));
+    [RobloxPropertyType.Int] = function(values: {Property}, stream: sink.IoWritable)
+        stream:write(WriteInterleavedi32(propertiesToValues(values)));
     end,
-    [RobloxPropertyType.Float] = function(values: {Property}, stream: BufferStream)
-        stream:writebuffer(WriteInterleavedf32(propertiesToValues(values)));
+    [RobloxPropertyType.Float] = function(values: {Property}, stream: sink.IoWritable)
+        stream:write(WriteInterleavedf32(propertiesToValues(values)));
     end,
-    [RobloxPropertyType.Double] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + (#values * 8)); -- preallocate
+    [RobloxPropertyType.Double] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + (#values * 8)); -- preallocate
         for _, value in values do
             stream:writef64(value.value);
         end
     end,
-    [RobloxPropertyType.UDim] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.UDim] = function(values: {Property}, stream: sink.IoWritable)
         local len = #values;
         local scales = table.create(len);
         local offsets = table.create(len);
@@ -407,10 +406,10 @@ local PropertySerializerMap = {
             scales[i] = scale;
             offsets[i] = offset;
         end
-        stream:writebuffer(WriteInterleavedf32(scales));
-        stream:writebuffer(WriteInterleavedi32(offsets));
+        stream:write(WriteInterleavedf32(scales));
+        stream:write(WriteInterleavedi32(offsets));
     end,
-    [RobloxPropertyType.UDim2] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.UDim2] = function(values: {Property}, stream: sink.IoWritable)
         local len = #values;
         local scales_x = table.create(len);
         local scales_y = table.create(len);
@@ -423,13 +422,13 @@ local PropertySerializerMap = {
             scales_y[i] = scale_y;
             offsets_y[i] = offset_y;
         end
-        stream:writebuffer(WriteInterleavedf32(scales_x));
-        stream:writebuffer(WriteInterleavedf32(scales_y));
-        stream:writebuffer(WriteInterleavedi32(offsets_x));
-        stream:writebuffer(WriteInterleavedi32(offsets_y));
+        stream:write(WriteInterleavedf32(scales_x));
+        stream:write(WriteInterleavedf32(scales_y));
+        stream:write(WriteInterleavedi32(offsets_x));
+        stream:write(WriteInterleavedi32(offsets_y));
     end,
-    [RobloxPropertyType.Ray] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + (#values * 24)); -- preallocate
+    [RobloxPropertyType.Ray] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + (#values * 24)); -- preallocate
         for i, value in values do
             local pos_x, pos_y, pos_z, dir_x, dir_y, dir_z = datatypes.Ray.Serialize(value.value);
 
@@ -441,26 +440,26 @@ local PropertySerializerMap = {
             stream:writef32(dir_z);
         end
     end,
-    [RobloxPropertyType.Faces] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + #values); -- preallocate
+    [RobloxPropertyType.Faces] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + #values); -- preallocate
         for _, value in values do
             stream:writeu8(datatypes.Faces.Serialize(value.value));
         end
     end,
-    [RobloxPropertyType.Axes] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + #values); -- preallocate
+    [RobloxPropertyType.Axes] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + #values); -- preallocate
         for _, value in values do
             stream:writeu8(datatypes.Axes.Serialize(value.value));
         end
     end,
-    [RobloxPropertyType.BrickColor] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.BrickColor] = function(values: {Property}, stream: sink.IoWritable)
         local list = table.create(#values);
         for i, value in values do
             list[i] = datatypes.BrickColor.Serialize(value.value);
         end
-        stream:writebuffer(WriteInterleavedu32(list));
+        stream:write(WriteInterleavedu32(list));
     end,
-    [RobloxPropertyType.Color3] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Color3] = function(values: {Property}, stream: sink.IoWritable)
         local len = #values;
         local rs = table.create(len);
         local gs = table.create(len);
@@ -468,21 +467,21 @@ local PropertySerializerMap = {
         for i, value in values do
             rs[i], gs[i], bs[i] = datatypes.Color3.Serialize(value.value, false);
         end
-        stream:writebuffer(WriteInterleavedf32(rs));
-        stream:writebuffer(WriteInterleavedf32(gs));
-        stream:writebuffer(WriteInterleavedf32(bs));
+        stream:write(WriteInterleavedf32(rs));
+        stream:write(WriteInterleavedf32(gs));
+        stream:write(WriteInterleavedf32(bs));
     end,
-    [RobloxPropertyType.Vector2] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Vector2] = function(values: {Property}, stream: sink.IoWritable)
         local len = #values;
         local xs = table.create(len);
         local ys = table.create(len);
         for i, value in values do
             xs[i], ys[i] = datatypes.Vector2.Serialize(value.value);
         end
-        stream:writebuffer(WriteInterleavedf32(xs));
-        stream:writebuffer(WriteInterleavedf32(ys));
+        stream:write(WriteInterleavedf32(xs));
+        stream:write(WriteInterleavedf32(ys));
     end,
-    [RobloxPropertyType.Vector3] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Vector3] = function(values: {Property}, stream: sink.IoWritable)
         local len = #values;
         local xs = table.create(len);
         local ys = table.create(len);
@@ -490,17 +489,17 @@ local PropertySerializerMap = {
         for i, value in values do
             xs[i], ys[i], zs[i] = datatypes.Vector3.Serialize(value.value);
         end
-        stream:writebuffer(WriteInterleavedf32(xs));
-        stream:writebuffer(WriteInterleavedf32(ys));
-        stream:writebuffer(WriteInterleavedf32(zs));
+        stream:write(WriteInterleavedf32(xs));
+        stream:write(WriteInterleavedf32(ys));
+        stream:write(WriteInterleavedf32(zs));
     end,
-    [RobloxPropertyType.CFrame] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.CFrame] = function(values: {Property}, stream: sink.IoWritable)
         cframeSerializer(RobloxPropertyType.CFrame, values, stream);
     end,
-    [RobloxPropertyType.Quaternion] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Quaternion] = function(values: {Property}, stream: sink.IoWritable)
         cframeSerializer(RobloxPropertyType.Quaternion, values, stream);
     end,
-    [RobloxPropertyType.Enum] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Enum] = function(values: {Property}, stream: sink.IoWritable)
         local list = table.create(#values);
         for i, value in values do
             list[i] =
@@ -512,17 +511,17 @@ local PropertySerializerMap = {
                 else
                     value.value - 1;
         end
-        stream:writebuffer(WriteInterleavedu32(list));
+        stream:write(WriteInterleavedu32(list));
     end,
-    [RobloxPropertyType.Ref] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Ref] = function(values: {Property}, stream: sink.IoWritable)
         local list = table.create(#values);
         for i, value in values do
             list[i] = if (value.value) then value.value else 0;
         end
-        stream:writebuffer(WriteInstances(list));
+        stream:write(WriteInstances(list));
     end,
-    [RobloxPropertyType.Vector3int16] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + (#values * 6)); -- preallocate
+    [RobloxPropertyType.Vector3int16] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + (#values * 6)); -- preallocate
         for i, value in values do
             local x, y, z = datatypes.Vector3int16.Serialize(value.value);
 
@@ -531,8 +530,8 @@ local PropertySerializerMap = {
             stream:writei16(z);
         end
     end,
-    [RobloxPropertyType.NumberSequence] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + (#values * 4)); -- preallocate (under-estimate)
+    [RobloxPropertyType.NumberSequence] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + (#values * 4)); -- preallocate (under-estimate)
         for i, value in values do
             local points = datatypes.NumberSequence.Serialize(value.value);
             stream:writeu32(#points);
@@ -545,8 +544,8 @@ local PropertySerializerMap = {
             end
         end
     end,
-    [RobloxPropertyType.ColorSequence] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + (#values * 4)); -- preallocate (under-estimate)
+    [RobloxPropertyType.ColorSequence] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + (#values * 4)); -- preallocate (under-estimate)
         for i, value in values do
             local points = datatypes.ColorSequence.Serialize(value.value);
             stream:writeu32(#points);
@@ -561,15 +560,15 @@ local PropertySerializerMap = {
             end
         end
     end,
-    [RobloxPropertyType.NumberRange] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + (#values * 8)); -- preallocate
+    [RobloxPropertyType.NumberRange] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + (#values * 8)); -- preallocate
         for i, value in values do
             local min, max = datatypes.NumberRange.Serialize(value.value);
             stream:writef32(min);
             stream:writef32(max);
         end
     end,
-    [RobloxPropertyType.Rect] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Rect] = function(values: {Property}, stream: sink.IoWritable)
         local len = #values;
         local x0s = table.create(len);
         local y0s = table.create(len);
@@ -578,13 +577,13 @@ local PropertySerializerMap = {
         for i = 1, len do
             x0s[i], y0s[i], x1s[i], y1s[i] = datatypes.Rect.Serialize(values[i].value);
         end
-        stream:writebuffer(WriteInterleavedf32(x0s));
-        stream:writebuffer(WriteInterleavedf32(y0s));
-        stream:writebuffer(WriteInterleavedf32(x1s));
-        stream:writebuffer(WriteInterleavedf32(y1s));
+        stream:write(WriteInterleavedf32(x0s));
+        stream:write(WriteInterleavedf32(y0s));
+        stream:write(WriteInterleavedf32(x1s));
+        stream:write(WriteInterleavedf32(y1s));
     end,
-    [RobloxPropertyType.PhysicalProperties] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + #values); -- preallocate (under-estimate)
+    [RobloxPropertyType.PhysicalProperties] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + #values); -- preallocate (under-estimate)
         for i, value in values do
             if (value.value) then
                 local density, friction, elasticity, friction_weight, elasticity_weight = datatypes.PhysicalProperties.Serialize(value.value);
@@ -599,8 +598,8 @@ local PropertySerializerMap = {
             end
         end
     end,
-    [RobloxPropertyType.Color3uint8] = function(values: {Property}, stream: BufferStream)
-        stream:expandToSize(stream.position + (#values * 3)); -- preallocate
+    [RobloxPropertyType.Color3uint8] = function(values: {Property}, stream: sink.IoWritable)
+        -- stream:expandToSize(stream.position + (#values * 3)); -- preallocate
         for i, value in values do
             local r, g, b = datatypes.Color3.Serialize(value.value, true);
 
@@ -609,54 +608,56 @@ local PropertySerializerMap = {
             stream:writeu8(b);
         end
     end,
-    [RobloxPropertyType.Int64] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Int64] = function(values: {Property}, stream: sink.IoWritable)
         local list = table.create(#values);
         for i, value in values do
             list[i] = value.value;
         end
-        stream:writebuffer(WriteInterleavedi64(list));
+        stream:write(WriteInterleavedi64(list));
     end,
-    [RobloxPropertyType.SharedString] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.SharedString] = function(values: {Property}, stream: sink.IoWritable)
         local keys = table.create(#values);
         for i, value in values do
             keys[i] = value.value - 1;
         end
-        stream:writebuffer(WriteInterleavedu32(keys));
+        stream:write(WriteInterleavedu32(keys));
     end,
-    [RobloxPropertyType.ProtectedString] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.ProtectedString] = function(values: {Property}, stream: sink.IoWritable)
         for i, value in values do
             stream:writeu32(buffer.len(value.value));
-            stream:writebuffer(value.value);
+            stream:write(value.value);
         end
     end,
-    [RobloxPropertyType.OptionalCFrame] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.OptionalCFrame] = function(values: {Property}, stream: sink.IoWritable)
         cframeSerializer(RobloxPropertyType.OptionalCFrame, values, stream);
     end,
-    [RobloxPropertyType.UniqueId] = function(values: {Property}, stream: BufferStream)
-        stream:writebuffer(WriteInterleaved(values, 16, function(b: buffer, offset: number, property)
+    [RobloxPropertyType.UniqueId] = function(values: {Property}, stream: sink.IoWritable)
+        stream:write(WriteInterleaved(values, 16, function(b: buffer, offset: number, property)
             local value = property.value;
             buffer.copy(b, offset, value.random, 0, 8);
             buffer.writeu32(b, offset + 8, value.index);
             buffer.writeu32(b, offset + 12, value.time);
         end));
     end,
-    [RobloxPropertyType.Font] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Font] = function(values: {Property}, stream: sink.IoWritable)
         for i, value in values do
             local family, weight, style, cacheId = datatypes.Font.Serialize(value.value);
-            stream:writestring(family);
+            stream:writeu32(#family);
+            stream:write(family);
             stream:writeu16(weight);
             stream:writeu8(style);
-            stream:writestring(cacheId or "");
+            stream:writeu32(#(cacheId or ""));
+            stream:write(cacheId or "");
         end
     end,
-    [RobloxPropertyType.SecurityCapabilities] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.SecurityCapabilities] = function(values: {Property}, stream: sink.IoWritable)
         local capabilities = table.create(#values);
         for i, value in values do
             capabilities[i] = value.value;
         end
-        stream:writebuffer(WriteInterleavedu64(capabilities));
+        stream:write(WriteInterleavedu64(capabilities));
     end,
-    [RobloxPropertyType.Content] = function(values: {Property}, stream: BufferStream)
+    [RobloxPropertyType.Content] = function(values: {Property}, stream: sink.IoWritable)
         local len = #values;
         local source_types = table.create(len);
         local uris: {string} = table.create(len);
@@ -675,14 +676,15 @@ local PropertySerializerMap = {
             end
         end
 
-        stream:writebuffer(WriteInterleavedi32(source_types));
+        stream:write(WriteInterleavedi32(source_types));
 
         stream:writeu32(#uris);
         for _, uri in uris do
-            stream:writestring(uri);
+            stream:writeu32(#uri);
+            stream:write(uri);
         end
         stream:writeu32(#objects);
-        stream:writebuffer(WriteInstances(objects));
+        stream:write(WriteInstances(objects));
 
         stream:writeu32(0);
     end,
@@ -700,42 +702,47 @@ local function getMemberProperty(class: string, member: string): reflection.Prop
 end
 
 local function serialize(document: Document): buffer
-    local stream = Stream.new(#BinaryMagicHeader);
+    local stream = sink.create(#BinaryMagicHeader);
 
-    stream:writerawstring(BinaryMagicHeader);
+    local writer: sink.IoWritable = stream:writer();
 
-    stream:writeu16(document.info.version);
-    stream:writeu32(#document.classes);
-    stream:writeu32(#document.instances);
+    writer:write(BinaryMagicHeader);
+
+    writer:writeu16(document.info.version);
+    writer:writeu32(#document.classes);
+    writer:writeu32(#document.instances);
 
     --[[ reserved ]] do
-        stream:writebuffer(document.info.reserved, 8);
+        writer:write(document.info.reserved);
     end
 
     local metadata_size = size(document.metadata);
     if (metadata_size > 0) then
-        stream:writerawstring(getBinaryChunkTypeName(BinaryChunkType.META));
-        writeChunk(stream, function(chunk)
+        writer:write(getBinaryChunkTypeName(BinaryChunkType.META));
+        writeChunk(writer, function(chunk)
             chunk:writeu32(metadata_size);
             for key, value in document.metadata do
-                chunk:writestring(key);
-                chunk:writestring(value);
+                chunk:writeu32(#key);
+                chunk:write(key);
+                chunk:writeu32(#value);
+                chunk:write(value);
             end
             return true;
         end)
     end
 
     --[[SSTR]] do
-        stream:writerawstring(getBinaryChunkTypeName(BinaryChunkType.SSTR));
-        writeChunk(stream, function(chunk)
+        writer:write(getBinaryChunkTypeName(BinaryChunkType.SSTR));
+        writeChunk(writer, function(chunk)
             chunk:writeu32(0);
             chunk:writeu32(#document.sharedstrings);
             local blank = string.rep("\0\0\0\0", 4);
             for _, sharedstring in document.sharedstrings do
-                chunk:writerawstring(blank);
+                chunk:write(blank);
                 local lookup = sharedstring.Lookup[sharedstring.Key];
                 assert(lookup, "Missing string");
-                chunk:writestring(lookup);
+                chunk:writeu32(#lookup);
+                chunk:write(lookup);
             end
             return true;
         end)
@@ -743,13 +750,14 @@ local function serialize(document: Document): buffer
 
     --[[SIGN]] if (document.signatures) then
         local signatures = document.signatures;
-        stream:writerawstring(getBinaryChunkTypeName(BinaryChunkType.SIGN));
-        writeChunk(stream, function(chunk)
+        writer:write(getBinaryChunkTypeName(BinaryChunkType.SIGN));
+        writeChunk(writer, function(chunk)
             chunk:writeu32(#signatures);
             for _, sign in signatures do
                 chunk:writeu32(0);
-                chunk:writebuffer(sign.PublicKey);
-                chunk:writestring(sign.Value);
+                chunk:write(sign.PublicKey);
+                chunk:writeu32(#sign.Value);
+                chunk:write(sign.Value);
             end
             return true;
         end)
@@ -759,14 +767,15 @@ local function serialize(document: Document): buffer
         if (#class.instances == 0) then
             continue;
         end
-        stream:writerawstring(getBinaryChunkTypeName(BinaryChunkType.INST));
-        writeChunk(stream, function(chunk)
+        writer:write(getBinaryChunkTypeName(BinaryChunkType.INST));
+        writeChunk(writer, function(chunk)
             chunk:writeu32(class.index - 1);
-            chunk:writestring(class.name);
+            chunk:writeu32(#class.name);
+            chunk:write(class.name);
             chunk:writeu8(if (class.isService) then 1 else 0);
             chunk:writeu32(#class.instances);
 
-            chunk:writebuffer(WriteInstances(class.instances));
+            chunk:write(WriteInstances(class.instances));
 
             if (class.isService) then
                 for _, id in class.instances do
@@ -803,10 +812,11 @@ local function serialize(document: Document): buffer
                 continue;
             end
 
-            stream:writerawstring(getBinaryChunkTypeName(BinaryChunkType.PROP));
-            writeChunk(stream, function(chunk)
+            writer:write(getBinaryChunkTypeName(BinaryChunkType.PROP));
+            writeChunk(writer, function(chunk)
                 chunk:writeu32(class.index - 1);
-                chunk:writestring(name);
+                chunk:writeu32(#name);
+                chunk:write(name);
                 chunk:writeu8(value.type);
 
                 local values = table.create(#class.instances);
@@ -825,8 +835,8 @@ local function serialize(document: Document): buffer
     end
 
     --[[PRNT]] do
-        stream:writerawstring(getBinaryChunkTypeName(BinaryChunkType.PRNT));
-        writeChunk(stream, function(chunk)
+        writer:write(getBinaryChunkTypeName(BinaryChunkType.PRNT));
+        writeChunk(writer, function(chunk)
             local instance_len = #document.instances;
             local child_ids = table.create(instance_len);
             local parents_ids = table.create(instance_len);
@@ -838,56 +848,60 @@ local function serialize(document: Document): buffer
 
             chunk:writeu8(0);
             chunk:writeu32(instance_len);
-            chunk:writebuffer(WriteInstances(child_ids));
-            chunk:writebuffer(WriteInstances(parents_ids));
+            chunk:write(WriteInstances(child_ids));
+            chunk:write(WriteInstances(parents_ids));
 
             return true;
         end)
     end
 
     --[[END\0]] do
-        stream:writerawstring(getBinaryChunkTypeName(BinaryChunkType.END));
-        writeChunk(stream, function(chunk)
-            chunk:writerawstring("</roblox>");
+        writer:write(getBinaryChunkTypeName(BinaryChunkType.END));
+        writeChunk(writer, function(chunk)
+            chunk:write("</roblox>");
             return false;
         end)
     end
 
-    stream:trim();
-
-    return stream.buffer;
+    return stream:flush();
 end
 
-local function readChunk(stream: BufferStream): ChunkInfo
-    if (not stream:couldRead(16)) then
+local function readChunk(stream: stream.BufferStream): ChunkInfo
+    if (not stream:canRead(16)) then
         error("Too small");
     end
 
-    local chunk_type = BinaryChunkTypeMap[buffer.tostring(stream:readbuffer(4))];
+    local chunk_type = BinaryChunkTypeMap[stream:read(4, false)];
     assert(chunk_type, "Invalid chunk type");
-    local compressed_size = stream:readu32();
-    local size = stream:readu32();
-    local reserved = stream:readu32();
+    local reader = stream:reader();
+    local compressed_size = reader:readu32();
+    local size = reader:readu32();
+    local reserved = reader:readu32();
 
     local data: buffer = nil;
     if (compressed_size > 0) then
-        local byte = stream:readu8()
-        stream:move(-1);
+        local byte = reader:readu8()
+        stream:seekBy(-1);
         if (byte == 0x58 or byte == 0x78) then
-            data = zlib.decompress(stream:readbuffer(compressed_size));
-        elseif (buffer.readstring(stream.buffer, stream.position + 1, 3) == "\xB5\x2F\xFD") then
-            data = zstd.decompress(
-                stream:readbuffer(compressed_size)
-            );
-            assert(buffer.len(data) == size, "[dom] Chunk zstd data size mismatch");
+            data = zlib.decompress(reader:read(compressed_size, true) :: buffer);
         else
-            data = lz4.decompress(
-                stream:readbuffer(compressed_size),
-                size
-            );
+            stream:seekBy(1);
+            if (reader:read(3, false) == "\xB5\x2F\xFD") then
+                stream:seekBy(-4);
+                data = zstd.decompress(
+                    reader:read(compressed_size) :: buffer
+                );
+                assert(buffer.len(data) == size, "[dom] Chunk zstd data size mismatch");
+            else
+                stream:seekBy(-4);
+                data = lz4.decompress(
+                    reader:read(compressed_size) :: buffer,
+                    size
+                );
+            end
         end
     else
-        data = stream:readbuffer(size);
+        data = reader:read(size) :: buffer;
     end
 
     return {
@@ -1022,7 +1036,7 @@ local MatricesMap = {
     },
 }
 
-local function cframeDeserializer(type: number, values: {any}, property_name: string, stream: BufferStream)
+local function cframeDeserializer(type: number, values: {any}, property_name: string, stream: stream.IoReadable)
     local len = #values;
     if (type == RobloxPropertyType.OptionalCFrame) then
         local byte = stream:readu8();
@@ -1110,42 +1124,42 @@ local function cframeDeserializer(type: number, values: {any}, property_name: st
 end
 
 local PropertyDeserializerMap = {
-    [RobloxPropertyType.Unknown] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Unknown] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         error("Unknown Property Type not supported.")
     end,
-    [RobloxPropertyType.String] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.String] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
-            values[i] = stream:readstring();
+            values[i] = stream:read(stream:readu32(), false);
         end
     end,
-    [RobloxPropertyType.Bool] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Bool] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             values[i] = stream:readu8() ~= 0;
         end
     end,
-    [RobloxPropertyType.Int] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Int] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local list = ReadInterleavedi32(stream, len);
         for i = 1, len do
             values[i] = list[i];
         end
     end,
-    [RobloxPropertyType.Float] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Float] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local list = ReadInterleavedf32(stream, len);
         for i = 1, len do
             values[i] = list[i];
         end
     end,
-    [RobloxPropertyType.Double] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Double] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             values[i] = stream:readf64();
         end
     end,
-    [RobloxPropertyType.UDim] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.UDim] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local scales = ReadInterleavedf32(stream, len);
         local offsets = ReadInterleavedi32(stream, len);
@@ -1153,7 +1167,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.UDim.Deserialize(scales[i], offsets[i]);
         end
     end,
-    [RobloxPropertyType.UDim2] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.UDim2] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local scales_x = ReadInterleavedf32(stream, len);
         local scales_y = ReadInterleavedf32(stream, len);
@@ -1163,7 +1177,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.UDim2.Deserialize(scales_x[i], offsets_x[i], scales_y[i], offsets_y[i]);
         end
     end,
-    [RobloxPropertyType.Ray] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Ray] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             values[i] = datatypes.Ray.Deserialize(
@@ -1172,26 +1186,26 @@ local PropertyDeserializerMap = {
             );
         end
     end,
-    [RobloxPropertyType.Faces] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Faces] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             values[i] = datatypes.Faces.Deserialize(stream:readu8());
         end
     end,
-    [RobloxPropertyType.Axes] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Axes] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             values[i] = datatypes.Axes.Deserialize(stream:readu8());
         end
     end,
-    [RobloxPropertyType.BrickColor] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.BrickColor] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local list = ReadInterleavedu32(stream, len);
         for i = 1, len do
             values[i] = datatypes.BrickColor.Deserialize(list[i]);
         end
     end,
-    [RobloxPropertyType.Color3] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Color3] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local rs = ReadInterleavedf32(stream, len);
         local gs = ReadInterleavedf32(stream, len);
@@ -1200,7 +1214,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.Color3.Deserialize(rs[i], gs[i], bs[i], false);
         end
     end,
-    [RobloxPropertyType.Vector2] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Vector2] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local xs = ReadInterleavedf32(stream, len);
         local ys = ReadInterleavedf32(stream, len);
@@ -1208,7 +1222,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.Vector2.Deserialize(xs[i], ys[i]);
         end
     end,
-    [RobloxPropertyType.Vector3] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Vector3] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local xs = ReadInterleavedf32(stream, len);
         local ys = ReadInterleavedf32(stream, len);
@@ -1217,27 +1231,27 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.Vector3.Deserialize(xs[i], ys[i], zs[i]);
         end
     end,
-    [RobloxPropertyType.CFrame] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.CFrame] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         cframeDeserializer(RobloxPropertyType.CFrame, values, property_name, stream);
     end,
-    [RobloxPropertyType.Quaternion] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Quaternion] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         cframeDeserializer(RobloxPropertyType.Quaternion, values, property_name, stream);
     end,
-    [RobloxPropertyType.Enum] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Enum] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local list = ReadInterleavedu32(stream, len);
         for i = 1, len do
             values[i] = list[i] + 1;
         end
     end,
-    [RobloxPropertyType.Ref] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Ref] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local list = ReadInstances(stream, len);
         for i = 1, len do
             values[i] = if (list[i] > 0) then list[i] else nil;
         end
     end,
-    [RobloxPropertyType.Vector3int16] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Vector3int16] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             local x = stream:readi16();
@@ -1246,7 +1260,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.Vector3int16.Deserialize(x, y, z);
         end
     end,
-    [RobloxPropertyType.NumberSequence] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.NumberSequence] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             local keys = stream:readu32();
@@ -1262,7 +1276,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.NumberSequence.Deserialize(points);
         end
     end,
-    [RobloxPropertyType.ColorSequence] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.ColorSequence] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             local keys = stream:readu32();
@@ -1280,7 +1294,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.ColorSequence.Deserialize(points);
         end
     end,
-    [RobloxPropertyType.NumberRange] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.NumberRange] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             local min = stream:readf32();
@@ -1288,7 +1302,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.NumberRange.Deserialize(min, max);
         end
     end,
-    [RobloxPropertyType.Rect] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Rect] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local x0s = ReadInterleavedf32(stream, len);
         local y0s = ReadInterleavedf32(stream, len);
@@ -1298,7 +1312,7 @@ local PropertyDeserializerMap = {
             values[i] = datatypes.Rect.Deserialize(x0s[i], y0s[i], x1s[i], y1s[i]);
         end
     end,
-    [RobloxPropertyType.PhysicalProperties] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.PhysicalProperties] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             local exists = stream:readu8() ~= 0;
@@ -1320,7 +1334,7 @@ local PropertyDeserializerMap = {
             values[i] = value;
         end
     end,
-    [RobloxPropertyType.Color3uint8] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Color3uint8] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 0, len - 1 do
             local r = stream:readu8();
@@ -1329,33 +1343,33 @@ local PropertyDeserializerMap = {
             values[i + 1] = datatypes.Color3.Deserialize(r, g, b, true);
         end
     end,
-    [RobloxPropertyType.Int64] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Int64] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local list = ReadInterleavedi64(stream, len);
         for i = 1, len do
             values[i] = list[i];
         end
     end,
-    [RobloxPropertyType.SharedString] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.SharedString] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local keys = ReadInterleavedu32(stream, len);
         for i = 1, len do
             values[i] = keys[i] + 1;
         end
     end,
-    [RobloxPropertyType.ProtectedString] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.ProtectedString] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
             local size = stream:readu32();
-            values[i] = stream:readbuffer(size);
+            values[i] = stream:read(size);
         end
     end,
-    [RobloxPropertyType.OptionalCFrame] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.OptionalCFrame] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         cframeDeserializer(RobloxPropertyType.OptionalCFrame, values, property_name, stream);
     end,
-    [RobloxPropertyType.UniqueId] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.UniqueId] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
-        local ids = ReadInterleaved(stream:readbuffer(len * 16), 0, len, 16, function(b: buffer)
+        local ids = ReadInterleaved(stream:read(len * 16) :: buffer, 0, len, 16, function(b: buffer)
             local random = buffer.create(8);
             buffer.copy(random, 0, b, 0, 8);
             return {
@@ -1368,36 +1382,36 @@ local PropertyDeserializerMap = {
             values[i] = ids[i];
         end
     end,
-    [RobloxPropertyType.Font] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Font] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         for i = 1, len do
-            local family = stream:readstring();
+            local family = stream:read(stream:readu32(), false);
             local weight = stream:readu16();
             local style = stream:readu8();
-            local cache_id = stream:readstring();
+            local cache_id = stream:read(stream:readu32(), false);
             values[i] = datatypes.Font.Deserialize(family, weight, style, cache_id);
         end
     end,
-    [RobloxPropertyType.SecurityCapabilities] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.SecurityCapabilities] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local capabilities = ReadInterleavedu64(stream, len);
         for i = 1, len do
             values[i] = capabilities[i];
         end
     end,
-    [RobloxPropertyType.Content] = function(values: {any}, property_name: string, stream: BufferStream)
+    [RobloxPropertyType.Content] = function(values: {any}, property_name: string, stream: stream.IoReadable)
         local len = #values;
         local source_types = ReadInterleavedi32(stream, len);
         local uri_count = stream:readu32();
         local uris = table.create(uri_count);
         for i = 1, uri_count do
-            uris[i] = stream:readstring();
+            uris[i] = stream:read(stream:readu32(), false);
         end
         local object_count = stream:readu32();
         local objects = ReadInstances(stream, object_count);
 
         local extern_count = stream:readu32();
-        local _ = stream:readbuffer(extern_count * 4);
+        local _ = stream:read(extern_count * 4);
         for i = 1, len do
             values[i] = datatypes.Content.Deserialize(
                 source_types[i],
@@ -1423,17 +1437,20 @@ end
 
 local DeserializerMap = {
     [BinaryChunkType.INST] = function(document: Document, chunk: ChunkInfo)
-        local chunk_stream = Stream.fromBuffer(chunk.data);
-        local class_index = chunk_stream:readu32() + 1;
-        local class_name = chunk_stream:readstring();
-        local is_service = chunk_stream:readu8() ~= 0;
-        local instances_len = chunk_stream:readu32();
+        local chunk_stream = stream.create(chunk.data);
+        local reader: stream.IoReadable = chunk_stream:reader();
+        local class_index = reader:readu32() + 1;
+        local class_name = reader:read(reader:readu32(), false);
+        local is_service = reader:readu8() ~= 0;
+        local instances_len = reader:readu32();
+
+        assert(instances_len)
 
         if (class_index < 1 or class_index > document.info.instances) then
             error(`index {class_index - 1} out of bounds {document.info.classes - 1}`);
         end
 
-        local instances = ReadInstances(chunk_stream, instances_len);
+        local instances = ReadInstances(reader, instances_len);
 
         for i = 1, instances_len do
             local id = instances[i];
@@ -1444,7 +1461,7 @@ local DeserializerMap = {
                 properties = {},
             };
             if (is_service) then
-                chunk_stream:readu8()
+                reader:readu8()
             end
             if (id < 1 or id > document.info.instances) then
                 error(`index {id - 1} out of bounds {document.info.instances - 1}`);
@@ -1462,9 +1479,10 @@ local DeserializerMap = {
         return false;
     end,
     [BinaryChunkType.PROP] = function(document: Document, chunk: ChunkInfo)
-        local chunk_stream = Stream.fromBuffer(chunk.data);
-        local class_index = chunk_stream:readu32() + 1;
-        local property_name = chunk_stream:readstring();
+        local chunk_stream = stream.create(chunk.data);
+        local reader: stream.IoReadable = chunk_stream:reader();
+        local class_index = reader:readu32() + 1;
+        local property_name = reader:read(reader:readu32(), false);
 
         if (class_index < 1 or class_index > document.info.instances) then
             error(`index {class_index - 1} out of bounds {document.info.classes - 1}`);
@@ -1472,7 +1490,7 @@ local DeserializerMap = {
         local class = document.classes[class_index];
         assert(class, `Deserializer property class not found: {property_name}`);
 
-        local type_byte = chunk_stream:readu8();
+        local type_byte = reader:readu8();
 
         local length = #class.instances;
         local values = table.create(length, BLANK_PROPERTY);
@@ -1492,7 +1510,7 @@ local DeserializerMap = {
         local deserializer = PropertyDeserializerMap[type_byte];
         assert(deserializer, `Unsupported Property type: {getPropertyTypeName(type_byte)}`);
 
-        deserializer(values, property_name, chunk_stream);
+        deserializer(values, property_name, reader);
 
         if (type_byte == roblox.PropertyTypes.Enum) then
             local class_api = reflection:GetClass(class.name);
@@ -1534,26 +1552,28 @@ local DeserializerMap = {
         return false;
     end,
     [BinaryChunkType.META] = function(document: Document, chunk: ChunkInfo)
-        local chunk_stream = Stream.fromBuffer(chunk.data);
-        for i = 1, chunk_stream:readu32() do
-            local key = chunk_stream:readbuffer(chunk_stream:readu32());
-            local value = chunk_stream:readbuffer(chunk_stream:readu32());
-            document.metadata[buffer.tostring(key)] = buffer.tostring(value);
+        local chunk_stream = stream.create(chunk.data);
+        local reader: stream.IoReadable = chunk_stream:reader();
+        for i = 1, reader:readu32() do
+            local key = reader:read(reader:readu32(), false);
+            local value = reader:read(reader:readu32(), false);
+            document.metadata[key] = value;
         end
         return false;
     end,
     [BinaryChunkType.PRNT] = function(document: Document, chunk: ChunkInfo)
-        local chunk_stream = Stream.fromBuffer(chunk.data);
+        local chunk_stream = stream.create(chunk.data);
+        local reader: stream.IoReadable = chunk_stream:reader();
 
-        local format = chunk_stream:readu8();
-        local count = chunk_stream:readu32();
+        local format = reader:readu8();
+        local count = reader:readu32();
 
         if (format ~= 0) then
             error(`Unsupported PRNT format: {format}`);
         end
 
-        local childs = ReadInstances(chunk_stream, count);
-        local parents = ReadInstances(chunk_stream, count);
+        local childs = ReadInstances(reader, count);
+        local parents = ReadInstances(reader, count);
 
         for i = 1, count do
             local child_id = childs[i];
@@ -1574,15 +1594,17 @@ local DeserializerMap = {
         return false;
     end,
     [BinaryChunkType.SIGN] = function(document: Document, chunk: ChunkInfo)
-        local chunk_stream = Stream.fromBuffer(chunk.data);
-        local signs_len = chunk_stream:readu32();
+        local chunk_stream = stream.create(chunk.data);
+        local reader: stream.IoReadable = chunk_stream:reader();
+
+        local signs_len = reader:readu32();
 
         local signs: {Signature} = table.create(signs_len);
 
         for i = 1, signs_len do
-            local type_idx = chunk_stream:readi32();
-            local key = chunk_stream:readbuffer(8);
-            local value = chunk_stream:readstring();
+            local type_idx = reader:readi32();
+            local key = reader:read(8) :: buffer;
+            local value = reader:read(reader:readu32(), false);
             signs[i] = {
                 PublicKey = key,
                 Type = if (type_idx == 0) then "Ed25519" else error("Unknown"),
@@ -1593,17 +1615,18 @@ local DeserializerMap = {
         return false;
     end,
     [BinaryChunkType.SSTR] = function(document: Document, chunk: ChunkInfo)
-        local chunk_stream = Stream.fromBuffer(chunk.data);
-        local format = chunk_stream:readi32();
-        local hash_len = chunk_stream:readu32();
+        local chunk_stream = stream.create(chunk.data);
+        local reader: stream.IoReadable = chunk_stream:reader();
+        local format = reader:readi32();
+        local hash_len = reader:readu32();
 
         if (format ~= 0) then
             error("Bad SharedString format");
         end
 
         for i = 1, hash_len do
-            chunk_stream:move(16);
-            local key = chunk_stream:readstring()
+            chunk_stream:seekBy(16);
+            local key = reader:read(reader:readu32(), false);
             local hash = blake2.b128(key);
             local hash_base64 = base64.encode(hash);
             local lookup = {
@@ -1626,14 +1649,14 @@ local function deserialize(slice: buffer, slice_pos: number): Document
     if (slice_len - slice_pos < 18) then
         error("Bad slice length");
     end
+    local stream = stream.create(slice);
+    local reader: stream.IoReadable = stream:reader();
+    stream:seekBy(slice_pos);
 
-    local stream = Stream.fromBuffer(slice);
-    stream:move(slice_pos);
-
-    local version = stream:readu16();
-    local classes = stream:readu32();
-    local instances = stream:readu32();
-    local reserved = stream:readbuffer(8); -- 8 bytes
+    local version = reader:readu16();
+    local classes = reader:readu32();
+    local instances = reader:readu32();
+    local reserved = reader:read(8) :: buffer; -- 8 bytes
 
     local document: Document = {
         info = {
@@ -1663,7 +1686,7 @@ local function deserialize(slice: buffer, slice_pos: number): Document
         if (deserializer(document, chunk)) then
             break;
         end
-        if (slice_len <= stream.position) then
+        if (slice_len <= stream:pos()) then
             error("EOF, expected more chunks.");
         end
     end

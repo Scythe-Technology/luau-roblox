@@ -1,9 +1,7 @@
 --!strict
-local json = require("../polyfill/json");
+local dump = require("@self/generated");
 
-local dump = require("./generated");
-
-local api_dump: dump.ApiDump = json.decode(dump.DumpJson);
+local api_dump: dump.ApiDump = dump.ApiDump;
 
 local ReflectionDatabase = {};
 

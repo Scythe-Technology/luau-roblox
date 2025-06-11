@@ -3,7 +3,7 @@ local Signal = require("../signal");
 local Attributes = require("../instance/attributes");
 local Tags = require("../instance/tags");
 
-local md5 = require("../../polyfill/md5");
+local md5 = require("@polyfill/md5");
 
 local impl = {};
 impl.object = nil::any;

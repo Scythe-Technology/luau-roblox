@@ -33,6 +33,11 @@ export type Enum_AccessoryType = Enum & {
     Eyebrow: EnumItem,
     Eyelash: EnumItem,
 }
+export type Enum_ActionOnAutoResumeSync = Enum & {
+    DontResume: EnumItem,
+    KeepStudio: EnumItem,
+    KeepLocal: EnumItem,
+}
 export type Enum_ActionOnStopSync = Enum & {
     AlwaysAsk: EnumItem,
     KeepLocalFiles: EnumItem,
@@ -197,8 +202,9 @@ export type Enum_AnnotationEditingMode = Enum & {
     PlacingNew: EnumItem,
     WritingNew: EnumItem,
 }
-export type Enum_AnnotationRequestResult = Enum & {
+export type Enum_AnnotationRequestStatus = Enum & {
     Success: EnumItem,
+    Loading: EnumItem,
     ErrorInternalFailure: EnumItem,
     ErrorNotFound: EnumItem,
     ErrorModerated: EnumItem,
@@ -336,6 +342,8 @@ export type Enum_AudioApiRollout = Enum & {
     Automatic: EnumItem,
     Enabled: EnumItem,
 }
+export type Enum_AudioCaptureMode = Enum & {
+}
 export type Enum_AudioChannelLayout = Enum & {
     Mono: EnumItem,
     Stereo: EnumItem,
@@ -357,6 +365,7 @@ export type Enum_AudioFilterType = Enum & {
     Highpass48dB: EnumItem,
     Bandpass: EnumItem,
     Notch: EnumItem,
+    Lowpass6dB: EnumItem,
 }
 export type Enum_AudioSimulationFidelity = Enum & {
     None: EnumItem,
@@ -460,6 +469,69 @@ export type Enum_AvatarPromptResult = Enum & {
     Success: EnumItem,
     PermissionDenied: EnumItem,
     Failed: EnumItem,
+}
+export type Enum_AvatarSettingsAccessoryLimitMethod = Enum & {
+    Scale: EnumItem,
+    Remove: EnumItem,
+}
+export type Enum_AvatarSettingsAccessoryMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomLimit: EnumItem,
+}
+export type Enum_AvatarSettingsAnimationClipsMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomClips: EnumItem,
+}
+export type Enum_AvatarSettingsAnimationPacksMode = Enum & {
+    PlayerChoice: EnumItem,
+    StandardR15: EnumItem,
+    StandardR6: EnumItem,
+}
+export type Enum_AvatarSettingsAppearanceMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomParts: EnumItem,
+    CustomBody: EnumItem,
+}
+export type Enum_AvatarSettingsBuildMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomBuild: EnumItem,
+}
+export type Enum_AvatarSettingsClothingMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomLimit: EnumItem,
+}
+export type Enum_AvatarSettingsCollisionMode = Enum & {
+    Default: EnumItem,
+    SingleCollider: EnumItem,
+    Legacy: EnumItem,
+}
+export type Enum_AvatarSettingsCustomAccessoryMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomAccessories: EnumItem,
+}
+export type Enum_AvatarSettingsCustomBodyType = Enum & {
+    AvatarReference: EnumItem,
+    BundleId: EnumItem,
+}
+export type Enum_AvatarSettingsCustomClothingMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomClothing: EnumItem,
+}
+export type Enum_AvatarSettingsHitAndTouchDetectionMode = Enum & {
+    UseParts: EnumItem,
+    UseCollider: EnumItem,
+}
+export type Enum_AvatarSettingsJumpMode = Enum & {
+    JumpHeight: EnumItem,
+    JumpPower: EnumItem,
+}
+export type Enum_AvatarSettingsLegacyCollisionMode = Enum & {
+    R6Colliders: EnumItem,
+    InnerBoxColliders: EnumItem,
+}
+export type Enum_AvatarSettingsScaleMode = Enum & {
+    PlayerChoice: EnumItem,
+    CustomScale: EnumItem,
 }
 export type Enum_AvatarThumbnailCustomizationType = Enum & {
     Closeup: EnumItem,
@@ -579,6 +651,10 @@ export type Enum_CameraType = Enum & {
     Custom: EnumItem,
     Scriptable: EnumItem,
     Orbital: EnumItem,
+}
+export type Enum_CaptureType = Enum & {
+    Screenshot: EnumItem,
+    Video: EnumItem,
 }
 export type Enum_CatalogCategoryFilter = Enum & {
     None: EnumItem,
@@ -1030,6 +1106,7 @@ export type Enum_DeveloperMemoryTag = Enum & {
     Animation: EnumItem,
     Navigation: EnumItem,
     GeometryCSG: EnumItem,
+    GraphicsSlimModels: EnumItem,
 }
 export type Enum_DeviceFeatureType = Enum & {
     DeviceCapture: EnumItem,
@@ -1160,12 +1237,76 @@ export type Enum_FACSDataLod = Enum & {
     LOD1: EnumItem,
     LODCount: EnumItem,
 }
+export type Enum_FacialAgeEstimationResultType = Enum & {
+    Complete: EnumItem,
+    Cancel: EnumItem,
+    Error: EnumItem,
+}
 export type Enum_FacialAnimationStreamingState = Enum & {
     None: EnumItem,
     Audio: EnumItem,
     Video: EnumItem,
     Place: EnumItem,
     Server: EnumItem,
+}
+export type Enum_FacsActionUnit = Enum & {
+    ChinRaiserUpperLip: EnumItem,
+    ChinRaiser: EnumItem,
+    FlatPucker: EnumItem,
+    Funneler: EnumItem,
+    LowerLipSuck: EnumItem,
+    LipPresser: EnumItem,
+    LipsTogether: EnumItem,
+    MouthLeft: EnumItem,
+    MouthRight: EnumItem,
+    Pucker: EnumItem,
+    UpperLipSuck: EnumItem,
+    LeftCheekPuff: EnumItem,
+    LeftDimpler: EnumItem,
+    LeftLipCornerDown: EnumItem,
+    LeftLowerLipDepressor: EnumItem,
+    LeftLipCornerPuller: EnumItem,
+    LeftLipStretcher: EnumItem,
+    LeftUpperLipRaiser: EnumItem,
+    RightCheekPuff: EnumItem,
+    RightDimpler: EnumItem,
+    RightLipCornerDown: EnumItem,
+    RightLowerLipDepressor: EnumItem,
+    RightLipCornerPuller: EnumItem,
+    RightLipStretcher: EnumItem,
+    RightUpperLipRaiser: EnumItem,
+    JawDrop: EnumItem,
+    JawLeft: EnumItem,
+    JawRight: EnumItem,
+    Corrugator: EnumItem,
+    LeftBrowLowerer: EnumItem,
+    LeftOuterBrowRaiser: EnumItem,
+    LeftNoseWrinkler: EnumItem,
+    LeftInnerBrowRaiser: EnumItem,
+    RightBrowLowerer: EnumItem,
+    RightOuterBrowRaiser: EnumItem,
+    RightInnerBrowRaiser: EnumItem,
+    RightNoseWrinkler: EnumItem,
+    EyesLookDown: EnumItem,
+    EyesLookLeft: EnumItem,
+    EyesLookUp: EnumItem,
+    EyesLookRight: EnumItem,
+    LeftCheekRaiser: EnumItem,
+    LeftEyeUpperLidRaiser: EnumItem,
+    LeftEyeClosed: EnumItem,
+    RightCheekRaiser: EnumItem,
+    RightEyeUpperLidRaiser: EnumItem,
+    RightEyeClosed: EnumItem,
+    TongueDown: EnumItem,
+    TongueOut: EnumItem,
+    TongueUp: EnumItem,
+}
+export type Enum_FeedRankingScoreType = Enum & {
+    Content: EnumItem,
+    Final: EnumItem,
+    GameJoin: EnumItem,
+    Interaction: EnumItem,
+    Sharing: EnumItem,
 }
 export type Enum_FieldOfViewMode = Enum & {
     Vertical: EnumItem,
@@ -1412,6 +1553,11 @@ export type Enum_GuiType = Enum & {
     CustomBillboards: EnumItem,
     CoreBillboards: EnumItem,
 }
+export type Enum_HandRigDescriptionSide = Enum & {
+    None: EnumItem,
+    Left: EnumItem,
+    Right: EnumItem,
+}
 export type Enum_HandlesStyle = Enum & {
     Resize: EnumItem,
     Movement: EnumItem,
@@ -1472,6 +1618,8 @@ export type Enum_HttpError = Enum & {
     SslConnectFail: EnumItem,
     SslVerificationFail: EnumItem,
     Unknown: EnumItem,
+    ConnectionClosed: EnumItem,
+    ServerProtocolError: EnumItem,
 }
 export type Enum_HttpRequestType = Enum & {
     Default: EnumItem,
@@ -1577,8 +1725,9 @@ export type Enum_InitialDockState = Enum & {
 }
 export type Enum_InputActionType = Enum & {
     Bool: EnumItem,
-    Float: EnumItem,
+    Direction1D: EnumItem,
     Direction2D: EnumItem,
+    Direction3D: EnumItem,
 }
 export type Enum_InputType = Enum & {
     NoInput: EnumItem,
@@ -1773,6 +1922,9 @@ export type Enum_KeyCode = Enum & {
     DPadDown: EnumItem,
     Thumbstick1: EnumItem,
     Thumbstick2: EnumItem,
+    MouseLeftButton: EnumItem,
+    MouseRightButton: EnumItem,
+    MouseMiddleButton: EnumItem,
     World0: EnumItem,
     World1: EnumItem,
     World2: EnumItem,
@@ -1869,9 +2021,6 @@ export type Enum_KeyCode = Enum & {
     World93: EnumItem,
     World94: EnumItem,
     World95: EnumItem,
-    MouseLeftButton: EnumItem,
-    MouseRightButton: EnumItem,
-    MouseMiddleButton: EnumItem,
     MouseBackButton: EnumItem,
     MouseNoButton: EnumItem,
     MouseX: EnumItem,
@@ -2163,6 +2312,11 @@ export type Enum_NameOcclusion = Enum & {
     EnemyOcclusion: EnumItem,
     OccludeAll: EnumItem,
 }
+export type Enum_NegateOperationHiddenHistory = Enum & {
+    None: EnumItem,
+    NegatedUnion: EnumItem,
+    NegatedIntersection: EnumItem,
+}
 export type Enum_NetworkOwnership = Enum & {
     Automatic: EnumItem,
     Manual: EnumItem,
@@ -2382,6 +2536,11 @@ export type Enum_PoseEasingStyle = Enum & {
 export type Enum_PositionAlignmentMode = Enum & {
     OneAttachment: EnumItem,
     TwoAttachment: EnumItem,
+}
+export type Enum_PreferredInput = Enum & {
+    KeyboardAndMouse: EnumItem,
+    Gamepad: EnumItem,
+    Touch: EnumItem,
 }
 export type Enum_PreferredTextSize = Enum & {
     Medium: EnumItem,
@@ -2631,6 +2790,11 @@ export type Enum_RotationType = Enum & {
     MovementRelative: EnumItem,
     CameraRelative: EnumItem,
 }
+export type Enum_RsvpStatus = Enum & {
+    None: EnumItem,
+    Going: EnumItem,
+    NotGoing: EnumItem,
+}
 export type Enum_RtlTextSupport = Enum & {
     Default: EnumItem,
     Disabled: EnumItem,
@@ -2754,6 +2918,7 @@ export type Enum_SecurityCapability = Enum & {
     RemoteEvent: EnumItem,
     LegacySound: EnumItem,
     Players: EnumItem,
+    CapabilityControl: EnumItem,
 }
 export type Enum_SelectionBehavior = Enum & {
     Escape: EnumItem,
@@ -2849,6 +3014,7 @@ export type Enum_StartCorner = Enum & {
 export type Enum_StateObjectFieldType = Enum & {
     Boolean: EnumItem,
     CFrame: EnumItem,
+    Color3: EnumItem,
     Float: EnumItem,
     Instance: EnumItem,
     Random: EnumItem,
@@ -3146,6 +3312,13 @@ export type Enum_SwipeDirection = Enum & {
     Down: EnumItem,
     None: EnumItem,
 }
+export type Enum_SystemThemeValue = Enum & {
+    error: EnumItem,
+    light: EnumItem,
+    dark: EnumItem,
+    systemLight: EnumItem,
+    systemDark: EnumItem,
+}
 export type Enum_TableMajorAxis = Enum & {
     RowMajor: EnumItem,
     ColumnMajor: EnumItem,
@@ -3396,7 +3569,6 @@ export type Enum_TweenStatus = Enum & {
 export type Enum_UICaptureMode = Enum & {
     All: EnumItem,
     None: EnumItem,
-    PlayerGui: EnumItem,
 }
 export type Enum_UIDragDetectorBoundingBehavior = Enum & {
     Automatic: EnumItem,
@@ -3560,6 +3732,19 @@ export type Enum_VibrationMotor = Enum & {
     LeftHand: EnumItem,
     RightHand: EnumItem,
 }
+export type Enum_VideoCaptureResult = Enum & {
+    Success: EnumItem,
+    OtherError: EnumItem,
+    ScreenSizeChanged: EnumItem,
+    TimeLimitReached: EnumItem,
+}
+export type Enum_VideoCaptureStartedResult = Enum & {
+    Success: EnumItem,
+    OtherError: EnumItem,
+    CapturingAlready: EnumItem,
+    NoDeviceSupport: EnumItem,
+    NoSpaceOnDevice: EnumItem,
+}
 export type Enum_VideoDeviceCaptureQuality = Enum & {
     Default: EnumItem,
     Low: EnumItem,
@@ -3676,6 +3861,7 @@ export type Enum_WrapLayerDebugMode = Enum & {
     HSRInnerReverse: EnumItem,
     LayerCageFittedToBase: EnumItem,
     LayerCageFittedToPrev: EnumItem,
+    PreWrapDeformerOuterCage: EnumItem,
 }
 export type Enum_WrapTargetDebugMode = Enum & {
     None: EnumItem,
@@ -3687,6 +3873,7 @@ export type Enum_WrapTargetDebugMode = Enum & {
     TargetLayerInterface: EnumItem,
     Rbf: EnumItem,
     OuterCageDetail: EnumItem,
+    PreWrapDeformerCage: EnumItem,
 }
 export type Enum_ZIndexBehavior = Enum & {
     Global: EnumItem,
@@ -3695,6 +3882,7 @@ export type Enum_ZIndexBehavior = Enum & {
 export type Enums = {
     AccessModifierType: Enum_AccessModifierType,
     AccessoryType: Enum_AccessoryType,
+    ActionOnAutoResumeSync: Enum_ActionOnAutoResumeSync,
     ActionOnStopSync: Enum_ActionOnStopSync,
     ActionType: Enum_ActionType,
     ActuatorRelativeTo: Enum_ActuatorRelativeTo,
@@ -3721,7 +3909,7 @@ export type Enums = {
     AnimationPriority: Enum_AnimationPriority,
     AnimatorRetargetingMode: Enum_AnimatorRetargetingMode,
     AnnotationEditingMode: Enum_AnnotationEditingMode,
-    AnnotationRequestResult: Enum_AnnotationRequestResult,
+    AnnotationRequestStatus: Enum_AnnotationRequestStatus,
     AnnotationRequestType: Enum_AnnotationRequestType,
     AppLifecycleManagerState: Enum_AppLifecycleManagerState,
     AppShellActionType: Enum_AppShellActionType,
@@ -3734,6 +3922,7 @@ export type Enums = {
     AssetType: Enum_AssetType,
     AssetTypeVerification: Enum_AssetTypeVerification,
     AudioApiRollout: Enum_AudioApiRollout,
+    AudioCaptureMode: Enum_AudioCaptureMode,
     AudioChannelLayout: Enum_AudioChannelLayout,
     AudioFilterType: Enum_AudioFilterType,
     AudioSimulationFidelity: Enum_AudioSimulationFidelity,
@@ -3747,6 +3936,21 @@ export type Enums = {
     AvatarGenerationError: Enum_AvatarGenerationError,
     AvatarItemType: Enum_AvatarItemType,
     AvatarPromptResult: Enum_AvatarPromptResult,
+    AvatarSettingsAccessoryLimitMethod: Enum_AvatarSettingsAccessoryLimitMethod,
+    AvatarSettingsAccessoryMode: Enum_AvatarSettingsAccessoryMode,
+    AvatarSettingsAnimationClipsMode: Enum_AvatarSettingsAnimationClipsMode,
+    AvatarSettingsAnimationPacksMode: Enum_AvatarSettingsAnimationPacksMode,
+    AvatarSettingsAppearanceMode: Enum_AvatarSettingsAppearanceMode,
+    AvatarSettingsBuildMode: Enum_AvatarSettingsBuildMode,
+    AvatarSettingsClothingMode: Enum_AvatarSettingsClothingMode,
+    AvatarSettingsCollisionMode: Enum_AvatarSettingsCollisionMode,
+    AvatarSettingsCustomAccessoryMode: Enum_AvatarSettingsCustomAccessoryMode,
+    AvatarSettingsCustomBodyType: Enum_AvatarSettingsCustomBodyType,
+    AvatarSettingsCustomClothingMode: Enum_AvatarSettingsCustomClothingMode,
+    AvatarSettingsHitAndTouchDetectionMode: Enum_AvatarSettingsHitAndTouchDetectionMode,
+    AvatarSettingsJumpMode: Enum_AvatarSettingsJumpMode,
+    AvatarSettingsLegacyCollisionMode: Enum_AvatarSettingsLegacyCollisionMode,
+    AvatarSettingsScaleMode: Enum_AvatarSettingsScaleMode,
     AvatarThumbnailCustomizationType: Enum_AvatarThumbnailCustomizationType,
     AvatarUnificationMode: Enum_AvatarUnificationMode,
     Axis: Enum_Axis,
@@ -3766,6 +3970,7 @@ export type Enums = {
     CameraPanMode: Enum_CameraPanMode,
     CameraSpeedAdjustBinding: Enum_CameraSpeedAdjustBinding,
     CameraType: Enum_CameraType,
+    CaptureType: Enum_CaptureType,
     CatalogCategoryFilter: Enum_CatalogCategoryFilter,
     CatalogSortAggregation: Enum_CatalogSortAggregation,
     CatalogSortType: Enum_CatalogSortType,
@@ -3842,7 +4047,10 @@ export type Enums = {
     ExperienceAuthScope: Enum_ExperienceAuthScope,
     ExplosionType: Enum_ExplosionType,
     FACSDataLod: Enum_FACSDataLod,
+    FacialAgeEstimationResultType: Enum_FacialAgeEstimationResultType,
     FacialAnimationStreamingState: Enum_FacialAnimationStreamingState,
+    FacsActionUnit: Enum_FacsActionUnit,
+    FeedRankingScoreType: Enum_FeedRankingScoreType,
     FieldOfViewMode: Enum_FieldOfViewMode,
     FillDirection: Enum_FillDirection,
     FilterErrorType: Enum_FilterErrorType,
@@ -3870,6 +4078,7 @@ export type Enums = {
     GraphicsOptimizationMode: Enum_GraphicsOptimizationMode,
     GuiState: Enum_GuiState,
     GuiType: Enum_GuiType,
+    HandRigDescriptionSide: Enum_HandRigDescriptionSide,
     HandlesStyle: Enum_HandlesStyle,
     HapticEffectType: Enum_HapticEffectType,
     HighlightDepthMode: Enum_HighlightDepthMode,
@@ -3942,6 +4151,7 @@ export type Enums = {
     MoverConstraintRootBehaviorMode: Enum_MoverConstraintRootBehaviorMode,
     MuteState: Enum_MuteState,
     NameOcclusion: Enum_NameOcclusion,
+    NegateOperationHiddenHistory: Enum_NegateOperationHiddenHistory,
     NetworkOwnership: Enum_NetworkOwnership,
     NetworkStatus: Enum_NetworkStatus,
     NoiseType: Enum_NoiseType,
@@ -3978,6 +4188,7 @@ export type Enums = {
     PoseEasingDirection: Enum_PoseEasingDirection,
     PoseEasingStyle: Enum_PoseEasingStyle,
     PositionAlignmentMode: Enum_PositionAlignmentMode,
+    PreferredInput: Enum_PreferredInput,
     PreferredTextSize: Enum_PreferredTextSize,
     PrimalPhysicsSolver: Enum_PrimalPhysicsSolver,
     PrimitiveType: Enum_PrimitiveType,
@@ -4013,6 +4224,7 @@ export type Enums = {
     RolloutState: Enum_RolloutState,
     RotationOrder: Enum_RotationOrder,
     RotationType: Enum_RotationType,
+    RsvpStatus: Enum_RsvpStatus,
     RtlTextSupport: Enum_RtlTextSupport,
     RunContext: Enum_RunContext,
     RunState: Enum_RunState,
@@ -4069,6 +4281,7 @@ export type Enums = {
     SurfaceGuiSizingMode: Enum_SurfaceGuiSizingMode,
     SurfaceType: Enum_SurfaceType,
     SwipeDirection: Enum_SwipeDirection,
+    SystemThemeValue: Enum_SystemThemeValue,
     TableMajorAxis: Enum_TableMajorAxis,
     TeamCreateErrorState: Enum_TeamCreateErrorState,
     Technology: Enum_Technology,
@@ -4134,6 +4347,8 @@ export type Enums = {
     VerticalAlignment: Enum_VerticalAlignment,
     VerticalScrollBarPosition: Enum_VerticalScrollBarPosition,
     VibrationMotor: Enum_VibrationMotor,
+    VideoCaptureResult: Enum_VideoCaptureResult,
+    VideoCaptureStartedResult: Enum_VideoCaptureStartedResult,
     VideoDeviceCaptureQuality: Enum_VideoDeviceCaptureQuality,
     VideoError: Enum_VideoError,
     ViewMode: Enum_ViewMode,
@@ -4153,4 +4368,4 @@ export type Enums = {
     WrapTargetDebugMode: Enum_WrapTargetDebugMode,
     ZIndexBehavior: Enum_ZIndexBehavior,
 }
-return nil;
+return {};

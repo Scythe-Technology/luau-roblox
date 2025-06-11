@@ -1,1 +1,1 @@
-return require("../polyfill/datetime");
+return require("@polyfill/datetime");

@@ -5,7 +5,7 @@ if (type(_VERSION) == "string") then
     if (string.sub(_VERSION, 1, 4) == "Zune") then
         return zune.datetime;
     elseif (string.sub(_VERSION, 1, 4) == "Lune") then
-        return require("@lune/datetime")
+        return require("@lune/datetime") :: any
     end
 end
 
@@ -28,4 +28,4 @@ return {
     fromIsoDate = function()
         error("Not implemented");
     end,
-};
+} :: any;

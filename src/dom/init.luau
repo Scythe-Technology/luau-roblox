@@ -1,6 +1,6 @@
 --!strict
-local roblox = require("./roblox");
-local binary = require("./binary");
+local roblox = require("@self/roblox");
+local binary = require("@self/binary");
 
 export type DOM = roblox.Document;
 export type DOMInfo = roblox.DocumentInfo;

@@ -1,9 +1,9 @@
 --!strict
-local Object = require("./Object");
-local Instance = require("./Instance");
-local BasePart = require("./BasePart");
-local DataModel = require("./DataModel");
-local ScreenGui = require("./ScreenGui");
+local Object = require("@self/Object");
+local Instance = require("@self/Instance");
+local BasePart = require("@self/BasePart");
+local DataModel = require("@self/DataModel");
+local ScreenGui = require("@self/ScreenGui");
 
 return {
     Object = Object,

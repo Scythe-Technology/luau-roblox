@@ -7,6 +7,18 @@ local test = testing.test
 
 local lib = require("@roblox");
 
+local dom = require("@roblox/dom");
+local file = fs.readFile("./Classic-Crossroads.rbxl");
+local datamodel = lib.deserializePlace(file);
+local serialized = lib.serializePlace(datamodel);
+-- print("ez")
+-- print(datamodel.Workspace:FindFirstChild("AudioPlayer").Asset)
+-- print(datamodel, serialized);
+fs.writeFile("./Place1AudioScripted.rbxl", serialized)
+
+test("Deserialize and serialize place (Audio)", function()
+end)
+
 test("Deserialize and serialize place", function()
     local file = fs.readFile("./rbx-test-files/places/baseplate-566/binary.rbxl");
     local datamodel = lib.deserializePlace(file);

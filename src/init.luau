@@ -1,6 +1,6 @@
-local dom = require("./dom");
-local manager = require("./core/manager");
-local reflection = require("./reflection");
+local dom = require("@self/dom");
+local manager = require("@self/core/manager");
+local reflection = require("@self/reflection");
 
 local module = {};
 
