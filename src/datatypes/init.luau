@@ -48,6 +48,8 @@ local Vector3int16 = require("@self/Vector3int16");
 export type Vector3int16 = Vector3int16.Vector3int16;
 local Content = require("@self/Content");
 export type Content = Content.Content;
+local UniqueId = require("@self/UniqueId");
+export type UniqueId = UniqueId.UniqueId;
 
 return {
     Axes = Axes,
@@ -75,4 +77,5 @@ return {
     Vector3 = Vector3,
     Vector3int16 = Vector3int16,
     Content = Content,
+    UniqueId = UniqueId,
 };

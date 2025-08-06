@@ -633,10 +633,10 @@ local PropertySerializerMap = {
     end,
     [RobloxPropertyType.UniqueId] = function(values: {Property}, stream: sink.IoWritable)
         stream:write(WriteInterleaved(values, 16, function(b: buffer, offset: number, property)
-            local value = property.value;
-            buffer.copy(b, offset, value.random, 0, 8);
-            buffer.writeu32(b, offset + 8, value.index);
-            buffer.writeu32(b, offset + 12, value.time);
+            local index, time, random = datatypes.UniqueId.Serialize(property.value);
+            buffer.copy(b, offset, random, 0, 8);
+            buffer.writeu32(b, offset + 8, index);
+            buffer.writeu32(b, offset + 12, time);
         end));
     end,
     [RobloxPropertyType.Font] = function(values: {Property}, stream: sink.IoWritable)
@@ -1379,7 +1379,7 @@ local PropertyDeserializerMap = {
             }
         end)
         for i = 1, len do
-            values[i] = ids[i];
+            values[i] = datatypes.UniqueId.Deserialize(ids[i].index, ids[i].time, ids[i].random);
         end
     end,
     [RobloxPropertyType.Font] = function(values: {any}, property_name: string, stream: stream.IoReadable)
