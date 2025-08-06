@@ -16,7 +16,7 @@ export type IoWritable = {
 
 local VERSION = _VERSION;
 if (type(VERSION) == "string") then
-    if (string.sub(VERSION, 1, 4) == "Zune") then
+    if (string.sub(VERSION, 1, 4) == "zune") then
         return {
             create = function(size: number?): BufferSink
                 return zune.io.createBufferSink() :: any;

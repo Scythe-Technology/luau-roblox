@@ -2,8 +2,8 @@
 --!native
 --!optimize 2
 if (type(_VERSION) == "string") then
-    if (string.sub(_VERSION, 1, 4) == "Zune") then
-        return zune.serde.lz4;
+    if (string.sub(_VERSION, 1, 4) == "zune") then
+        return zune.serde.lz4
     end
 end
 

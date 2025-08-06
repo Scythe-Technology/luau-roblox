@@ -30,7 +30,7 @@ export type IoReadable = {
 
 local VERSION = _VERSION;
 if (type(VERSION) == "string") then
-    if (string.sub(VERSION, 1, 4) == "Zune") then
+    if (string.sub(VERSION, 1, 4) == "zune") then
         return {
             create = zune.io.createFixedBufferStream :: any,
         };
@@ -81,7 +81,7 @@ end
 
 function BufferStream.read(self: BufferStream, amount: number?, bytes: boolean?): (string | buffer)?
     local len = amount or self.len - self.position;
-    if (len <= 0) then
+    if (amount and amount <= 0) then
         return if (bytes == false) then
             ""
         else

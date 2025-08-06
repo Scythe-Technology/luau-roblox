@@ -129,7 +129,7 @@ for _, sample in fs.readDir(`{RBX}/models/`) do
 end
 
 if (process.args[2] == "--all") then
-    require("./stream");
+    require("@self/stream");
 end
 
 return nil;

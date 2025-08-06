@@ -3,7 +3,7 @@
 --!strict
 local VERSION = _VERSION;
 if (type(VERSION) == "string") then
-    if (string.sub(VERSION, 1, 4) == "Zune") then
+    if (string.sub(VERSION, 1, 4) == "zune") then
         return zune.serde.base64;
     end
 end
@@ -18,7 +18,7 @@ local ALPHABET_INDEX = buffer.create(64) do
         97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112,
         113, 114, 115, 116, 117, 118, 119, 120, 121, 122,
         48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
-        43, 47 
+        43, 47
     }
 
     for Index = 0, 63 do

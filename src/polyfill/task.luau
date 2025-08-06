@@ -2,7 +2,7 @@
 --!native
 --!optimize 2
 if (type(_VERSION) == "string") then
-    if (string.sub(_VERSION, 1, 4) == "Zune") then
+    if (string.sub(_VERSION, 1, 4) == "zune") then
         return zune.task;
     elseif (string.sub(_VERSION, 1, 4) == "Lune") then
         return require("@lune/task")

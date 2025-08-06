@@ -1,7 +1,7 @@
 --!strict
 local VERSION = _VERSION;
 if (type(VERSION) == "string") then
-    if (string.sub(VERSION, 1, 4) == "Zune") then
+    if (string.sub(VERSION, 1, 4) == "zune") then
         return zune.serde.zlib;
     elseif (string.sub(_VERSION, 1, 4) == "Lune") then
         local serde = require("@lune/serde")::any;

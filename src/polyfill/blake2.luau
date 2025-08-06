@@ -2,7 +2,7 @@
 --!optimize 2
 --!strict
 if (type(_VERSION) == "string") then
-    if (string.sub(_VERSION, 1, 4) == "Zune") then
+    if (string.sub(_VERSION, 1, 4) == "zune") then
         return {
             b128 = function(input)
                 local hash = zune.crypto.createHash("blake2b128");
