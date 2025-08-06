@@ -258,6 +258,10 @@ local function loadDefaultProperties(self: object, className: string)
             end
         end
 
+        if (not default) then
+            continue
+        end
+
         properties[member.Name] = {
             type = serializeId,
             value = default,

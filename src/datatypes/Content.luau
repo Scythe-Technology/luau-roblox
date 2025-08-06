@@ -33,8 +33,8 @@ end
 
 Content.none = newContent(nil, nil, Enum.ContentSourceType.None);
 
-Content.load = function(): Content
-    return Content.none;
+Content.load = function(): Content?
+    return nil;
 end
 
 export type Content = typeof(newContent(nil, nil, Enum.ContentSourceType.None));
