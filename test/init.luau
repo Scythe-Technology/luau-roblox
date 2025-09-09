@@ -8,13 +8,7 @@ local test = testing.test
 local lib = require("@roblox");
 
 local dom = require("@roblox/dom");
-local file = fs.readFile("./Classic-Crossroads.rbxl");
-local datamodel = lib.deserializePlace(file);
-local serialized = lib.serializePlace(datamodel);
--- print("ez")
--- print(datamodel.Workspace:FindFirstChild("AudioPlayer").Asset)
--- print(datamodel, serialized);
-fs.writeFile("./Place1AudioScripted.rbxl", serialized)
+dom.setDebugCallback("BINARY", print)
 
 test("Deserialize and serialize place (Audio)", function()
 end)
@@ -47,10 +41,10 @@ local outdated_models = {
     "three-screengui",
     "gui-inset-and-font-migration",
 };
-for _, sample in fs.readDir(`{RBX}/models/`) do
-    local outdated = table.find(outdated_models, sample) ~= nil;
+for _, sample in fs.entries(`{RBX}/models/`) do
+    local outdated = table.find(outdated_models, sample.name) ~= nil;
     serializeDeserializeTest(
-        `models/{sample}`, `{RBX}/models/{sample}/binary.rbxm`, outdated
+        `models/{sample.name}`, `{RBX}/models/{sample.name}/binary.rbxm`, outdated
     )
 end
 

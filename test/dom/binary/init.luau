@@ -121,10 +121,10 @@ local outdated_models = {
     "three-screengui",
     "gui-inset-and-font-migration",
 };
-for _, sample in fs.readDir(`{RBX}/models/`) do
-    local outdated = table.find(outdated_models, sample) ~= nil;
+for _, sample in fs.entries(`{RBX}/models/`) do
+    local outdated = table.find(outdated_models, sample.name) ~= nil;
     serializeDeserializeTest(
-        `models/{sample}`, `{RBX}/models/{sample}/binary.rbxm`, outdated
+        `models/{sample.name}`, `{RBX}/models/{sample.name}/binary.rbxm`, outdated
     )
 end
 
