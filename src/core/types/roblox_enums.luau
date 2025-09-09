@@ -113,6 +113,13 @@ export type Enum_AdornCullingMode = Enum & {
     Automatic: EnumItem,
     Never: EnumItem,
 }
+export type Enum_AdornShading = Enum & {
+    Default: EnumItem,
+    Shaded: EnumItem,
+    XRay: EnumItem,
+    XRayShaded: EnumItem,
+    AlwaysOnTop: EnumItem,
+}
 export type Enum_AlignType = Enum & {
     PrimaryAxisParallel: EnumItem,
     PrimaryAxisPerpendicular: EnumItem,
@@ -1321,6 +1328,10 @@ export type Enum_FacsActionUnit = Enum & {
     TongueOut: EnumItem,
     TongueUp: EnumItem,
 }
+export type Enum_FeatureRestrictionAbuseVector = Enum & {
+    ExperienceChat: EnumItem,
+    Communication: EnumItem,
+}
 export type Enum_FieldOfViewMode = Enum & {
     Vertical: EnumItem,
     Diagonal: EnumItem,
@@ -1742,6 +1753,7 @@ export type Enum_InputActionType = Enum & {
     Direction1D: EnumItem,
     Direction2D: EnumItem,
     Direction3D: EnumItem,
+    ViewportPosition: EnumItem,
 }
 export type Enum_InputType = Enum & {
     NoInput: EnumItem,
@@ -1939,6 +1951,7 @@ export type Enum_KeyCode = Enum & {
     MouseLeftButton: EnumItem,
     MouseRightButton: EnumItem,
     MouseMiddleButton: EnumItem,
+    MousePosition: EnumItem,
     World0: EnumItem,
     World1: EnumItem,
     World2: EnumItem,
@@ -2381,6 +2394,7 @@ export type Enum_OutfitType = Enum & {
     All: EnumItem,
     Avatar: EnumItem,
     DynamicHead: EnumItem,
+    Shoes: EnumItem,
 }
 export type Enum_OutputLayoutMode = Enum & {
     Horizontal: EnumItem,
@@ -3687,6 +3701,13 @@ export type Enum_UiMessageType = Enum & {
     UiMessageError: EnumItem,
     UiMessageInfo: EnumItem,
 }
+export type Enum_UpdateState = Enum & {
+    UpdateNotAvailable: EnumItem,
+    UpdateAvailable: EnumItem,
+    UpdateInProgress: EnumItem,
+    UpdateReady: EnumItem,
+    UpdateFailed: EnumItem,
+}
 export type Enum_UploadCaptureResult = Enum & {
     Success: EnumItem,
     NeedPermission: EnumItem,
@@ -3903,6 +3924,16 @@ export type Enum_WebSocketState = Enum & {
     Closing: EnumItem,
     Closed: EnumItem,
 }
+export type Enum_WebStreamClientState = Enum & {
+    Connecting: EnumItem,
+    Open: EnumItem,
+    Error: EnumItem,
+    Closed: EnumItem,
+}
+export type Enum_WebStreamClientType = Enum & {
+    SSE: EnumItem,
+    RawStream: EnumItem,
+}
 export type Enum_WeldConstraintPreserve = Enum & {
     All: EnumItem,
     None: EnumItem,
@@ -3967,6 +3998,7 @@ export type Enums = {
     AdUIType: Enum_AdUIType,
     AdUnitStatus: Enum_AdUnitStatus,
     AdornCullingMode: Enum_AdornCullingMode,
+    AdornShading: Enum_AdornShading,
     AlignType: Enum_AlignType,
     AlphaMode: Enum_AlphaMode,
     AnalyticsCustomFieldKeys: Enum_AnalyticsCustomFieldKeys,
@@ -4125,6 +4157,7 @@ export type Enums = {
     FacialAgeEstimationResultType: Enum_FacialAgeEstimationResultType,
     FacialAnimationStreamingState: Enum_FacialAnimationStreamingState,
     FacsActionUnit: Enum_FacsActionUnit,
+    FeatureRestrictionAbuseVector: Enum_FeatureRestrictionAbuseVector,
     FieldOfViewMode: Enum_FieldOfViewMode,
     FillDirection: Enum_FillDirection,
     FilterErrorType: Enum_FilterErrorType,
@@ -4414,6 +4447,7 @@ export type Enums = {
     UIFlexMode: Enum_UIFlexMode,
     UITheme: Enum_UITheme,
     UiMessageType: Enum_UiMessageType,
+    UpdateState: Enum_UpdateState,
     UploadCaptureResult: Enum_UploadCaptureResult,
     UsageContext: Enum_UsageContext,
     UserCFrame: Enum_UserCFrame,
@@ -4446,6 +4480,8 @@ export type Enums = {
     WaterDirection: Enum_WaterDirection,
     WaterForce: Enum_WaterForce,
     WebSocketState: Enum_WebSocketState,
+    WebStreamClientState: Enum_WebStreamClientState,
+    WebStreamClientType: Enum_WebStreamClientType,
     WeldConstraintPreserve: Enum_WeldConstraintPreserve,
     WhisperChatPrivacyMode: Enum_WhisperChatPrivacyMode,
     WrapLayerAutoSkin: Enum_WrapLayerAutoSkin,

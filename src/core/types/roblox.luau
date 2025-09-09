@@ -14,6 +14,7 @@ export type Object = {
 export type Capture = Object & {
     CaptureTime: datatypes.DateTime,
     CaptureType: enum.Enum_CaptureType,
+    FilePathString: string,
     LocalId: string,
     SourcePlaceId: buffer,
     SourceUniverseId: buffer,
@@ -56,6 +57,7 @@ export type EditableMesh = Object & {
     IsReplicatedCopy: boolean,
     AddBone: (self: EditableMesh, boneProperties: {[string]: any}) -> buffer,
     AddColor: (self: EditableMesh, color: datatypes.Color3, alpha: number) -> buffer,
+    AddFace: (self: EditableMesh, vertexIds: {any}) -> buffer,
     AddNormal: (self: EditableMesh, normal: datatypes.Vector3?) -> buffer,
     AddTriangle: (self: EditableMesh, vertexId0: buffer, vertexId1: buffer, vertexId2: buffer) -> buffer,
     AddUV: (self: EditableMesh, uv: datatypes.Vector2) -> buffer,
@@ -136,6 +138,12 @@ export type EditableMesh = Object & {
     SetVertexFaceNormal: (self: EditableMesh, vertexId: buffer, faceId: buffer, normalId: buffer) -> (),
     SetVertexFaceUV: (self: EditableMesh, vertexId: buffer, faceId: buffer, uvId: buffer) -> (),
     Triangulate: (self: EditableMesh) -> (),
+}
+
+export type ExecutedRemoteCommand = Object & {
+    RunMoreCode: (self: ExecutedRemoteCommand, code: string, ...any) -> (),
+    SendUpdate: (self: ExecutedRemoteCommand, ...any) -> (),
+    Stop: (self: ExecutedRemoteCommand) -> (),
 }
 
 export type Instance = Object & {
@@ -236,8 +244,6 @@ export type AdPortal = Instance & {
     PortalInvalidReason: string,
     PortalVersion: buffer,
     Status: enum.Enum_AdUnitStatus,
-    TeleportConfirmed: (self: AdPortal, placeId: buffer, player: Player) -> (),
-    TeleportRejected: (self: AdPortal, shouldCooldown: boolean, rejectedByDistance: boolean) -> (),
 }
 
 export type AdService = Instance & {
@@ -427,6 +433,11 @@ export type AppLifecycleObserverService = Instance & {
     TriggerOnLuaAppInteractive: (self: AppLifecycleObserverService) -> (),
 }
 
+export type AppRatingPromptService = Instance & {
+    isAppRatingPromptAvailable: (self: AppRatingPromptService) -> boolean,
+    showAppRatingPrompt: (self: AppRatingPromptService) -> (),
+}
+
 export type AppUpdateService = Instance & {
     CanPerformBinaryUpdate: (self: AppUpdateService) -> boolean,
     CheckForUpdate: (self: AppUpdateService, handler: any) -> (),
@@ -487,12 +498,14 @@ export type AssetPatchSettings = Instance & {
 }
 
 export type AssetService = Instance & {
+    AllowInsertFreeAssets: boolean,
     CreateEditableImage: (self: AssetService, editableImageOptions: {[string]: any}) -> EditableImage,
     CreateEditableMesh: (self: AssetService, editableMeshOptions: {[string]: any}) -> EditableMesh,
     DeserializeInstance: (self: AssetService, serializedInstance: string) -> any,
     GetBundleDetailsSync: (self: AssetService, bundleId: buffer) -> {[string]: any},
     RegisterUGCValidationFunction: (self: AssetService, callback: any) -> (),
     CanEditAssetAsync: (self: AssetService, content: any) -> boolean,
+    ComposeDecalAsync: (self: AssetService, layers: {any}) -> Decal,
     CreateAssetAsync: (self: AssetService, object: Object, assetType: enum.Enum_AssetType, requestParameters: {[string]: any}) -> ...any,
     CreateAssetVersionAsync: (self: AssetService, object: Object, assetType: enum.Enum_AssetType, assetId: buffer, requestParameters: {[string]: any}) -> ...any,
     CreateEditableImageAsync: (self: AssetService, content: any, editableImageOptions: {[string]: any}) -> EditableImage,
@@ -506,9 +519,10 @@ export type AssetService = Instance & {
     GetAudioMetadataAsync: (self: AssetService, idList: {any}) -> {any},
     GetBundleDetailsAsync: (self: AssetService, bundleId: buffer) -> {[string]: any},
     GetGamePlacesAsync: (self: AssetService) -> any,
+    LoadAssetAsync: (self: AssetService, assetId: buffer) -> any,
     PromptCreateAssetAsync: (self: AssetService, player: Player, instance: any, assetType: enum.Enum_AssetType) -> ...any,
     PromptImportAnimationClipFromVideoAsync: (self: AssetService, player: Player, progressCallback: any) -> ...any,
-    SavePlaceAsync: (self: AssetService) -> (),
+    SavePlaceAsync: (self: AssetService, requestParameters: {[string]: any}) -> (),
     SearchAudio: (self: AssetService, searchParameters: AudioSearchParams) -> AudioPages,
 }
 
@@ -752,6 +766,7 @@ export type AudioPitchShifter = Instance & {
 
 export type AudioPlayer = Instance & {
     Asset: any,
+    AudioContent: any,
     AutoLoad: boolean,
     IsMutedForCapture: boolean,
     IsPlaying: boolean,
@@ -843,6 +858,19 @@ export type AudioTextToSpeech = Instance & {
     LoadAsync: (self: AudioTextToSpeech) -> enum.Enum_AssetFetchStatus,
 }
 
+export type AudioTremolo = Instance & {
+    Bypass: boolean,
+    Depth: number,
+    Duty: number,
+    Frequency: number,
+    Shape: number,
+    Skew: number,
+    Square: number,
+    GetConnectedWires: (self: AudioTremolo, pin: string) -> any,
+    GetInputPins: (self: AudioTremolo) -> {any},
+    GetOutputPins: (self: AudioTremolo) -> {any},
+}
+
 export type AuroraScriptObject = Instance & {
     BehaviorWeak: AuroraScript,
     BoundInstanceWeak: any,
@@ -850,11 +878,19 @@ export type AuroraScriptObject = Instance & {
     LODLevel: number,
     MaxFrequency: number,
     PriorFrameInvoked: number,
+    GetCurrentState: (self: AuroraScriptObject) -> {[string]: any},
+    SetStateFieldValue: (self: AuroraScriptObject, fieldName: string, value: any) -> (),
 }
 
 export type AuroraScriptService = Instance & {
+    FindBinding: (self: AuroraScriptService, instance: any, scriptName: string) -> Object,
+    FindBindings: (self: AuroraScriptService, instance: any) -> {[string]: any},
     GetLocalFrameId: (self: AuroraScriptService) -> number,
     SendMessage: (self: AuroraScriptService, instance: any, behaviorName: string, functionName: string, ...any) -> (),
+    getBehaviorObjects: (self: AuroraScriptService) -> any,
+    getBehaviors: (self: AuroraScriptService) -> any,
+    getBehaviorsForInstance: (self: AuroraScriptService, instance: any) -> any,
+    getInstancesForBehavior: (self: AuroraScriptService, behavior: AuroraScript) -> any,
 }
 
 export type AuroraService = Instance & {
@@ -1026,6 +1062,7 @@ export type AvatarCollisionRules = Instance & {
 export type AvatarCreationService = Instance & {
     DeserializeAvatarModel: (self: AvatarCreationService, serializedModel: string) -> any,
     GetValidationRules: (self: AvatarCreationService) -> {[string]: any},
+    HandleSelfieConsentResult: (self: AvatarCreationService, consentAccepted: boolean) -> (),
     AutoSetupAvatarAsync: (self: AvatarCreationService, player: Player, model: Model, progressCallback: any) -> string,
     GenerateAvatar2DPreviewAsync: (self: AvatarCreationService, avatarGeneration2dPreviewParams: {[string]: any}) -> string,
     GenerateAvatarAsync: (self: AvatarCreationService, avatarGenerationParams: {[string]: any}) -> string,
@@ -1097,10 +1134,6 @@ export type AvatarImportService = Instance & {
     ImportFbxRigWithoutSceneLoad: (self: AvatarImportService, isR15: boolean) -> any,
     ImportLoadedFBXAnimation: (self: AvatarImportService, useFBXModel: boolean) -> any,
     LoadRigAndDetectType: (self: AvatarImportService, promptR15Callback: any) -> any,
-}
-
-export type AvatarPreloader = Instance & {
-    PreloadModelAssets: (self: AvatarPreloader, models: any) -> {any},
 }
 
 export type AvatarRules = Instance & {
@@ -1467,16 +1500,19 @@ export type CaptureService = Instance & {
     IsCapturingVideo: (self: CaptureService) -> boolean,
     OnCaptureBegan: (self: CaptureService) -> (),
     OnCaptureEnded: (self: CaptureService) -> (),
+    OnCaptureObjectShared: (self: CaptureService, capture: Capture) -> (),
     OnCapturePermissionsPromptFinished: (self: CaptureService, promptId: buffer, wasAccepted: boolean) -> (),
     OnCaptureShared: (self: CaptureService, capturePath: string) -> (),
     OnSavePromptFinished: (self: CaptureService, promptId: buffer, results: {[string]: any}) -> (),
     OnSharePromptFinished: (self: CaptureService, promptId: buffer, accepted: boolean) -> (),
     OnVideoCaptureShared: (self: CaptureService, videoCapture: VideoCapture) -> (),
+    PreCaptureShared: (self: CaptureService, capture: Capture) -> string,
     PreVideoCaptureShared: (self: CaptureService, videoCapture: VideoCapture) -> string,
     PromptCaptureGalleryPermission: (self: CaptureService, captureGalleryPermission: enum.Enum_CaptureGalleryPermission, onAcceptedCallback: any, onDeniedCallback: any) -> (),
     PromptSaveCapturesToGallery: (self: CaptureService, captures: {any}, resultCallback: any) -> (),
     PromptShareCapture: (self: CaptureService, captureContent: any, launchData: string, onAcceptedCallback: any, onDeniedCallback: any) -> (),
     RetrieveCaptures: (self: CaptureService) -> {any},
+    SaveCaptureObjectToExternalStorage: (self: CaptureService, capture: Capture) -> (),
     SaveCaptureToExternalStorage: (self: CaptureService, capturePath: string) -> (),
     SaveScreenshotCapture: (self: CaptureService, additionalInfo: string) -> (),
     SaveVideoCaptureToExternalStorage: (self: CaptureService, videoCapture: VideoCapture) -> (),
@@ -1490,6 +1526,7 @@ export type CaptureService = Instance & {
     GetCaptureSizeAsync: (self: CaptureService, captureContent: any) -> datatypes.Vector2,
     GetCaptureStorageSizeAsync: (self: CaptureService, pathArr: {any}) -> buffer,
     GetCaptureUploadDataAsync: (self: CaptureService, capturePath: string) -> {[string]: any},
+    PromptCaptureGalleryPermissionAsync: (self: CaptureService, captureGalleryPermission: enum.Enum_CaptureGalleryPermission) -> boolean,
     ReadCapturesFromGalleryAsync: (self: CaptureService, captureTypeFilters: {any}) -> ...any,
     SaveCapturesToExternalStorageAsync: (self: CaptureService, pathArr: {any}) -> buffer,
     StartVideoCaptureAsync: (self: CaptureService, onCaptureReady: any, captureParams: {[string]: any}) -> enum.Enum_VideoCaptureStartedResult,
@@ -1508,6 +1545,9 @@ export type ChangeHistoryService = Instance & {
     SetWaypoint: (self: ChangeHistoryService, name: string) -> (),
     TryBeginRecording: (self: ChangeHistoryService, name: string, displayName: string) -> string,
     Undo: (self: ChangeHistoryService) -> (),
+}
+
+export type ChangeHistoryStreamingService = Instance & {
 }
 
 export type CharacterAppearance = Instance & {
@@ -1581,11 +1621,13 @@ export type ChatbotUIService = Instance & {
 
 export type ClickDetector = Instance & {
     CursorIcon: any,
+    CursorIconContent: any,
     MaxActivationDistance: number,
 }
 
 export type DragDetector = ClickDetector & {
     ActivatedCursorIcon: any,
+    ActivatedCursorIconContent: any,
     ApplyAtCenterOfMass: boolean,
     Axis: datatypes.Vector3,
     DragFrame: datatypes.CFrame,
@@ -2550,6 +2592,8 @@ export type Decal = FaceInstance & {
     RoughnessMapContent: any,
     Texture: any,
     TextureContent: any,
+    TexturePack: any,
+    TexturePackMetadata: string,
     Transparency: number,
     UVOffset: datatypes.Vector2,
     UVScale: datatypes.Vector2,
@@ -3191,17 +3235,21 @@ export type HandleAdornment = PVAdornment & {
     AdornCullingMode: enum.Enum_AdornCullingMode,
     AlwaysOnTop: boolean,
     CFrame: datatypes.CFrame,
+    GizmoReference: any,
     SizeRelativeOffset: datatypes.Vector3,
     ZIndex: number,
 }
 
 export type BoxHandleAdornment = HandleAdornment & {
+    Shading: enum.Enum_AdornShading,
     Size: datatypes.Vector3,
 }
 
 export type ConeHandleAdornment = HandleAdornment & {
     Height: number,
+    Hollow: boolean,
     Radius: number,
+    Shading: enum.Enum_AdornShading,
 }
 
 export type CylinderHandleAdornment = HandleAdornment & {
@@ -3209,6 +3257,7 @@ export type CylinderHandleAdornment = HandleAdornment & {
     Height: number,
     InnerRadius: number,
     Radius: number,
+    Shading: enum.Enum_AdornShading,
 }
 
 export type ImageHandleAdornment = HandleAdornment & {
@@ -3223,6 +3272,7 @@ export type LineHandleAdornment = HandleAdornment & {
 
 export type SphereHandleAdornment = HandleAdornment & {
     Radius: number,
+    Shading: enum.Enum_AdornShading,
 }
 
 export type WireframeHandleAdornment = HandleAdornment & {
@@ -3444,7 +3494,7 @@ export type HapticEffect = Instance & {
     Position: datatypes.Vector3,
     Radius: number,
     Type: enum.Enum_HapticEffectType,
-    Waveform: FloatCurve,
+    WaveformData: buffer,
     Play: (self: HapticEffect) -> (),
     SetWaveformKeys: (self: HapticEffect, keys: {any}) -> (),
     Stop: (self: HapticEffect) -> (),
@@ -3514,6 +3564,7 @@ export type HttpRequest = Instance & {
 
 export type HttpService = Instance & {
     HttpEnabled: boolean,
+    CreateWebStreamClient: (self: HttpService, streamClientType: enum.Enum_WebStreamClientType, requestOptions: {[string]: any}) -> WebStreamClient,
     GenerateGUID: (self: HttpService, wrapInCurlyBraces: boolean) -> string,
     GetHttpEnabled: (self: HttpService) -> boolean,
     GetSecret: (self: HttpService, key: string) -> any,
@@ -3808,18 +3859,26 @@ export type LegacyStudioBridge = ILegacyStudioBridge & {
 }
 
 export type IXPService = Instance & {
+    ClearCreatorLayers: (self: IXPService) -> (),
     ClearUserLayers: (self: IXPService) -> (),
     GetBrowserTrackerLayerLoadingStatus: (self: IXPService) -> enum.Enum_IXPLoadingStatus,
     GetBrowserTrackerLayerVariables: (self: IXPService, layerName: string) -> {[string]: any},
     GetBrowserTrackerStatusForLayer: (self: IXPService, layerName: string) -> enum.Enum_IXPLoadingStatus??,
+    GetCreatorLayerLoadingStatus: (self: IXPService) -> enum.Enum_IXPLoadingStatus,
+    GetCreatorLayerVariables: (self: IXPService, layerName: string) -> {[string]: any},
+    GetCreatorStatusForLayer: (self: IXPService, layerName: string) -> enum.Enum_IXPLoadingStatus??,
+    GetRegisteredCreatorLayersToStatus: (self: IXPService) -> {[string]: any},
     GetRegisteredUserLayersToStatus: (self: IXPService) -> {[string]: any},
     GetUserLayerLoadingStatus: (self: IXPService) -> enum.Enum_IXPLoadingStatus,
     GetUserLayerVariables: (self: IXPService, layerName: string) -> {[string]: any},
     GetUserStatusForLayer: (self: IXPService, layerName: string) -> enum.Enum_IXPLoadingStatus??,
+    InitializeCreatorLayers: (self: IXPService, creatorId: buffer) -> (),
     InitializeUserLayers: (self: IXPService, userId: buffer) -> (),
     LogBrowserTrackerLayerExposure: (self: IXPService, layerName: string) -> (),
+    LogCreatorLayerExposure: (self: IXPService, layerName: string) -> (),
     LogFlagLinkedUserLayerExposure: (self: IXPService, layerName: string) -> (),
     LogUserLayerExposure: (self: IXPService, layerName: string) -> (),
+    RegisterCreatorLayers: (self: IXPService, creatorLayers: any) -> (),
     RegisterUserLayers: (self: IXPService, userLayers: any) -> (),
 }
 
@@ -3831,6 +3890,7 @@ export type ImportSession = Instance & {
 }
 
 export type AssetImportSession = ImportSession & {
+    AddKnownAssetsToCache: (self: AssetImportSession, knownAssets: {[string]: any}) -> (),
     ApplyPreset: (self: AssetImportSession, preset: {[string]: any}) -> (),
     CreatePresetFromData: (self: AssetImportSession, importData: any) -> {[string]: any},
     GetImportTree: (self: AssetImportSession) -> any,
@@ -3871,6 +3931,7 @@ export type InputBinding = Instance & {
     Left: enum.Enum_KeyCode,
     PressedThreshold: number,
     ReleasedThreshold: number,
+    ResponseCurve: number,
     Right: enum.Enum_KeyCode,
     Scale: number,
     UIButton: GuiButton,
@@ -4208,7 +4269,8 @@ export type AuroraScript = LuaSourceContainer & {
     LODCriticality: number,
     Priority: number,
     Source: string,
-    AddTo: (self: AuroraScript, instance: any) -> (),
+    AddTo: (self: AuroraScript, instance: any, parameters: {[string]: any}) -> (),
+    GetSchema: (self: AuroraScript) -> {[string]: any},
     IsOnInstance: (self: AuroraScript, instance: any) -> boolean,
     RemoveFrom: (self: AuroraScript, instance: any) -> (),
     SignalFired: (self: AuroraScript, instance: any, topic: string) -> any,
@@ -4500,6 +4562,7 @@ export type MetaBreakpointManager = Instance & {
 }
 
 export type MicroProfilerService = Instance & {
+    ContextLabel: string,
 }
 
 export type ModerationService = Instance & {
@@ -4510,6 +4573,7 @@ export type ModerationService = Instance & {
 export type Mouse = Instance & {
     Hit: datatypes.CFrame,
     Icon: any,
+    IconContent: any,
     Origin: datatypes.CFrame,
     Target: BasePart,
     TargetFilter: any,
@@ -4553,10 +4617,8 @@ export type NetworkReplicator = Instance & {
 }
 
 export type ClientReplicator = NetworkReplicator & {
+    IsStreamedOut: (self: ClientReplicator, instance: any) -> boolean,
     RequestRCCProfilerData: (self: ClientReplicator, frameRate: number, timeFrame: number) -> (),
-    RequestServerLuauHeapData: (self: ClientReplicator) -> (),
-    RequestServerScriptProfiling: (self: ClientReplicator, start: boolean, frequency: number) -> (),
-    RequestServerScriptProfilingData: (self: ClientReplicator) -> (),
     RequestServerStats: (self: ClientReplicator, request: boolean) -> (),
 }
 
@@ -4946,6 +5008,7 @@ export type Actor = Model & {
 }
 
 export type BackpackItem = Model & {
+    TextureContent: any,
     TextureId: any,
 }
 
@@ -5005,6 +5068,7 @@ export type WorldRoot = Model & {
 
 export type Workspace = WorldRoot & {
     AirDensity: number,
+    AirTurbulenceIntensity: number,
     AllowThirdPartySales: boolean,
     AuthorityMode: enum.Enum_AuthorityMode,
     AvatarUnificationMode: enum.Enum_AvatarUnificationMode,
@@ -5431,6 +5495,7 @@ export type Player = Instance & {
     Move: (self: Player, walkDirection: datatypes.Vector3, relativeToCamera: boolean) -> (),
     OverrideStreamingRadii: (self: Player, minRadius: number, targetRadius: number) -> (),
     PinStreamingForInstance: (self: Player, instance: any, depth: number) -> (),
+    PinStreamingForInstanceByUniqueId: (self: Player, uniqueIdString: string, depth: number) -> (),
     RemoveCharacter: (self: Player) -> (),
     RemoveReplicationFocus: (self: Player, part: BasePart) -> (),
     RemoveReplicationFocusPosition: (self: Player, center: datatypes.Vector3, radius: number) -> (),
@@ -5911,6 +5976,15 @@ export type ReflectionService = Instance & {
     GetStyledPropertyNames: (self: ReflectionService, name: string) -> {any},
 }
 
+export type RemoteCommandService = Instance & {
+    ExecuteCommand: (self: RemoteCommandService, code: string, ...any) -> ExecutedRemoteCommand,
+    GetExecutingPlayer: (self: RemoteCommandService) -> Player,
+    GetReceivedUpdateSignal: (self: RemoteCommandService) -> any,
+    GetStoppingSignal: (self: RemoteCommandService) -> any,
+    SendUpdate: (self: RemoteCommandService, ...any) -> (),
+    ExecuteCommandAsync: (self: RemoteCommandService, code: string, ...any) -> ...any,
+}
+
 export type RemoteCursorService = Instance & {
 }
 
@@ -6013,6 +6087,7 @@ export type RunService = Instance & {
     ClientGitHash: string,
     RunState: enum.Enum_RunState,
     BindToRenderStep: (self: RunService, name: string, priority: number, callback: any) -> (),
+    GetControlAndVariantRolloutFlags: (self: RunService) -> ...any,
     GetCoreScriptVersion: (self: RunService) -> string,
     GetRobloxClientChannel: (self: RunService) -> string,
     GetRobloxGuiFocused: (self: RunService) -> boolean,
@@ -6276,6 +6351,7 @@ export type DataModel = ServiceProvider & {
     SetPlaceId: (self: DataModel, placeId: buffer) -> (),
     SetUniverseId: (self: DataModel, universeId: buffer) -> (),
     Shutdown: (self: DataModel) -> (),
+    getGameTime: (self: DataModel) -> number,
     GetObjectsAsync: (self: DataModel, url: any) -> any,
     HttpGetAsync: (self: DataModel, url: string, httpRequestType: enum.Enum_HttpRequestType) -> string,
     HttpPostAsync: (self: DataModel, url: string, data: string, contentType: string, httpRequestType: enum.Enum_HttpRequestType) -> string,
@@ -6382,7 +6458,7 @@ export type SocialService = Instance & {
     InvokeShareSheetClosed: (self: SocialService) -> (),
     PromptGameInvite: (self: SocialService, player: any, experienceInviteOptions: any) -> (),
     PromptPhoneBook: (self: SocialService, player: any, tag: string) -> (),
-    PromptRsvpToEventCompleted: (self: SocialService, eventId: string, success: boolean, rsvpStatus: enum.Enum_RsvpStatus) -> (),
+    PromptRsvpToEventCompleted: (self: SocialService, eventId: string, success: boolean, rsvpStatus: enum.Enum_RsvpStatus, previousRsvpStatus: enum.Enum_RsvpStatus) -> (),
     ShowSelfView: (self: SocialService, selfViewPosition: enum.Enum_SelfViewPosition) -> (),
     UpdatePlayerPartyData: (self: SocialService, partyId: string) -> (),
     CanSendCallInviteAsync: (self: SocialService, player: any) -> boolean,
@@ -6394,6 +6470,7 @@ export type SocialService = Instance & {
 }
 
 export type Sound = Instance & {
+    AudioContent: any,
     ChannelCount: number,
     IsLoaded: boolean,
     IsMutedForCapture: boolean,
@@ -6504,6 +6581,7 @@ export type SoundGroup = Instance & {
 export type SoundService = Instance & {
     AmbientReverb: enum.Enum_ReverbType,
     AudioApiByDefault: enum.Enum_RolloutState,
+    AudioPlayerVolumeFix: enum.Enum_RolloutState,
     CharacterSoundsUseNewApi: enum.Enum_RolloutState,
     DefaultListenerLocation: enum.Enum_ListenerLocation,
     DistanceFactor: number,
@@ -6533,6 +6611,9 @@ export type SoundService = Instance & {
     SetSoundEnabled: (self: SoundService, enabled: boolean) -> (),
     EndRecording: (self: SoundService) -> {[string]: any},
     GetRecordingDevices: (self: SoundService) -> {[string]: any},
+}
+
+export type SoundShimService = Instance & {
 }
 
 export type Sparkles = Instance & {
@@ -6654,6 +6735,7 @@ export type Stats = Instance & {
     FrameTime: number,
     HeartbeatTime: number,
     InstanceCount: number,
+    MemoryTrackingEnabled: boolean,
     MovingPrimitivesCount: number,
     PhysicsReceiveKbps: number,
     PhysicsSendKbps: number,
@@ -6742,6 +6824,7 @@ export type Studio = Instance & {
     ["Auto-Recovery Enabled"]: boolean,
     ["Auto-Recovery Interval (Minutes)"]: number,
     AutoResumeSyncOnPlaceOpen: boolean,
+    AutoUpdateEnabled: boolean,
     AutocompleteAcceptanceBehavior: enum.Enum_CompletionAcceptanceBehavior,
     ["Automatically trigger AI Code Completion"]: boolean,
     ["Background Color"]: datatypes.Color3,
@@ -6798,6 +6881,7 @@ export type Studio = Instance & {
     EnableIndentationRulers: boolean,
     EnableOnTypeAutocomplete: boolean,
     EnableSelectionTooltips: boolean,
+    EnableStudioStreaming: boolean,
     ["Error Color"]: datatypes.Color3,
     ["Find Selection Background Color"]: datatypes.Color3,
     ["Format On Paste"]: boolean,
@@ -6877,6 +6961,8 @@ export type Studio = Instance & {
     ShowCorePackagesInExplorer: boolean,
     ["Skip Closing Brackets and Quotes"]: boolean,
     ["String Color"]: datatypes.Color3,
+    StudioStreamingMaxRadius: number,
+    StudioStreamingMinRadius: number,
     ["Tab Width"]: number,
     ["Text Color"]: datatypes.Color3,
     ["Text Wrapping"]: boolean,
@@ -7153,6 +7239,7 @@ export type TeleportService = Instance & {
     SetTeleportSetting: (self: TeleportService, setting: string, value: any) -> (),
     Teleport: (self: TeleportService, placeId: buffer, player: any, teleportData: any, customLoadingScreen: any) -> (),
     TeleportCancel: (self: TeleportService) -> (),
+    TeleportReconnect: (self: TeleportService) -> (),
     TeleportToPlaceInstance: (self: TeleportService, placeId: buffer, instanceId: string, player: any, spawnName: string, teleportData: any, customLoadingScreen: any) -> (),
     TeleportToPrivateServer: (self: TeleportService, placeId: buffer, reservedServerAccessCode: string, players: any, spawnName: string, teleportData: any, customLoadingScreen: any) -> (),
     TeleportToSpawnByName: (self: TeleportService, placeId: buffer, spawnName: string, player: any, teleportData: any, customLoadingScreen: any) -> (),
@@ -7211,14 +7298,19 @@ export type TestService = Instance & {
     WarnCount: number,
     Check: (self: TestService, condition: boolean, description: string, source: any, line: number) -> (),
     Checkpoint: (self: TestService, text: string, source: any, line: number) -> (),
-    CreateAndSavePropertySet: (self: TestService, source: any, fileName: string) -> (),
+    ConvertSlimAcrToObj: (self: TestService, acrFullFilePath: string, objFileName: string) -> string,
+    CreateAndSavePropertySet: (self: TestService, source: any) -> string,
+    CreateExtraAssetsFileFromPropertySet: (self: TestService, psetFileName: string) -> string,
+    CreatePropertySetDiff: (self: TestService, sourceA: any, sourceB: any) -> string,
     Done: (self: TestService) -> (),
     Error: (self: TestService, description: string, source: any, line: number) -> (),
     Fail: (self: TestService, description: string, source: any, line: number) -> (),
+    FetchExtraAssets: (self: TestService, extraAssetsFileName: string) -> string,
     Message: (self: TestService, text: string, source: any, line: number) -> (),
     Require: (self: TestService, condition: boolean, description: string, source: any, line: number) -> (),
     ScopeTime: (self: TestService) -> {[string]: any},
     TakeSnapshot: (self: TestService, snapshotname: string) -> (),
+    TranscodePropertySet: (self: TestService, extraAssetsFileName: string, psetFileName: string) -> string,
     Warn: (self: TestService, condition: boolean, description: string, source: any, line: number) -> (),
     isFeatureEnabled: (self: TestService, name: string) -> boolean,
     Run: (self: TestService) -> (),
@@ -7372,6 +7464,9 @@ export type TextChatService = Instance & {
     HasSeenDeprecationDialog: boolean,
     IsLegacyChatDisabled: boolean,
     DisplayBubble: (self: TextChatService, partOrCharacter: any, message: string) -> (),
+    SendExpChatLoadSuccess: (self: TextChatService, loadingLatency: number) -> (),
+    SendExpChatMessageClientRendered: (self: TextChatService, textChatMessage: TextChatMessage) -> (),
+    SendExpChatWindowScroll: (self: TextChatService) -> (),
     CanUserChatAsync: (self: TextChatService, userId: buffer) -> boolean,
     CanUsersChatAsync: (self: TextChatService, userIdFrom: buffer, userIdTo: buffer) -> boolean,
     CanUsersDirectChatAsync: (self: TextChatService, requesterUserId: buffer, userIds: {any}) -> {any},
@@ -7388,6 +7483,11 @@ export type TextFilterTranslatedResult = Instance & {
     SourceText: TextFilterResult,
     GetTranslationForLocale: (self: TextFilterTranslatedResult, locale: string) -> TextFilterResult,
     GetTranslations: (self: TextFilterTranslatedResult) -> {[string]: any},
+}
+
+export type TextGenerator = Instance & {
+    SystemPrompt: string,
+    GenerateTextAsync: (self: TextGenerator, request: {[string]: any}) -> {[string]: any},
 }
 
 export type TextService = Instance & {
@@ -7551,6 +7651,7 @@ export type UGCValidationService = Instance & {
     GetEditableImageData: (self: UGCValidationService, editableImage: EditableImage) -> BinaryStringValue,
     GetEditableImageSize: (self: UGCValidationService, editableImage: EditableImage) -> datatypes.Vector2,
     GetEditableMeshMaxNearbyVerticesCollisions: (self: UGCValidationService, editableMesh: EditableMesh, meshScale: datatypes.Vector3) -> number,
+    GetEditableMeshSkinningTransferJointsInfo: (self: UGCValidationService, editableMesh: EditableMesh) -> {[string]: any},
     GetEditableMeshTriCount: (self: UGCValidationService, editableMesh: EditableMesh) -> number,
     GetEditableMeshVertColors: (self: UGCValidationService, editableMesh: EditableMesh) -> {any},
     GetEditableMeshVerticesSimilarityRate: (self: UGCValidationService, editableMesh: EditableMesh, meshScale: datatypes.Vector3) -> number,
@@ -7604,6 +7705,7 @@ export type UGCValidationService = Instance & {
     GetMeshVertColors: (self: UGCValidationService, meshId: string) -> {any},
     GetMeshVerts: (self: UGCValidationService, meshId: string) -> {any},
     GetSkinnedJointNamesFromMeshId: (self: UGCValidationService, meshId: string) -> ...any,
+    GetSkinningTransferJointsInfo: (self: UGCValidationService, meshId: string) -> {[string]: any},
     GetTextureSize: (self: UGCValidationService, textureId: string) -> datatypes.Vector2,
     IsDeformedLayeredClothingOutOfRenderBounds: (self: UGCValidationService, accessory: Accessory) -> boolean,
     ValidateCageMeshIntersection: (self: UGCValidationService, innerCageMeshId: string, outerCageMeshId: string, refMeshId: string) -> ...any,
@@ -7663,9 +7765,11 @@ export type UICorner = UIComponent & {
 
 export type UIDragDetector = UIComponent & {
     ActivatedCursorIcon: any,
+    ActivatedCursorIconContent: any,
     BoundingBehavior: enum.Enum_UIDragDetectorBoundingBehavior,
     BoundingUI: GuiBase2d,
     CursorIcon: any,
+    CursorIconContent: any,
     DragAxis: datatypes.Vector2,
     DragRelativity: enum.Enum_UIDragDetectorDragRelativity,
     DragRotation: number,
@@ -7786,6 +7890,8 @@ export type UIDragDetectorService = Instance & {
 
 export type UniqueIdLookupService = Instance & {
     GetInstanceByRfc4122String: (self: UniqueIdLookupService, id: string) -> any,
+    GetOrCreateUniqueId: (self: UniqueIdLookupService, instance: any) -> string,
+    GetOrCreateUniqueIdRemoteCommand: (self: UniqueIdLookupService, instance: any) -> string,
 }
 
 export type UnvalidatedAssetService = Instance & {
@@ -7797,6 +7903,7 @@ export type UnvalidatedAssetService = Instance & {
 
 export type UserGameSettings = Instance & {
     AllTutorialsDisabled: boolean,
+    BadgeVisible: boolean,
     CameraMode: enum.Enum_CustomCameraMode,
     CameraYInverted: boolean,
     ChatTranslationEnabled: boolean,
@@ -7834,6 +7941,8 @@ export type UserGameSettings = Instance & {
     PartyVoiceVolume: number,
     PerformanceStatsVisible: boolean,
     PlayerHeight: number,
+    PlayerListVisible: boolean,
+    PlayerNamesEnabled: boolean,
     PreferredTextSize: enum.Enum_PreferredTextSize,
     PreferredTransparency: number,
     QualityResetLevel: number,
@@ -7888,6 +7997,7 @@ export type UserInputService = Instance & {
     MouseDeltaSensitivity: number,
     MouseEnabled: boolean,
     MouseIcon: any,
+    MouseIconContent: any,
     MouseIconEnabled: boolean,
     NavBarSize: datatypes.Vector2,
     OnScreenKeyboardAnimationDuration: number,
@@ -7909,11 +8019,11 @@ export type UserInputService = Instance & {
     GetDeviceType: (self: UserInputService) -> enum.Enum_DeviceType,
     GetFocusedTextBox: (self: UserInputService) -> TextBox,
     GetGamepadConnected: (self: UserInputService, gamepadNum: enum.Enum_UserInputType) -> boolean,
-    GetGamepadState: (self: UserInputService, gamepadNum: enum.Enum_UserInputType) -> {any},
+    GetGamepadState: (self: UserInputService, gamepadNum: enum.Enum_UserInputType) -> any,
     GetImageForKeyCode: (self: UserInputService, keyCode: enum.Enum_KeyCode) -> any,
-    GetKeysPressed: (self: UserInputService) -> {any},
+    GetKeysPressed: (self: UserInputService) -> any,
     GetLastInputType: (self: UserInputService) -> enum.Enum_UserInputType,
-    GetMouseButtonsPressed: (self: UserInputService) -> {any},
+    GetMouseButtonsPressed: (self: UserInputService) -> any,
     GetMouseDelta: (self: UserInputService) -> datatypes.Vector2,
     GetMouseLocation: (self: UserInputService) -> datatypes.Vector2,
     GetNavigationGamepads: (self: UserInputService) -> {any},
@@ -8063,6 +8173,7 @@ export type VideoPlayer = Instance & {
     Resolution: datatypes.Vector2,
     TimeLength: number,
     TimePosition: number,
+    VideoContent: any,
     Volume: number,
     GetConnectedWires: (self: VideoPlayer, pin: string) -> any,
     GetInputPins: (self: VideoPlayer) -> {any},
@@ -8177,6 +8288,7 @@ export type VoiceChatService = Instance & {
     joinVoice: (self: VoiceChatService) -> (),
     lastVoiceChatStats: (self: VoiceChatService) -> {[string]: any},
     leaveVoice: (self: VoiceChatService) -> (),
+    notifyServerACSCleanup: (self: VoiceChatService) -> (),
     rejoinVoice: (self: VoiceChatService) -> (),
     IsVoiceEnabledForUserIdAsync: (self: VoiceChatService, userId: buffer) -> boolean,
 }
@@ -8193,8 +8305,8 @@ export type WebSocketService = Instance & {
 
 export type WebViewService = Instance & {
     CloseWindow: (self: WebViewService) -> (),
-    MutateWindow: (self: WebViewService, url: string, title: string, isVisible: boolean, searchType: string, transitionAnimation: string, showDomainAsTitle: boolean) -> (),
-    OpenWindow: (self: WebViewService, url: string, title: string, isVisible: boolean, searchType: string, transitionAnimation: string, showDomainAsTitle: boolean) -> (),
+    MutateWindow: (self: WebViewService, url: string, title: string, isVisible: boolean, searchType: string, transitionAnimation: string, showDomainAsTitle: boolean, backButtonVisible: boolean) -> (),
+    OpenWindow: (self: WebViewService, url: string, title: string, isVisible: boolean, searchType: string, transitionAnimation: string, showDomainAsTitle: boolean, backButtonVisible: boolean) -> (),
     IsAvailable: (self: WebViewService) -> boolean,
 }
 
@@ -8219,6 +8331,9 @@ export type Wire = Instance & {
     RenameToDefault: (self: Wire) -> (),
 }
 
+export type WrapTextureTransfer = Instance & {
+}
+
 export type MLSession = Object & {
     ForwardAsync: (self: MLSession, data: {[string]: any}) -> {[string]: any},
 }
@@ -8237,6 +8352,11 @@ export type TerrainReadOperation = Object & {
 export type TerrainWriteOperation = Object & {
     CommitBlock: (self: TerrainWriteOperation, block: {[string]: any}) -> any,
     GetBlock: (self: TerrainWriteOperation) -> {[string]: any},
+}
+
+export type WebStreamClient = Object & {
+    ConnectionState: enum.Enum_WebStreamClientState,
+    Close: (self: WebStreamClient) -> (),
 }
 
 export type NewConstructor = 
@@ -8281,6 +8401,7 @@ export type NewConstructor =
     & (("AudioSearchParams", parent: Instance?) -> AudioSearchParams)
     & (("AudioSpeechToText", parent: Instance?) -> AudioSpeechToText)
     & (("AudioTextToSpeech", parent: Instance?) -> AudioTextToSpeech)
+    & (("AudioTremolo", parent: Instance?) -> AudioTremolo)
     & (("AvatarAccessoryRules", parent: Instance?) -> AvatarAccessoryRules)
     & (("AvatarAnimationRules", parent: Instance?) -> AvatarAnimationRules)
     & (("AvatarBodyRules", parent: Instance?) -> AvatarBodyRules)
@@ -8542,6 +8663,7 @@ export type NewConstructor =
     & (("TextChatCommand", parent: Instance?) -> TextChatCommand)
     & (("TextChatMessageProperties", parent: Instance?) -> TextChatMessageProperties)
     & (("BubbleChatMessageProperties", parent: Instance?) -> BubbleChatMessageProperties)
+    & (("TextGenerator", parent: Instance?) -> TextGenerator)
     & (("TrackerStreamAnimation", parent: Instance?) -> TrackerStreamAnimation)
     & (("Trail", parent: Instance?) -> Trail)
     & (("Tween", parent: Instance?) -> Tween)
@@ -8581,4 +8703,5 @@ export type NewConstructor =
     & (("VisualizationModeCategory", parent: Instance?) -> VisualizationModeCategory)
     & (("WeldConstraint", parent: Instance?) -> WeldConstraint)
     & (("Wire", parent: Instance?) -> Wire)
+    & (("WrapTextureTransfer", parent: Instance?) -> WrapTextureTransfer)
 return {};
