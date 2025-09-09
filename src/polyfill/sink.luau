@@ -87,13 +87,16 @@ end
 
 function BufferSink.write(self: BufferSink, value: string | buffer)
     if (type(value) == "string") then
-        self:expandToSize(self.position + #value);
+        local amt = #value;
+        self:expandToSize(self.position + amt);
         buffer.writestring(self.buffer, self.position, value)
-        self.position += #value;
+        self.position += amt;
         return;
     else
-        self:expandToSize(self.position + buffer.len(value));
+        local amt = buffer.len(value);
+        self:expandToSize(self.position + amt);
         buffer.copy(self.buffer, self.position, value);
+        self.position += amt;
         return;
     end
 end
