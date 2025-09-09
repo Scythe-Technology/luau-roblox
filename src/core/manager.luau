@@ -156,6 +156,8 @@ function manager.domFromInstances(
                 if (parent and parent ~= ignoreParent) then
                     dom_instance.parent = descendants_map[parent];
                     assert(dom_instance.parent, "Parent instance not found (failed to reference)");
+                else
+                    dom_instance.parent = nil :: any;
                 end
                 instances[i] = dom_instance;
             end
