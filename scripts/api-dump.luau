@@ -12,12 +12,12 @@ local TARGET_PATH = "src/reflection/generated";
 local URL = `https://raw.githubusercontent.com/{REPO}/refs/heads/{BRANCH}/Mini-API-Dump.json`;
 local VERSION_URL = `https://raw.githubusercontent.com/{REPO}/refs/heads/{BRANCH}/version.txt`;
 
-if (not fs.isDir("scripts/.cache")) then
-    fs.writeDir("scripts/.cache");
+if (fs.stat("scripts/.cache").kind == "none") then
+    fs.makeDir("scripts/.cache");
 end
 
-if (not fs.isDir(TARGET_PATH)) then
-    fs.writeDir(TARGET_PATH, true);
+if (fs.stat(TARGET_PATH).kind == "none") then
+    fs.makeDir(TARGET_PATH, true);
 end
 
 local TYPE_INFO = [[
@@ -128,10 +128,10 @@ local function build(list: {string}): string
 end
 
 local version = net.http.request(VERSION_URL, {
-    method = "GET",
-    maxBodySize = 64; -- 64 bytes
+    method = "GET" :: "GET",
+    max_body_size = 64; -- 64 bytes
 });
-assert(version.ok, `Invalid version response ({version.statusCode}): {version.body}`);
+assert(version.ok, `Invalid version response ({version.status_code}): {version.body}`);
 
 local function count(t: {any}): number
     local c = 0;
@@ -233,10 +233,10 @@ if (ok) then
 end
 
 local dump = net.http.request(URL, {
-    method = "GET",
-    maxBodySize = 8 * 1024 * 1024; -- 8MB
+    method = "GET" :: "GET",
+    max_body_size = 8 * 1024 * 1024; -- 8MB
 });
-assert(dump.ok, `Invalid dump response ({dump.statusCode}): {dump.body}`);
+assert(dump.ok, `Invalid dump response ({dump.status_code}): {dump.body}`);
 
 saveDump(version.body, dump.body);
 

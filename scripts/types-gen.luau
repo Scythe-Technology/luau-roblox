@@ -38,9 +38,9 @@ local MemberValueTypeOverride = {
 
 local supported_datatypes = {};
 
-for _, file in fs.readDir("src/datatypes") do
-    if (file:sub(-5) == ".luau") then
-        local name = file:sub(1, -6);
+for _, file in fs.entries("src/datatypes") do
+    if (zune.mem.endsWith(file.name, ".luau")) then
+        local name = file.name:sub(1, -6);
         supported_datatypes[name] = true;
     end
 end
@@ -188,8 +188,8 @@ end
 table.insert(lines, generateInstanceNewTypes());
 table.insert(lines, `return \{\};`);
 
-if (not fs.isDir("./src/core/types")) then
-    fs.writeDir("./src/core/types");
+if (fs.stat("./src/core/types").kind == "none") then
+    fs.makeDir("./src/core/types");
 end
 fs.writeFile("./src/core/types/roblox_enums.luau", table.concat(enum_lines, "\n"));
 fs.writeFile("./src/core/types/roblox.luau", table.concat(lines, "\n"));
