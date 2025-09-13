@@ -2,6 +2,7 @@
 name = "sythivorium/luau-roblox"
 description = "A Luau library to manipulate Roblox place and model files"
 version = "0.1.0"
+license = "MIT"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 exclude = ["rbx-test-files", "scripts", "test"]
