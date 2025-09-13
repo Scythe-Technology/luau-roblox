@@ -1,0 +1,10 @@
+[package]
+name = "sythivorium/luau-roblox"
+description = "A Luau library to manipulate Roblox place and model files"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+exclude = ["rbx-test-files", "scripts", "test"]
+include = ["src", "default.project.json", "LICENSE"]
+
+[dependencies]
