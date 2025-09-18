@@ -2,6 +2,7 @@
 local dom = require("../dom");
 local roblox = require("./types/roblox");
 local datatypes = require("./datatypes");
+local dom_datatypes = require("../datatypes");
 local reflection = require("../reflection");
 
 local presets = require("./presets");
@@ -314,10 +315,10 @@ end
 
 object.presets = presets;
 
-local function resolveGetProperty(self: object, className: string, key: string)
+local function resolveGetProperty(self: object, className: string, key: string): (boolean, any?)
     local class = reflection:GetClass(className);
     if (not class) then
-        return nil;
+        return false, nil;
     end
     local preset = presets[className];
     local handler, method;
@@ -338,28 +339,233 @@ local function resolveGetProperty(self: object, className: string, key: string)
     end
     if (not handler and not method) then
         if (class.Superclass == "<<<ROOT>>>") then
-            return nil;
+            return false, nil;
         end
-        local resolved = resolveGetProperty(self, class.Superclass, key);
+        local resolved, result = resolveGetProperty(self, class.Superclass, key);
         if (resolved) then
-            return resolved;
+            return true, result;
         end
     end
     if (handler) then
-        return handler(self)::any
+        return true, handler(self)::any
     elseif (method) then
         assert(not self["@destroyed"], "Object is destroyed");
-        return method;
+        return true, method;
     else
         local raw = self["@instance"].properties[key];
         if (raw) then
-            return raw.value;
+            return true, raw.value;
         end
-        return;
+        return false, nil;
     end
 end
 
-local function resolveSetProperty(self: object, className: string, key: string)
+local function gettypeof(value: any)
+    return if (type(value) == "table" and type(getmetatable(value)) == "table") then
+        getmetatable(value).__type or type(value)
+    else
+        type(value);
+end
+
+local function findPropertyFromClass(class: reflection.ClassInfo, propertyName: string): reflection.PropertyMemberInfo?
+    for _, member in class.Members do
+        if (member.MemberType == "Property" and member.Name == propertyName) then
+            return member :: reflection.PropertyMemberInfo;
+        end
+    end
+    if (class.Superclass ~= "<<<ROOT>>>") then
+        local super = assert(reflection:GetClass(class.Superclass), `Missing superclass`);
+        return findPropertyFromClass(super, propertyName);
+    end
+    return nil;
+end
+
+local SET_PROPERTY_BUFFER = buffer.create(8);
+local SET_MAP = {
+    [dom.roblox.PropertyTypes.Unknown] = function(prop: dom.DOMProperty, value: any, _: string, _: string): ()
+        error("Cannot set Unknown property");
+    end,
+    [dom.roblox.PropertyTypes.String] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        if (type(value) ~= "string" and type(value) ~= "number") then
+            error(`Unable to assign property {propertyName}. string expected, got {gettypeof(value)}`);
+        end
+        prop.value = tostring(value);
+    end,
+    [dom.roblox.PropertyTypes.Bool] = function(prop: dom.DOMProperty, value: any, _: string, _: string): ()
+        prop.value = if (value) then true else false;
+    end,
+    [dom.roblox.PropertyTypes.Int] = function(prop: dom.DOMProperty, value: any, _: string, _: string): ()
+        local num = 0
+        if (type(value) ~= "number") then
+            if (type(value) == "string") then
+                local converted = tonumber(value);
+                if (converted) then
+                    num = converted;
+                else
+                    print(`value of type string cannot be converted to a number`);
+                end
+            else
+                print(`value of type {gettypeof(value)} cannot be converted to a number`);
+            end
+        else
+            num = value;
+        end
+        buffer.writei32(SET_PROPERTY_BUFFER, 0, num);
+        prop.value = buffer.readi32(SET_PROPERTY_BUFFER, 0);
+    end,
+    [dom.roblox.PropertyTypes.Float] = function(prop: dom.DOMProperty, value: any, _: string, _: string): ()
+        local num = 0
+        if (type(value) ~= "number") then
+            if (type(value) == "string") then
+                local converted = tonumber(value);
+                if (converted) then
+                    num = converted;
+                else
+                    print(`value of type string cannot be converted to a number`);
+                end
+            else
+                print(`value of type {gettypeof(value)} cannot be converted to a number`);
+            end
+        else
+            num = value;
+        end
+        buffer.writef32(SET_PROPERTY_BUFFER, 0, num);
+        prop.value = buffer.readf32(SET_PROPERTY_BUFFER, 0);
+    end,
+    [dom.roblox.PropertyTypes.Double] = function(prop: dom.DOMProperty, value: any, _: string, _: string): ()
+        local num = 0
+        if (type(value) ~= "number") then
+            if (type(value) == "string") then
+                local converted = tonumber(value);
+                if (converted) then
+                    num = converted;
+                else
+                    print(`value of type string cannot be converted to a number`);
+                end
+            else
+                print(`value of type {gettypeof(value)} cannot be converted to a number`);
+            end
+        else
+            num = value;
+        end
+        prop.value = num;
+    end,
+    [dom.roblox.PropertyTypes.UDim] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        if (not dom_datatypes.UDim.Is(value)) then
+            error(`Unable to assign property {propertyName}. UDim expected, got {gettypeof(value)}`);
+        end
+        prop.value = value;
+    end,
+    [dom.roblox.PropertyTypes.Enum] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        local enumType = prop.value.EnumType;
+        local new = prop.value;
+        if (type(value) == "table") then
+            if (type(getmetatable(value)) == "table" or getmetatable(value).__type == "EnumItem") then
+                if (tostring(enumType) ~= tostring(value.EnumType)) then
+                    error(`Unable to assign property {propertyName}. EnumItem of type {tostring(enumType)}, got an EnumItem of type {tostring(value.EnumType)}`);
+                end
+            else
+                error(`Unable to assign property {propertyName}. EnumItem, number, or string expected, got {gettypeof(value)}`);
+            end
+        elseif (type(value) == "string") then
+            local found = enumType[value];
+            if (not found) then
+                error(`Unable to assign property {propertyName}. Invalid value "{tostring(value)}" for enum {tostring(enumType)}`);
+            end
+            new = found;
+        elseif (type(value) == "number") then
+            local found = nil;
+            for _, item in enumType:GetEnumItems() do
+                if (item.Value == value) then
+                    found = item;
+                    break;
+                end
+            end
+            if (not found) then
+                error(`Unable to assign property {propertyName}. Invalid value {tostring(value)} for enum {tostring(enumType)}`);
+            end
+            new = found;
+        else
+            error(`Unable to assign property {propertyName}. EnumItem, number, or string expected, got {gettypeof(value)}`);
+        end
+        print(enumType, value.EnumType)
+        prop.value = new;
+    end,
+    [dom.roblox.PropertyTypes.Ref] = function(prop: dom.DOMProperty, value: any, className: string, propertyName: string): ()
+        if (value ~= nil and not isObject(value)) then
+            error(`Unable to assign property {propertyName}. Instance or nil expected, got {gettypeof(value)}`);
+        end
+        local class = reflection:GetClass(className);
+        assert(class, "Class not found");
+        local member = findPropertyFromClass(class, propertyName);
+        assert(member, "Property not found");
+        assert(member.ValueType.Category == "Class", "Property is not a reference");
+        if (not value:IsA(member.ValueType.Category)) then
+            error(`Expected {member.ValueType.Category} got {value.ClassName} for {className}.{propertyName}.`);
+        end
+        prop.value = value;
+    end,
+    [dom.roblox.PropertyTypes.Int64] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        error(`Unable to assign property {propertyName}. Int64 not implemented`);
+    end,
+    [dom.roblox.PropertyTypes.SharedString] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        if (type(value) ~= "string") then
+            error(`Unable to assign property {propertyName}. string expected, got {gettypeof(value)}`);
+        end
+        prop.value = value;
+    end,
+    [dom.roblox.PropertyTypes.ProtectedString] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        if (type(value) ~= "string" and type(value) ~= "buffer") then
+            error(`Unable to assign property {propertyName}. string expected, got {gettypeof(value)}`);
+        end
+        local copy: buffer;
+        if (type(value) == "string") then
+            copy = buffer.fromstring(value);
+        else
+            copy = buffer.create(buffer.len(value));
+            buffer.copy(value, 0, copy, 0);
+        end
+        prop.value = copy;
+    end,
+    [dom.roblox.PropertyTypes.OptionalCFrame] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        if (value ~= nil and not dom_datatypes.CFrame.Is(value)) then
+            error(`Unable to assign property {propertyName}. CFrame or nil expected, got {gettypeof(value)}`);
+        end
+        prop.value = value;
+    end,
+}
+
+local function generateSetDataType(datatype: any)
+    return function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
+        if (not datatype.Is(value)) then
+            error(`Unable to assign property {propertyName}. {datatype.DataType.__type} expected, got {gettypeof(value)}`);
+        end
+        prop.value = value;
+    end
+end
+
+SET_MAP[dom.roblox.PropertyTypes.UDim] = generateSetDataType(dom_datatypes.UDim);
+SET_MAP[dom.roblox.PropertyTypes.UDim2] = generateSetDataType(dom_datatypes.UDim2);
+SET_MAP[dom.roblox.PropertyTypes.Ray] = generateSetDataType(dom_datatypes.Ray);
+SET_MAP[dom.roblox.PropertyTypes.Faces] = generateSetDataType(dom_datatypes.Faces);
+SET_MAP[dom.roblox.PropertyTypes.Axes] = generateSetDataType(dom_datatypes.Axes);
+SET_MAP[dom.roblox.PropertyTypes.BrickColor] = generateSetDataType(dom_datatypes.BrickColor);
+SET_MAP[dom.roblox.PropertyTypes.Color3] = generateSetDataType(dom_datatypes.Color3);
+SET_MAP[dom.roblox.PropertyTypes.Vector2] = generateSetDataType(dom_datatypes.Vector2);
+SET_MAP[dom.roblox.PropertyTypes.Vector3] = generateSetDataType(dom_datatypes.Vector3);
+SET_MAP[dom.roblox.PropertyTypes.CFrame] = generateSetDataType(dom_datatypes.CFrame);
+SET_MAP[dom.roblox.PropertyTypes.Vector3int16] = generateSetDataType(dom_datatypes.Vector3int16);
+SET_MAP[dom.roblox.PropertyTypes.NumberSequence] = generateSetDataType(dom_datatypes.NumberSequence);
+SET_MAP[dom.roblox.PropertyTypes.ColorSequence] = generateSetDataType(dom_datatypes.ColorSequence);
+SET_MAP[dom.roblox.PropertyTypes.NumberRange] = generateSetDataType(dom_datatypes.NumberRange);
+SET_MAP[dom.roblox.PropertyTypes.Rect] = generateSetDataType(dom_datatypes.Rect);
+SET_MAP[dom.roblox.PropertyTypes.PhysicalProperties] = generateSetDataType(dom_datatypes.PhysicalProperties);
+SET_MAP[dom.roblox.PropertyTypes.Color3uint8] = generateSetDataType(dom_datatypes.Color3);
+SET_MAP[dom.roblox.PropertyTypes.UniqueId] = generateSetDataType(dom_datatypes.UniqueId);
+SET_MAP[dom.roblox.PropertyTypes.Font] = generateSetDataType(dom_datatypes.Font);
+SET_MAP[dom.roblox.PropertyTypes.Content] = generateSetDataType(dom_datatypes.Content);
+
+local function resolveSetProperty(self: object, className: string, key: string, value: any)
     if (self["@destroyed"]) then
         error("Object is destroyed");
     end
@@ -374,12 +580,25 @@ local function resolveSetProperty(self: object, className: string, key: string)
         else
             nil;
     if (not handler) then
-        if (class.Superclass == "<<<ROOT>>>") then
-            return;
+        if (class.Superclass ~= "<<<ROOT>>>") then
+            if (resolveSetProperty(self, class.Superclass, key, value)) then
+                return true;
+            end
         end
-        return resolveGetProperty(self, class.Superclass, key);
+        local prop = self["@instance"].properties[key];
+        if (prop) then
+            local set_handler = SET_MAP[prop.type];
+            if (set_handler) then
+                set_handler(prop, value, className, key);
+                return;
+            end
+            error(`No set handler for property '{key}' on class '{className}'`);
+        else
+            error(`Property '{key}' does not exist on class '{className}'`);
+        end
     end
-    handler(self);
+    handler(self, value);
+    return true;
 end
 
 local function checkRecursion(self: object, parent: object?): boolean
@@ -404,13 +623,17 @@ function object.__index(self: object, key: string)
     if (key == "Parent") then
         return rawget(self::any, "@parent");
     end
-    local resolved = resolveGetProperty(self, self["@instance"].className, key);
+    local resolved, result = resolveGetProperty(self, self["@instance"].className, key);
     if (not resolved) then
         if (self:IsA("Instance")) then
-            resolved = self:FindFirstChild(key);
+            local res = self:FindFirstChild(key);
+            if (res == nil) then
+                error(`{key} is not a valid member of {self:GetFullName()}`);
+            end
+            result = res;
         end
     end
-    return resolved;
+    return result;
 end
 
 function object.__newindex(self: object, key: string, value: any)
@@ -476,7 +699,7 @@ function object.__newindex(self: object, key: string, value: any)
         end
         return;
     end
-    resolveSetProperty(self, self["@instance"].className, key);
+    resolveSetProperty(self, self["@instance"].className, key, value);
 end
 
 return object;
