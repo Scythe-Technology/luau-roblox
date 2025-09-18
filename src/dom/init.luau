@@ -1,6 +1,7 @@
 --!strict
 local roblox = require("@self/roblox");
 local binary = require("@self/binary");
+local xml = require("@self/xml");
 
 export type DOM = roblox.Document;
 export type DOMInfo = roblox.DocumentInfo;
@@ -28,7 +29,7 @@ function dom.deserialize(data: string | buffer): roblox.Document
         return binary.deserialize(data, BINARY_HEADER_LEN);
     else
         -- XML
-        error("Not implemented");
+        return xml.deserialize(data);
     end
 end
 
@@ -37,7 +38,7 @@ function dom.serialize(document: roblox.Document, format: ("XML" | "BINARY")?): 
     if (format == "BINARY") then
         return binary.serialize(document);
     else
-        error("Not implemented");
+        return xml.serialize(document);
     end
 end
 
@@ -46,7 +47,7 @@ function dom.setDebugCallback(format: "XML" | "BINARY", callback: (...any) -> ()
     if (format == "BINARY") then
         binary.debug(callback);
     else
-        error("Not implemented");
+        xml.debug(callback);
     end
 end
 

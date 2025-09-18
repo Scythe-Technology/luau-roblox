@@ -49,5 +49,12 @@ for _, sample in fs.entries(`{RBX}/models/`) do
 end
 
 if (process.args[2] == "--all") then
-    require("@self/dom/binary");
+    describe("DOM", function()
+        describe("Binary", function()
+            require("@self/dom/binary");
+        end);
+        describe("XML", function()
+            require("@self/dom/xml");
+        end);
+    end);
 end
