@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local UDim = {};
+UDim.__type = "UDim";
 
 local isFn = Helper.DataTypeIsFn(UDim);
 
@@ -12,6 +13,7 @@ end
 local CACHE = setmetatable({}, {__mode = "v"});
 
 function UDim.new(Scale: number, Offset: number): UDim
+    Offset = math.floor(Offset);
     local hash = Helper.ValuesHash(Scale, Offset);
     local cached = CACHE[hash];
     if (cached) then

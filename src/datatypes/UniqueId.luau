@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local UniqueId = {};
+UniqueId.__type = "UniqueId";
 
 local isFn = Helper.DataTypeIsFn(UniqueId);
 
@@ -44,14 +45,14 @@ end
 
 export type UniqueId = typeof(newUniqueId(0, 0, buffer.create(0)));
 
-local function Serialize(value: UniqueId): (number, number, buffer)
-    return value.Index, value.Time, value.Random;
+local function Serialize(value: UniqueId): (buffer, number, number)
+    return value.Random, value.Index, value.Time;
 end
 
 local function Deserialize(
+    random: buffer,
     index: number,
-    time: number,
-    random: buffer
+    time: number
 ): UniqueId
     return newUniqueId(index, time, random);
 end

@@ -3,6 +3,7 @@ local Helper = require("./Helper");
 local Enums = require("./Enums");
 
 local Faces = {};
+Faces.__type = "Faces";
 
 local isFn = Helper.DataTypeIsFn(Faces);
 

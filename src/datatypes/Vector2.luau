@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local Vector2 = {};
+Vector2.__type = "Vector2";
 
 local isFn = Helper.DataTypeIsFn(Vector2);
 

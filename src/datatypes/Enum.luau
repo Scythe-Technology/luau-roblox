@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local Enum = {};
+Enum.__type = "Enum";
 
 local isFn = Helper.DataTypeIsFn(Enum);
 

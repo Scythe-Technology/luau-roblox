@@ -5,6 +5,7 @@ local Vector3 = require("./Vector3");
 type Vector3 = Vector3.Vector3;
 
 local Ray = {};
+Ray.__type = "Ray";
 
 local isFn = Helper.DataTypeIsFn(Ray);
 

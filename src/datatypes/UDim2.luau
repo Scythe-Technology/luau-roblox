@@ -5,6 +5,7 @@ local UDim = require("./UDim");
 type UDim = UDim.UDim;
 
 local UDim2 = {};
+UDim2.__type = "UDim2";
 
 local isFn = Helper.DataTypeIsFn(UDim2);
 

@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local NumberSequenceKeypoint = {};
+NumberSequenceKeypoint.__type = "NumberSequenceKeypoint";
 
 local isFn = Helper.DataTypeIsFn(NumberSequenceKeypoint);
 

@@ -3,6 +3,7 @@ local Helper = require("./Helper");
 local Enums = require("./Enums");
 
 local Axes = {};
+Axes.__type = "Axes";
 
 local isFn = Helper.DataTypeIsFn(Axes);
 

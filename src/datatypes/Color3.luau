@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local Color3 = {};
+Color3.__type = "Color3";
 
 local isFn = Helper.DataTypeIsFn(Color3);
 

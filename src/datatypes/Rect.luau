@@ -5,6 +5,7 @@ local Vector2 = require("./Vector2");
 type Vector2 = Vector2.Vector2;
 
 local Rect = {};
+Rect.__type = "Rect";
 
 local isFn = Helper.DataTypeIsFn(Rect);
 

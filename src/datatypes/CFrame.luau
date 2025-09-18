@@ -5,6 +5,7 @@ local Vector3 = require("./Vector3");
 type Vector3 = Vector3.Vector3;
 
 local CFrame = {};
+CFrame.__type = "CFrame";
 
 local isFn = Helper.DataTypeIsFn(CFrame);
 

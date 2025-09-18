@@ -5,6 +5,7 @@ local Color3 = require("./Color3");
 type Color3 = Color3.Color3;
 
 local ColorSequenceKeypoint = {};
+ColorSequenceKeypoint.__type = "ColorSequenceKeypoint";
 
 local isFn = Helper.DataTypeIsFn(ColorSequenceKeypoint);
 

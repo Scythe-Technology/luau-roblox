@@ -6,6 +6,7 @@ local EnumItem = require("./EnumItem");
 type EnumItem = EnumItem.EnumItem;
 
 local Content = {};
+Content.__type = "Content";
 
 local isFn = Helper.DataTypeIsFn(Content);
 
@@ -33,8 +34,8 @@ end
 
 Content.none = newContent(nil, nil, Enum.ContentSourceType.None);
 
-Content.load = function(): Content?
-    return nil;
+Content.load = function(): Content
+    return Content.none;
 end
 
 export type Content = typeof(newContent(nil, nil, Enum.ContentSourceType.None));

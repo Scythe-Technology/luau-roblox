@@ -6,6 +6,7 @@ local EnumItem = require("./EnumItem");
 type EnumItem = EnumItem.EnumItem;
 
 local Font = {};
+Font.__type = "Font";
 
 local isFn = Helper.DataTypeIsFn(Font);
 

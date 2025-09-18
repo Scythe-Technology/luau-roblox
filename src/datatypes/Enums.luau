@@ -5,6 +5,7 @@ local EnumItem = require("./EnumItem");
 local RefectionDatabase = require("../reflection");
 
 local Enums = {};
+Enums.__type = "Enums";
 
 local isFn = Helper.DataTypeIsFn(Enums);
 

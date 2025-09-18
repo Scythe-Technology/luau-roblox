@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local PhysicalProperties = {};
+PhysicalProperties.__type = "PhysicalProperties";
 
 local isFn = Helper.DataTypeIsFn(PhysicalProperties);
 

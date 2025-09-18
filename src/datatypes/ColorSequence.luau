@@ -6,6 +6,7 @@ local ColorSequenceKeypoint = require("./ColorSequenceKeypoint");
 type ColorSequenceKeypoint = ColorSequenceKeypoint.ColorSequenceKeypoint;
 
 local ColorSequence = {};
+ColorSequence.__type = "ColorSequence";
 
 local isFn = Helper.DataTypeIsFn(ColorSequence);
 

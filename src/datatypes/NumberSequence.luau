@@ -5,6 +5,7 @@ local NumberSequenceKeypoint = require("./NumberSequenceKeypoint");
 type NumberSequenceKeypoint = NumberSequenceKeypoint.NumberSequenceKeypoint;
 
 local NumberSequence = {};
+NumberSequence.__type = "NumberSequence";
 
 local isFn = Helper.DataTypeIsFn(NumberSequence);
 

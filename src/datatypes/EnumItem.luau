@@ -4,6 +4,7 @@ local Helper = require("./Helper");
 type Enum = typeof(require("./Enum").DataType.new(""))
 
 local EnumItem = {};
+EnumItem.__type = "EnumItem";
 
 local isFn = Helper.DataTypeIsFn(EnumItem);
 

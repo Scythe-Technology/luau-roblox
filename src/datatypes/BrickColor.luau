@@ -5,6 +5,7 @@ local Color3 = require("./Color3");
 type Color3 = Color3.Color3;
 
 local BrickColor = {};
+BrickColor.__type = "BrickColor";
 
 local isFn = Helper.DataTypeIsFn(BrickColor);
 

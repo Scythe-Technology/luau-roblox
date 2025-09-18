@@ -2,6 +2,7 @@
 local Helper = require("./Helper");
 
 local NumberRange = {};
+NumberRange.__type = "NumberRange";
 
 local isFn = Helper.DataTypeIsFn(NumberRange);
 
