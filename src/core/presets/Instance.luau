@@ -3,7 +3,7 @@ local Signal = require("../signal");
 local Attributes = require("../instance/attributes");
 local Tags = require("../instance/tags");
 
-local md5 = require("@polyfill/md5");
+local md5 = require("@polyfill").md5;
 
 local impl = {};
 impl.object = nil::any;
@@ -44,6 +44,39 @@ function impl.method.WaitForChild(self: any, name: string): any?
     return child;
 end
 
+function impl.method.FindFirstAncestor(self: any, name: string): any?
+    local parent = rawget(self, "@parent");
+    while (parent) do
+        if (parent.Name == name) then
+            return parent;
+        end
+        parent = rawget(parent, "@parent");
+    end
+    return;
+end
+
+function impl.method.FindFirstAncestorOfClass(self: any, className: string): any?
+    local parent = rawget(self, "@parent");
+    while (parent) do
+        if (parent["@instance"].className == className) then
+            return parent;
+        end
+        parent = rawget(parent, "@parent");
+    end
+    return;
+end
+
+function impl.method.FindFirstAncestorWhichIsA(self: any, className: string): any?
+    local parent = rawget(self, "@parent");
+    while (parent) do
+        if (parent:IsA(className)) then
+            return parent;
+        end
+        parent = rawget(parent, "@parent");
+    end
+    return;
+end
+
 function impl.method.FindFirstChild(self: any, name: string, recursive: boolean): any?
     for _, child in self["@children"] do
         if (child.Name == name) then
@@ -79,49 +112,13 @@ function impl.method.FindFirstChildWhichIsA(self: any, className: string): any?
     return nil;
 end
 
-function impl.method.FindFirstAncestor(self: any, name: string): any?
-    local parent = rawget(self, "@parent");
-    while (parent) do
-        if (parent.Name == name) then
-            return parent;
-        end
-        parent = rawget(parent, "@parent");
-    end
-    return;
-end
-
-function impl.method.FindFirstAncestorOfClass(self: any, className: string): any?
-    local parent = rawget(self, "@parent");
-    while (parent) do
-        if (parent["@instance"].className == className) then
-            return parent;
-        end
-        parent = rawget(parent, "@parent");
-    end
-    return;
-end
-
-function impl.method.FindFirstAncestorWhichIsA(self: any, className: string): any?
-    local parent = rawget(self, "@parent");
-    while (parent) do
-        if (parent:IsA(className)) then
-            return parent;
-        end
-        parent = rawget(parent, "@parent");
-    end
-    return;
-end
-
-local function applyChilds(instance: any, descendants: {any})
-    for _, child in instance["@children"] do
-        table.insert(descendants, child);
-        applyChilds(child, descendants);
-    end
-end
 function impl.method.GetDescendants(self: any): {any}
-    local descendants = {};
-    applyChilds(self, descendants);
-    return table.clone(descendants);
+    local descendants = table.clone(self["@children"]);
+    for _, child in self["@children"] do
+        local child_descendants = child:GetDescendants()
+        table.move(child_descendants, 1, #child_descendants, #descendants + 1, descendants);
+    end
+    return descendants;
 end
 
 function impl.method.IsDescendantOf(self: any, ancestor: any): boolean
@@ -177,6 +174,13 @@ function impl.method.SetAttribute(self: any, name: string, value: any): ()
             value = "",
         };
         self["@instance"].properties["AttributesSerialize"] = attributes;
+    end
+    if (#name > 100) then
+        error(`Attribute name exceeds 100 character limit ("{name}")`);
+    end
+    local start = string.find(name, "[^a-zA-Z0-9%-%./_]");
+    if (start) then
+        error(`Attribute name contains illegal character '{string.sub(name, start, start)}' ("{name}")`);
     end
     local decoded = Attributes.decodeAttributes(attributes.value);
     decoded[name] = {
