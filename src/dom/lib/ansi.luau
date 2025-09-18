@@ -43,4 +43,4 @@ return {
     reset = function(kind: string?)
         return `\x1b[0m`;
     end,
-}::any;
+};

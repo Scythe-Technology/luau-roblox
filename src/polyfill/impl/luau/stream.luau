@@ -28,15 +28,6 @@ export type IoReadable = {
     readf64: (self: IoReadable) -> number,
 }
 
-local VERSION = _VERSION;
-if (type(VERSION) == "string") then
-    if (string.sub(VERSION, 1, 4) == "zune") then
-        return {
-            create = zune.io.createFixedBufferStream :: any,
-        };
-    end
-end
-
 local BufferStream = {};
 BufferStream.__index = BufferStream;
 

@@ -2,7 +2,7 @@
 --!native
 --!optimize 2
 
-export type IoWritable = {
+type IoWritable = {
     write: (self: IoWritable, value: string | buffer) -> (),
     writei8: (self: IoWritable, value: number) -> (),
     writeu8: (self: IoWritable, value: number) -> (),
@@ -13,17 +13,6 @@ export type IoWritable = {
     writef32: (self: IoWritable, value: number) -> (),
     writef64: (self: IoWritable, value: number) -> (),
 }
-
-local VERSION = _VERSION;
-if (type(VERSION) == "string") then
-    if (string.sub(VERSION, 1, 4) == "zune") then
-        return {
-            create = function(size: number?): BufferSink
-                return zune.io.createBufferSink() :: any;
-            end,
-        };
-    end
-end
 
 local BufferSink = {};
 BufferSink.__index = BufferSink;
@@ -159,4 +148,4 @@ function BufferSink.writestring(self: BufferSink, value: string, count: number?)
     self.position += count;
 end
 
-return BufferSink :: any;
+return BufferSink;

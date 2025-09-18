@@ -1,5 +1,5 @@
 --!strict
-local md5 = require("@polyfill/md5");
+local md5 = require("@polyfill").md5;
 
 local helper = {};
 

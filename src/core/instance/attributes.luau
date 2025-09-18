@@ -1,10 +1,12 @@
 --!strict
 
 -- DOMProperty
-local Stream = require("../../dom/binary/stream");
+local polyfill = require("@polyfill");
+local Stream = polyfill.stream;
+local Sink = polyfill.sink;
 local datatypes = require("../../datatypes");
 
-type BufferStream = Stream.BufferStream;
+type BufferStream = polyfill.BufferStream;
 
 local function size(t: {[any]: any}): number
     local c = 0;
@@ -276,122 +278,130 @@ local TYPE_DECODER = {
 };
 
 local TYPE_ENCODER = {
-    [VARIENTS.Unknown] = function(stream: BufferStream, value: any): ()
+    [VARIENTS.Unknown] = function(writer: polyfill.IoWritable, value: any): ()
         error("Unknown Property Type not supported.")
     end,
-    [VARIENTS.String] = function(stream: BufferStream, value: string): ()
-        stream:writestring(value);
+    [VARIENTS.String] = function(writer: polyfill.IoWritable, value: string): ()
+        writer:writeu32(#value);
+        writer:write(value);
     end,
-    [VARIENTS.Bool] = function(stream: BufferStream, value: boolean): ()
-        stream:writeu8(if (value) then 1 else 0);
+    [VARIENTS.Bool] = function(writer: polyfill.IoWritable, value: boolean): ()
+        writer:writeu8(if (value) then 1 else 0);
     end,
-    [VARIENTS.Int] = function(stream: BufferStream, value: number): ()
-        stream:writei32(value);
+    [VARIENTS.Int] = function(writer: polyfill.IoWritable, value: number): ()
+        writer:writei32(value);
     end,
-    [VARIENTS.Float] = function(stream: BufferStream, value: number): ()
-        stream:writef32(value);
+    [VARIENTS.Float] = function(writer: polyfill.IoWritable, value: number): ()
+        writer:writef32(value);
     end,
-    [VARIENTS.Double] = function(stream: BufferStream, value: number): ()
-        stream:writef64(value);
+    [VARIENTS.Double] = function(writer: polyfill.IoWritable, value: number): ()
+        writer:writef64(value);
     end,
-    [VARIENTS.UDim] = function(stream: BufferStream, value: datatypes.UDim): ()
+    [VARIENTS.UDim] = function(writer: polyfill.IoWritable, value: datatypes.UDim): ()
         local scale, offset = datatypes.UDim.Serialize(value);
-        stream:writef32(scale);
-        stream:writei32(offset);
+        writer:writef32(scale);
+        writer:writei32(offset);
     end,
-    [VARIENTS.UDim2] = function(stream: BufferStream, value: datatypes.UDim2): ()
+    [VARIENTS.UDim2] = function(writer: polyfill.IoWritable, value: datatypes.UDim2): ()
         local x_scale, x_offset, y_scale, y_offset = datatypes.UDim2.Serialize(value);
-        stream:writef32(x_scale);
-        stream:writei32(x_offset);
-        stream:writef32(y_scale);
-        stream:writei32(y_offset);
+        writer:writef32(x_scale);
+        writer:writei32(x_offset);
+        writer:writef32(y_scale);
+        writer:writei32(y_offset);
     end,
-    [VARIENTS.BrickColor] = function(stream: BufferStream, value: datatypes.BrickColor): ()
-        stream:writeu32(datatypes.BrickColor.Serialize(value));
+    [VARIENTS.BrickColor] = function(writer: polyfill.IoWritable, value: datatypes.BrickColor): ()
+        writer:writeu32(datatypes.BrickColor.Serialize(value));
     end,
-    [VARIENTS.Color3] = function(stream: BufferStream, value: datatypes.Color3): ()
+    [VARIENTS.Color3] = function(writer: polyfill.IoWritable, value: datatypes.Color3): ()
         local r, g, b = datatypes.Color3.Serialize(value, false);
-        stream:writef32(r);
-        stream:writef32(g);
-        stream:writef32(b);
+        writer:writef32(r);
+        writer:writef32(g);
+        writer:writef32(b);
     end,
-    [VARIENTS.Vector2] = function(stream: BufferStream, value: datatypes.Vector2): ()
+    [VARIENTS.Vector2] = function(writer: polyfill.IoWritable, value: datatypes.Vector2): ()
         local x, y = datatypes.Vector2.Serialize(value);
-        stream:writef32(x);
-        stream:writef32(y);
+        writer:writef32(x);
+        writer:writef32(y);
     end,
-    [VARIENTS.Vector3] = function(stream: BufferStream, value: datatypes.Vector3): ()
+    [VARIENTS.Vector3] = function(writer: polyfill.IoWritable, value: datatypes.Vector3): ()
         local x, y, z = datatypes.Vector3.Serialize(value);
-        stream:writef32(x);
-        stream:writef32(y);
-        stream:writef32(z);
+        writer:writef32(x);
+        writer:writef32(y);
+        writer:writef32(z);
     end,
-    [VARIENTS.CFrame] = function(stream: BufferStream, value: datatypes.CFrame): ()
+    [VARIENTS.CFrame] = function(writer: polyfill.IoWritable, value: datatypes.CFrame): ()
         local x, y, z, r00, r01, r02, r10, r11, r12, r20, r21, r22 = datatypes.CFrame.Serialize(value);
-        stream:writef32(x);
-        stream:writef32(y);
-        stream:writef32(z);
+        writer:writef32(x);
+        writer:writef32(y);
+        writer:writef32(z);
 
         -- TODO: Implement CFrame Rotation Id
-        stream:writeu8(0);
+        writer:writeu8(0);
 
-        stream:writef32(r00); stream:writef32(r01); stream:writef32(r02);
-        stream:writef32(r10); stream:writef32(r11); stream:writef32(r12);
-        stream:writef32(r20); stream:writef32(r21); stream:writef32(r22);
+        writer:writef32(r00); writer:writef32(r01); writer:writef32(r02);
+        writer:writef32(r10); writer:writef32(r11); writer:writef32(r12);
+        writer:writef32(r20); writer:writef32(r21); writer:writef32(r22);
     end,
-    [VARIENTS.Enum] = function(stream: BufferStream, value: datatypes.EnumItem): ()
-        stream:writestring(value.EnumType["@name"]);
-        stream:writeu32(value.Value);
+    [VARIENTS.Enum] = function(writer: polyfill.IoWritable, value: datatypes.EnumItem): ()
+        writer:writeu32(#value.EnumType["@name"]);
+        writer:write(value.EnumType["@name"]);
+        writer:writeu32(value.Value);
     end,
-    [VARIENTS.ColorSequence] = function(stream: BufferStream, value: datatypes.ColorSequence): ()
+    [VARIENTS.ColorSequence] = function(writer: polyfill.IoWritable, value: datatypes.ColorSequence): ()
         local points = datatypes.ColorSequence.Serialize(value);
-        stream:expandToSize(stream.position + (#points * 20) + 4) -- preallocate
-        stream:writeu32(#points);
+        -- stream:expandToSize(stream.position + (#points * 20) + 4) -- preallocate
+        writer:writeu32(#points);
         for _, point in points do
             local time, color, envelope = datatypes.ColorSequenceKeypoint.Serialize(point);
             local r, g, b = datatypes.Color3.Serialize(color, false);
-            stream:writef32(envelope);
-            stream:writef32(time);
-            stream:writef32(r);
-            stream:writef32(g);
-            stream:writef32(b);
+            writer:writef32(envelope);
+            writer:writef32(time);
+            writer:writef32(r);
+            writer:writef32(g);
+            writer:writef32(b);
         end
     end,
-    [VARIENTS.NumberRange] = function(stream: BufferStream, value: datatypes.NumberRange): ()
+    [VARIENTS.NumberRange] = function(writer: polyfill.IoWritable, value: datatypes.NumberRange): ()
         local min, max = datatypes.NumberRange.Serialize(value);
-        stream:writef32(min);
-        stream:writef32(max);
+        writer:writef32(min);
+        writer:writef32(max);
     end,
-    [VARIENTS.Rect] = function(stream: BufferStream, value: datatypes.Rect): ()
+    [VARIENTS.Rect] = function(writer: polyfill.IoWritable, value: datatypes.Rect): ()
         local x0, y0, x1, y1 = datatypes.Rect.Serialize(value);
-        stream:writef32(x0);
-        stream:writef32(y0);
-        stream:writef32(x1);
-        stream:writef32(y1);
+        writer:writef32(x0);
+        writer:writef32(y0);
+        writer:writef32(x1);
+        writer:writef32(y1);
     end,
-    [VARIENTS.NumberSequence] = function(stream: BufferStream, value: datatypes.NumberSequence): ()
+    [VARIENTS.NumberSequence] = function(writer: polyfill.IoWritable, value: datatypes.NumberSequence): ()
         local points = datatypes.NumberSequence.Serialize(value);
-        stream:expandToSize(stream.position + (#points * 12) + 4) -- preallocate
-        stream:writeu32(#points);
+        -- writer:expandToSize(stream.position + (#points * 12) + 4) -- preallocate
+        writer:writeu32(#points);
         for _, point in points do
             local time, nvalue, envelope = datatypes.NumberSequenceKeypoint.Serialize(point);
-            stream:writef32(time);
-            stream:writef32(nvalue);
-            stream:writef32(envelope);
+            writer:writef32(time);
+            writer:writef32(nvalue);
+            writer:writef32(envelope);
         end
     end,
-    [VARIENTS.Font] = function(stream: BufferStream, value: datatypes.Font): ()
-        local weight = stream:readu16();
-        local style = stream:readu8();
-        local family = stream:readstring();
-        local cache_id = stream:readstring();
-        return datatypes.Font.Deserialize(family, weight, style, cache_id);
+    [VARIENTS.Font] = function(writer: polyfill.IoWritable, value: datatypes.Font): ()
+        local family, weight, style, cache_id = datatypes.Font.Serialize(value);
+        writer:writeu16(weight);
+        writer:writeu8(style);
+        writer:writeu32(#family);
+        writer:write(family);
+        if (cache_id) then
+            writer:writeu32(#cache_id);
+            writer:write(cache_id);
+        else
+            writer:writeu32(0);
+        end
     end,
 };
 
 local function decodeAttributes(value: string): {[string]: any}
-    local stream = Stream.fromBuffer(buffer.fromstring(value));
-    if (not stream:couldRead(4)) then
+    local stream = Stream.create(buffer.fromstring(value));
+    if (not stream:canRead(4)) then
         return {};
     end
     local len = stream:readu32();
@@ -415,19 +425,20 @@ local function decodeAttributes(value: string): {[string]: any}
 end
 
 local function encodeAttributes(attributes: {[string]: any}): string
-    local stream = Stream.new(4);
-    stream:writeu32(size(attributes));
+    local stream = Sink.create(4);
+    local writer = stream:writer();
+    writer:writeu32(size(attributes));
     for key, value in attributes do
-        stream:writestring(key);
-        stream:writeu8(value.type);
+        writer:writeu32(#key);
+        writer:write(key);
+        writer:writeu8(value.type);
         local encoder = TYPE_ENCODER[value.type];
         if (not encoder) then
             error(`Failed to Encode Attribute Value Type: ({value.type}) for key '{key}'`);
         end
-        encoder(stream, value.value);
+        encoder(writer, value.value);
     end
-    stream:trim();
-    return buffer.tostring(stream.buffer);
+    return stream:flush(false) :: string;
 end
 
 local DATATYPE_MAP: {[any]: number} = {

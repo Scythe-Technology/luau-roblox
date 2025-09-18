@@ -1,17 +1,6 @@
 --!native
 --!optimize 2
 --!strict
-if (type(_VERSION) == "string") then
-    if (string.sub(_VERSION, 1, 4) == "zune") then
-        return {
-            b128 = function(input)
-                local hash = zune.crypto.createHash("blake2b128");
-                hash:update(input);
-                return hash:digest("hex");
-            end
-        };
-    end
-end
 
 -- Based on https://github.com/daily3014/rbx-cryptography/blob/3967060a3079c8cdc82dda86a9a6d8879565186b/src/Hashing/Blake2b.luau
 --[=[

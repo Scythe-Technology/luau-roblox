@@ -1,5 +1,5 @@
 --!strict
-local task = require("@polyfill/task");
+local task = require("@polyfill").task;
 
 type Connection = {
     ["@next"]: Connection?,
