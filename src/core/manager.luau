@@ -1,5 +1,10 @@
 --!strict
 --!native
+local polyfill = require("@polyfill");
+
+local blake2 = polyfill.blake2;
+local base64 = polyfill.base64;
+
 local object = require("./object");
 local roblox = require("./types/roblox");
 
@@ -12,9 +17,34 @@ local Enum = datatypes.Enums;
 
 local manager = {};
 
+manager.datatypes = {
+    Vector3 = datatypes.Vector3,
+    Vector2 = datatypes.Vector2,
+    CFrame = datatypes.CFrame,
+    Color3 = datatypes.Color3,
+    BrickColor = datatypes.BrickColor,
+    UDim = datatypes.UDim,
+    UDim2 = datatypes.UDim2,
+    Ray = datatypes.Ray,
+    Rect = datatypes.Rect,
+    NumberRange = datatypes.NumberRange,
+    NumberSequence = datatypes.NumberSequence,
+    NumberSequenceKeypoint = datatypes.NumberSequenceKeypoint,
+    ColorSequence = datatypes.ColorSequence,
+    ColorSequenceKeypoint = datatypes.ColorSequenceKeypoint,
+    PhysicalProperties = datatypes.PhysicalProperties,
+    TweenInfo = datatypes.TweenInfo,
+    Axes = datatypes.Axes,
+    Faces = datatypes.Faces,
+    Instance = datatypes.Instance,
+    DockWidgetPluginGuiInfo = datatypes.DockWidgetPluginGuiInfo,
+    Enums = datatypes.Enums,
+};
+
 function manager.instanceFromDOM(instance: dom.DOMInstance): roblox.Instance?
     local className = instance.className;
-    if (instance.isService and reflection:GetClass(className) == nil) then
+    local class = reflection:GetClass(className);
+    if (not class) then
         return nil
     end
     local obj = object.dom(instance);
@@ -37,13 +67,13 @@ function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
                 instances[instance.referent] = nil;
                 continue;
             end
-            rawset(object::any, "@parent", parent);
-            table.insert(rawget(parent::any, "@children"), object);
+            rawset(object :: any, "@parent", parent);
+            table.insert(rawget(parent :: any, "@children") :: any, object);
             valid -= 1;
         end
     end
     for _, instance in instances do
-        for name, property in (instance::any)["@instance"].properties do
+        for name, property in (instance :: any)["@instance"].properties do
             if (property.type == dom.roblox.PropertyTypes.Ref and property.value) then
                 property.value = instances[property.value];
             elseif (property.type == dom.roblox.PropertyTypes.Content and property.value) then
@@ -57,7 +87,7 @@ function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
     end
     local list: {roblox.Instance} = table.create(valid);
     for _, instance in instances do
-        if (instance and rawget(instance::any, "@parent") == nil) then
+        if (instance and rawget(instance :: any, "@parent") == nil) then
             table.insert(list, instance);
         end
     end
@@ -87,7 +117,8 @@ function manager.domFromInstances(
     descendants_map: {[roblox.Instance]: number},
     ignoreParent: roblox.Instance?
 ): dom.DOM
-    local sharedstrings = {};
+    local sharedstrings: {[string]: string} = {};
+    local cached_sharedstrings: {[string]: string} = {};
 
     local instances: {dom.DOMInstance} = table.create(#descendants);
     local classes: {dom.DOMClass} = {}; do
@@ -98,11 +129,15 @@ function manager.domFromInstances(
             local class_name = instance.className;
             local class: dom.DOMClass = map[class_name];
             if (not class) then
+                local class_api = reflection:GetClass(class_name);
+                if (not class_api) then
+                    error(`Unknown class '{class_name}', cannot serialize`);
+                end
                 class = {
                     index = index;
                     name = class_name,
                     instances = {},
-                    isService = instance.isService,
+                    isService = table.find(class_api.Tags or {}, "Service") ~= nil,
                 };
                 index += 1;
                 map[class_name] = class;
@@ -134,16 +169,15 @@ function manager.domFromInstances(
                             end
                         end
                     elseif (property.type == dom.roblox.PropertyTypes.SharedString) then
-                        if (type(property.value) ~= "table") then
-                            print("[rbx-manager] SharedString not set");
-                            continue;
+                        local data = property.value;
+                        local hash_base64 = cached_sharedstrings[data];
+                        if (not hash_base64) then
+                            local hash = blake2.b128(data);
+                            hash_base64 = base64.encode(hash);
+                            cached_sharedstrings[data] = hash_base64;
                         end
-                        if (not table.find(sharedstrings, property.value)) then
-                            assert(type(property.value) == "table", "Internal Error, SharedString not set");
-                            table.insert(sharedstrings, property.value);
-                        end
-                        value = table.find(sharedstrings, property.value);
-                        assert(value, "SharedString not found");
+                        sharedstrings[hash_base64] = data;
+                        value = hash_base64;
                     else
                         continue;
                     end
@@ -189,7 +223,7 @@ function manager.domFromPlace(datamodel: roblox.DataModel): dom.DOM
         local filtered = table.create(#descendants);
         local index = 1;
         for _, descendant in descendants do
-            local properties = rawget(descendant::any, "@instance").properties;
+            local properties = (rawget(descendant :: any, "@instance") :: any).properties;
             if (properties["Archivable"] == nil or properties["Archivable"].value == true) then
                 table.insert(filtered, descendant);
                 descendants_map[descendant] = index;
@@ -222,6 +256,47 @@ function manager.domFromModel(instances: {roblox.Instance}): dom.DOM
         end
     end
     return manager.domFromInstances(descendants, descendants_map);
+end
+
+function manager.applyPatches()
+    local patches = require("./patches");
+    for class, property_patch in patches do
+        local existing = object.presets[class];
+        if (not existing) then
+            local impl = {};
+            impl.method = {};
+            impl.property = {
+                get = {};
+                set = {};
+            };
+            existing = impl;
+            object.presets[class] = existing;
+        end
+        if (not existing.property) then
+            existing.property = {
+                get = {};
+                set = {};
+            };
+        end
+        for property, patch in property_patch :: any do
+            if (patch.get) then
+                existing.property.get[property] = function(self)
+                    return patch.get(self, property);
+                end;
+            end
+            if (patch.set) then
+                existing.property.set[property] = function(self, value)
+                    return patch.set(self, property, value);
+                end;
+            end
+            if (patch.loader) then
+                existing.loader = existing.loader or {};
+                existing.loader[property] = function(self, property_value)
+                    return patch.loader(self, property, property_value);
+                end;
+            end
+        end
+    end
 end
 
 local instance = {};

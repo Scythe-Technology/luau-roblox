@@ -16,7 +16,6 @@ export type Instance = {
     referent: number,
     parent: number?,
     properties: {[string]: Property},
-    isService: boolean,
 };
 
 export type Signature = {
@@ -25,10 +24,7 @@ export type Signature = {
     Value: string,
 };
 
-export type SharedString = {
-    Lookup: {[string]: string},
-    Key: string,
-}
+export type SharedString = string;
 
 export type DocumentInfo = {
     version: number,
@@ -42,8 +38,11 @@ export type Document = {
     instances: {Instance},
     classes: {Class},
     metadata: {[string]: string},
-    sharedstrings: {SharedString},
+    sharedstrings: {[string]: SharedString},
     signatures: {Signature}?,
+    --- internal use only.
+    --- would ideally be nil
+    __sharedstrings_id: {string}?,
 };
 
 local PROPERTY_TYPES = {
