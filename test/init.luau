@@ -4,6 +4,7 @@ local process = zune.process
 local testing = zune.testing
 
 local test = testing.test
+local describe = testing.describe
 
 local lib = require("@roblox");
 
