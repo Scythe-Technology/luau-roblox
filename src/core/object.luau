@@ -1,6 +1,5 @@
 --!strict
 local dom = require("../dom");
-local roblox = require("./types/roblox");
 local datatypes = require("./datatypes");
 local dom_datatypes = require("../datatypes");
 local reflection = require("../reflection");
@@ -10,6 +9,7 @@ local presets = require("./presets");
 local Signal = require("./signal");
 
 type Signal = Signal.Signal;
+type Instance = any;
 
 local object = {};
 
@@ -280,7 +280,7 @@ function object.LoadDefaultProperties(self: object, className: string)
     loadDefaultProperties(self, className);
 end
 
-function object.create(className: string): roblox.Instance
+function object.create(className: string): Instance
     local class = reflection:GetClass(className);
     if (not class) then
         error("Class not found");
@@ -293,7 +293,7 @@ function object.create(className: string): roblox.Instance
     return object::any;
 end
 
-function object.new(className: string, parent: roblox.Instance?): roblox.Instance
+function object.new(className: string, parent: Instance?): Instance
     local class = reflection:GetClass(className);
     if (not class) then
         error("Class not found");

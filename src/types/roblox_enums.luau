@@ -258,6 +258,7 @@ export type Enum_AppUpdateStatus = Enum & {
     NotAvailable: EnumItem,
     Available: EnumItem,
     AvailableBoundChannel: EnumItem,
+    AvailableBetaProgram: EnumItem,
 }
 export type Enum_ApplyStrokeMode = Enum & {
     Contextual: EnumItem,
@@ -935,6 +936,7 @@ export type Enum_ConnectionError = Enum & {
     AndroidAnticheatKick: EnumItem,
     AndroidEmulatorKick: EnumItem,
     AndroidRootedKick: EnumItem,
+    ScreentimeLockoutKick: EnumItem,
     PlacelaunchErrors: EnumItem,
     PlacelaunchDisabled: EnumItem,
     PlacelaunchError: EnumItem,
@@ -2476,6 +2478,10 @@ export type Enum_PathfindingUseImprovedSearch = Enum & {
     Disabled: EnumItem,
     Enabled: EnumItem,
 }
+export type Enum_PeoplePageLayout = Enum & {
+    Card: EnumItem,
+    List: EnumItem,
+}
 export type Enum_PerformanceOverlayMode = Enum & {
     Overdraw: EnumItem,
     Transparent: EnumItem,
@@ -2583,8 +2589,8 @@ export type Enum_PositionAlignmentMode = Enum & {
 }
 export type Enum_PredictionMode = Enum & {
     Auto: EnumItem,
-    None: EnumItem,
-    Forced: EnumItem,
+    On: EnumItem,
+    Off: EnumItem,
 }
 export type Enum_PreferredInput = Enum & {
     KeyboardAndMouse: EnumItem,
@@ -4283,6 +4289,7 @@ export type Enums = {
     PathStatus: Enum_PathStatus,
     PathWaypointAction: Enum_PathWaypointAction,
     PathfindingUseImprovedSearch: Enum_PathfindingUseImprovedSearch,
+    PeoplePageLayout: Enum_PeoplePageLayout,
     PerformanceOverlayMode: Enum_PerformanceOverlayMode,
     PermissionLevelShown: Enum_PermissionLevelShown,
     PhysicsSimulationRate: Enum_PhysicsSimulationRate,

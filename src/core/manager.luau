@@ -6,7 +6,6 @@ local blake2 = polyfill.blake2;
 local base64 = polyfill.base64;
 
 local object = require("./object");
-local roblox = require("./types/roblox");
 
 local dom = require("../dom");
 local datatypes = require("../datatypes");
@@ -14,6 +13,9 @@ local datatypes = require("../datatypes");
 local reflection = require("../reflection");
 
 local Enum = datatypes.Enums.DataType;
+
+type Instance = any;
+type DataModel = any;
 
 local manager = {};
 
@@ -40,7 +42,7 @@ manager.datatypes = {
     DateTime = datatypes.DateTime,
 };
 
-function manager.instanceFromDOM(instance: dom.DOMInstance): roblox.Instance?
+function manager.instanceFromDOM(instance: dom.DOMInstance): Instance?
     local className = instance.className;
     local class = reflection:GetClass(className);
     if (not class) then
@@ -51,7 +53,7 @@ function manager.instanceFromDOM(instance: dom.DOMInstance): roblox.Instance?
     return obj::any;
 end
 
-function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
+function manager.instancesFromDOM(doc: dom.DOM): {Instance}
     local instances = table.create(doc.info.instances);
     for _, instance in doc.instances do
         instances[instance.referent] = manager.instanceFromDOM(instance);
@@ -84,7 +86,7 @@ function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
             end
         end
     end
-    local list: {roblox.Instance} = table.create(valid);
+    local list: {Instance} = table.create(valid);
     for _, instance in instances do
         if (instance and rawget(instance :: any, "@parent") == nil) then
             table.insert(list, instance);
@@ -93,11 +95,11 @@ function manager.instancesFromDOM(doc: dom.DOM): {roblox.Instance}
     return list;
 end
 
-function manager.modelFromDOM(doc: dom.DOM): {roblox.Instance}
+function manager.modelFromDOM(doc: dom.DOM): {Instance}
     return manager.instancesFromDOM(doc);
 end
 
-function manager.placeFromDom(doc: dom.DOM): roblox.DataModel
+function manager.placeFromDom(doc: dom.DOM): DataModel
     local datamodel = object.raw("DataModel");
     datamodel["@instance"].properties["Name"] = {
         value = "DataModel",
@@ -112,9 +114,9 @@ function manager.placeFromDom(doc: dom.DOM): roblox.DataModel
 end
 
 function manager.domFromInstances(
-    descendants: {roblox.Instance},
-    descendants_map: {[roblox.Instance]: number},
-    ignoreParent: roblox.Instance?
+    descendants: {Instance},
+    descendants_map: {[Instance]: number},
+    ignoreParent: Instance?
 ): dom.DOM
     local sharedstrings: {[string]: string} = {};
     local cached_sharedstrings: {[string]: string} = {};
@@ -212,7 +214,7 @@ function manager.domFromInstances(
     };
 end
 
-function manager.domFromPlace(datamodel: roblox.DataModel): dom.DOM
+function manager.domFromPlace(datamodel: DataModel): dom.DOM
     assert(
         object.is(datamodel) and datamodel:IsA("DataModel"),
         "argument #1 must be a DataModel instance"
@@ -234,7 +236,7 @@ function manager.domFromPlace(datamodel: roblox.DataModel): dom.DOM
     return manager.domFromInstances(descendants, descendants_map, datamodel);
 end
 
-function manager.domFromModel(instances: {roblox.Instance}): dom.DOM
+function manager.domFromModel(instances: {Instance}): dom.DOM
     local descendants = {};
     local descendants_map = {};
     local index = 1;
@@ -300,15 +302,15 @@ end
 
 local instance = {};
 
-local function instanceNew(className: string, parent: roblox.Instance?): roblox.Instance
+local function instanceNew(className: string, parent: Instance?): Instance
     return object.new(className, parent);
 end
-local function instanceCreate(className: string): roblox.Instance
+local function instanceCreate(className: string): Instance
     return object.create(className);
 end
 
-instance.new = (instanceNew::any)::roblox.NewConstructor;
-instance.create = (instanceCreate::any)::(className: string) -> roblox.Instance;
+instance.new = (instanceNew :: any) :: (className: string, parent: Instance?) -> Instance;
+instance.create = (instanceCreate :: any) :: (className: string) -> Instance;
 
 manager.Instance = instance;
 
@@ -329,8 +331,8 @@ end;
 manager.implementProperty = function(
     className: string,
     propertyName: string,
-    get_callback: (instance: roblox.Instance) -> any,
-    set_callback: (instance: roblox.Instance, value: any) -> ()
+    get_callback: (instance: Instance) -> any,
+    set_callback: (instance: Instance, value: any) -> ()
 )
     assert(type(className) == "string", "className must be a string");
     assert(type(propertyName) == "string", "propertyName must be a string");
@@ -360,7 +362,7 @@ end;
 manager.implementMethod = function(
     className: string,
     methodName: string,
-    callback: (instance: roblox.Instance, ...any) -> any
+    callback: (instance: Instance, ...any) -> any
 )
     assert(type(className) == "string", "className must be a string");
     assert(type(methodName) == "string", "methodName must be a string");

@@ -1,6 +1,5 @@
 --!strict
 local datatypes = require("../datatypes");
-local enums = require("./types/roblox_enums");
 
 local types = {}
 
@@ -18,6 +17,6 @@ for type, datatype in datatypes do
 end
 
 return (types::any)::{
-    Enums: enums.Enums,
+    Enums: any,
     [string]: DataType,
 };

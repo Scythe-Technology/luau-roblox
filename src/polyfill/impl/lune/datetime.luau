@@ -12,7 +12,7 @@ type TimeDictionary = {
     Millisecond: number,
 }
 
-local lune_datetime = require("@lune/datetime");
+local lune_datetime = require("@lune/datetime") :: any;
 
 local DateTime = {
     UnixTimestamp = (nil :: any) :: number,
