@@ -9,36 +9,35 @@ local object = require("./object");
 local roblox = require("./types/roblox");
 
 local dom = require("../dom");
-local datatypes = require("./datatypes");
+local datatypes = require("../datatypes");
 
 local reflection = require("../reflection");
 
-local Enum = datatypes.Enums;
+local Enum = datatypes.Enums.DataType;
 
 local manager = {};
 
 manager.datatypes = {
-    Vector3 = datatypes.Vector3,
-    Vector2 = datatypes.Vector2,
-    CFrame = datatypes.CFrame,
-    Color3 = datatypes.Color3,
-    BrickColor = datatypes.BrickColor,
-    UDim = datatypes.UDim,
-    UDim2 = datatypes.UDim2,
-    Ray = datatypes.Ray,
-    Rect = datatypes.Rect,
-    NumberRange = datatypes.NumberRange,
-    NumberSequence = datatypes.NumberSequence,
-    NumberSequenceKeypoint = datatypes.NumberSequenceKeypoint,
-    ColorSequence = datatypes.ColorSequence,
-    ColorSequenceKeypoint = datatypes.ColorSequenceKeypoint,
-    PhysicalProperties = datatypes.PhysicalProperties,
-    TweenInfo = datatypes.TweenInfo,
-    Axes = datatypes.Axes,
-    Faces = datatypes.Faces,
-    Instance = datatypes.Instance,
-    DockWidgetPluginGuiInfo = datatypes.DockWidgetPluginGuiInfo,
-    Enums = datatypes.Enums,
+    Vector3 = datatypes.Vector3.DataType,
+    Vector2 = datatypes.Vector2.DataType,
+    CFrame = datatypes.CFrame.DataType,
+    Color3 = datatypes.Color3.DataType,
+    BrickColor = datatypes.BrickColor.DataType,
+    UDim = datatypes.UDim.DataType,
+    UDim2 = datatypes.UDim2.DataType,
+    Ray = datatypes.Ray.DataType,
+    Rect = datatypes.Rect.DataType,
+    NumberRange = datatypes.NumberRange.DataType,
+    NumberSequence = datatypes.NumberSequence.DataType,
+    NumberSequenceKeypoint = datatypes.NumberSequenceKeypoint.DataType,
+    ColorSequence = datatypes.ColorSequence.DataType,
+    ColorSequenceKeypoint = datatypes.ColorSequenceKeypoint.DataType,
+    PhysicalProperties = datatypes.PhysicalProperties.DataType,
+    Axes = datatypes.Axes.DataType,
+    Faces = datatypes.Faces.DataType,
+    Enum = Enum,
+
+    DateTime = datatypes.DateTime,
 };
 
 function manager.instanceFromDOM(instance: dom.DOMInstance): roblox.Instance?
