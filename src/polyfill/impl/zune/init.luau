@@ -1,6 +1,7 @@
 --!strict
 --!native
 --!optimize 2
+
 return {
     base64 = zune.serde.base64,
     blake2 = {
@@ -10,7 +11,7 @@ return {
             return hash:digest("hex");
         end
     },
-    datetime = zune.time.date,
+    datetime = require("@self/datetime"),
     lz4 = zune.serde.lz4,
     md5 = function(input: string)
         local hash = zune.crypto.createHash("md5");
