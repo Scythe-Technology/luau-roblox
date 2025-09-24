@@ -136,6 +136,14 @@ local function IgnoreGuiInsetMigrate()
 end
 
 return {
+    AudioPlayer = {
+        Asset = ContentMigrate "AudioContent",
+    },
+
+    BackpackItem = {
+        TextureId = ContentMigrate "TextureContent",
+    },
+
     BodyAngularVelocity = {
         angularvelocity = Alias "AngularVelocity",
         maxTorque = Alias "MaxTorque",
@@ -165,11 +173,21 @@ return {
         focus = Alias "Focus",
     },
 
+    ClickDetector = {
+        CursorIcon = ContentMigrate "CursorIconContent",
+    },
+    DragDetector = {
+        ActivatedCursorIcon = ContentMigrate "ActivatedCursorIconContent",
+    },
+
     Decal = {
         Texture = ContentMigrate "TextureContent",
         MetalnessMap = ContentMigrate "MetalnessMapContent",
         NormalMap = ContentMigrate "NormalMapContent",
         RoughnessMap = ContentMigrate "RoughnessMapContent",
+    },
+    ColorMap = {
+        ColorMap = ContentMigrate "ColorMapContent",
     },
 
     ImageButton = {
@@ -198,6 +216,10 @@ return {
 
     Model = {
         ScaleFactor = Alias "Scale",
+    },
+
+    Mouse = {
+        Icon = ContentMigrate "IconContent",
     },
 
     Object = {
@@ -243,6 +265,7 @@ return {
 
     Sound = {
         EmitterSize = Alias "RollOffMinDistance",
+        SoundId = ContentMigrate "AudioContent",
     },
 
     SurfaceAppearance = {
@@ -267,6 +290,15 @@ return {
     },
     TextBox = {
         Font = FontMigrate "FontFace",
+    },
+
+    UIDragDetector = {
+        ActivatedCursorIcon = ContentMigrate "ActivatedCursorIconContent",
+        CursorIcon = ContentMigrate "CursorIconContent",
+    },
+
+    UserInputService = {
+        MouseIcon = Alias "MouseIconContent",
     },
 
     VideoFrame = {
