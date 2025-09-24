@@ -72,40 +72,93 @@ local TYPE_MAP = {
 };
 
 local DEFAULT_TYPE_MAP = {
-    ["BinaryString"] = function(className: string, superclass: string, property: string)
-        return "";
-    end,
-    ["ContentId"] = function(className: string, superclass: string, property: string)
-        return "";
-    end,
-    ["int64"] = function(className: string, superclass: string, property: string)
-        return buffer.create(8);
-    end,
-    ["bool"] = function(className: string, superclass: string, property: string)
-        return false;
-    end,
-    ["string"] = function(className: string, superclass: string, property: string)
-        if (property == "Name") then
-            return className;
+    ["BinaryString"] = function(className: string, superclass: string, property: string, default: string?)
+        if (default and default ~= "__api_dump_class_not_creatable__") then
+            return default;
         end
         return "";
     end,
-    ["float"] = function(className: string, superclass: string, property: string)
+    ["ContentId"] = function(className: string, superclass: string, property: string, default: string?)
+        if (default and default ~= "__api_dump_class_not_creatable__") then
+            return default;
+        end
+        return "";
+    end,
+    ["int64"] = function(className: string, superclass: string, property: string, default: string?)
+        return buffer.create(8);
+    end,
+    ["bool"] = function(className: string, superclass: string, property: string, default: string?)
+        if (not default) then
+            return false;
+        end
+        return default ~= "false";
+    end,
+    ["string"] = function(className: string, superclass: string, property: string, default: string?)
+        if (property == "Name") then
+            return className;
+        end
+        if (default and default ~= "__api_dump_class_not_creatable__") then
+            return default;
+        end
+        return "";
+    end,
+    ["float"] = function(className: string, superclass: string, property: string, default: string?)
+        if (default and default ~= "__api_dump_class_not_creatable__") then
+            local num = tonumber(default);
+            if (num) then
+                return num;
+            end
+        end
         return 0;
     end,
-    ["double"] = function(className: string, superclass: string, property: string)
+    ["double"] = function(className: string, superclass: string, property: string, default: string?)
+        if (default and default ~= "__api_dump_class_not_creatable__") then
+            local num = tonumber(default);
+            if (num) then
+                return num;
+            end
+        end
         return 0;
     end,
-    ["int"] = function(className: string, superclass: string, property: string)
+    ["int"] = function(className: string, superclass: string, property: string, default: string?)
+        if (default and default ~= "__api_dump_class_not_creatable__") then
+            local num = tonumber(default);
+            if (num) then
+                return math.floor(num);
+            end
+        end
         return 0;
     end,
 };
 
 local DEFAULT_VALUE = {
-    ["NumberRange"] = function(default: string)
+    ["NumberRange"] = function(default: string?)
+        if (not default) then
+            return datatypes.NumberRange.new(0, 0);
+        end
         local min, max = unpack(default:split(" "));
         local nmin = tonumber(min) or 0;
         return datatypes.NumberRange.new(nmin, tonumber(max) or nmin);
+    end,
+    ["ColorSequence"] = function(default: string?)
+        if (not default) then
+            return datatypes.ColorSequence.new(datatypes.Color3.new(1, 1, 1));
+        end
+        local points = {};
+        for time, r, g, b, envople in default:gmatch("(%d+) (%d+) (%d+) (%d+) (%d+) ") do
+            local time_n = tonumber(time) or 0;
+            local r_n = tonumber(r) or 0;
+            local g_n = tonumber(g) or 0;
+            local b_n = tonumber(b) or 0;
+            local envople_n = tonumber(envople) or 0;
+            table.insert(points, datatypes.ColorSequenceKeypoint.new(time_n, dom_datatypes.Color3.DataType.fromRGB(r_n, g_n, b_n), envople_n));
+        end
+        return datatypes.ColorSequence.new(points);
+    end,
+    ["UDim"] = function(default: string?)
+        -- if (not default) then
+        -- end
+        return datatypes.UDim.new(0, 0);
     end,
 };
 
@@ -221,7 +274,7 @@ local function loadDefaultProperties(self: object, className: string)
         elseif (Category == "Primitive") then
             serializeId = dom.roblox.PropertyTypes[TYPE_MAP[member.ValueType.Name]];
             if (DEFAULT_TYPE_MAP[member.ValueType.Name]) then
-                default = DEFAULT_TYPE_MAP[member.ValueType.Name](instance.className, className, member.Name);
+                default = DEFAULT_TYPE_MAP[member.ValueType.Name](instance.className, className, member.Name, member.Default);
             end
         elseif (Category == "DataType") then
             local datatype = datatypes[member.ValueType.Name];
@@ -259,7 +312,7 @@ local function loadDefaultProperties(self: object, className: string)
             end
         end
 
-        if (not default) then
+        if (default == nil) then
             continue
         end
 
@@ -488,7 +541,6 @@ local SET_MAP = {
         else
             error(`Unable to assign property {propertyName}. EnumItem, number, or string expected, got {gettypeof(value)}`);
         end
-        print(enumType, value.EnumType)
         prop.value = new;
     end,
     [dom.roblox.PropertyTypes.Ref] = function(prop: dom.DOMProperty, value: any, className: string, propertyName: string): ()
