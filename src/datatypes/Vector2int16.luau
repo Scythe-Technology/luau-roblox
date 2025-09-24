@@ -34,6 +34,10 @@ Vector2int16.__tostring = function(self: Vector2int16): string
     return `{self.X}, {self.Y}`;
 end
 
+function Vector2int16.__unm(self: Vector2int16): Vector2int16
+    return Vector2int16.new(-self.X, -self.Y);
+end
+
 function Vector2int16.__add(self: Vector2int16, b: Vector2int16): Vector2int16
     assert(isFn(b), "Invalid argument #1, expected Vector2int16");
     return Vector2int16.new(self.X + b.X, self.Y + b.Y);
@@ -42,6 +46,14 @@ end
 function Vector2int16.__sub(self: Vector2int16, b: Vector2int16): Vector2int16
     assert(isFn(b), "Invalid argument #1, expected Vector2int16");
     return Vector2int16.new(self.X - b.X, self.Y - b.Y);
+end
+
+function Vector2int16.__mul(self: Vector2int16, b: number | Vector2int16): Vector2int16
+    if (type(b) == "number") then
+        return Vector2int16.new((self.X * b) // 1, (self.Y * b) // 1);
+    end
+    assert(isFn(b), "Invalid argument #1, expected number or Vector2int16");
+    return Vector2int16.new((self.X * b.X) // 1, (self.Y * b.Y) // 1);
 end
 
 local function Serialize(value: Vector2int16): (number, number)

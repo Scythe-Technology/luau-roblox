@@ -12,12 +12,11 @@ end
 
 local CACHE = setmetatable({}, {__mode = "v"});
 
--- TODO: use "vector" type instead of "any" when indexing .X, .Y, .Z doesn't cause an error
-local function getNan(vec: any): vector?
+local function getNan(vec: vector): vector?
     local res = vector.create(
-        if (vec.X ~= vec.X) then 1 else 0,
-        if (vec.Y ~= vec.Y) then 1 else 0,
-        if (vec.Z ~= vec.Z) then 1 else 0
+        if (vec.x ~= vec.x) then 1 else 0,
+        if (vec.y ~= vec.y) then 1 else 0,
+        if (vec.z ~= vec.z) then 1 else 0
     );
     if (vector.magnitude(res) > 0) then
         return res;
@@ -72,16 +71,21 @@ end
 
 Vector3.__index = function(self: Vector3, index: string): any
     if (type(index) == "string") then
-        if (index == "x" or index == "X") then
+        local lower = index:lower()
+        if (lower == "x") then
             return self._internal.X;
-        elseif (index == "y" or index == "Y") then
+        elseif (lower == "y") then
             return self._internal.Y;
-        elseif (index == "z" or index == "Z") then
+        elseif (lower == "z") then
             return self._internal.Z;
         end
         return Vector3[index];
     end
     return nil;
+end
+
+function Vector3.__unm(self: Vector3): Vector3
+    return newFromVec(-self._internal);
 end
 
 function Vector3.__add(self: Vector3, b: Vector3): Vector3
@@ -94,13 +98,28 @@ function Vector3.__sub(self: Vector3, b: Vector3): Vector3
     return newFromVec(self._internal - b._internal);
 end
 
-function Vector3.__unm(self: Vector3): Vector3
-    return newFromVec(-self._internal);
-end
-
-function Vector3.__mul(self: Vector3, b: Vector3): Vector3
+function Vector3.__mul(self: Vector3, b: Vector3 | number): Vector3
+    if (type(b) == "number") then
+        return newFromVec(self._internal * b);
+    end
     assert(isFn(b), "Invalid argument #1, expected Vector3");
     return newFromVec(self._internal * b._internal);
+end
+
+function Vector3.__div(self: Vector3, b: Vector3 | number): Vector3
+    if (type(b) == "number") then
+        return newFromVec(self._internal / b);
+    end
+    assert(isFn(b), "Invalid argument #1, expected Vector3");
+    return newFromVec(self._internal / b._internal);
+end
+
+function Vector3.__idiv(self: Vector3, b: Vector3 | number): Vector3
+    if (type(b) == "number") then
+        return newFromVec(self._internal // b);
+    end
+    assert(isFn(b), "Invalid argument #1, expected Vector3");
+    return newFromVec(self._internal // b._internal);
 end
 
 function Vector3.Abs(self: Vector3): Vector3

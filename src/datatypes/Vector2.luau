@@ -82,6 +82,30 @@ function Vector2.__sub(self: Vector2, b: Vector2): Vector2
     return newFromVec(self._internal - b._internal);
 end
 
+function Vector2.__mul(self: Vector2, b: number | Vector2): Vector2
+    if (type(b) == "number") then
+        return newFromVec(self._internal * b);
+    end
+    assert(isFn(b), "Invalid argument #1, expected number or Vector2");
+    return newFromVec(self._internal * b._internal);
+end
+
+function Vector2.__div(self: Vector2, b: number | Vector2): Vector2
+    if (type(b) == "number") then
+        return newFromVec(self._internal / b);
+    end
+    assert(isFn(b), "Invalid argument #1, expected number or Vector2");
+    return newFromVec(self._internal / b._internal);
+end
+
+function Vector2.__idiv(self: Vector2, b: number | Vector2): Vector2
+    if (type(b) == "number") then
+        return newFromVec(self._internal // b);
+    end
+    assert(isFn(b), "Invalid argument #1, expected number or Vector2");
+    return newFromVec(self._internal // b._internal);
+end
+
 local function Serialize(value: Vector2): (number, number)
     return value._internal.X, value._internal.Y;
 end

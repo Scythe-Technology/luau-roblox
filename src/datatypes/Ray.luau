@@ -16,6 +16,8 @@ end
 local CACHE = setmetatable({}, {__mode = "v"});
 
 function Ray.new(Origin: Vector3, Direction: Vector3): Ray
+    Origin = if (Origin :: any == nil) then Vector3.DataType.new(0, 0, 0) else Origin;
+    Direction = if (Direction :: any == nil) then Vector3.DataType.new(0, 0, 0) else Direction;
     assert(Vector3.Is(Origin), "invalid argument #1, expected Vector3");
     assert(Vector3.Is(Direction), "invalid argument #2, expected Vector3");
     local hash = Helper.ValuesHash(Origin, Direction);

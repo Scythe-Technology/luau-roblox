@@ -37,6 +37,10 @@ Vector3int16.__tostring = function(self: Vector3int16): string
     return `{self.X}, {self.Y}, {self.Z}`;
 end
 
+function Vector3int16.__unm(self: Vector3int16): Vector3int16
+    return Vector3int16.new(-self.X, -self.Y, -self.Z);
+end
+
 function Vector3int16.__add(self: Vector3int16, b: Vector3int16): Vector3int16
     assert(isFn(b), "Invalid argument #1, expected Vector3int16");
     return Vector3int16.new(self.X + b.X, self.Y + b.Y, self.Z + b.Z);
@@ -45,6 +49,14 @@ end
 function Vector3int16.__sub(self: Vector3int16, b: Vector3int16): Vector3int16
     assert(isFn(b), "Invalid argument #1, expected Vector3int16");
     return Vector3int16.new(self.X - b.X, self.Y - b.Y, self.Z - b.Z);
+end
+
+function Vector3int16.__mul(self: Vector3int16, b: number | Vector3int16): Vector3int16
+    if (type(b) == "number") then
+        return Vector3int16.new((self.X * b) // 1, (self.Y * b) // 1, (self.Z * b) // 1);
+    end
+    assert(isFn(b), "Invalid argument #1, expected number or Vector3int16");
+    return Vector3int16.new((self.X * b.X) // 1, (self.Y * b.Y) // 1, (self.Z * b.Z) // 1);
 end
 
 local function Serialize(value: Vector3int16): (number, number, number)
