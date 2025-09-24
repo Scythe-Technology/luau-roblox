@@ -1,12 +1,12 @@
 --!strict
-local Signal = require("../signal");
 local Attributes = require("../instance/attributes");
+local Event = require("../instance/event");
 local Tags = require("../instance/tags");
 
 local md5 = require("@polyfill").md5;
 
 local impl = {};
-impl.object = nil::any;
+impl.object = nil :: any;
 impl.default = {};
 impl.method = {};
 impl.property = {};
@@ -290,23 +290,16 @@ function impl.property.get.className(self: any)
     return self["@instance"].className;
 end
 
-local function eventGenerator(name: string)
-    return function(self: any)
-        local event = self["@events"][name];
-        if (not event) then
-            event = Signal.new();
-            self["@events"][name] = event;
-        end
-        return event;
-    end
+local function addEvent(name: string)
+    impl.property.get[name] = Event.generate(name);
 end
 
-impl.property.get.AncestryChanged = eventGenerator("AncestryChanged");
-impl.property.get.AttributeChanged = eventGenerator("AttributeChanged");
-impl.property.get.ChildAdded = eventGenerator("ChildAdded");
-impl.property.get.ChildRemoved = eventGenerator("ChildRemoved");
-impl.property.get.DescendantAdded = eventGenerator("DescendantAdded");
-impl.property.get.DescendantRemoving = eventGenerator("DescendantRemoving");
-impl.property.get.Destroying = eventGenerator("Destroying");
+addEvent("AncestryChanged");
+addEvent("AttributeChanged");
+addEvent("ChildAdded");
+addEvent("ChildRemoved");
+addEvent("DescendantAdded");
+addEvent("DescendantRemoving");
+addEvent("Destroying");
 
 return impl;
