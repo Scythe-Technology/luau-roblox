@@ -85,7 +85,7 @@ function mem.endsWith(haystack: buffer, needle: buffer): boolean
     return mem.eqlSlice(haystack, len - needle_len, needle, 0, needle_len)
 end
 
-function mem.indexOfScalarPos(haystack: buffer, offset: number, value: number): number?
+function mem.findScalarPos(haystack: buffer, offset: number, value: number): number?
     local byte = if type(value) == "string" then string.byte(value) else value % 256
     local len = buffer.len(haystack)
     if len == 0 then
@@ -99,11 +99,11 @@ function mem.indexOfScalarPos(haystack: buffer, offset: number, value: number): 
     return nil
 end
 
-function mem.indexOfScalar(haystack: buffer, value: number): number?
-    return mem.indexOfScalarPos(haystack, 0, value)
+function mem.findScalar(haystack: buffer, value: number): number?
+    return mem.findScalarPos(haystack, 0, value)
 end
 
-function mem.indexOfAnyPos(haystack: buffer, offset: number, needle: string | buffer): number?
+function mem.findAnyPos(haystack: buffer, offset: number, needle: string | buffer): number?
     local needle_buf: buffer = if type(needle) == "string" then buffer.fromstring(needle) else needle
     local len = buffer.len(haystack)
     local needle_len = buffer.len(needle_buf)
@@ -121,11 +121,11 @@ function mem.indexOfAnyPos(haystack: buffer, offset: number, needle: string | bu
     return nil
 end
 
-function mem.indexOfAny(haystack: buffer, needle: string | buffer): number?
-    return mem.indexOfAnyPos(haystack, 0, needle)
+function mem.findAny(haystack: buffer, needle: string | buffer): number?
+    return mem.findAnyPos(haystack, 0, needle)
 end
 
-function mem.indexOfPos(haystack: buffer, offset: number, needle: string | buffer): number?
+function mem.findPos(haystack: buffer, offset: number, needle: string | buffer): number?
     local needle_buf: buffer = if type(needle) == "string" then buffer.fromstring(needle) else needle
     local len = buffer.len(haystack)
     local needle_len = buffer.len(needle_buf)
@@ -143,8 +143,8 @@ function mem.indexOfPos(haystack: buffer, offset: number, needle: string | buffe
     return nil
 end
 
-function mem.indexOf(haystack: buffer, needle: string | buffer): number?
-    return mem.indexOfPos(haystack, 0, needle)
+function mem.find(haystack: buffer, needle: string | buffer): number?
+    return mem.findPos(haystack, 0, needle)
 end
 
 return mem;

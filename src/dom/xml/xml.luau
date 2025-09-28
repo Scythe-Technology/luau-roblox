@@ -54,7 +54,7 @@ local function parse(buf: buffer): Node?
     while (pos < len) do
         if (buffer.readu8(buf, pos) == 60) then -- '<'
             if (mem.eqlSlice(buf, pos + 1, "![CDATA[", 0, 8)) then -- CDATA
-                local end_pos = mem.indexOfPos(buf, pos + 9, "]]>");
+                local end_pos = mem.findPos(buf, pos + 9, "]]>");
                 if (end_pos) then
                     local text = buffer.readstring(buf, pos + 9, end_pos - pos - 9);
                     if (#parent_stack > 0) then
@@ -67,27 +67,27 @@ local function parse(buf: buffer): Node?
                     error("unclosed CDATA")
                 end
             elseif (mem.eqlSlice(buf, pos + 1, "!--", 0, 3)) then -- Comment
-                local end_pos = mem.indexOfPos(buf, pos + 4, "-->");
+                local end_pos = mem.findPos(buf, pos + 4, "-->");
                 if end_pos then
                     pos = end_pos + 3;
                 else
                     error("unclosed comment");
                 end
             else -- Tag
-                local tag_end = assert(mem.indexOfAnyPos(buf, pos + 1, "\32>"), "invalid tag");
+                local tag_end = assert(mem.findAnyPos(buf, pos + 1, "\32>"), "invalid tag");
                 local tag_name = buffer.readstring(buf, pos + 1, tag_end - pos - 1);
                 local is_closing = string.sub(tag_name, 1, 1) == '/';
                 if (is_closing) then
                     tag_name = string.sub(tag_name, 2);
                     assert(#parent_stack > 0 and parent_stack[#parent_stack].tag == tag_name, `mismatched closing tag: {tag_name}`);
                     local node = assert(table.remove(parent_stack), "unreachable");
-                    local close_pos = assert(mem.indexOfScalarPos(buf, tag_end, string.byte('>')), "invalid closing tag");
+                    local close_pos = assert(mem.findScalarPos(buf, tag_end, string.byte('>')), "invalid closing tag");
                     pos = close_pos + 1;
                     if (type(node.children) == "table" and #node.children == 0) then
                         node.children = "";
                     end
                 else -- Opening tag
-                    local attr_end = assert(mem.indexOfScalarPos(buf, tag_end, string.byte('>')), "invalid tag");
+                    local attr_end = assert(mem.findScalarPos(buf, tag_end, string.byte('>')), "invalid tag");
                     local attr_str = buffer.readstring(buf, tag_end + 1, attr_end - tag_end);
                     local indep_closing = string.sub(attr_str, -1) == '/';
                     if (indep_closing) then
@@ -112,7 +112,7 @@ local function parse(buf: buffer): Node?
                 end
             end
         else -- Text content
-            local text_end = mem.indexOfScalarPos(buf, pos, string.byte('<')) or len + 1;
+            local text_end = mem.findScalarPos(buf, pos, string.byte('<')) or len + 1;
             local content = buffer.readstring(buf, pos, text_end - pos);
             local text = string.gsub((string.gsub(content, "^%s+", '')), "%s+$", '');
             if (text ~= '' and #parent_stack > 0) then
