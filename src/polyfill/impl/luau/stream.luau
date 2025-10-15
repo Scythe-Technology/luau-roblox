@@ -138,21 +138,6 @@ function BufferStream.readf64(self: BufferStream): number
     return value;
 end
 
-function BufferStream.readstring(self: BufferStream): string
-    local len = buffer.readu32(self.buffer, self.position);
-    self.position += 4;
-    local value = buffer.readstring(self.buffer, self.position, len);
-    self.position += len;
-    return value;
-end
-
-function BufferStream.readbuffer(self: BufferStream, len: number): buffer
-    local copy = buffer.create(len);
-    buffer.copy(copy, 0, self.buffer, self.position, len);
-    self.position += len;
-    return copy;
-end
-
 function BufferStream.write(self: BufferStream, value: string | buffer)
     if (type(value) == "string") then
         buffer.writestring(self.buffer, self.position, value)

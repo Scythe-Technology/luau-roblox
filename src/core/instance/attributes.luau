@@ -6,7 +6,7 @@ local Stream = polyfill.stream;
 local Sink = polyfill.sink;
 local datatypes = require("../../datatypes");
 
-type BufferStream = polyfill.BufferStream;
+type IoReadable = polyfill.IoReadable;
 
 local function size(t: {[any]: any}): number
     local c = 0;
@@ -166,62 +166,62 @@ local MatricesMap = {
 }
 
 local TYPE_DECODER = {
-    [VARIENTS.Unknown] = function(stream: BufferStream): any
+    [VARIENTS.Unknown] = function(reader: IoReadable): any
         error("Unknown Property Type not supported.")
     end,
-    [VARIENTS.String] = function(stream: BufferStream): any
-        return stream:readstring();
+    [VARIENTS.String] = function(reader: IoReadable): any
+        return reader:read(reader:readu32(), false);
     end,
-    [VARIENTS.Bool] = function(stream: BufferStream): any
-        return stream:readu8() ~= 0;
+    [VARIENTS.Bool] = function(reader: IoReadable): any
+        return reader:readu8() ~= 0;
     end,
-    [VARIENTS.Int] = function(stream: BufferStream): any
-        return stream:readi32();
+    [VARIENTS.Int] = function(reader: IoReadable): any
+        return reader:readi32();
     end,
-    [VARIENTS.Float] = function(stream: BufferStream): any
-        return stream:readf32();
+    [VARIENTS.Float] = function(reader: IoReadable): any
+        return reader:readf32();
     end,
-    [VARIENTS.Double] = function(stream: BufferStream): any
-        return stream:readf64();
+    [VARIENTS.Double] = function(reader: IoReadable): any
+        return reader:readf64();
     end,
-    [VARIENTS.UDim] = function(stream: BufferStream): any
-        return datatypes.UDim.Deserialize(stream:readf32(), stream:readi32());
+    [VARIENTS.UDim] = function(reader: IoReadable): any
+        return datatypes.UDim.Deserialize(reader:readf32(), reader:readi32());
     end,
-    [VARIENTS.UDim2] = function(stream: BufferStream): any
-        return datatypes.UDim2.Deserialize(stream:readf32(), stream:readi32(), stream:readf32(), stream:readi32());
+    [VARIENTS.UDim2] = function(reader: IoReadable): any
+        return datatypes.UDim2.Deserialize(reader:readf32(), reader:readi32(), reader:readf32(), reader:readi32());
     end,
-    [VARIENTS.BrickColor] = function(stream: BufferStream): any
-        return datatypes.BrickColor.Deserialize(stream:readu32());
+    [VARIENTS.BrickColor] = function(reader: IoReadable): any
+        return datatypes.BrickColor.Deserialize(reader:readu32());
     end,
-    [VARIENTS.Color3] = function(stream: BufferStream): any
-        return datatypes.Color3.Deserialize(stream:readf32(), stream:readf32(), stream:readf32(), false);
+    [VARIENTS.Color3] = function(reader: IoReadable): any
+        return datatypes.Color3.Deserialize(reader:readf32(), reader:readf32(), reader:readf32(), false);
     end,
-    [VARIENTS.Vector2] = function(stream: BufferStream): any
-        return datatypes.Vector2.Deserialize(stream:readf32(), stream:readf32());
+    [VARIENTS.Vector2] = function(reader: IoReadable): any
+        return datatypes.Vector2.Deserialize(reader:readf32(), reader:readf32());
     end,
-    [VARIENTS.Vector3] = function(stream: BufferStream): any
-        return datatypes.Vector3.Deserialize(stream:readf32(), stream:readf32(), stream:readf32());
+    [VARIENTS.Vector3] = function(reader: IoReadable): any
+        return datatypes.Vector3.Deserialize(reader:readf32(), reader:readf32(), reader:readf32());
     end,
-    [VARIENTS.CFrame] = function(stream: BufferStream): any
-        local x = stream:readf32();
-        local y = stream:readf32();
-        local z = stream:readf32();
-        local orient_id = stream:readu8();
+    [VARIENTS.CFrame] = function(reader: IoReadable): any
+        local x = reader:readf32();
+        local y = reader:readf32();
+        local z = reader:readf32();
+        local orient_id = reader:readu8();
         local rotation;
         if (orient_id > 0) then
             rotation = MatricesMap[orient_id] or error("Unknown CFrame Rotation Id");
         else
             rotation = {
-                stream:readf32(), stream:readf32(), stream:readf32(),
-                stream:readf32(), stream:readf32(), stream:readf32(),
-                stream:readf32(), stream:readf32(), stream:readf32(),
+                reader:readf32(), reader:readf32(), reader:readf32(),
+                reader:readf32(), reader:readf32(), reader:readf32(),
+                reader:readf32(), reader:readf32(), reader:readf32(),
             };
         end
         return datatypes.CFrame.Deserialize(x, y, z, unpack(rotation));
     end,
-    [VARIENTS.Enum] = function(stream: BufferStream): any
-        local enum_type = stream:readstring();
-        local value = stream:readu32();
+    [VARIENTS.Enum] = function(reader: IoReadable): any
+        local enum_type = reader:read(reader:readu32(), false);
+        local value = reader:readu32();
         local enum = datatypes.Enums.DataType[enum_type];
         if (not enum) then
             error(`Unknown Enum type: '{enum_type}'`);
@@ -229,50 +229,50 @@ local TYPE_DECODER = {
         local items = enum:GetEnumItems();
         return (assert(items[value], `Invalid EnumArrayId: {value} ({enum_type})`));
     end,
-    [VARIENTS.ColorSequence] = function(stream: BufferStream): any
-        local keys = stream:readu32();
+    [VARIENTS.ColorSequence] = function(reader: IoReadable): any
+        local keys = reader:readu32();
         local points = table.create(keys);
         for j = 1, keys do
-            local envelope = stream:readf32();
-            local time = stream:readf32();
-            local r = stream:readf32();
-            local g = stream:readf32();
-            local b = stream:readf32();
+            local envelope = reader:readf32();
+            local time = reader:readf32();
+            local r = reader:readf32();
+            local g = reader:readf32();
+            local b = reader:readf32();
             points[j] = datatypes.ColorSequenceKeypoint.Deserialize(
                 time, datatypes.Color3.Deserialize(r, g, b, false), envelope
             );
         end
         return datatypes.ColorSequence.Deserialize(points);
     end,
-    [VARIENTS.NumberRange] = function(stream: BufferStream): any
-        return datatypes.NumberRange.Deserialize(stream:readf32(), stream:readf32());
+    [VARIENTS.NumberRange] = function(reader: IoReadable): any
+        return datatypes.NumberRange.Deserialize(reader:readf32(), reader:readf32());
     end,
-    [VARIENTS.Rect] = function(stream: BufferStream): any
+    [VARIENTS.Rect] = function(reader: IoReadable): any
         return datatypes.Rect.Deserialize(
-            stream:readf32(),
-            stream:readf32(),
-            stream:readf32(),
-            stream:readf32()
+            reader:readf32(),
+            reader:readf32(),
+            reader:readf32(),
+            reader:readf32()
         );
     end,
-    [VARIENTS.NumberSequence] = function(stream: BufferStream): any
-        local keys = stream:readu32();
+    [VARIENTS.NumberSequence] = function(reader: IoReadable): any
+        local keys = reader:readu32();
         local points = table.create(keys);
         for j = 1, keys do
-            local time = stream:readf32();
-            local value = stream:readf32();
-            local envelope = stream:readf32();
+            local time = reader:readf32();
+            local value = reader:readf32();
+            local envelope = reader:readf32();
             points[j] = datatypes.NumberSequenceKeypoint.Deserialize(
                 time, value, envelope
             );
         end
         return datatypes.NumberSequence.Deserialize(points);
     end,
-    [VARIENTS.Font] = function(stream: BufferStream): any
-        local weight = stream:readu16();
-        local style = stream:readu8();
-        local family = stream:readstring();
-        local cache_id = stream:readstring();
+    [VARIENTS.Font] = function(reader: IoReadable): any
+        local weight = reader:readu16();
+        local style = reader:readu8();
+        local family = reader:read(reader:readu32(), false);
+        local cache_id = reader:read(reader:readu32(), false);
         return datatypes.Font.Deserialize(family, weight, style, cache_id);
     end,
 };
@@ -404,21 +404,22 @@ local function decodeAttributes(value: string): {[string]: any}
     if (not stream:canRead(4)) then
         return {};
     end
-    local len = stream:readu32();
+    local reader = stream:reader();
+    local len = reader:readu32();
     local attributes = {};
     for i = 1, len do
-        local key = stream:readstring();
+        local key = reader:read(reader:readu32(), false);
         if (not validateAttributeKey(key)) then
             error(`Attribute Name: "{key}" contains illegal characters`);
         end
-        local type_id = stream:readu8();
+        local type_id = reader:readu8();
         local decoder = TYPE_DECODER[type_id];
         if (not decoder) then
             error(`Unknown Attribute Value Type: ({type_id}) for key '{key}'`);
         end
         attributes[key] = {
             type = type_id,
-            value = decoder(stream),
+            value = decoder(reader),
         };
     end
     return attributes;
