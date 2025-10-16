@@ -290,7 +290,7 @@ local PropertySerializerMap: {[string]: (Property) -> xml.Node} = {
     end,
     ["PhysicalProperties"] = function(value: Property): xml.Node
         if (value.value) then
-            local density, friction, elasticity, frictionWeight, elasticityWeight = datatypes.PhysicalProperties.Serialize(value.value);
+            local density, friction, elasticity, frictionWeight, elasticityWeight, acousticAbsorption = datatypes.PhysicalProperties.Serialize(value.value);
             return {
                 tag = "PhysicalProperties",
                 attributes = {},
@@ -301,6 +301,7 @@ local PropertySerializerMap: {[string]: (Property) -> xml.Node} = {
                     newStringNode("Elasticity", tostring(elasticity));
                     newStringNode("FrictionWeight", tostring(frictionWeight));
                     newStringNode("ElasticityWeight", tostring(elasticityWeight));
+                    newStringNode("AcousticAbsorption", tostring(acousticAbsorption));
                 },
             }
         end
@@ -826,7 +827,8 @@ local PropertyDeserializerMap = {
             local elasticity = tonumber(readNode(prop, "Elasticity")) or error("failed to parse float");
             local frictionWeight = tonumber(readNode(prop, "FrictionWeight")) or error("failed to parse float");
             local elasticityWeight = tonumber(readNode(prop, "ElasticityWeight")) or error("failed to parse float");
-            value = datatypes.PhysicalProperties.Deserialize(density, friction, elasticity, frictionWeight, elasticityWeight);
+            local acousticAbsorption = tonumber(readAnyNode(prop, "AcousticAbsorption") or 1) or error("failed to parse float");
+            value = datatypes.PhysicalProperties.Deserialize(density, friction, elasticity, frictionWeight, elasticityWeight, acousticAbsorption);
         end
         return {
             type = roblox.PropertyTypes.PhysicalProperties,

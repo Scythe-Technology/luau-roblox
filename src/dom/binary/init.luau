@@ -588,13 +588,16 @@ local PropertySerializerMap = {
         -- stream:expandToSize(stream.position + #values); -- preallocate (under-estimate)
         for i, value in values do
             if (value.value) then
-                local density, friction, elasticity, friction_weight, elasticity_weight = datatypes.PhysicalProperties.Serialize(value.value);
-                stream:writeu8(1);
+                local density, friction, elasticity, friction_weight, elasticity_weight, acoustic_absorption = datatypes.PhysicalProperties.Serialize(value.value);
+                stream:writeu8(if (acoustic_absorption ~= 1) then 0b11 else 0b01);
                 stream:writef32(density);
                 stream:writef32(friction);
                 stream:writef32(elasticity);
                 stream:writef32(friction_weight);
                 stream:writef32(elasticity_weight);
+                if (acoustic_absorption ~= 1) then
+                    stream:writef32(acoustic_absorption);
+                end
             else
                 stream:writeu8(0);
             end
@@ -1344,20 +1347,22 @@ local PropertyDeserializerMap = {
     [RobloxPropertyType.PhysicalProperties] = function(values: {any}, property_name: string, stream: polyfill.IoReadable)
         local len = #values;
         for i = 1, len do
-            local exists = stream:readu8() ~= 0;
+            local mode = stream:readu8();
             local value = nil;
-            if (exists) then
+            if (mode == 0b01 or mode == 0b11) then
                 local density = stream:readf32();
                 local friction = stream:readf32();
                 local elasticity = stream:readf32();
                 local friction_weight = stream:readf32();
                 local elasticity_weight = stream:readf32();
+                local acoustic_absorption = if (mode == 0b11) then stream:readf32() else 1;
                 value = datatypes.PhysicalProperties.Deserialize(
                     density,
                     friction,
                     elasticity,
                     friction_weight,
-                    elasticity_weight
+                    elasticity_weight,
+                    acoustic_absorption
                 );
             end
             values[i] = value;
