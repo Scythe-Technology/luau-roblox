@@ -12,9 +12,8 @@ local function Alias(name: string)
                 return;
             end
             local props = self["@instance"].properties;
-            if (props[from] and not props[name]) then
+            if (props[from]) then
                 props[name] = props[from]
-                props[from] = nil;
             end
         end,
         get = function(self: object.object, from: string): any
@@ -22,6 +21,36 @@ local function Alias(name: string)
         end,
         set = function(self: object.object, from: string, value: any): ()
             self[name] = value; -- use set handler
+            self[from] = value;
+        end,
+    }
+end
+
+local function Coloru8Migrate(name: string)
+    return {
+        loader = function(self: object.object, from: string, property: any?)
+            if (not property) then
+                return;
+            end
+            local props = self["@instance"].properties;
+            if (props[from]) then
+                assert(props[from].type == roblox.PropertyTypes.Color3, "Failure to migrate to Color when source is not a Color3uint8");
+                if (not props[name]) then
+                    props[name] = {
+                        type = roblox.PropertyTypes.Color3uint8,
+                    }
+                end
+                props[name].value = props[from].value;
+                props[from] = nil;
+            end
+        end,
+        get = function(self: object.object, from: string): any
+            local Color: datatypes.Color3 = self["@instance"].properties[name].value;
+            return Color;
+        end,
+        set = function(self: object.object, from: string, value: any): ()
+            assert(datatypes.Color3.Is(value), "Cannot set non-Color3 value to a Color-migrated property");
+            self[name] = value;
         end,
     }
 end
@@ -33,10 +62,14 @@ local function ContentMigrate(name: string)
                 return;
             end
             local props = self["@instance"].properties;
-            if (props[from] and not props[name]) then
+            if (props[from]) then
                 assert(props[from].type == roblox.PropertyTypes.String, "Failure to migrate to Content when source is not a string");
-                props[name] = datatypes.Content.Deserialize(Enum.ContentSourceType.Uri.Value, props[from].value, nil);
-                props[from] = nil;
+                if (not props[name]) then
+                    props[name] = {
+                        type = roblox.PropertyTypes.Content,
+                    }
+                end
+                props[name].value = datatypes.Content.Deserialize(Enum.ContentSourceType.Uri.Value, props[from].value, nil);
             end
         end,
         get = function(self: object.object, from: string): any
@@ -49,6 +82,13 @@ local function ContentMigrate(name: string)
         set = function(self: object.object, from: string, value: any): ()
             assert(type(value) == "string", "Cannot set non-string value to a Content-migrated property");
             self[name] = datatypes.Content.Deserialize(Enum.ContentSourceType.Uri.Value, value, nil);
+            local props = self["@instance"].properties;
+            if (not props[from]) then
+                props[from] = {
+                    type = roblox.PropertyTypes.String,
+                }
+            end
+            props[from].value = value;
         end,
     }
 end
@@ -233,7 +273,7 @@ return {
     BasePart = {
         brickColor = BrickColorMigrate "Color",
         BrickColor = BrickColorMigrate "Color",
-        Color3uint8 = Alias "Color",
+        Color = Coloru8Migrate "Color3uint8",
         size = Alias "Size",
     },
     FormFactorPart = {

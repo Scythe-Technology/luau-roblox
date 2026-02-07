@@ -173,8 +173,7 @@ function manager.domFromInstances(
                         local data = property.value;
                         local hash_base64 = cached_sharedstrings[data];
                         if (not hash_base64) then
-                            local hash = blake2.b128(data);
-                            hash_base64 = base64.encode(hash);
+                            hash_base64 = blake2.b128(data, "base64");
                             cached_sharedstrings[data] = hash_base64;
                         end
                         sharedstrings[hash_base64] = data;

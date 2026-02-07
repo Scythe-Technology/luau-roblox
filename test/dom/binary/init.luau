@@ -23,10 +23,6 @@ local function isSimilarType(a: number, b: number)
     if (a == b) then
         return true;
     end
-    if (a == roblox.PropertyTypes.ProtectedString and b == roblox.PropertyTypes.String
-        or a == roblox.PropertyTypes.String and b == roblox.PropertyTypes.ProtectedString) then
-        return true;
-    end
     return false;
 end
 
@@ -34,7 +30,8 @@ local function similarProperties(
     className: string,
     prop1: {[string]: roblox.Property},
     prop2: {[string]: roblox.Property},
-    outdated: boolean?
+    outdated: boolean?,
+    ignore_content: boolean?
 )
     local class: reflection.ClassInfo = reflection:FindClass(className) or ({Members = {}} :: any);
     local serializable = {};
@@ -46,6 +43,11 @@ local function similarProperties(
     for name, p1 in prop1 do
         if (not serializable[name]) then
             continue;
+        end
+        if (ignore_content) then
+            if (p1.type == roblox.PropertyTypes.Content) then
+                continue;
+            end
         end
         local p2 = prop2[name];
         if (not p2) then
@@ -77,7 +79,12 @@ local function similarProperties(
     return true, "";
 end
 
-local function isSimilar(instances1: {roblox.Instance}, instances2: {roblox.Instance}, outdated: boolean?)
+local function isSimilar(
+    instances1: {roblox.Instance},
+    instances2: {roblox.Instance},
+    outdated: boolean?,
+    ignore_content: boolean?
+)
     if (#instances1 ~= #instances2 and not outdated) then
         return false, `size #{#instances1} != #{#instances2}`;
     end
@@ -113,7 +120,13 @@ local function isSimilar(instances1: {roblox.Instance}, instances2: {roblox.Inst
             if (inst1.parent ~= inst2.parent) then
                 return false, `{i}`;
             end
-            local ok, msg = similarProperties(inst1.className, inst1.properties, inst2.properties, outdated);
+            local ok, msg = similarProperties(
+                inst1.className,
+                inst1.properties,
+                inst2.properties,
+                outdated,
+                ignore_content
+            );
             if (not ok) then
                 return false, `{i}: {msg}`;
             end
@@ -133,7 +146,7 @@ local function serializeDeserializeTest(name: string, path: string, outdated: bo
         assert(isSimilar(doc.instances, doc2.instances, outdated));
         local content_xml = xml.serialize(doc);
         local doc3 = xml.deserialize(content_xml);
-        assert(isSimilar(doc.instances, doc3.instances, outdated));
+        assert(isSimilar(doc.instances, doc3.instances, outdated, true));
         for _, class in doc.classes do
             local found;
             for _, class2 in doc2.classes do

@@ -5,10 +5,10 @@
 return {
     base64 = zune.serde.base64,
     blake2 = {
-        b128 = function(input)
+        b128 = function(input, encoding: ("hex" | "base64")?): buffer | string
             local hash = zune.crypto.createHash("blake2b128");
             hash:update(input);
-            return hash:digest("hex");
+            return hash:digest(encoding or "binary");
         end
     },
     datetime = require("@self/datetime"),

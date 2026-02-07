@@ -474,7 +474,7 @@ local function HashDigest(InputData: buffer, OutputLength: number, KeyData: buff
 	return string.sub(FinalDigest, 1, OutputLength * 2), Digest
 end
 
-local function BLAKE2b(InputData: buffer, OutputLength: number?, KeyData: buffer?): string
+local function BLAKE2b(InputData: buffer, OutputLength: number?, KeyData: buffer?): (string, buffer)
 	if InputData == nil then
 		error("InputData cannot be nil", 2)
 	end
@@ -515,8 +515,15 @@ local function BLAKE2b(InputData: buffer, OutputLength: number?, KeyData: buffer
 	return HashDigest(InputData, OutputLength or DEFAULT_OUTPUT_BYTES, KeyData)
 end
 
+local base64 = require("./base64")
 return {
-	b128 = function(input: buffer | string): string
-		return BLAKE2b(if (typeof(input) == "buffer") then input else buffer.fromstring(input), 16)
+	b128 = function(input: buffer | string, encoding: ("hex" | "base64")?): buffer | string
+		local hex, digest = BLAKE2b(if (typeof(input) == "buffer") then input else buffer.fromstring(input), 16)
+		if (encoding == "hex") then
+			return hex
+		elseif (encoding == "base64") then
+			return base64.encode(digest);
+		end
+		return digest
 	end,
 }::any;

@@ -605,13 +605,18 @@ local PropertySerializerMap = {
     end,
     [RobloxPropertyType.Color3uint8] = function(values: {Property}, stream: polyfill.IoWritable)
         -- stream:expandToSize(stream.position + (#values * 3)); -- preallocate
+        local rs = buffer.create(#values);
+        local gs = buffer.create(#values);
+        local bs = buffer.create(#values);
         for i, value in values do
             local r, g, b = datatypes.Color3.Serialize(value.value, true);
-
-            stream:writeu8(r);
-            stream:writeu8(g);
-            stream:writeu8(b);
+            buffer.writeu8(rs, i - 1, r);
+            buffer.writeu8(gs, i - 1, g);
+            buffer.writeu8(bs, i - 1, b);
         end
+        stream:write(rs);
+        stream:write(gs);
+        stream:write(bs);
     end,
     [RobloxPropertyType.Int64] = function(values: {Property}, stream: polyfill.IoWritable)
         local list = table.create(#values);
@@ -626,12 +631,6 @@ local PropertySerializerMap = {
             keys[i] = value.value - 1;
         end
         stream:write(WriteInterleavedu32(keys));
-    end,
-    [RobloxPropertyType.ProtectedString] = function(values: {Property}, stream: polyfill.IoWritable)
-        for i, value in values do
-            stream:writeu32(buffer.len(value.value));
-            stream:write(value.value);
-        end
     end,
     [RobloxPropertyType.OptionalCFrame] = function(values: {Property}, stream: polyfill.IoWritable)
         cframeSerializer(RobloxPropertyType.OptionalCFrame, values, stream);
@@ -1370,10 +1369,13 @@ local PropertyDeserializerMap = {
     end,
     [RobloxPropertyType.Color3uint8] = function(values: {any}, property_name: string, stream: polyfill.IoReadable)
         local len = #values;
+        local rs = stream:read(len, true);
+        local gs = stream:read(len, true);
+        local bs = stream:read(len, true);
         for i = 0, len - 1 do
-            local r = stream:readu8();
-            local g = stream:readu8();
-            local b = stream:readu8();
+            local r = buffer.readu8(rs, i);
+            local g = buffer.readu8(gs, i);
+            local b = buffer.readu8(bs, i);
             values[i + 1] = datatypes.Color3.Deserialize(r, g, b, true);
         end
     end,
@@ -1389,13 +1391,6 @@ local PropertyDeserializerMap = {
         local keys = ReadInterleavedu32(stream, len);
         for i = 1, len do
             values[i] = keys[i] + 1;
-        end
-    end,
-    [RobloxPropertyType.ProtectedString] = function(values: {any}, property_name: string, stream: polyfill.IoReadable)
-        local len = #values;
-        for i = 1, len do
-            local size = stream:readu32();
-            values[i] = stream:read(size, true);
         end
     end,
     [RobloxPropertyType.OptionalCFrame] = function(values: {any}, property_name: string, stream: polyfill.IoReadable)
@@ -1667,8 +1662,7 @@ local DeserializerMap = {
         for i = 1, hash_len do
             chunk_stream:seekBy(16);
             local data = reader:read(reader:readu32(), false);
-            local hash = blake2.b128(data);
-            local hash_base64 = base64.encode(hash);
+            local hash_base64 = blake2.b128(data, "base64");
             assert(document.__sharedstrings_id)
             table.insert(document.__sharedstrings_id, hash_base64);
             document.sharedstrings[hash_base64] = data;

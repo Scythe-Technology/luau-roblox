@@ -566,19 +566,6 @@ local SET_MAP = {
         end
         prop.value = value;
     end,
-    [dom.roblox.PropertyTypes.ProtectedString] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
-        if (type(value) ~= "string" and type(value) ~= "buffer") then
-            error(`Unable to assign property {propertyName}. string expected, got {gettypeof(value)}`);
-        end
-        local copy: buffer;
-        if (type(value) == "string") then
-            copy = buffer.fromstring(value);
-        else
-            copy = buffer.create(buffer.len(value));
-            buffer.copy(value, 0, copy, 0);
-        end
-        prop.value = copy;
-    end,
     [dom.roblox.PropertyTypes.OptionalCFrame] = function(prop: dom.DOMProperty, value: any, _: string, propertyName: string): ()
         if (value ~= nil and not dom_datatypes.CFrame.Is(value)) then
             error(`Unable to assign property {propertyName}. CFrame or nil expected, got {gettypeof(value)}`);

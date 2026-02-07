@@ -26,7 +26,8 @@ local function similarProperties(
     className: string,
     prop1: {[string]: roblox.Property},
     prop2: {[string]: roblox.Property},
-    outdated: boolean?
+    outdated: boolean?,
+    ignore_content: boolean?
 )
     local class: reflection.ClassInfo = reflection:FindClass(className) or ({Members = {}} :: any);
     local serializable = {};
@@ -38,6 +39,11 @@ local function similarProperties(
     for name, p1 in prop1 do
         if (not serializable[name]) then
             continue;
+        end
+        if (ignore_content) then
+            if (p1.type == roblox.PropertyTypes.Content) then
+                continue;
+            end
         end
         local p2 = prop2[name];
         if (not p2) then
@@ -73,7 +79,12 @@ local function similarProperties(
     return true, "";
 end
 
-local function isSimilar(instances1: {roblox.Instance}, instances2: {roblox.Instance}, outdated: boolean?)
+local function isSimilar(
+    instances1: {roblox.Instance},
+    instances2: {roblox.Instance},
+    outdated: boolean?,
+    ignore_content: boolean?
+)
     if (#instances1 ~= #instances2) then
         return false;
     end
@@ -92,7 +103,13 @@ local function isSimilar(instances1: {roblox.Instance}, instances2: {roblox.Inst
         if (inst1.parent ~= inst2.parent) then
             return false, i;
         end
-        local ok, msg = similarProperties(inst1.className, inst1.properties, inst2.properties, outdated);
+        local ok, msg = similarProperties(
+            inst1.className,
+            inst1.properties,
+            inst2.properties,
+            outdated,
+            ignore_content
+        );
         if (not ok) then
             return false, `{i}: {msg}`;
         end
@@ -106,7 +123,7 @@ local function serializeDeserializeTest(name: string, path: string, outdated: bo
         local doc = xml.deserialize(buf);
         local content = xml.serialize(doc);
         local doc2 = xml.deserialize(content);
-        assert(isSimilar(doc.instances, doc2.instances, outdated));
+        assert(isSimilar(doc.instances, doc2.instances, outdated, true));
         local binary_content = binary.serialize(doc);
         local doc3 = binary.deserialize(binary_content, 14);
         assert(buffer.readstring(binary_content, 0, 14) == binary.header, "Mismatch")

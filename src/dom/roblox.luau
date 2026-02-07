@@ -75,7 +75,6 @@ local PROPERTY_TYPES = {
     Color3uint8 = 26,
     Int64 = 27,
     SharedString = 28,
-    ProtectedString = 29,
     OptionalCFrame = 30,
     UniqueId = 31,
     Font = 32,

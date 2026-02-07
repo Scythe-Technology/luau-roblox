@@ -330,7 +330,7 @@ local PropertySerializerMap: {[string]: (Property) -> xml.Node} = {
             tag = "ProtectedString",
             attributes = {},
             cdata = true,
-            children = if (value.type == roblox.PropertyTypes.ProtectedString) then buffer.tostring(value.value) else value.value,
+            children = value.value,
         };
     end,
     ["OptionalCoordinateFrame"] = function(value: Property): xml.Node
@@ -451,6 +451,9 @@ local function serialize(doc: Document): buffer
         for name, prop in instance.properties do
             local class = assert(reflection:GetClass(instance.className), `Missing class {instance.className}`);
             local member = assert(findPropertyFromClass(class, name), `Missing property {name} in class {instance.className}`);
+            if (not member.Serialization.CanSave) then
+                continue;
+            end
             if (member.ValueType.Category == "Class") then
                 if (prop.value and not doc.instances[prop.value]) then
                     error(`Instance {i} has property '{name}' referencing missing instance '{prop.value}'`);
@@ -460,7 +463,7 @@ local function serialize(doc: Document): buffer
                     attributes = {
                         ["name"] = name,
                     },
-                    children = `{if (prop.value) then `RBX{blake2.b128(`{prop.value}`):upper()}` else "null"}`,
+                    children = `{if (prop.value) then `RBX{blake2.b128(`{prop.value}`, "hex"):upper()}` else "null"}`,
                 };
                 table.insert(properties.children :: any, node);
             elseif (member.ValueType.Category == "Enum") then
@@ -483,6 +486,19 @@ local function serialize(doc: Document): buffer
                     };
                     table.insert(properties.children :: any, node);
                     continue;
+                elseif (member.ValueType.Name == "NetAssetRef") then
+                    local node = {
+                        tag = "NetAssetRef",
+                        attributes = {
+                            name = name,
+                        },
+                        children = prop.value,
+                    };
+                    table.insert(properties.children :: any, node);
+                    continue;
+                end
+                if (member.ValueType.Name == "Content") then
+                    continue; -- ContentId is serialized instead
                 end
                 local serializer = PropertySerializerMap[member.ValueType.Name] or error(`No serializer for property type {member.ValueType.Name}`);
                 local node = serializer(prop);
@@ -494,7 +510,7 @@ local function serialize(doc: Document): buffer
             tag = "Item",
             attributes = {
                 ["class"] = instance.className,
-                ["referent"] = `RBX{blake2.b128(`{i}`):upper()}`,
+                ["referent"] = `RBX{blake2.b128(`{i}`, "hex"):upper()}`,
             },
             children = {
                 properties
@@ -868,8 +884,8 @@ local PropertyDeserializerMap = {
     ["ProtectedString"] = function(inst: roblox.Instance, prop: xml.Node): roblox.Property
         assert(type(prop.children) == "string", "property without text");
         return {
-            type = roblox.PropertyTypes.ProtectedString,
-            value = buffer.fromstring(prop.children),
+            type = roblox.PropertyTypes.String,
+            value = prop.children,
         }
     end,
     ["OptionalCoordinateFrame"] = function(inst: roblox.Instance, prop: xml.Node): roblox.Property
@@ -1098,7 +1114,17 @@ local function deserialize(slice: buffer): Document
                                 value = prop_node.children,
                             }
                             if (not sharedstrings[prop_node.children]) then
-                                error(`{DES_TAG} Missing sharedstring '{prop_node.children}' ('{instance.className}.{prop_name}')`);
+                                error(`{DES_TAG} Missing SharedString '{prop_node.children}' ('{instance.className}.{prop_name}')`);
+                            end
+                            continue
+                        elseif (decoder_name == "NetAssetRef") then
+                            assert(type(prop_node.children) == "string", "NetAssetRef property without text");
+                            instance.properties[prop_name] = {
+                                type = roblox.PropertyTypes.SharedString,
+                                value = prop_node.children,
+                            }
+                            if (not sharedstrings[prop_node.children]) then
+                                error(`{DES_TAG} Missing NetAssetRef '{prop_node.children}' ('{instance.className}.{prop_name}')`);
                             end
                             continue
                         end
