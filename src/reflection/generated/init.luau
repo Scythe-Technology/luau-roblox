@@ -102,6 +102,6 @@ export type ApiDump = {
 }
 
 return {
-    Version = "0.691.0.6910867",
+    Version = "0.707.0.7070728",
     ApiDump = require("@self/api-dump") :: any,
 }
