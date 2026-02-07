@@ -1,12 +1,14 @@
 local dom = require("@self/dom");
 local manager = require("@self/core/manager");
 local reflection = require("@self/reflection");
+local polyfill = require("@polyfill");
 
 local module = {};
 
 module.dom = dom;
 module.manager = manager;
 module.reflection = reflection;
+module.polyfill = polyfill;
 
 function module.deserializePlace(contents: string | buffer)
     local content = if (type(contents) == "string") then buffer.fromstring(contents) else contents;
