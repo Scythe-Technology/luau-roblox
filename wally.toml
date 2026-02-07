@@ -1,0 +1,11 @@
+[package]
+name = "scythe-technology/luau-roblox"
+description = "A Luau library to manipulate Roblox place and model files"
+version = "0.0.0"
+license = "MIT"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+exclude = ["**"]
+include = ["src", "src/**", "default.project.json", "LICENSE", "wally.toml"]
+
+[dependencies]
