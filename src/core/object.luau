@@ -741,4 +741,8 @@ function object.__newindex(self: object, key: string, value: any)
     resolveSetProperty(self, self["@instance"].className, key, value);
 end
 
+for _, preset: any in presets do
+    preset.object = object;
+end
+
 return object;

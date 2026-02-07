@@ -186,7 +186,7 @@ function manager.domFromInstances(
                         type = property.type,
                     };
                 end
-                local parent = rawget(descendant::any, "@parent");
+                local parent = rawget(descendant :: any, "@parent");
                 if (parent and parent ~= ignoreParent) then
                     dom_instance.parent = descendants_map[parent];
                     assert(dom_instance.parent, "Parent instance not found (failed to reference)");
@@ -236,19 +236,21 @@ function manager.domFromPlace(datamodel: DataModel): dom.DOM
 end
 
 function manager.domFromModel(instances: {Instance}): dom.DOM
+    assert(type(instances) == "table", "argument #1 must be a table of Instances");
     local descendants = {};
     local descendants_map = {};
     local index = 1;
     for _, instance in instances do
         assert(
             object.is(instance) and instance:IsA("Instance"),
-            "argument #1 must be a Instance"
+            "value must be an Instance"
         );
         table.insert(descendants, instance);
         descendants_map[instance] = index;
         index += 1;
         for _, descendant in instance:GetDescendants() do
-            if (descendant.Archivable) then
+            local properties = (rawget(descendant :: any, "@instance") :: any).properties;
+            if (properties["Archivable"] == nil or properties["Archivable"].value == true) then
                 table.insert(descendants, descendant);
                 descendants_map[descendant] = index;
                 index += 1;
