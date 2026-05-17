@@ -1494,6 +1494,11 @@ local DeserializerMap = {
             if (id < 1 or id > document.info.instances) then
                 error(`index {id - 1} out of bounds {document.info.instances - 1}`);
             end
+
+            if (document.instances[id]) then
+                error(`Duplicate instance id: {id}`);
+            end
+
             document.instances[id] = inst;
         end
 
