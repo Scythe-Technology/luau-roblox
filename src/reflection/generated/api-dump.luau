@@ -323,7 +323,8 @@ return {
 						{Name = "radius",Type = {Name = "int",Category = "Primitive"}},
 						{Name = "color",Type = {Name = "Color3",Category = "DataType"}},
 						{Name = "transparency",Type = {Name = "float",Category = "Primitive"}},
-						{Name = "combineType",Type = {Name = "ImageCombineType",Category = "Enum"}}
+						{Name = "combineType",Type = {Name = "ImageCombineType",Category = "Enum"}},
+						{Type = {Name = "AntiAliasing",Category = "Enum"},Default = "Enabled",Name = "antiAliasing"}
 					}
 				},
 				{
@@ -379,7 +380,8 @@ return {
 						{Name = "p2",Type = {Name = "Vector2",Category = "DataType"}},
 						{Name = "color",Type = {Name = "Color3",Category = "DataType"}},
 						{Name = "transparency",Type = {Name = "float",Category = "Primitive"}},
-						{Name = "combineType",Type = {Name = "ImageCombineType",Category = "Enum"}}
+						{Name = "combineType",Type = {Name = "ImageCombineType",Category = "Enum"}},
+						{Type = {Name = "AntiAliasing",Category = "Enum"},Default = "Enabled",Name = "antiAliasing"}
 					}
 				},
 				{
@@ -1796,6 +1798,7 @@ return {
 					MemberType = "Function",
 					Name = "FindFirstChild",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "name",Type = {Name = "string",Category = "Primitive"}},
@@ -1817,6 +1820,7 @@ return {
 					MemberType = "Function",
 					Name = "FindFirstChildWhichIsA",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "className",Type = {Name = "string",Category = "Primitive"}},
@@ -1846,6 +1850,7 @@ return {
 					MemberType = "Function",
 					Name = "GetAttribute",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "attribute",Type = {Name = "string",Category = "Primitive"}}
@@ -1867,6 +1872,7 @@ return {
 					Name = "GetAttributes",
 					Tags = {"CustomLuaState"},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -1875,6 +1881,7 @@ return {
 					MemberType = "Function",
 					Name = "GetChildren",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -1895,6 +1902,7 @@ return {
 					Name = "GetDescendants",
 					Tags = {"CustomLuaState"},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -1903,6 +1911,7 @@ return {
 					MemberType = "Function",
 					Name = "GetFullName",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -1932,6 +1941,7 @@ return {
 					MemberType = "Function",
 					Name = "GetTags",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -1940,6 +1950,7 @@ return {
 					MemberType = "Function",
 					Name = "HasTag",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "tag",Type = {Name = "string",Category = "Primitive"}}
@@ -1950,6 +1961,7 @@ return {
 					MemberType = "Function",
 					Name = "IsAncestorOf",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "descendant",Type = {Name = "Instance",Category = "Class"}}
@@ -1960,6 +1972,7 @@ return {
 					MemberType = "Function",
 					Name = "IsDescendantOf",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "ancestor",Type = {Name = "Instance",Category = "Class"}}
@@ -1970,6 +1983,7 @@ return {
 					MemberType = "Function",
 					Name = "IsPropertyModified",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "property",Type = {Name = "string",Category = "Primitive"}}
@@ -1981,6 +1995,7 @@ return {
 					Name = "QueryDescendants",
 					Tags = {"CustomLuaState"},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "selector",Type = {Name = "string",Category = "Primitive"}}
@@ -2020,6 +2035,7 @@ return {
 					MemberType = "Function",
 					Name = "SetAttribute",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "attribute",Type = {Name = "string",Category = "Primitive"}},
@@ -2084,6 +2100,7 @@ return {
 						{ThreadSafety = "Safe",PreferredDescriptorName = "FindFirstChild"}
 					},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "name",Type = {Name = "string",Category = "Primitive"}},
@@ -2111,6 +2128,7 @@ return {
 						{ThreadSafety = "Safe",PreferredDescriptorName = "IsDescendantOf"}
 					},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "ancestor",Type = {Name = "Instance",Category = "Class"}}
@@ -2207,7 +2225,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "AccessoryType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Unknown",
 					Category = "Data",
@@ -2218,7 +2236,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -2229,7 +2247,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
@@ -2240,7 +2258,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
@@ -2251,7 +2269,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -2262,7 +2280,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Data",
@@ -2273,7 +2291,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Data",
@@ -2284,7 +2302,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Data",
@@ -2295,7 +2313,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1, 1, 1",
 					Category = "Data",
@@ -2306,7 +2324,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetAppliedInstance",
 					MemberType = "Function",
 					Security = "None",
@@ -2404,7 +2422,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "-0, -0, -1",
@@ -2416,7 +2434,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Transform",
@@ -2427,7 +2445,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -2439,7 +2457,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "1, 0, 0",
@@ -2451,7 +2469,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 1, 0",
@@ -2463,7 +2481,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -2474,7 +2492,7 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ServerEquipAccoutrement",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -2485,7 +2503,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ServerUnequipAccoutrement",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -2504,7 +2522,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "AccessoryType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Unknown",
 					Category = "Data",
@@ -2624,8 +2642,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "AdReward",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "CreateAdRewardFromDevProductId",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2634,24 +2653,36 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "GetAdTeleportInfo",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "GetReportAdInfo",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"Monetization"},
+					Name = "GetUniversalAppAdsEligibility",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "HandleWhyThisAdClicked",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2661,16 +2692,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "HideEudsaDisclosure",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "OnDemandVideoCompleteFromUI",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2682,8 +2715,21 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Monetization"},
+					Name = "RegisterDisclosureButton",
 					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "disclosureButton",Type = {Name = "GuiButton",Category = "Class"}},
+						{Name = "adIntegrationPlacementId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Monetization"},
 					Name = "ReturnToPublisherExperience",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2692,25 +2738,28 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "SetAdGuiInteractivityHandlerInitialized",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "ShowVideoAd",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "SubmitAdNotification",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2723,8 +2772,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "UnregisterAdOpportunity",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2732,10 +2782,11 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"Monetization"},
 					Name = "GetAdAvailabilityNowAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2743,10 +2794,11 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"Monetization"},
 					Name = "GetAdAvailabilityNowForUniverseAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2756,10 +2808,24 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "null",Category = "Primitive"},
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"Monetization"},
+					Name = "GetCampaignEligibilityAsync",
+					Tags = {"Yields"},
 					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "campaignId",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Player",Category = "Class"},Default = "nil",Name = "player"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Monetization"},
 					Name = "RegisterAdOpportunityAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2769,9 +2835,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "ShowAdResult",Category = "Enum"},
-					MemberType = "Function",
+					Capabilities = {"UI","Monetization"},
 					Name = "ShowRewardedVideoAdAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2782,21 +2849,72 @@ return {
 				},
 				{
 					ReturnType = {Name = "ShowAdResult",Category = "Enum"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "ShowRewardedVideoAdAtClientAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "universeId",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "AdTeleportEnded",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "AdTeleportInitiated",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Monetization"},
+					Name = "AdTeleportEnded",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Monetization"},
+					Name = "AdTeleportInitiated",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Monetization"},
+					Name = "CampaignEligibilityResponseFailureSignalFromClient",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "campaignId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "error",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Monetization"},
+					Name = "CampaignEligibilityResponseSuccessSignalFromClient",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "campaignId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "response",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					Capabilities = {"Monetization"},
+					Name = "GetCampaignEligibilitySignalFromServer",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "campaignId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Monetization"},
 					Name = "ReportImpressionSignal",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2806,9 +2924,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "ReportTeleportSignal",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2821,12 +2940,27 @@ return {
 						{Name = "teleport_dest_place_id",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "RewardedVideoAdEnded",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "RewardedVideoAdStarted",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Monetization"},
+					Name = "RewardedVideoAdEnded",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Monetization"},
+					Name = "RewardedVideoAdStarted",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Monetization"},
 					Name = "ServeAdResponseSignal",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2836,9 +2970,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "ServeAdSignal",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2847,8 +2982,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "ShowDynamicEudsaDisclosure",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2857,8 +2993,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "ShowReportAdPopup",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2866,9 +3003,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "VideoAdClosed",
 					Tags = {"Deprecated"},
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2876,8 +3014,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "adGuiRegisterUI",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2885,9 +3024,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "rewardedVideoAdPlayServerToClient",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2895,9 +3035,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "rewardedVideoAdPlayServerToClientWithPlacement",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2906,9 +3047,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Monetization"},
 					Name = "rewardedVideoAdResultClientToServer",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -2918,9 +3060,22 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "VideoFrame",Category = "Class"},
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Monetization"},
+					Name = "OnImmersiveBrandedAdDisclosureButtonActivated",
+					Tags = {"NoYield"},
 					MemberType = "Callback",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "data",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "VideoFrame",Category = "Class"},
+					Capabilities = {"Monetization"},
 					Name = "onDemandVideoPlayInUI",
+					MemberType = "Callback",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -3026,6 +3181,15 @@ return {
 						{Name = "statistics",Type = {Name = "Variant",Category = "Group"}},
 						{Name = "customData",Type = {Name = "Variant",Category = "Group"}}
 					}
+				},
+				{
+					ReturnType = {Name = "int",Category = "Primitive"},
+					Capabilities = {"Basic","InternalTest"},
+					Name = "GetDurationLoggerTimestamp",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
@@ -3149,6 +3313,18 @@ return {
 						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "levelName"},
 						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "customFields"}
 					}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"Basic"},
+					Name = "GetPlayerSegmentsAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "player",Type = {Name = "Player",Category = "Class"}}
+					}
 				}
 			},
 			Superclass = "Instance"
@@ -3199,6 +3375,18 @@ return {
 					MemberType = "Property",
 					Name = "GuidBinaryString",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Animation"},Read = {"Animation"}},
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
+					Name = "Length",
+					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
@@ -3653,6 +3841,18 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "BinaryString",Category = "DataType"},
+					Capabilities = {Write = {"Animation"},Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "����",
+					Category = "animation",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Generic",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "BinaryString",Category = "DataType"},
 					Capabilities = {Read = {"Animation"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
@@ -3966,10 +4166,11 @@ return {
 					Capabilities = {Read = {"Animation"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "IsPlaying",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -3989,10 +4190,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Looped",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -4000,10 +4202,11 @@ return {
 					ValueType = {Name = "AnimationPriority",Category = "Enum"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Priority",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -4012,10 +4215,11 @@ return {
 					Capabilities = {Read = {"Animation"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Speed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -4024,10 +4228,11 @@ return {
 					Capabilities = {Read = {"Animation"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TimePosition",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -4036,10 +4241,11 @@ return {
 					Capabilities = {Read = {"Animation"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WeightCurrent",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -4048,37 +4254,40 @@ return {
 					Capabilities = {Read = {"Animation"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WeightTarget",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
-					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Animation"},
-					Name = "AdjustSpeed",
 					Tags = {"CustomLuaState"},
-					MemberType = "Function",
-					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "speed"}
-					}
+					},
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Name = "AdjustSpeed",
+					SimulationAccess = true,
+					MemberType = "Function",
+					Security = "None"
 				},
 				{
-					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Animation"},
-					Name = "AdjustWeight",
 					Tags = {"CustomLuaState"},
-					MemberType = "Function",
-					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "weight"},
 						{Type = {Name = "float",Category = "Primitive"},Default = "0.100000001",Name = "fadeTime"}
-					}
+					},
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Name = "AdjustWeight",
+					SimulationAccess = true,
+					MemberType = "Function",
+					Security = "None"
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
@@ -4152,18 +4361,19 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Animation"},
-					Name = "Play",
 					Tags = {"CustomLuaState"},
-					MemberType = "Function",
-					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Type = {Name = "float",Category = "Primitive"},Default = "0.100000001",Name = "fadeTime"},
 						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "weight"},
 						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "speed"}
-					}
+					},
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Name = "Play",
+					SimulationAccess = true,
+					MemberType = "Function",
+					Security = "None"
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
@@ -4190,15 +4400,30 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Animation"},
-					Name = "Stop",
 					Tags = {"CustomLuaState"},
-					MemberType = "Function",
-					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Type = {Name = "float",Category = "Primitive"},Default = "0.100000001",Name = "fadeTime"}
+					},
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Name = "Stop",
+					SimulationAccess = true,
+					MemberType = "Function",
+					Security = "None"
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Animation"},
+					Name = "UpdateGraphNodeProperty",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "nodeId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "propertyName",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "value",Type = {Name = "Variant",Category = "Group"}},
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "inputPinName"}
 					}
 				},
 				{
@@ -4243,6 +4468,110 @@ return {
 			Superclass = "Instance",
 			Members = {
 				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "-1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "AnimationId7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Animation"}},
 					Tags = {"ReadOnly","NotReplicated"},
@@ -4267,6 +4596,526 @@ return {
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FadeTime7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "IsPlaying7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Looped7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlayStartStepId7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "PlaybackSpeed7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
@@ -4276,6 +5125,318 @@ return {
 					MemberType = "Property",
 					Name = "PreferLodEnabled",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AnimationPriority",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Core",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "Priority7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForTimePosition7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "RefStepIdForWeight7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
@@ -4302,6 +5463,214 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightCurrent7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget0",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget1",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget2",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget3",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget4",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget5",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget6",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "WeightTarget7",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Animation"},
 					Name = "ApplyJointVelocities",
@@ -4318,6 +5687,7 @@ return {
 					Name = "GetPlayingAnimationTracks",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -4333,9 +5703,22 @@ return {
 				{
 					ReturnType = {Name = "AnimationTrack",Category = "Class"},
 					Capabilities = {"Animation"},
+					Name = "GetTrackByAnimationId",
+					MemberType = "Function",
+					Security = "None",
+					SimulationAccess = true,
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "animationId",Type = {Name = "ContentId",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "AnimationTrack",Category = "Class"},
+					Capabilities = {"Animation"},
 					Name = "LoadAnimation",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "animation",Type = {Name = "Animation",Category = "Class"}}
@@ -5045,6 +6428,31 @@ return {
 			Superclass = "Instance"
 		},
 		{
+			Name = "AppAgeSignalsService",
+			Tags = {"NotCreatable","Service","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "IsAvailable",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetAppAgeSignalsAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
 			Name = "AppLifecycleObserverService",
 			Tags = {"NotCreatable","Service","NotReplicated"},
 			MemoryCategory = "Instances",
@@ -5077,6 +6485,14 @@ return {
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "TriggerOnLuaAppInteractive",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "TriggerOnLuaAppReadyToRender",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -5670,6 +7086,18 @@ return {
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
 					MemberType = "Function",
+					Name = "FetchAssetQualitySummaryFromJobIdAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "jobId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "desiredQualityChecks",Type = {Name = "Array",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
 					Name = "FetchAssetQualityVisualizationDataFromUrlAsync",
 					Tags = {"Yields"},
 					Security = "RobloxScriptSecurity",
@@ -5772,13 +7200,14 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "Decal",Category = "Class"},
+					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "ComposeDecalAsync",
 					Tags = {"Yields"},
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
+						{Name = "decal",Type = {Name = "Decal",Category = "Class"}},
 						{Name = "layers",Type = {Name = "Array",Category = "Group"}}
 					}
 				},
@@ -5809,6 +7238,19 @@ return {
 						{Name = "assetType",Type = {Name = "AssetType",Category = "Enum"}},
 						{Name = "assetId",Type = {Name = "int64",Category = "Primitive"}},
 						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "requestParameters"}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"DynamicGeneration"},
+					Name = "CreateDataModelContentAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "content",Type = {Name = "Content",Category = "DataType"}},
+						{Name = "options",Type = {Name = "Dictionary?",Category = "Group"}}
 					}
 				},
 				{
@@ -5945,13 +7387,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "int64",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetCreatorAssetID",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetProductInfo"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -5970,7 +7413,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					Capabilities = {"AssetRequire"},
+					Capabilities = {"LoadUnownedAsset"},
 					Name = "LoadAssetAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -6179,10 +7622,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1, 0, 0",
 					Category = "Derived Data",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Axis",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6190,10 +7634,11 @@ return {
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Transform",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CFrame",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6202,10 +7647,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-0, 0, 0",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Orientation",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6214,10 +7660,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Position",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6231,10 +7678,11 @@ return {
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "Orientation"}
 					},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-0, 0, -0",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Rotation",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6243,10 +7691,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 1, 0",
 					Category = "Derived Data",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SecondaryAxis",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6266,10 +7715,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1, 0, 0",
 					Category = "Derived World Data",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WorldAxis",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6278,10 +7728,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Derived World Data",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WorldCFrame",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6290,10 +7741,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-0, 0, 0",
 					Category = "Derived World Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WorldOrientation",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6302,10 +7754,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Derived World Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WorldPosition",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6320,10 +7773,11 @@ return {
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "WorldOrientation"}
 					},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-0, 0, -0",
 					Category = "Derived World Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WorldRotation",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6332,10 +7786,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 1, 0",
 					Category = "Derived World Data",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WorldSecondaryAxis",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -6895,91 +8350,100 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "BinaryString",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Input"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Permissions",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "AccessList",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "AccessModifierType",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "Deny",
 					Category = "Permissions",
-					Name = "AccessType",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "AccessType",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Recording",
-					Name = "Active",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Active",
 					Security = {Write = "RobloxScriptSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Input"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Recording",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsReady",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Recording",
-					Name = "Muted",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Muted",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Input"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Recording",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "MutedByLocalUser",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "Player",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","Players"},Read = {"Audio","Input","Players"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Recording",
-					Name = "Player",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Player",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "State",
-					Name = "Volume",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Volume",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "Instances",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Input"},
 					Name = "GetConnectedWires",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -6988,32 +8452,36 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Input"},
 					Name = "GetInputPins",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Input"},
 					Name = "GetOutputPins",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Input"},
 					Name = "GetUserIdAccessList",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Input"},
 					Name = "SetUserIdAccessList",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -7021,8 +8489,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Input"},
 					Name = "WiringChanged",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -8476,8 +9945,21 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "AssetRepresentation",Category = "Enum"},
+					Capabilities = {Read = {"Audio"}},
+					Tags = {"Hidden","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "FullLength",
+					Category = "Behavior",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "AssetRepresentation",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
 					ValueType = {Name = "Content",Category = "DataType"},
 					Capabilities = {Read = {"Audio"}},
+					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Asset",
@@ -8507,18 +9989,6 @@ return {
 					MemberType = "Property",
 					Name = "AutoPlay",
 					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Audio"}},
-					Tags = {"Hidden"},
-					ThreadSafety = "ReadSafe",
-					Default = "false",
-					Category = "Data",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "IsMutedForCapture",
-					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
@@ -8622,6 +10092,17 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Audio"},
+					Name = "Cancel",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "actionId",Type = {Name = "int64?",Category = "Primitive"}}
+					}
+				},
+				{
 					ReturnType = {Name = "Instances",Category = "DataType"},
 					Capabilities = {"Audio"},
 					Name = "GetConnectedWires",
@@ -8651,22 +10132,26 @@ return {
 					Parameters = {}
 				},
 				{
-					ReturnType = {Name = "null",Category = "Primitive"},
+					ReturnType = {Name = "int64?",Category = "Primitive"},
 					Capabilities = {"Audio"},
 					Name = "Play",
 					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
-					Parameters = {}
+					Parameters = {
+						{Name = "atTime",Type = {Name = "double?",Category = "Primitive"}}
+					}
 				},
 				{
-					ReturnType = {Name = "null",Category = "Primitive"},
+					ReturnType = {Name = "int64?",Category = "Primitive"},
 					Capabilities = {"Audio"},
 					Name = "Stop",
 					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
-					Parameters = {}
+					Parameters = {
+						{Name = "atTime",Type = {Name = "double?",Category = "Primitive"}}
+					}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
@@ -9661,6 +11146,18 @@ return {
 			MemoryCategory = "Instances",
 			Members = {
 				{
+					ReturnType = {Name = "CollectionHandle",Category = "DataType"},
+					Capabilities = {"Basic"},
+					Name = "CreateCollection",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "query",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Instance",Category = "Class"},Default = "nil",Name = "root"}
+					}
+				},
+				{
 					ReturnType = {Name = "Object",Category = "Class"},
 					Capabilities = {"Basic"},
 					Name = "FindBinding",
@@ -9684,6 +11181,15 @@ return {
 					Parameters = {
 						{Name = "instance",Type = {Name = "Instance",Category = "Class"}}
 					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"Basic"},
+					Name = "GetAllCollections",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
@@ -9906,7 +11412,7 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
-					Name = "SetIncomingReplicationLag",
+					Name = "SetReplicationLag",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -9990,28 +11496,96 @@ return {
 						{Name = "worldStepId",Type = {Name = "int",Category = "Primitive"}}
 					}
 				},
-				{
-					MemberType = "Event",
-					Name = "Misprediction",
-					Security = "None",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "remoteWorldStepId",Type = {Name = "int",Category = "Primitive"}},
-						{Name = "mispredictedInstances",Type = {Name = "Array",Category = "Group"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "Rollback",
-					Security = "None",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "worldStepId",Type = {Name = "int",Category = "Primitive"}}
-					}
-				},
 				{MemberType = "Event",Name = "Step",Security = "None",ThreadSafety = "Unsafe",Parameters = {}}
 			},
 			Superclass = "Instance"
+		},
+		{
+			MemoryCategory = "Instances",
+			Superclass = "Instance",
+			Members = {
+				{
+					ValueType = {Name = "AvatarSettingsCharacterControllerMode",Category = "Enum"},
+					MemberType = "Property",
+					Default = "LegacyHumanoid",
+					Category = "Data",
+					Name = "CharacterControllerMode",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EnableClimbing",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EnableFallingDown",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EnableGettingUp",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EnableJumping",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EnableRunning",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EnableSitting",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EnableSwimming",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				}
+			},
+			Name = "AvatarAbilityRules"
 		},
 		{
 			MemoryCategory = "Instances",
@@ -11313,10 +12887,22 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "string",Category = "Primitive"},
+					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
+					Name = "HandleSelfieQRResult",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "success",Type = {Name = "bool",Category = "Primitive"}},
+						{Name = "resultString",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "string",Category = "Primitive"},
+					Capabilities = {"DynamicGeneration"},
 					Name = "AutoSetupAvatarAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11326,10 +12912,20 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "string",Category = "Primitive"},
+					ReturnType = {Name = "Folder",Category = "Class"},
 					MemberType = "Function",
+					Name = "CreateCageMeshPartsWithScaleForExportAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {{Name = "model",Type = {Name = "Model",Category = "Class"}}}
+				},
+				{
+					ReturnType = {Name = "string",Category = "Primitive"},
+					Capabilities = {"DynamicGeneration"},
 					Name = "GenerateAvatar2DPreviewAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11338,9 +12934,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"DynamicGeneration"},
 					Name = "GenerateAvatarAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11349,9 +12946,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "GetBatchTokenDetailsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11360,9 +12958,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "EditableImage",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"DynamicGeneration"},
 					Name = "LoadAvatar2DPreviewAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11371,9 +12970,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"DynamicGeneration"},
 					Name = "LoadGeneratedAvatarAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11382,9 +12982,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"AvatarAppearance"},
 					Name = "PrepareAvatarForPreviewAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11407,9 +13008,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetCreateUpdate","Monetization"},
 					Name = "PromptCreateAvatarAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11420,9 +13022,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"SensitiveInput"},
 					Name = "PromptSelectAvatarGenerationImageAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11431,9 +13034,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"DynamicGeneration"},
 					Name = "RequestAvatarGenerationSessionAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11480,8 +13084,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"DynamicGeneration"},
 					Name = "AvatarAssetModerationCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11490,8 +13095,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"DynamicGeneration"},
 					Name = "AvatarModerationCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11502,13 +13108,24 @@ return {
 				{MemberType = "Event",Name = "OpenSelfieConsent",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
 					MemberType = "Event",
-					Name = "ReplicateAvatarGenerationImageId",
+					Name = "OpenSelfieQRCode",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "url",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "jobId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "ReplicateAvatarGenerationImageIdWithErrorType",
 					Tags = {"Hidden"},
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "fileId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "error",Type = {Name = "string",Category = "Primitive"}}
+						{Name = "errorType",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "errorMsg",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -11589,9 +13206,17 @@ return {
 		},
 		{
 			Name = "AvatarEditorService",
-			Tags = {"NotCreatable","Service","NotReplicated"},
+			Tags = {"NotCreatable","Service"},
 			MemoryCategory = "Instances",
 			Members = {
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "BustAvatarFetchCache",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
 				{
 					ReturnType = {Name = "AccessoryType",Category = "Enum"},
 					MemberType = "Function",
@@ -11752,16 +13377,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "PromptAllowInventoryReadAccess",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptCreateOutfit",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11771,8 +13398,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptDeleteOutfit",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11781,8 +13409,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptRenameOutfit",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11791,8 +13420,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptSaveAvatar",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11802,8 +13432,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptSetFavorite",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11814,8 +13445,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptUpdateOutfit",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11942,13 +13574,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"AvatarAppearance"},
 					Name = "CheckApplyDefaultClothing",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "CheckApplyDefaultClothingAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11957,9 +13590,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"AvatarAppearance"},
 					Name = "CheckApplyDefaultClothingAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11968,13 +13602,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"AvatarAppearance"},
 					Name = "ConformToAvatarRules",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "ConformToAvatarRulesAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -11983,9 +13618,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"AvatarAppearance"},
 					Name = "ConformToAvatarRulesAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12016,13 +13652,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetBatchItemDetails",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetBatchItemDetailsAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12032,9 +13669,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetBatchItemDetailsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12044,13 +13682,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "GetFavorite",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetFavoriteAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12060,9 +13699,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "GetFavoriteAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12072,22 +13712,24 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "GetHeadShapesAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "InventoryPages",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "GetInventory",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetInventoryAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12096,9 +13738,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "InventoryPages",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "GetInventoryAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12107,13 +13750,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetItemDetails",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetItemDetailsAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12123,9 +13767,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetItemDetailsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12135,13 +13780,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetOutfitDetails",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetOutfitDetailsAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12150,9 +13796,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetOutfitDetailsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12161,13 +13808,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "OutfitPages",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "GetOutfits",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetOutfitsAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12177,9 +13825,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "OutfitPages",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"Players","AssetRead"},
 					Name = "GetOutfitsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12189,13 +13838,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetRecommendedAssets",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetRecommendedAssetsAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12205,9 +13855,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetRecommendedAssetsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12217,13 +13868,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetRecommendedBundles",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetRecommendedBundlesAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12232,9 +13884,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "GetRecommendedBundlesAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12243,13 +13896,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "CatalogPages",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "SearchCatalog",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "SearchCatalogAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12258,14 +13912,23 @@ return {
 				},
 				{
 					ReturnType = {Name = "CatalogPages",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"AssetRead"},
 					Name = "SearchCatalogAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "searchParameters",Type = {Name = "CatalogSearchParams",Category = "DataType"}}
 					}
+				},
+				{
+					MemberType = "Event",
+					Name = "NotifyBustAvatarFetchCache",
+					Tags = {"Hidden"},
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{MemberType = "Event",Name = "OpenAllowInventoryReadAccess",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
@@ -12329,8 +13992,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players","AssetRead"},
 					Name = "PromptAllowInventoryReadAccessCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12338,8 +14002,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptCreateOutfitCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12348,8 +14013,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptDeleteOutfitCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12357,8 +14023,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptRenameOutfitCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12366,8 +14033,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptSaveAvatarCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12386,8 +14054,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptSetFavoriteCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12395,8 +14064,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players","PlatformAvatarEditing"},
 					Name = "PromptUpdateOutfitCompleted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -12695,12 +14365,13 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI","Capture"},Read = {"UI","Capture"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "State",
-					Name = "Open",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Open",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -12713,12 +14384,13 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "State",
-					Name = "Open",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Open",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -12731,12 +14403,13 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "State",
-					Name = "Open",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Open",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -13277,6 +14950,16 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "PhysicalConstraintType",Category = "Enum"},
+					MemberType = "Property",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Name = "PhysicalConstraintType",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "float",Category = "Primitive"},
 					MemberType = "Property",
 					Tags = {"ReadOnly","NotReplicated"},
@@ -13338,6 +15021,16 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Name = "ScaleFactor",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "MeshScaleUnit",Category = "Enum"},
 					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
@@ -13373,6 +15066,16 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Name = "ValidateUgcBody",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "int64",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Name = "VersionedAssetId",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
@@ -13930,7 +15633,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
@@ -13941,7 +15644,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
@@ -13952,7 +15655,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
@@ -13963,7 +15666,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -13975,7 +15678,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
@@ -13986,7 +15689,7 @@ return {
 				},
 				{
 					ValueType = {Name = "SharedString",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -13998,7 +15701,7 @@ return {
 				},
 				{
 					ValueType = {Name = "SharedString",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -14010,7 +15713,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -14022,7 +15725,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
@@ -14033,7 +15736,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -14045,7 +15748,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -14057,7 +15760,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetCageOffset",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -14066,7 +15769,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetFaces",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -14077,7 +15780,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetUVs",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -14088,7 +15791,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetVertices",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -14099,7 +15802,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "IsHSRReady",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -14108,7 +15811,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ModifyVertices",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -14119,7 +15822,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "VerticesModified",
 					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
@@ -14137,7 +15840,7 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "SetCageMeshContent",
 					MemberType = "Function",
 					Security = "None",
@@ -14149,7 +15852,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "EditableMesh",Category = "Class"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "CreateEditableMeshAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -14159,7 +15862,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetDeformedCFrameAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -14178,7 +15881,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "WrapLayerAutoSkin",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Disabled",
 					Category = "Behavior",
@@ -14189,7 +15892,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Tuning",
@@ -14200,7 +15903,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "1, 1, 1",
@@ -14212,7 +15915,7 @@ return {
 				},
 				{
 					ValueType = {Name = "WrapLayerDebugMode",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "None",
@@ -14224,7 +15927,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Behavior",
@@ -14235,7 +15938,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -14247,7 +15950,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -14259,7 +15962,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Appearance",
@@ -14270,7 +15973,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Appearance",
@@ -14281,7 +15984,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -14292,7 +15995,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
@@ -14303,7 +16006,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Appearance",
@@ -14314,7 +16017,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
@@ -14326,7 +16029,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Tuning",
@@ -14337,7 +16040,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -14356,7 +16059,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "1, 1, 1",
@@ -14368,7 +16071,7 @@ return {
 				},
 				{
 					ValueType = {Name = "WrapTargetDebugMode",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "None",
@@ -14380,7 +16083,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Appearance",
@@ -15349,7 +17052,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -15360,7 +17063,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BodyPart",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Head",
 					Category = "Data",
@@ -15371,7 +17074,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Data",
@@ -15382,7 +17085,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
@@ -15393,7 +17096,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
@@ -15733,8 +17436,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetManagement"},
 					Name = "GetContentMemoryData",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -15749,8 +17453,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"AssetManagement"},
 					Name = "GetContentMemoryData",
+					MemberType = "Function",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -15857,6 +17562,17 @@ return {
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Capture",Category = "Class"},
+					Capabilities = {"Capture"},
+					Name = "GetScreenshotCaptureObject",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "capturePath",Type = {Name = "string",Category = "Primitive"}}
+					}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
@@ -16087,6 +17803,31 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Capture"},
+					Name = "UploadCaptureAndPostMoment",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "capture",Type = {Name = "Capture",Category = "Class"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "momentMetadata"},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "feedRegistrationInfo"}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"Capture"},
+					Name = "CheckUploadCaptureStatusAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "token",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
 					Capabilities = {"Capture"},
 					Name = "CreatePostAsync",
@@ -16230,6 +17971,18 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "pathArr",Type = {Name = "Array",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"Capture"},
+					Name = "StartUploadCaptureAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "capture",Type = {Name = "Capture",Category = "Class"}}
 					}
 				},
 				{
@@ -16628,7 +18381,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -16639,7 +18392,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0.992157, 0.917647, 0.552941",
 					Category = "Appearance",
@@ -16650,7 +18403,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -16661,7 +18414,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0.992157, 0.917647, 0.552941",
 					Category = "Appearance",
@@ -16672,7 +18425,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -16683,7 +18436,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0.0509804, 0.411765, 0.67451",
 					Category = "Appearance",
@@ -16694,7 +18447,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -16705,7 +18458,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0.992157, 0.917647, 0.552941",
 					Category = "Appearance",
@@ -16716,7 +18469,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -16727,7 +18480,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0.0509804, 0.411765, 0.67451",
 					Category = "Appearance",
@@ -16738,7 +18491,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -16749,7 +18502,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0.156863, 0.498039, 0.278431",
 					Category = "Appearance",
@@ -16766,8 +18519,19 @@ return {
 			Superclass = "CharacterAppearance",
 			Members = {
 				{
+					ValueType = {Name = "Content",Category = "DataType"},
+					Capabilities = {Read = {"AvatarAppearance"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "BaseTextureContent",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -16778,7 +18542,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BodyPart",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Head",
 					Category = "Data",
@@ -16788,8 +18552,19 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "Content",Category = "DataType"},
+					Capabilities = {Read = {"AvatarAppearance"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "MeshContent",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -16799,8 +18574,19 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "Content",Category = "DataType"},
+					Capabilities = {Read = {"AvatarAppearance"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "OverlayTextureContent",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -16819,7 +18605,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
@@ -16830,7 +18616,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -16842,7 +18628,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -16861,7 +18647,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
@@ -16879,7 +18665,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
@@ -16897,7 +18683,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1, 1, 1",
 					Category = "Appearance",
@@ -16908,7 +18694,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
@@ -16927,7 +18713,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -16977,6 +18763,18 @@ return {
 					MemberType = "Property",
 					Name = "LoadDefaultChat",
 					Security = {Write = "NotAccessibleSecurity",Read = "None"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "Unsupported",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "ModerationMode",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
@@ -17044,6 +18842,17 @@ return {
 					Parameters = {
 						{Name = "callbackType",Type = {Name = "ChatCallbackType",Category = "Enum"}},
 						{Name = "callbackFunction",Type = {Name = "Function",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Chat"},
+					Name = "RequestModerationModeEnabled",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "enabled",Type = {Name = "bool",Category = "Primitive"}}
 					}
 				},
 				{
@@ -17177,6 +18986,17 @@ return {
 				},
 				{
 					Capabilities = {"Chat"},
+					Name = "ModerationModeEnabledChanged",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "enabled",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
 					Name = "PlayerChatAvailabilityStatusChanged",
 					MemberType = "Event",
 					Security = "RobloxSecurity",
@@ -17229,93 +19049,6 @@ return {
 					Parameters = {
 						{Name = "isPermanentTimeout",Type = {Name = "bool",Category = "Primitive"}},
 						{Name = "endTime",Type = {Name = "int64",Category = "Primitive"}}
-					}
-				}
-			},
-			Superclass = "Instance"
-		},
-		{
-			Name = "ChatbotUIService",
-			Tags = {"NotCreatable","Service","NotReplicated"},
-			MemoryCategory = "Instances",
-			Members = {
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "DisplayContent",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "contentType",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "data",Type = {Name = "Dictionary",Category = "Group"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetSettings",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {}
-				},
-				{
-					MemberType = "Event",
-					Name = "ActionActivatedSignal",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "action",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "FindVariationsSignal",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "action",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "SetMaterialSettingsSignal",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "guid",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "studsPerTile",Type = {Name = "double",Category = "Primitive"}},
-						{Name = "isOrganic",Type = {Name = "bool",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "SettingChangedSignal",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "setting",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "value",Type = {Name = "Variant",Category = "Group"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "ShiftToAssetIdSignal",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "action",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "change",Type = {Name = "int64",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "ShiftVariationSignal",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "action",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "change",Type = {Name = "int",Category = "Primitive"}}
 					}
 				}
 			},
@@ -17930,6 +19663,7 @@ return {
 			Name = "DragDetector"
 		},
 		{Name = "CloudCRUDService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
+		{Name = "CloudExecutionService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			MemoryCategory = "Instances",
 			Superclass = "Instance",
@@ -18117,6 +19851,16 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
+					Name = "MultiGetCanCollaborate",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "userIds",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
 					Name = "RequestFlyToCollaborator",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -18189,6 +19933,25 @@ return {
 					Parameters = {
 						{Name = "collaboratorId",Type = {Name = "int64",Category = "Primitive"}},
 						{Name = "newStatus",Type = {Name = "CollaboratorStatus",Category = "Enum"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "MultiGetCanCollaborateRetrieved",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "canCollaborateResponses",Type = {Name = "Array",Category = "Group"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "ServerMultiGetCanCollaborateRequested",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "userIds",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -18629,10 +20392,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Active",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18640,10 +20404,11 @@ return {
 					ValueType = {Name = "Attachment",Category = "Class"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Attachments",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Attachment0",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18651,10 +20416,11 @@ return {
 					ValueType = {Name = "Attachment",Category = "Class"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Attachments",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Attachment1",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18673,10 +20439,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Enabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18726,10 +20493,11 @@ return {
 					ValueType = {Name = "AlignType",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "AllAxes",
 					Category = "AlignOrientation",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AlignType",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18737,10 +20505,11 @@ return {
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "TargetOrientation",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CFrame",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18749,10 +20518,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "TargetOrientation",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LookAtPosition",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18760,10 +20530,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "INF",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxAngularVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18771,10 +20542,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18782,10 +20554,11 @@ return {
 					ValueType = {Name = "OrientationAlignmentMode",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "TwoAttachment",
 					Category = "AlignmentMode",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Mode",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18794,10 +20567,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1, 0, 0",
 					Category = "TargetOrientation",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "PrimaryAxis",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18805,10 +20579,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "AlignOrientation",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "PrimaryAxisOnly",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18816,10 +20591,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "AlignOrientation",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ReactionTorqueEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18827,10 +20603,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Responsiveness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18838,10 +20615,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "AlignOrientation",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RigidityEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18850,10 +20628,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 1, 0",
 					Category = "TargetOrientation",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SecondaryAxis",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -18868,10 +20647,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "AlignPosition",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ApplyAtCenterOfMass",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18879,10 +20659,11 @@ return {
 					ValueType = {Name = "ForceLimitMode",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Magnitude",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ForceLimitMode",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18890,10 +20671,11 @@ return {
 					ValueType = {Name = "ActuatorRelativeTo",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "World",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ForceRelativeTo",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18901,10 +20683,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000, 10000, 10000",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxAxesForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18912,10 +20695,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18923,10 +20707,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "INF",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18934,10 +20719,11 @@ return {
 					ValueType = {Name = "PositionAlignmentMode",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "TwoAttachment",
 					Category = "AlignmentMode",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Mode",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18945,10 +20731,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "AlignPosition",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Position",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18956,10 +20743,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "AlignPosition",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ReactionForceEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18967,10 +20755,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Responsiveness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -18978,10 +20767,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "AlignPosition",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RigidityEnabled",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -18996,10 +20786,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Torque",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19007,10 +20798,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Torque",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19018,10 +20810,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Torque",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ReactionTorqueEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19029,10 +20822,11 @@ return {
 					ValueType = {Name = "ActuatorRelativeTo",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "World",
 					Category = "Torque",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RelativeTo",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19048,10 +20842,11 @@ return {
 					Capabilities = {Read = {"Physics","Animation"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "C0",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19060,10 +20855,11 @@ return {
 					Capabilities = {Read = {"Physics","Animation"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "C1",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19071,10 +20867,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics","Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "IsKinematic",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19082,10 +20879,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics","Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19093,10 +20891,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics","Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Compliance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19105,10 +20904,11 @@ return {
 					Capabilities = {Read = {"Physics","Animation"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Part0",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19117,10 +20917,11 @@ return {
 					Capabilities = {Read = {"Physics","Animation"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Part1",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19128,10 +20929,11 @@ return {
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					Capabilities = {Read = {"Physics","Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Transform",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19146,10 +20948,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "BallSocket",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19157,10 +20960,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Friction",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxFrictionTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19169,10 +20973,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Friction",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxFrictionTorqueXml",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19180,10 +20985,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.150000006",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Radius",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19191,10 +20997,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Restitution",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19202,10 +21009,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TwistLimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19213,10 +21021,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-45",
 					Category = "TwistLimits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TwistLowerAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19224,10 +21033,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "TwistLimits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TwistUpperAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19235,10 +21045,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "UpperAngle",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19253,10 +21064,11 @@ return {
 					ValueType = {Name = "ActuatorType",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "None",
 					Category = "Hinge",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ActuatorType",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19264,10 +21076,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularResponsiveness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19275,10 +21088,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19286,10 +21100,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Motor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19298,10 +21113,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CurrentAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19309,10 +21125,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Hinge",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19320,10 +21137,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-45",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LowerAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19331,10 +21149,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "500000",
 					Category = "Motor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MotorMaxAcceleration",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19342,10 +21161,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Motor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MotorMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19353,10 +21173,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.150000006",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Radius",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19364,10 +21185,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Restitution",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19375,10 +21197,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ServoMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19387,10 +21210,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Deprecated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SoftlockServoUponReachingTarget",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19398,10 +21222,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TargetAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19409,10 +21234,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "UpperAngle",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19427,10 +21253,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "LineForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ApplyAtCenterOfMass",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19438,10 +21265,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "LineForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "InverseSquareLaw",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19449,10 +21277,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1000",
 					Category = "LineForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Magnitude",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19460,10 +21289,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "INF",
 					Category = "LineForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19471,10 +21301,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "LineForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ReactionForceEnabled",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19489,10 +21320,11 @@ return {
 					ValueType = {Name = "ForceLimitMode",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Magnitude",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ForceLimitMode",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19500,10 +21332,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Mode",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ForceLimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19511,10 +21344,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1, 0, 0",
 					Category = "Line",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LineDirection",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19522,10 +21356,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-0",
 					Category = "Line",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LineVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19533,10 +21368,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1000, 1000, 1000",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxAxesForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19544,10 +21380,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1000",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19555,10 +21392,11 @@ return {
 					ValueType = {Name = "Vector2",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1000, 1000",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxPlanarAxesForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19566,10 +21404,11 @@ return {
 					ValueType = {Name = "Vector2",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0",
 					Category = "Plane",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "PlaneVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19577,10 +21416,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1, 0, 0",
 					Category = "Plane",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "PrimaryTangentAxis",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19588,10 +21428,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Mode",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ReactionForceEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19599,10 +21440,11 @@ return {
 					ValueType = {Name = "ActuatorRelativeTo",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "World",
 					Category = "Mode",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RelativeTo",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19610,10 +21452,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 1, 0",
 					Category = "Plane",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SecondaryTangentAxis",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19621,10 +21464,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Vector",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "VectorVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19632,10 +21476,11 @@ return {
 					ValueType = {Name = "VelocityConstraintMode",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Vector",
 					Category = "Mode",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "VelocityConstraintMode",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19663,10 +21508,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CurrentDistance",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19674,10 +21520,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "5",
 					Category = "Rod",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Length",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19685,10 +21532,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "90",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitAngle0",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19696,10 +21544,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "90",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitAngle1",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19707,10 +21556,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Rod",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19718,10 +21568,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.100000001",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Thickness",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19737,10 +21588,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CurrentDistance",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19748,10 +21600,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "5",
 					Category = "Rope",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Length",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19759,10 +21612,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Rope",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Restitution",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19770,10 +21624,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.100000001",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Thickness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19781,10 +21636,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Rope",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WinchEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19792,10 +21648,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Winch",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WinchForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19803,10 +21660,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "Winch",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WinchResponsiveness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19814,10 +21672,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "2",
 					Category = "Winch",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WinchSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19825,10 +21684,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "5",
 					Category = "Winch",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WinchTarget",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -19844,10 +21704,11 @@ return {
 					ValueType = {Name = "ActuatorType",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Slider",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ActuatorType",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19856,10 +21717,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CurrentPosition",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19867,10 +21729,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Slider",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19878,10 +21741,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LinearResponsiveness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19889,10 +21753,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LowerLimit",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19900,10 +21765,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Motor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MotorMaxAcceleration",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19911,10 +21777,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Motor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MotorMaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19922,10 +21789,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Restitution",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19933,10 +21801,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ServoMaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19944,10 +21813,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Size",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19956,10 +21826,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Deprecated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SoftlockServoUponReachingTarget",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19967,10 +21838,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Speed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19978,10 +21850,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Servo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TargetPosition",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -19989,10 +21862,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "UpperLimit",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20000,10 +21874,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Motor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Velocity",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -20018,10 +21893,11 @@ return {
 					ValueType = {Name = "ActuatorType",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "None",
 					Category = "Cylinder",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularActuatorType",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20029,10 +21905,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Cylinder",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularLimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20040,10 +21917,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "AngularServo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularResponsiveness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20051,10 +21929,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "AngularLimits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularRestitution",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20062,10 +21941,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "AngularServo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20073,10 +21953,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "AngularMotor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AngularVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20085,10 +21966,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CurrentAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20096,10 +21978,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Cylinder",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "InclinationAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20107,10 +21990,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "-45",
 					Category = "AngularLimits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LowerAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20118,10 +22002,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "500000",
 					Category = "AngularMotor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MotorMaxAngularAcceleration",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20129,10 +22014,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "AngularMotor",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MotorMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20151,10 +22037,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "AngularServo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ServoMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20163,10 +22050,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Deprecated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "AngularServo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SoftlockAngularServoUponReachingTarget",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20174,10 +22062,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "AngularServo",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TargetAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20185,10 +22074,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "AngularLimits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "UpperAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20197,10 +22087,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1, 0, 0",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WorldRotationAxis",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -20216,10 +22107,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "3",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Coils",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20228,10 +22120,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CurrentLength",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20239,10 +22132,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Damping",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20250,10 +22144,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "FreeLength",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20261,10 +22156,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20272,10 +22168,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "INF",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20283,10 +22180,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "5",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxLength",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20294,10 +22192,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MinLength",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20305,10 +22204,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.400000006",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Radius",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20316,10 +22216,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Stiffness",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20327,10 +22228,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.100000001",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Thickness",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -20345,10 +22247,11 @@ return {
 					ValueType = {Name = "ActuatorRelativeTo",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Attachment0",
 					Category = "Torque",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RelativeTo",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20356,10 +22259,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Torque",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Torque",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -20374,10 +22278,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "8",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Coils",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20386,10 +22291,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Derived",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CurrentAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20397,10 +22303,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.00999999978",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Damping",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20413,10 +22320,11 @@ return {
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "LimitsEnabled"}
 					},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20424,10 +22332,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20435,10 +22344,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20446,10 +22356,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "INF",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20457,10 +22368,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.400000006",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Radius",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20468,10 +22380,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Restitution",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20479,10 +22392,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "100",
 					Category = "Spring",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Stiffness",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -20497,10 +22411,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Universal",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LimitsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20508,10 +22423,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "45",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxAngle",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20519,10 +22435,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0.200000003",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Radius",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20530,10 +22447,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Limits",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Restitution",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -20548,10 +22466,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "VectorForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ApplyAtCenterOfMass",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20559,10 +22478,11 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1000, 0, 0",
 					Category = "VectorForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Force",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -20570,10 +22490,11 @@ return {
 					ValueType = {Name = "ActuatorRelativeTo",Category = "Enum"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Attachment0",
 					Category = "VectorForce",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RelativeTo",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -20967,6 +22888,24 @@ return {
 					Parameters = {}
 				},
 				{
+					ReturnType = {Name = "Instances",Category = "DataType"},
+					Capabilities = {"Input"},
+					Name = "GetInputContexts",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"Input"},
+					Name = "GetInputSchemaKeyCodeTree",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Input"},
 					Name = "SetDescription",
@@ -21130,6 +23069,14 @@ return {
 				},
 				{
 					Capabilities = {"Input"},
+					Name = "InputContextsChanged",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Input"},
 					Name = "LocalToolEquipped",
 					MemberType = "Event",
 					Security = "None",
@@ -21284,27 +23231,30 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "Active",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Balance",
-					Name = "BalanceRigidityEnabled",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "BalanceRigidityEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Movement",
-					Name = "MoveSpeedFactor",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "MoveSpeedFactor",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -21318,10 +23268,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BalanceMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21329,10 +23280,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "100",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BalanceSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21341,10 +23293,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Movement",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "LinearImpulse",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21352,10 +23305,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Turn",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaintainAngularMomentum",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21363,10 +23317,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaintainLinearMomentum",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21374,10 +23329,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1000",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MoveMaxForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21385,10 +23341,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Turn",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TurnMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21396,10 +23353,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Turn",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TurnSpeedFactor",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -21414,10 +23372,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AccelerationTime",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21425,10 +23384,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BalanceMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21436,10 +23396,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "100",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BalanceSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21447,10 +23408,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MoveMaxForce",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -21465,10 +23427,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AccelerationLean",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21476,10 +23439,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AccelerationTime",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21487,10 +23451,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BalanceMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21498,10 +23463,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "100",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BalanceSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21509,10 +23475,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "DecelerationTime",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21520,10 +23487,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "2",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Friction",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21531,10 +23499,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "FrictionWeight",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21542,10 +23511,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "GroundOffset",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21553,10 +23523,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "StandForce",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21564,10 +23535,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "100",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "StandSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21575,10 +23547,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TurnSpeedFactor",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -21593,10 +23566,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Movement",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AccelerationTime",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21604,10 +23578,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "PitchMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21615,10 +23590,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "PitchSpeedFactor",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21626,10 +23602,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10000",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RollMaxTorque",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -21637,10 +23614,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Balance",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RollSpeedFactor",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -21653,100 +23631,109 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "ControllerBase",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ActiveController",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "16",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BaseMoveSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "8",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "BaseTurnSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ControllerSensor",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ClimbSensor",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 1",
 					Category = "Input",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "FacingDirection",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ControllerSensor",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "GroundSensor",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Input",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MovingDirection",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "BasePart",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RootPart",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 1, 0",
 					Category = "Input",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "UpDirection",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -21754,191 +23741,6 @@ return {
 			Name = "ControllerManager"
 		},
 		{Name = "ControllerService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
-		{
-			Name = "ConversationalAIAcceptanceService",
-			Tags = {"NotCreatable","Service","NotReplicated"},
-			MemoryCategory = "Instances",
-			Members = {
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "AlternativeAssetSelected",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "previousAssetId",Type = {Name = "int64",Category = "Primitive"}},
-						{Name = "assetId",Type = {Name = "int64",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "AssetInserted",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "assetId",Type = {Name = "int64",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "CodeRunnerActivated",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "code",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "serverAutorun",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "autorunEnabled",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "autoExpandDropdowns",Type = {Name = "bool",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "CodeRunnerCompleted",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "success",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "CodeRunnerUndone",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "DataModelHierarchyLatency",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "latency",Type = {Name = "double",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ErrorTelemetry",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "errorId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "errorType",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "InstanceInserted",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "RecordingActionEnded",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "waypointName",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ReportJSONEncodeFailure",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "instanceName",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "className",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "SendCommandErrorTelemetry",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "commandName",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "SendMeshGenActivatedTelemetry",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "SendMeshGenCompletedTelemetry",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "generationId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "success",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "prompt",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "SendMeshGenMeshInsertedTelemetry",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "generationId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "success",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "SendMeshGenPublishedAssetsTelemetry",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "generationId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "success",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "meshId",Type = {Name = "int64?",Category = "Primitive"}},
-						{Name = "imageId",Type = {Name = "int64?",Category = "Primitive"}}
-					}
-				}
-			},
-			Superclass = "Instance"
-		},
 		{Name = "CookiesService",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			Name = "CoreGuiConfiguration",
@@ -21947,32 +23749,35 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "CapturesViewConfiguration",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI","Capture"},Read = {"UI","Capture"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
-					Name = "CapturesViewConfiguration",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "CapturesViewConfiguration",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "PlayerListConfiguration",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
-					Name = "PlayerListConfiguration",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "PlayerListConfiguration",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "SelfViewConfiguration",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
-					Name = "SelfViewConfiguration",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "SelfViewConfiguration",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -22791,6 +24596,19 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "requestType",Type = {Name = "DataStoreRequestType",Category = "Enum"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"DataStore"},
+					Name = "SetRateLimitForRequestType",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "requestType",Type = {Name = "DataStoreRequestType",Category = "Enum"}},
+						{Name = "baseLimit",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "perPlayerLimit",Type = {Name = "int",Category = "Primitive"}}
 					}
 				},
 				{
@@ -23851,6 +25669,31 @@ return {
 			Name = "DebuggerWatch"
 		},
 		{
+			Name = "DeferredAssetManagerService",
+			Tags = {"NotCreatable","Service","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "PrefetchDownloadStatus",Category = "Enum"},
+					MemberType = "Function",
+					Name = "GetPrefetchDownloadStatus",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					MemberType = "Event",
+					Name = "PrefetchDownloadStatusChanged",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "status",Type = {Name = "PrefetchDownloadStatus",Category = "Enum"}}
+					}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
 			Name = "DeviceIdService",
 			Tags = {"NotCreatable","Service","NotReplicated"},
 			MemoryCategory = "Instances",
@@ -24088,6 +25931,565 @@ return {
 				}
 			},
 			Name = "DialogChoice"
+		},
+		{
+			MemoryCategory = "Animation",
+			Superclass = "Instance",
+			Members = {
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Index1",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Index1TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Index2",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Index2TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Index3",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Index3TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Range",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "IndexRange",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Size",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "IndexSize",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Middle1",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Middle1TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Middle2",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Middle2TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Middle3",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Middle3TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Range",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "MiddleRange",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Size",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "MiddleSize",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Pinky1",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Pinky1TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Pinky2",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Pinky2TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Pinky3",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Pinky3TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Range",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "PinkyRange",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Size",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "PinkySize",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Ring1",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Ring1TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Ring2",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Ring2TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Ring3",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Ring3TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Range",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "RingRange",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Size",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "RingSize",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "DigitsRigDescriptionSide",Category = "Enum"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "None",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Side",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Thumb1",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Thumb1TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Thumb2",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Thumb2TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Thumb3",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Thumb3TposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Range",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ThumbRange",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Size",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ThumbSize",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ReturnType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {"Animation"},
+					Name = "GetFingerControl",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {"Animation"},
+					Name = "GetFingerTip",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Instance",Category = "Class"},
+					Capabilities = {"Animation"},
+					Name = "GetJoint",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Safe",
+					Parameters = {
+						{Name = "label",Type = {Name = "RigLabel",Category = "Enum"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"Animation"},
+					Name = "GetJointLabels",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Safe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {"Animation"},
+					Name = "GetTposeAdjustment",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Safe",
+					Parameters = {
+						{Name = "label",Type = {Name = "RigLabel",Category = "Enum"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Animation"},
+					Name = "SetFingerControl",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "control",Type = {Name = "Vector3",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Animation"},
+					Name = "SetFingerTip",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "point",Type = {Name = "Vector3",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Animation"},
+					Name = "SetJoint",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Safe",
+					Parameters = {
+						{Name = "label",Type = {Name = "RigLabel",Category = "Enum"}},
+						{Name = "joint",Type = {Name = "Instance",Category = "Class"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Animation"},
+					Name = "SetTposeAdjustment",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Safe",
+					Parameters = {
+						{Name = "label",Type = {Name = "RigLabel",Category = "Enum"}},
+						{Name = "transform",Type = {Name = "CFrame",Category = "DataType"}}
+					}
+				}
+			},
+			Name = "DigitsRigDescription"
 		},
 		{
 			Name = "DraftsService",
@@ -24872,31 +27274,48 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","Social"},
 					Name = "InvokeOptInPromptClosed",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","Social"},
 					Name = "PromptOptIn",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players","Social"},
 					Name = "CanPromptOptInAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
-				{MemberType = "Event",Name = "OptInPromptClosed",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "PromptOptInRequested",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}}
+				{
+					Capabilities = {"Players","Social"},
+					Name = "OptInPromptClosed",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Players","Social"},
+					Name = "PromptOptInRequested",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				}
 			},
 			Superclass = "Instance"
 		},
@@ -24919,9 +27338,33 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "int64",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "GetFollowUserId",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
 					MemberType = "Function",
 					Name = "GetPendingJoinAttempt",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "string",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "GetPlaceJoinState",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "int",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "GetQueuePosition",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -25028,6 +27471,24 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "params",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "PlaceJoinStateChanged",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "state",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "QueuePositionChanged",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "position",Type = {Name = "int",Category = "Primitive"}}
 					}
 				}
 			},
@@ -25363,88 +27824,97 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "500000",
 					Category = "Data",
-					Name = "BlastPressure",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "BlastPressure",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "4",
 					Category = "Data",
-					Name = "BlastRadius",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "BlastRadius",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Data",
-					Name = "DestroyJointRadiusPercent",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "DestroyJointRadiusPercent",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ExplosionType",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "Craters",
 					Category = "Data",
-					Name = "ExplosionType",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ExplosionType",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "LocalTransparencyModifier",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Data",
-					Name = "Position",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Position",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Data",
-					Name = "TimeScale",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "TimeScale",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Data",
-					Name = "Visible",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Visible",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"AvatarBehavior"},
 					Name = "Hit",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -25687,6 +28157,18 @@ return {
 					MemberType = "Property",
 					Name = "Funneler",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "BinaryString",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "InternalOverrideFACSData",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
@@ -26179,6 +28661,23 @@ return {
 					MemberType = "Property",
 					Name = "UpperLipSuck",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Animation"},
+					Name = "HasOverrideFACSData",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Animation"},
+					Name = "InternalFacsOverrideChanged",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				}
 			},
 			Name = "FaceControls"
@@ -26298,6 +28797,17 @@ return {
 					MemberType = "Property",
 					Name = "NormalMapContent",
 					Security = {Write = "PluginSecurity",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Rotation",
+					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
@@ -26792,32 +29302,6 @@ return {
 						{Name = "duration",Type = {Name = "int64",Category = "Primitive"}},
 						{Name = "featureRestrictionAbuseVector",Type = {Name = "FeatureRestrictionAbuseVector",Category = "Enum"}}
 					}
-				},
-				{
-					MemberType = "Event",
-					Name = "UpdateExperienceChatTimeout",
-					Tags = {"Hidden"},
-					Security = "RobloxSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "startTime",Type = {Name = "int64",Category = "Primitive"}},
-						{Name = "duration",Type = {Name = "int64",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "UpdateFeatureTimeout",
-					Tags = {"Hidden"},
-					Security = "RobloxSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}},
-						{Name = "acknowledgeable",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "permanent",Type = {Name = "bool",Category = "Primitive"}},
-						{Name = "startTime",Type = {Name = "int64",Category = "Primitive"}},
-						{Name = "duration",Type = {Name = "int64",Category = "Primitive"}},
-						{Name = "featureRestrictionAbuseVector",Type = {Name = "FeatureRestrictionAbuseVector",Category = "Enum"}}
-					}
 				}
 			},
 			Superclass = "Instance"
@@ -27173,17 +29657,36 @@ return {
 			Name = "Folder"
 		},
 		{
+			MemoryCategory = "BaseParts",
+			Superclass = "Folder",
+			Members = {
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Basic"},
+					Name = "SetPrimaryPart",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "part",Type = {Name = "BasePart",Category = "Class"}}
+					}
+				}
+			},
+			Name = "GeneratedFolder"
+		},
+		{
 			MemoryCategory = "Instances",
 			Superclass = "Instance",
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AvatarBehavior"}},
+					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Data",
-					Name = "Visible",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Visible",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -27430,6 +29933,15 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Input"},
+					Name = "AutoSelectGui",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Input"},
 					Name = "DisableGamepadCursor",
 					MemberType = "Function",
 					Security = "None",
@@ -27487,6 +29999,33 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"DynamicGeneration","InternalTest"},
+					Name = "ConnectAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sessionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "sdp",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "type",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "relay",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"DynamicGeneration","InternalTest"},
+					Name = "DisconnectAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sessionId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
 					Capabilities = {"DynamicGeneration"},
 					Name = "GenerateMeshAsync",
 					Tags = {"Yields"},
@@ -27512,6 +30051,29 @@ return {
 						{Name = "inputs",Type = {Name = "Dictionary",Category = "Group"}},
 						{Name = "schema",Type = {Name = "Dictionary",Category = "Group"}},
 						{Name = "options",Type = {Name = "Dictionary?",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"DynamicGeneration","InternalTest"},
+					Name = "GetVideoGenSessionAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"DynamicGeneration","InternalTest"},
+					Name = "GetVideoGenTriggersAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sessionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "lookbackSeconds",Type = {Name = "int",Category = "Primitive"}}
 					}
 				},
 				{
@@ -27551,6 +30113,51 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "glbPath",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"DynamicGeneration","InternalTest"},
+					Name = "StartVideoGenSessionAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sessionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "prompt",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "imageData",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "imageS3Reference",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "triggers",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"DynamicGeneration","InternalTest"},
+					Name = "UpdateVideoGenSessionPromptAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sessionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "prompt",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "imageData",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "imageS3Reference",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "mode",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"DynamicGeneration","InternalTest"},
+					Name = "UpdateVideoGenSessionTriggersAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sessionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "triggers",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				},
 				{
@@ -27713,6 +30320,30 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "MeshPart",Category = "Class"},
+					Capabilities = {"CSG","InternalTest"},
+					Name = "CreateSolidPrimitive",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "type",Type = {Name = "SolidPrimitiveType",Category = "Enum"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "options"}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"CSG"},
+					Name = "GenerateFragmentSites",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "part",Type = {Name = "BasePart",Category = "Class"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "options"}
+					}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"CSG"},
 					Name = "TranscodeMesh",
@@ -27736,7 +30367,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"CSG","InternalTest"},
+					Capabilities = {"CSG"},
 					Name = "FragmentAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -27744,9 +30375,8 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "part",Type = {Name = "BasePart",Category = "Class"}},
-						{Name = "fragmentSites",Type = {Name = "Array",Category = "Group"}},
-						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "options"},
-						{Type = {Name = "Array",Category = "Group"},Default = "{}",Name = "mainPartSites"}
+						{Name = "sites",Type = {Name = "Array",Category = "Group"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "options"}
 					}
 				},
 				{
@@ -27791,7 +30421,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "MeshPart",Category = "Class"},
-					Capabilities = {"CSG","InternalTest"},
+					Capabilities = {"CSG"},
 					Name = "SweepPartAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -28038,7 +30668,7 @@ return {
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"DataStore"},
 					Name = "RemoveVersionAsync",
-					Tags = {"Yields"},
+					Tags = {"Yields","Deprecated"},
 					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
@@ -28073,6 +30703,7 @@ return {
 			},
 			Superclass = "GlobalDataStore"
 		},
+		{Name = "GongService",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			Name = "GroupService",
 			Tags = {"NotCreatable","Service","NotReplicated"},
@@ -28565,6 +31196,17 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "InputSink",Category = "Enum"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "InputSink",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"UI"}},
 					ThreadSafety = "ReadSafe",
@@ -28832,6 +31474,22 @@ return {
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {"UI"},
+					Name = "TweenPositionInternal",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "endPosition",Type = {Name = "UDim2",Category = "DataType"}},
+						{Type = {Name = "EasingDirection",Category = "Enum"},Default = "Out",Name = "easingDirection"},
+						{Type = {Name = "EasingStyle",Category = "Enum"},Default = "Quad",Name = "easingStyle"},
+						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "time"},
+						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "override"},
+						{Type = {Name = "Function",Category = "DataType"},Default = "nil",Name = "callback"}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"UI"},
 					Name = "TweenSize",
 					MemberType = "Function",
 					Security = "None",
@@ -28855,6 +31513,39 @@ return {
 					Parameters = {
 						{Name = "endSize",Type = {Name = "UDim2",Category = "DataType"}},
 						{Name = "endPosition",Type = {Name = "UDim2",Category = "DataType"}},
+						{Type = {Name = "EasingDirection",Category = "Enum"},Default = "Out",Name = "easingDirection"},
+						{Type = {Name = "EasingStyle",Category = "Enum"},Default = "Quad",Name = "easingStyle"},
+						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "time"},
+						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "override"},
+						{Type = {Name = "Function",Category = "DataType"},Default = "nil",Name = "callback"}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"UI"},
+					Name = "TweenSizeAndPositionInternal",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "endSize",Type = {Name = "UDim2",Category = "DataType"}},
+						{Name = "endPosition",Type = {Name = "UDim2",Category = "DataType"}},
+						{Type = {Name = "EasingDirection",Category = "Enum"},Default = "Out",Name = "easingDirection"},
+						{Type = {Name = "EasingStyle",Category = "Enum"},Default = "Quad",Name = "easingStyle"},
+						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "time"},
+						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "override"},
+						{Type = {Name = "Function",Category = "DataType"},Default = "nil",Name = "callback"}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"UI"},
+					Name = "TweenSizeInternal",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "endSize",Type = {Name = "UDim2",Category = "DataType"}},
 						{Type = {Name = "EasingDirection",Category = "Enum"},Default = "Out",Name = "easingDirection"},
 						{Type = {Name = "EasingStyle",Category = "Enum"},Default = "Quad",Name = "easingStyle"},
 						{Type = {Name = "float",Category = "Primitive"},Default = "1",Name = "time"},
@@ -30969,7 +33660,7 @@ return {
 					ValueType = {Name = "Color3",Category = "DataType"},
 					Capabilities = {Read = {"UI"}},
 					ThreadSafety = "ReadSafe",
-					Default = "0.7, 0.7, 0.7",
+					Default = "0.5, 0.5, 0.5",
 					Category = "Text",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
@@ -31486,7 +34177,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
@@ -31498,7 +34189,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Video",
@@ -31508,8 +34199,19 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "VideoSampleSize",Category = "Enum"},
+					Capabilities = {Write = {"InternalTest"},Read = {"Audio","UI","InternalTest"}},
+					ThreadSafety = "ReadSafe",
+					Default = "Full",
+					Category = "Video",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "MaximumResolution",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
@@ -31521,7 +34223,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
@@ -31533,7 +34235,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0",
@@ -31544,8 +34246,41 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "10000",
+					Category = "Video",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "RollOffMaxDistance",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "1",
+					Category = "Video",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "RollOffMinDistance",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "RollOffMode",Category = "Enum"},
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "Inverse",
+					Category = "Video",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "RollOffMode",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -31557,7 +34292,7 @@ return {
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -31569,7 +34304,7 @@ return {
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -31581,7 +34316,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Video",
@@ -31592,7 +34327,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Video",
@@ -31603,7 +34338,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"Audio","UI"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Video",
@@ -31614,7 +34349,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "Pause",
 					MemberType = "Function",
 					Security = "None",
@@ -31623,7 +34358,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "Play",
 					MemberType = "Function",
 					Security = "None",
@@ -31632,7 +34367,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "SetStudioPreview",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -31642,7 +34377,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "DidLoop",
 					MemberType = "Event",
 					Security = "None",
@@ -31652,7 +34387,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "Ended",
 					MemberType = "Event",
 					Security = "None",
@@ -31662,7 +34397,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "Loaded",
 					MemberType = "Event",
 					Security = "None",
@@ -31672,7 +34407,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "Paused",
 					MemberType = "Event",
 					Security = "None",
@@ -31682,7 +34417,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "Played",
 					MemberType = "Event",
 					Security = "None",
@@ -31692,7 +34427,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "PlayingUpdatedFromServer",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -31703,7 +34438,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"Audio","UI"},
 					Name = "TimePositionUpdatedFromServer",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -31862,6 +34597,17 @@ return {
 					MemberType = "Property",
 					Name = "ResetOnSpawn",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "TabKeyboardNavigation",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "ZIndexBehavior",Category = "Enum"},
@@ -32253,6 +34999,19 @@ return {
 				},
 				{
 					Capabilities = {"UI"},
+					Name = "PointerAction",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "wheel",Type = {Name = "float",Category = "Primitive"}},
+						{Name = "pan",Type = {Name = "Vector2",Category = "DataType"}},
+						{Name = "pinch",Type = {Name = "float",Category = "Primitive"}},
+						{Name = "gameProcessedEvent",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"UI"},
 					Name = "WindowFocusReleased",
 					MemberType = "Event",
 					Security = "PluginSecurity",
@@ -32434,7 +35193,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Write = {"UI","Monetization"},Read = {"UI","Monetization"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Data",
@@ -32456,7 +35215,7 @@ return {
 				},
 				{
 					ValueType = {Name = "AdUnitStatus",Category = "Enum"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Write = {"UI","Monetization"},Read = {"UI","Monetization"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "Inactive",
@@ -32527,7 +35286,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Monetization"},
 					Name = "OnAdEvent",
 					MemberType = "Callback",
 					Security = "None",
@@ -34157,202 +36916,221 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI","Input"},Read = {"UI","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
-					Name = "AutoSelectGuiEnabled",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "AutoSelectGuiEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Folder",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "CoreEffectFolder",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "Folder",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "CoreGuiFolder",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI","Input"},Read = {"UI","Input"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "CoreGuiNavigationEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "DisplayScalingMode",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "DisplayScalingMode",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI","Input"},Read = {"UI","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
-					Name = "GuiNavigationEnabled",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "GuiNavigationEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsModalDialog",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsWindows",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "MenuIsOpen",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "PreferredTextSize",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "PreferredTextSize",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "PreferredTransparency",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "ReducedMotionEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "GuiObject",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "SelectedCoreObject",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "GuiObject",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI","Input"},Read = {"UI","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
-					Name = "SelectedObject",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "SelectedObject",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Rect",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "TopbarInset",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI","Input"},Read = {"UI","Input"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
-					Name = "TouchControlsEnabled",
 					Serialization = {CanSave = false,CanLoad = false},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "TouchControlsEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "DisplaySize",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "ViewportDisplaySize",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "ViewportSizeInMM",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "AddCenterDialog",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34364,8 +37142,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "AddKey",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34374,12 +37153,13 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "AddSelectionParent",
 					Tags = {
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "SelectionGroup"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34389,12 +37169,13 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "AddSelectionTuple",
 					Tags = {
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "SelectionGroup"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34404,8 +37185,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "AddSpecialKey",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34414,8 +37196,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "BroadcastNotification",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34425,24 +37208,27 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "ClearError",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "CloseInspectMenu",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "CloseStatsBasedOnInputString",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34451,8 +37237,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "DismissNotification",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34461,8 +37248,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "ForceTenFootInterface",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34471,16 +37259,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetBrickCount",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetClosestDialogToPosition",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34489,8 +37279,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dialog",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetClosestVisibleDialogToPosition",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34499,68 +37290,76 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetEmotesMenuOpen",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "ConnectionError",Category = "Enum"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetErrorCode",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetErrorDetails",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetErrorMessage",
 					Tags = {
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "GetUiMessage"}
 					},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "ConnectionError",Category = "Enum"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetErrorType",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetGameplayPausedNotificationEnabled",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetGuiInset",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetGuiIsVisible",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34569,16 +37368,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "Vector2",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetHardwareSafeViewport",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Rect",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetInsetArea",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34587,56 +37388,63 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetInspectMenuEnabled",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetNotificationTypeList",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "float",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetRawScreenScale",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetResolutionScale",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetSafeZoneOffsets",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetUiMessage",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","AvatarAppearance"},
 					Name = "InspectPlayerFromHumanoidDescription",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34646,8 +37454,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","AvatarAppearance"},
 					Name = "InspectPlayerFromUserId",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34656,8 +37465,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "InspectPlayerFromUserIdWithCtx",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34667,24 +37477,27 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "IsMemoryTrackerEnabled",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "IsTenFootInterface",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "OnNotificationDisplayed",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34693,8 +37506,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "OnNotificationInteraction",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34704,9 +37518,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "OpenBrowserWindow",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34715,9 +37530,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "OpenNativeOverlay",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34727,8 +37543,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "RemoveCenterDialog",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34737,8 +37554,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "RemoveKey",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34747,12 +37565,13 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "RemoveSelectionGroup",
 					Tags = {
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "SelectionGroup"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34761,8 +37580,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "RemoveSpecialKey",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34771,8 +37591,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "Select",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34781,8 +37602,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SendNotification",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34791,8 +37613,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SendUIOcclusionMetricsForQueryRegion",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34803,8 +37626,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetEmotesMenuOpen",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34813,8 +37637,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetGameplayPausedNotificationEnabled",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34823,16 +37648,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetGlobalGuiInset",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {{Name = "x1",Type = {Name = "int",Category = "Primitive"}},{Name = "y1",Type = {Name = "int",Category = "Primitive"}},{Name = "x2",Type = {Name = "int",Category = "Primitive"}},{Name = "y2",Type = {Name = "int",Category = "Primitive"}}}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetHardwareSafeAreaInsets",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34844,8 +37671,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetInspectMenuEnabled",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34854,8 +37682,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetMenuIsOpen",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34865,8 +37694,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetPurchasePromptIsShown",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34875,8 +37705,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetSafeZoneOffsets",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34888,8 +37719,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetTopbarInset",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34898,8 +37730,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetUiMessage",
+					MemberType = "Function",
 					Security = "LocalUserSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34909,8 +37742,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "ShowStatsBasedOnInputString",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34919,16 +37753,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "ToggleFullscreen",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "ToggleGuiIsVisibleForCaptures",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34937,8 +37773,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "ToggleGuiIsVisibleIfAllowed",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34947,26 +37784,43 @@ return {
 				},
 				{
 					ReturnType = {Name = "Vector2",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetScreenResolution",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "BrowserWindowClosed",
 					Tags = {"Deprecated"},
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
-				{MemberType = "Event",Name = "CloseInspectMenuRequest",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "CoreGuiRenderOverflowed",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"UI"},
+					Name = "CloseInspectMenuRequest",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
+					Name = "CoreGuiRenderOverflowed",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
 					Name = "EmotesMenuOpenChanged",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34974,12 +37828,13 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "ErrorMessageChanged",
 					Tags = {
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "UiMessageChanged"}
 					},
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34987,8 +37842,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "GuiVisibilityChangedSignal",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -34997,8 +37853,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "InspectMenuEnabledChangedSignal",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35006,8 +37863,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "InspectPlayerFromHumanoidDescriptionRequest",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35016,8 +37874,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "InspectPlayerFromUserIdWithCtxRequest",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35026,8 +37885,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "KeyPressed",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35035,12 +37895,34 @@ return {
 						{Name = "modifiers",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "MenuClosed",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "MenuOpened",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "NativeClose",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"UI"},
+					Name = "MenuClosed",
 					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
+					Name = "MenuOpened",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
+					Name = "NativeClose",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
 					Name = "NetworkPausedEnabledChanged",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35048,8 +37930,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "Open9SliceEditor",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35057,20 +37940,43 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "OpenStyleEditor",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "styleBase",Type = {Name = "Instance",Category = "Class"}}
 					}
 				},
-				{MemberType = "Event",Name = "PurchasePromptShown",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "SafeZoneOffsetsChanged",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "ShowLeaveConfirmation",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"UI"},
+					Name = "PurchasePromptShown",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
+					Name = "SafeZoneOffsetsChanged",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
+					Name = "ShowLeaveConfirmation",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"UI"},
 					Name = "SpecialKeyPressed",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35079,8 +37985,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"UI"},
 					Name = "UiMessageChanged",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35090,8 +37997,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Callback",
+					Capabilities = {"UI"},
 					Name = "SendCoreUiNotification",
+					MemberType = "Callback",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -35103,511 +38011,6 @@ return {
 			Superclass = "Instance"
 		},
 		{Name = "GuidRegistryService",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
-		{
-			Name = "HandRigDescription",
-			Tags = {"NotBrowsable"},
-			MemoryCategory = "Animation",
-			Members = {
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Index1",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Index1TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Index2",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Index2TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Index3",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Index3TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0",
-					Category = "Range",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "IndexRange",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0",
-					Category = "Size",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "IndexSize",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Middle1",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Middle1TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Middle2",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Middle2TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Middle3",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Middle3TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0",
-					Category = "Range",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "MiddleRange",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0",
-					Category = "Size",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "MiddleSize",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Pinky1",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Pinky1TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Pinky2",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Pinky2TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Pinky3",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Pinky3TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0",
-					Category = "Range",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "PinkyRange",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0",
-					Category = "Size",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "PinkySize",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Ring1",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Ring1TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Ring2",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Ring2TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Ring3",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Ring3TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0",
-					Category = "Range",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "RingRange",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0",
-					Category = "Size",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "RingSize",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "HandRigDescriptionSide",Category = "Enum"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "None",
-					Category = "Data",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Side",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Thumb1",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Thumb1TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Thumb2",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Thumb2TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Thumb3",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Thumb3TposeAdjustment",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0",
-					Category = "Range",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "ThumbRange",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0",
-					Category = "Size",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "ThumbSize",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ReturnType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {"Animation"},
-					Name = "GetFingerControl",
-					MemberType = "Function",
-					Security = "None",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {"Animation"},
-					Name = "GetFingerTip",
-					MemberType = "Function",
-					Security = "None",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Animation"},
-					Name = "SetFingerControl",
-					MemberType = "Function",
-					Security = "None",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}},
-						{Name = "control",Type = {Name = "Vector3",Category = "DataType"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Animation"},
-					Name = "SetFingerTip",
-					MemberType = "Function",
-					Security = "None",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "fingerIndex",Type = {Name = "int",Category = "Primitive"}},
-						{Name = "point",Type = {Name = "Vector3",Category = "DataType"}}
-					}
-				}
-			},
-			Superclass = "Instance"
-		},
 		{
 			MemoryCategory = "Instances",
 			Superclass = "Instance",
@@ -35655,18 +38058,6 @@ return {
 					MemberType = "Property",
 					Name = "Type",
 					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "FloatCurve",Category = "Class"},
-					Capabilities = {Read = {"Input"}},
-					Tags = {"Deprecated"},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Data",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Waveform",
-					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "BinaryString",Category = "DataType"},
@@ -36052,8 +38443,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "GetDocumentationUrl",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -36062,9 +38454,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "GetAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -36075,9 +38468,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "GetAsyncFullUrl",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -36088,9 +38482,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "PostAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -36103,9 +38498,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "PostAsyncFullUrl",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -36118,9 +38514,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "RequestAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -36132,9 +38529,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "RequestLimitedAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -36373,29 +38771,31 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Jump Settings",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AutoJumpEnabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AutoRotate",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Game",
@@ -36406,7 +38806,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Behavior",
@@ -36417,7 +38817,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "400",
@@ -36429,7 +38829,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -36441,7 +38841,7 @@ return {
 				},
 				{
 					ValueType = {Name = "CameraMode",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Classic",
@@ -36453,7 +38853,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Data",
@@ -36464,19 +38864,18 @@ return {
 				},
 				{
 					ValueType = {Name = "HumanoidCollisionType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					MemberType = "Property",
 					Tags = {"Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "OuterBox",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
 					Name = "CollisionType",
 					Security = {Write = "PluginSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "HumanoidDisplayDistanceType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Viewer",
 					Category = "Data",
@@ -36487,7 +38886,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
@@ -36498,30 +38897,45 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "EvaluateStateMachine",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "FinishedState",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "Material",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Air",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "FloorMaterial",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "100",
@@ -36533,7 +38947,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "100",
 					Category = "Data",
@@ -36544,7 +38958,7 @@ return {
 				},
 				{
 					ValueType = {Name = "HumanoidHealthDisplayType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "DisplayWhenDamaged",
 					Category = "Data",
@@ -36555,7 +38969,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "100",
@@ -36567,18 +38981,19 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Game",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "HipHeight",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "1, 1, 1",
@@ -36590,19 +39005,18 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					MemberType = "Property",
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
 					Name = "InternalDisplayName",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
@@ -36614,7 +39028,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -36626,53 +39040,57 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Jump",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "7.19999981",
 					Category = "Jump Settings",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "JumpHeight",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "50",
 					Category = "Jump Settings",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "JumpPower",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "JumpReplicate",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "BasePart",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
@@ -36684,7 +39102,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "100",
 					Category = "Game",
@@ -36695,7 +39113,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "89",
 					Category = "Game",
@@ -36706,31 +39124,33 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MoveDirection",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MoveDirectionInternal",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "100",
 					Category = "Data",
@@ -36741,7 +39161,7 @@ return {
 				},
 				{
 					ValueType = {Name = "NameOcclusion",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "OccludeAll",
 					Category = "Data",
@@ -36752,31 +39172,44 @@ return {
 				},
 				{
 					ValueType = {Name = "HumanoidStateType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "FallingDown",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "NetworkHumanoidState",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "NoFloorTimerState",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					MemberType = "Property",
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
 					Name = "OverrideDefaultCollisions",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Control",
@@ -36787,7 +39220,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Behavior",
@@ -36798,7 +39231,7 @@ return {
 				},
 				{
 					ValueType = {Name = "HumanoidRigType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "R6",
 					Category = "Data",
@@ -36809,7 +39242,7 @@ return {
 				},
 				{
 					ValueType = {Name = "BasePart",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
@@ -36821,66 +39254,69 @@ return {
 				},
 				{
 					ValueType = {Name = "BasePart",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RootPart",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "RotationType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					MemberType = "Property",
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "MovementRelative",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
 					Name = "RotationType",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "BasePart",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SeatPart",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Sit",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Strafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Control",
@@ -36890,8 +39326,21 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
+					Name = "TimerState",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "BasePart",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
@@ -36903,18 +39352,19 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Jump Settings",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "UseJumpPower",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -36926,30 +39376,32 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WalkDirection",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "16",
 					Category = "Game",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WalkSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "BasePart",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Control",
@@ -36960,18 +39412,19 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "WalkToPoint",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Write = {"AvatarBehavior"},Read = {"AvatarBehavior"}},
 					Tags = {
 						"NotReplicated",
 						"Deprecated",
@@ -36987,7 +39440,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "AddAccessory",
 					MemberType = "Function",
 					Security = "None",
@@ -36998,10 +39451,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "AddCustomStatus",
 					Tags = {"Deprecated"},
-					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37010,10 +39462,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "AddStatus",
 					Tags = {"Deprecated"},
-					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37022,7 +39473,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "BuildRigFromAttachments",
 					MemberType = "Function",
 					Security = "None",
@@ -37031,10 +39482,11 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "ChangeState",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Type = {Name = "HumanoidStateType",Category = "Enum"},Default = "None",Name = "state"}
@@ -37042,9 +39494,8 @@ return {
 				},
 				{
 					ReturnType = {Name = "Vector3?",Category = "DataType"},
-					Capabilities = {"Avatar"},
-					Name = "ComputeOriginalSizeForPart",
 					MemberType = "Function",
+					Name = "ComputeOriginalSizeForPart",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37053,16 +39504,15 @@ return {
 				},
 				{
 					ReturnType = {{Name = "CFrame",Category = "DataType"},{Name = "Vector3",Category = "DataType"}},
-					Capabilities = {"Avatar"},
-					Name = "ComputeR15BodyBoundingBox",
 					MemberType = "Function",
+					Name = "ComputeR15BodyBoundingBox",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "EquipTool",
 					MemberType = "Function",
 					Security = "None",
@@ -37073,7 +39523,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetAccessories",
 					MemberType = "Function",
 					Security = "None",
@@ -37082,9 +39532,8 @@ return {
 				},
 				{
 					ReturnType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {"Avatar"},
-					Name = "GetAccessoryHandleScale",
 					MemberType = "Function",
+					Name = "GetAccessoryHandleScale",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37094,7 +39543,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetAppliedDescription",
 					MemberType = "Function",
 					Security = "None",
@@ -37103,7 +39552,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "BodyPartR15",Category = "Enum"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "GetBodyPartR15",
 					MemberType = "Function",
 					Security = "None",
@@ -37114,7 +39563,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Limb",Category = "Enum"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "GetLimb",
 					MemberType = "Function",
 					Security = "None",
@@ -37125,7 +39574,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "GetMoveVelocity",
 					MemberType = "Function",
 					Security = "None",
@@ -37134,7 +39583,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"Animation"},
 					Name = "GetPlayingAnimationTracks",
 					Tags = {
 						"Deprecated",
@@ -37146,20 +39595,32 @@ return {
 					Parameters = {}
 				},
 				{
+					ReturnType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {"AvatarBehavior"},
+					Name = "GetRelativeVelocityAtFloor",
+					MemberType = "Function",
+					Security = "None",
+					SimulationAccess = true,
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "HumanoidStateType",Category = "Enum"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "GetState",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "GetStateEnabled",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "state",Type = {Name = "HumanoidStateType",Category = "Enum"}}
@@ -37167,20 +39628,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "GetStatuses",
 					Tags = {"Deprecated"},
-					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "HasCustomStatus",
 					Tags = {"Deprecated"},
-					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37189,10 +39648,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "HasStatus",
 					Tags = {"Deprecated"},
-					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37200,26 +39658,28 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "AnimationTrack",Category = "Class"},
-					Capabilities = {"Avatar"},
-					Name = "LoadAnimation",
+					Capabilities = {"Animation"},
 					Tags = {
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "LoadAnimation"}
 					},
-					MemberType = "Function",
-					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "animation",Type = {Name = "Animation",Category = "Class"}}
-					}
+					},
+					ReturnType = {Name = "AnimationTrack",Category = "Class"},
+					Name = "LoadAnimation",
+					SimulationAccess = true,
+					MemberType = "Function",
+					Security = "None"
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Move",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "moveDirection",Type = {Name = "Vector3",Category = "DataType"}},
@@ -37228,10 +39688,11 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "MoveTo",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "location",Type = {Name = "Vector3",Category = "DataType"}},
@@ -37240,7 +39701,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "RemoveAccessories",
 					MemberType = "Function",
 					Security = "None",
@@ -37249,10 +39710,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "RemoveCustomStatus",
 					Tags = {"Deprecated"},
-					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37261,10 +39721,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "RemoveStatus",
 					Tags = {"Deprecated"},
-					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37273,7 +39732,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ReplaceBodyPartR15",
 					MemberType = "Function",
 					Security = "None",
@@ -37285,9 +39744,8 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
-					Name = "SetClickToWalkEnabled",
 					MemberType = "Function",
+					Name = "SetClickToWalkEnabled",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37296,10 +39754,11 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "SetStateEnabled",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "state",Type = {Name = "HumanoidStateType",Category = "Enum"}},
@@ -37308,7 +39767,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "TakeDamage",
 					MemberType = "Function",
 					Security = "None",
@@ -37319,7 +39778,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "UnequipTools",
 					MemberType = "Function",
 					Security = "None",
@@ -37327,23 +39786,24 @@ return {
 					Parameters = {}
 				},
 				{
-					ReturnType = {Name = "AnimationTrack",Category = "Class"},
-					Capabilities = {"Avatar"},
-					Name = "loadAnimation",
+					Capabilities = {"Animation"},
 					Tags = {
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "LoadAnimation"}
 					},
-					MemberType = "Function",
-					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "animation",Type = {Name = "Animation",Category = "Class"}}
-					}
+					},
+					ReturnType = {Name = "AnimationTrack",Category = "Class"},
+					Name = "loadAnimation",
+					SimulationAccess = true,
+					MemberType = "Function",
+					Security = "None"
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "takeDamage",
 					Tags = {
 						"Deprecated",
@@ -37358,19 +39818,17 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
-					Name = "CacheDefaults",
 					MemberType = "Function",
+					Name = "CacheDefaults",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "ApplyAvatarRules",
 					Tags = {"Yields"},
-					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37379,7 +39837,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ApplyDescription",
 					Tags = {
 						"Yields",
@@ -37396,7 +39854,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ApplyDescriptionAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -37409,10 +39867,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "ApplyDescriptionClientServer",
 					Tags = {"Yields"},
-					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37421,7 +39878,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ApplyDescriptionReset",
 					Tags = {
 						"Yields",
@@ -37438,7 +39895,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ApplyDescriptionResetAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -37451,7 +39908,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "PlayEmote",
 					Tags = {
 						"Yields",
@@ -37467,10 +39924,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					Capabilities = {"Avatar"},
+					MemberType = "Function",
 					Name = "PlayEmoteAndGetAnimTrackById",
 					Tags = {"Yields"},
-					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37479,7 +39935,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "PlayEmoteAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -37490,7 +39946,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"Animation"},
 					Name = "AnimationPlayed",
 					Tags = {
 						"Deprecated",
@@ -37504,7 +39960,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "ApplyDescriptionFinished",
 					MemberType = "Event",
 					Security = "None",
@@ -37514,7 +39970,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Climbing",
 					MemberType = "Event",
 					Security = "None",
@@ -37523,19 +39979,11 @@ return {
 						{Name = "speed",Type = {Name = "float",Category = "Primitive"}}
 					}
 				},
+				{MemberType = "Event",Name = "ClusterCompositionFinished",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
-					Capabilities = {"Avatar"},
-					Name = "ClusterCompositionFinished",
 					MemberType = "Event",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {}
-				},
-				{
-					Capabilities = {"Avatar"},
 					Name = "CustomStatusAdded",
 					Tags = {"Deprecated"},
-					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37543,10 +39991,9 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					MemberType = "Event",
 					Name = "CustomStatusRemoved",
 					Tags = {"Deprecated"},
-					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37554,7 +40001,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Died",
 					MemberType = "Event",
 					Security = "None",
@@ -37562,9 +40009,8 @@ return {
 					Parameters = {}
 				},
 				{
-					Capabilities = {"Avatar"},
-					Name = "EmoteTriggered",
 					MemberType = "Event",
+					Name = "EmoteTriggered",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37573,7 +40019,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "FallingDown",
 					MemberType = "Event",
 					Security = "None",
@@ -37583,7 +40029,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "FreeFalling",
 					MemberType = "Event",
 					Security = "None",
@@ -37593,7 +40039,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "GettingUp",
 					MemberType = "Event",
 					Security = "None",
@@ -37603,7 +40049,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "HealthChanged",
 					MemberType = "Event",
 					Security = "None",
@@ -37613,7 +40059,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Jumping",
 					MemberType = "Event",
 					Security = "None",
@@ -37623,7 +40069,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "MoveToFinished",
 					MemberType = "Event",
 					Security = "None",
@@ -37633,7 +40079,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "PlatformStanding",
 					MemberType = "Event",
 					Security = "None",
@@ -37643,7 +40089,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Ragdoll",
 					MemberType = "Event",
 					Security = "None",
@@ -37653,7 +40099,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Running",
 					MemberType = "Event",
 					Security = "None",
@@ -37663,7 +40109,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Seated",
 					MemberType = "Event",
 					Security = "None",
@@ -37674,10 +40120,9 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					MemberType = "Event",
 					Name = "ServerApplyDescription",
 					Tags = {"Hidden"},
-					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37685,25 +40130,31 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					MemberType = "Event",
 					Name = "ServerBreakJoints",
 					Tags = {"Hidden"},
-					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					Capabilities = {"Avatar"},
+					MemberType = "Event",
 					Name = "ServerEquipTool",
 					Tags = {"Hidden"},
-					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {{Name = "tool",Type = {Name = "Tool",Category = "Class"}}}
 				},
 				{
-					Capabilities = {"Avatar"},
+					MemberType = "Event",
+					Name = "ServerResetCharacter",
+					Tags = {"Hidden"},
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"AvatarBehavior"},
 					Name = "StateChanged",
 					MemberType = "Event",
 					Security = "None",
@@ -37714,7 +40165,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "StateEnabledChanged",
 					MemberType = "Event",
 					Security = "None",
@@ -37725,10 +40176,9 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					MemberType = "Event",
 					Name = "StatusAdded",
 					Tags = {"Deprecated"},
-					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37736,10 +40186,9 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					MemberType = "Event",
 					Name = "StatusRemoved",
 					Tags = {"Deprecated"},
-					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -37747,7 +40196,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Strafing",
 					MemberType = "Event",
 					Security = "None",
@@ -37757,7 +40206,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Swimming",
 					MemberType = "Event",
 					Security = "None",
@@ -37767,7 +40216,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarBehavior"},
 					Name = "Touched",
 					MemberType = "Event",
 					Security = "None",
@@ -37786,7 +40235,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "[]",
@@ -37798,7 +40247,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -37810,7 +40259,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0.300000012",
 					Category = "Scale",
@@ -37821,7 +40270,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -37832,7 +40281,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Scale",
@@ -37843,7 +40292,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -37855,7 +40304,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -37867,7 +40316,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Body Parts",
@@ -37878,7 +40327,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -37890,7 +40339,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -37901,7 +40350,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -37913,7 +40362,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Clothes",
@@ -37924,7 +40373,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -37936,7 +40385,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -37948,7 +40397,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -37960,7 +40409,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -37972,7 +40421,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Scale",
@@ -37983,7 +40432,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Scale",
@@ -37994,7 +40443,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -38005,7 +40454,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -38016,7 +40465,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -38028,7 +40477,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -38040,7 +40489,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -38052,7 +40501,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -38064,7 +40513,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -38075,7 +40524,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -38087,7 +40536,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "-1",
@@ -38099,7 +40548,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Clothes",
@@ -38110,7 +40559,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Scale",
@@ -38121,7 +40570,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
@@ -38133,7 +40582,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -38145,7 +40594,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -38157,7 +40606,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -38169,7 +40618,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -38181,7 +40630,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -38192,7 +40641,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Clothes",
@@ -38203,7 +40652,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -38214,8 +40663,19 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Animation",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "StaticFacialAnimation",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -38226,7 +40686,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -38238,7 +40698,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
@@ -38250,7 +40710,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
@@ -38261,7 +40721,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
@@ -38273,7 +40733,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Animation",
@@ -38284,7 +40744,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Scale",
@@ -38295,7 +40755,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "AddEmote",
 					MemberType = "Function",
 					Security = "None",
@@ -38307,7 +40767,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetAccessories",
 					MemberType = "Function",
 					Security = "None",
@@ -38318,7 +40778,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetEmotes",
 					MemberType = "Function",
 					Security = "None",
@@ -38327,7 +40787,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetEquippedEmotes",
 					MemberType = "Function",
 					Security = "None",
@@ -38336,7 +40796,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "RemoveEmote",
 					MemberType = "Function",
 					Security = "None",
@@ -38347,7 +40807,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "SetAccessories",
 					MemberType = "Function",
 					Security = "None",
@@ -38359,7 +40819,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "SetEmotes",
 					MemberType = "Function",
 					Security = "None",
@@ -38370,7 +40830,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "SetEquippedEmotes",
 					MemberType = "Function",
 					Security = "None",
@@ -38380,7 +40840,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "EmotesChanged",
 					MemberType = "Event",
 					Security = "None",
@@ -38390,7 +40850,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "EquippedEmotesChanged",
 					MemberType = "Event",
 					Security = "None",
@@ -38854,7 +41314,7 @@ return {
 					Category = "Mapping",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "LeftToes",
+					Name = "LeftToeBase",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -38865,7 +41325,7 @@ return {
 					Category = "Range",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "LeftToesRangeMax",
+					Name = "LeftToeBaseRangeMax",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -38876,7 +41336,7 @@ return {
 					Category = "Range",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "LeftToesRangeMin",
+					Name = "LeftToeBaseRangeMin",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -38887,7 +41347,7 @@ return {
 					Category = "Size",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "LeftToesSize",
+					Name = "LeftToeBaseSize",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -38898,7 +41358,7 @@ return {
 					Category = "Tpose",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "LeftToesTposeAdjustment",
+					Name = "LeftToeBaseTposeAdjustment",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -39021,61 +41481,6 @@ return {
 					MemberType = "Property",
 					Name = "OriginOffset",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
-				},
-				{
-					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_no_string_value__",
-					Category = "Mapping",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "Pelvis",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0",
-					Category = "Range",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "PelvisRangeMax",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "Vector3",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0",
-					Category = "Range",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "PelvisRangeMin",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0",
-					Category = "Size",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "PelvisSize",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					Capabilities = {Read = {"Animation"}},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Tpose",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "PelvisTposeAdjustment",
-					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Instance",Category = "Class"},
@@ -39415,7 +41820,7 @@ return {
 					Category = "Mapping",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "RightToes",
+					Name = "RightToeBase",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -39426,7 +41831,7 @@ return {
 					Category = "Range",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "RightToesRangeMax",
+					Name = "RightToeBaseRangeMax",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -39437,7 +41842,7 @@ return {
 					Category = "Range",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "RightToesRangeMin",
+					Name = "RightToeBaseRangeMin",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -39448,7 +41853,7 @@ return {
 					Category = "Size",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "RightToesSize",
+					Name = "RightToeBaseSize",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -39459,7 +41864,7 @@ return {
 					Category = "Tpose",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
-					Name = "RightToesTposeAdjustment",
+					Name = "RightToeBaseTposeAdjustment",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -39580,6 +41985,61 @@ return {
 					Category = "Mapping",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
+					Name = "Spine",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Range",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "SpineRangeMax",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Range",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "SpineRangeMin",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Size",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "SpineSize",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "CFrame",Category = "DataType"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Category = "Tpose",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "SpineTposeAdjustment",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Instance",Category = "Class"},
+					Capabilities = {Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Mapping",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "Waist",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -39636,6 +42096,17 @@ return {
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "character",Type = {Name = "Instance",Category = "Class"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"Animation"},
+					Name = "GetContainedJointLabels",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Safe",
+					Parameters = {
+						{Name = "bodyMeshPartName",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -39767,7 +42238,7 @@ return {
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "label",Type = {Name = "RigLabel",Category = "Enum"}},
-						{Name = "character",Type = {Name = "Instance",Category = "Class"}}
+						{Name = "joint",Type = {Name = "Instance",Category = "Class"}}
 					}
 				},
 				{
@@ -39840,10 +42311,11 @@ return {
 					ValueType = {Name = "Instance",Category = "Class"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ChainRoot",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -39851,10 +42323,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Enabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -39862,10 +42335,11 @@ return {
 					ValueType = {Name = "Instance",Category = "Class"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "EndEffector",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -39928,10 +42402,11 @@ return {
 					ValueType = {Name = "Instance",Category = "Class"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Target",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -39939,10 +42414,11 @@ return {
 					ValueType = {Name = "IKControlType",Category = "Enum"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Transform",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Type",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -39950,10 +42426,11 @@ return {
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Animation"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Weight",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -40260,6 +42737,7 @@ return {
 			},
 			Superclass = "Instance"
 		},
+		{Name = "ImageScreenCaptureService",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			Name = "ImportSession",
 			Tags = {"NotCreatable","NotReplicated"},
@@ -40563,10 +43041,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Input"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Enabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -40574,10 +43053,11 @@ return {
 					ValueType = {Name = "InputActionType",Category = "Enum"},
 					Capabilities = {Read = {"Input"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Bool",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Type",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -40599,10 +43079,20 @@ return {
 					Name = "Fire",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "state",Type = {Name = "Variant",Category = "Group"}}
 					}
+				},
+				{
+					ReturnType = {Name = "Instances",Category = "DataType"},
+					Capabilities = {"Input"},
+					Name = "GetInputBindings",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Variant",Category = "Group"},
@@ -40610,7 +43100,16 @@ return {
 					Name = "GetState",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Input"},
+					Name = "InputBindingsChanged",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
@@ -40655,6 +43154,17 @@ return {
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
 					Name = "Backward",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Write = {"Input"},Read = {"Input"}},
+					ThreadSafety = "ReadSafe",
+					Default = "true",
+					Category = "Composite Directions",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ClampMagnitudeToOne",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -40872,6 +43382,23 @@ return {
 					MemberType = "Property",
 					Name = "Sink",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ReturnType = {Name = "Instances",Category = "DataType"},
+					Capabilities = {"Input"},
+					Name = "GetInputActions",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Input"},
+					Name = "InputActionsChanged",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				}
 			},
 			Name = "InputContext"
@@ -40957,23 +43484,25 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"LoadUnownedAsset"},Read = {"LoadUnownedAsset"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "AllowClientInsertModels",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"LoadUnownedAsset"},Read = {"LoadUnownedAsset"}},
 					Tags = {"NotReplicated","NotBrowsable","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "AllowInsertFreeModels",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -41213,13 +43742,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"LoadOwnedAsset"},
 					Name = "loadAsset",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "LoadAsset"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -41238,9 +43768,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"AssetCreateUpdate"},
 					Name = "InternalDelete",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -41324,6 +43855,8 @@ return {
 			},
 			Superclass = "Instance"
 		},
+		{Name = "InternalMessagingService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
+		{Name = "InternalMessagingServiceVerifier",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			Name = "InternalSyncItem",
 			Tags = {"NotReplicated"},
@@ -41715,10 +44248,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Transform",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -43604,6 +46138,17 @@ return {
 					MemberType = "Property",
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					Default = "true",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "EntityVisible",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
@@ -43669,6 +46214,17 @@ return {
 						{Name = "annotations",Type = {Name = "Dictionary",Category = "Group"}},
 						{Name = "numLogs",Type = {Name = "int",Category = "Primitive"}}
 					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SubmitStratusBugReport",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "description",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "username",Type = {Name = "string",Category = "Primitive"}}
+					}
 				}
 			},
 			Superclass = "Instance"
@@ -43686,6 +46242,19 @@ return {
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Logging"},
+					Name = "Error",
+					Tags = {"CustomLuaState"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "context"}
+					}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
@@ -43719,6 +46288,46 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Logging"},
+					Name = "Info",
+					Tags = {"CustomLuaState"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "context"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Logging"},
+					Name = "Log",
+					Tags = {"CustomLuaState"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "messageType",Type = {Name = "MessageType",Category = "Enum"}},
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "context"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Logging"},
+					Name = "Output",
+					Tags = {"CustomLuaState"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "context"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Logging"},
 					Name = "RequestHttpResultApproved",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -43744,6 +46353,19 @@ return {
 					Parameters = {}
 				},
 				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Logging"},
+					Name = "Warn",
+					Tags = {"CustomLuaState"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "context"}
+					}
+				},
+				{
 					Capabilities = {"Logging"},
 					Name = "HttpResultOut",
 					MemberType = "Event",
@@ -43761,7 +46383,8 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "messageType",Type = {Name = "MessageType",Category = "Enum"}}
+						{Name = "messageType",Type = {Name = "MessageType",Category = "Enum"}},
+						{Name = "context",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				},
 				{
@@ -44002,69 +46625,76 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "BinaryString",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "AuroraScriptBindingsSerialize",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
-					Name = "EnableCulling",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "EnableCulling",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "EnableLOD",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "LODCriticality",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
-					Name = "Priority",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Priority",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "ProtectedString",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
-					Name = "Source",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Source",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "AddTo",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44074,16 +46704,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "GetSchema",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "IsOnInstance",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44092,8 +46724,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "RemoveFrom",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44102,8 +46735,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "RBXScriptSignal",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "SignalFired",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44111,11 +46745,19 @@ return {
 						{Name = "topic",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "ChangedThisFrame",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Basic"},
+					Name = "ChangedThisFrame",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Basic"},
 					Name = "SynchronizeState",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44161,12 +46803,13 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"LoadUnownedAsset"},Read = {"LoadUnownedAsset"}},
 					Tags = {"Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "LinkedSource",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -44228,12 +46871,13 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"LoadUnownedAsset"},Read = {"LoadUnownedAsset"}},
 					Tags = {"Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "LinkedSource",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -44247,6 +46891,17 @@ return {
 					MemberType = "Property",
 					Name = "Source",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "UnrestrictedRequireAllowed",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				}
 			},
 			Name = "ModuleScript"
@@ -44260,27 +46915,59 @@ return {
 			MemoryCategory = "Instances",
 			Members = {
 				{
-					ReturnType = {Name = "MLSession",Category = "Class"},
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Basic","InternalTest"},
+					Name = "IsPostProcessReady",
 					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Basic","InternalTest"},
+					Name = "SetPostProcessEnabled",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "enabled",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "MLSession",Category = "Class"},
+					Capabilities = {"Basic"},
 					Name = "CreateSessionAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "assetId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Basic","InternalTest"},
+					Name = "LoadPostProcessModelAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "assetId",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				}
 			},
 			Superclass = "Instance"
 		},
 		{
-			Name = "MakeupDescription",
-			Tags = {"NotBrowsable"},
 			MemoryCategory = "Instances",
+			Superclass = "Instance",
 			Members = {
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -44291,7 +46978,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Instance",Category = "Class"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
@@ -44302,7 +46989,7 @@ return {
 				},
 				{
 					ValueType = {Name = "MakeupType",Category = "Enum"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Face",
 					Category = "Data",
@@ -44313,7 +47000,7 @@ return {
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -44324,7 +47011,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					Capabilities = {"Avatar"},
+					Capabilities = {"AvatarAppearance"},
 					Name = "GetAppliedInstance",
 					MemberType = "Function",
 					Security = "None",
@@ -44332,7 +47019,7 @@ return {
 					Parameters = {}
 				}
 			},
-			Superclass = "Instance"
+			Name = "MakeupDescription"
 		},
 		{
 			MemoryCategory = "Instances",
@@ -44414,6 +47101,46 @@ return {
 			Tags = {"NotCreatable","Service"},
 			MemoryCategory = "Instances",
 			Members = {
+				{
+					ReturnType = {Name = "RBXScriptConnection",Category = "DataType"},
+					Capabilities = {"Monetization"},
+					Name = "BindReceiptHandler",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "transactionType",Type = {Name = "ReceiptType",Category = "Enum"}},
+						{Name = "handler",Type = {Name = "Function",Category = "DataType"}},
+						{Name = "filter",Type = {Name = "Array?",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ClearProductInfoCaches",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "IsPurchaseSimulated",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"PromptExternalPurchase"},
+					Name = "OpenShop",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "player",Type = {Name = "Player",Category = "Class"}}
+					}
+				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Function",
@@ -44528,6 +47255,10 @@ return {
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptPremiumPurchase",
+					Tags = {
+						"Deprecated",
+						{ThreadSafety = "Unknown",PreferredDescriptorName = "PromptRobloxSubscriptionPurchase"}
+					},
 					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
@@ -44576,8 +47307,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"PromptExternalPurchase"},
+					Name = "PromptRobloxSubscriptionPurchase",
 					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {{Name = "user",Type = {Name = "Player",Category = "Class"}}}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptSubscriptionPurchase",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44629,6 +47370,14 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
+					Name = "SignalCheckPlayerHasRobloxSubscription",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
 					Name = "SignalClientPurchaseSuccess",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -44642,6 +47391,14 @@ return {
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "SignalMockPurchasePremium",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SignalMockPurchaseRobloxSubscription",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -44721,12 +47478,33 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
+					Name = "SignalPromptRobloxSubscriptionPurchaseFinished",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "subscriptionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "didTryPurchasing",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
 					Name = "SignalPromptSubscriptionPurchaseFinished",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "subscriptionId",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "didTryPurchasing",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SignalRobuxTransferCompleted",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				},
 				{
@@ -44747,6 +47525,17 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "subscriptionId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetAvailableSubscriptionProductsAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "productType",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -44790,6 +47579,16 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"Monetization"},
+					Name = "GetRobloxSubscriptionDetailsAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {{Name = "user",Type = {Name = "Player",Category = "Class"}}}
+				},
+				{
 					ReturnType = {Name = "int",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "GetRobuxBalance",
@@ -44823,9 +47622,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "GetUserSubscriptionDetailsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44846,9 +47646,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "GetUserSubscriptionPaymentHistoryAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44858,9 +47659,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "GetUserSubscriptionStatusAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44870,9 +47672,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Monetization"},
 					Name = "GetUsersPriceLevelsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -44919,7 +47722,8 @@ return {
 						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "collectibleProductId"},
 						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "idempotencyKey"},
 						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "purchaseAuthToken"},
-						{Type = {Name = "int64",Category = "Primitive"},Default = "0",Name = "timedOptionsDays"}
+						{Type = {Name = "int64",Category = "Primitive"},Default = "0",Name = "timedOptionsDays"},
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "purchasePayload"}
 					}
 				},
 				{
@@ -44959,6 +47763,32 @@ return {
 					Parameters = {
 						{Name = "subscriptionId",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "paymentProvider",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "PerformSubscriptionPurchaseV3Async",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "productType",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "productId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "paymentProvider",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "paymentSessionId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "PerformSubscriptionPurchaseWithRobuxAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "subscriptionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "priceInRobux",Type = {Name = "int",Category = "Primitive"}}
 					}
 				},
 				{
@@ -45019,6 +47849,20 @@ return {
 					Parameters = {
 						{Name = "player",Type = {Name = "Player",Category = "Class"}},
 						{Name = "bundleId",Type = {Name = "int64",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "string",Category = "Primitive"},
+					Capabilities = {"PromptExternalPurchase"},
+					Name = "PromptRobuxTransferAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sender",Type = {Name = "Player",Category = "Class"}},
+						{Name = "receiverUserId",Type = {Name = "int64",Category = "Primitive"}},
+						{Name = "amount",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				},
 				{
@@ -45089,6 +47933,14 @@ return {
 				},
 				{
 					MemberType = "Event",
+					Name = "ConfirmPlayerHasRobloxSubscription",
+					Tags = {"Hidden"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					MemberType = "Event",
 					Name = "ConfirmPlayerMembership",
 					Tags = {"Hidden"},
 					Security = "RobloxScriptSecurity",
@@ -45137,6 +47989,14 @@ return {
 				},
 				{
 					MemberType = "Event",
+					Name = "MockPurchaseRobloxSubscription",
+					Tags = {"Hidden"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					MemberType = "Event",
 					Name = "NativePurchaseFinished",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -45158,6 +48018,15 @@ return {
 				},
 				{
 					MemberType = "Event",
+					Name = "OpenShopRequested",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "player",Type = {Name = "Player",Category = "Class"}}
+					}
+				},
+				{
+					MemberType = "Event",
 					Name = "PrepareCollectiblesPurchaseRequested",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -45171,8 +48040,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptBulkPurchaseFinished",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45200,7 +48070,23 @@ return {
 				},
 				{
 					MemberType = "Event",
+					Name = "PromptBulkPurchaseRequestedV2",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "player",Type = {Name = "Instance",Category = "Class"}},
+						{Name = "displayData",Type = {Name = "Array",Category = "Group"}},
+						{Name = "orderRequest",Type = {Name = "Dictionary",Category = "Group"}},
+						{Name = "purchaserRobuxBalance",Type = {Name = "int64",Category = "Primitive"}},
+						{Name = "orderTotalRobux",Type = {Name = "int64",Category = "Primitive"}},
+						{Name = "options",Type = {Name = "Dictionary",Category = "Group"}},
+						{Name = "discountInformation",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptBundlePurchaseFinished",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45261,8 +48147,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptGamePassPurchaseFinished",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45303,7 +48190,14 @@ return {
 						{Name = "productId",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "PromptPremiumPurchaseFinished",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
+				{
+					Capabilities = {"PromptExternalPurchase"},
+					Name = "PromptPremiumPurchaseFinished",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
 				{
 					MemberType = "Event",
 					Name = "PromptPremiumPurchaseRequested",
@@ -45314,8 +48208,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptProductPurchaseFinished",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45337,8 +48232,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptPurchaseFinished",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45384,8 +48280,31 @@ return {
 					}
 				},
 				{
+					Capabilities = {"PromptExternalPurchase"},
+					Name = "PromptRobloxSubscriptionPurchaseFinished",
 					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "user",Type = {Name = "Player",Category = "Class"}},
+						{Name = "didTryPurchasing",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{MemberType = "Event",Name = "PromptRobloxSubscriptionPurchaseRequested",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
+				{
+					MemberType = "Event",
+					Name = "PromptRobuxTransferRequested",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "player",Type = {Name = "Instance",Category = "Class"}},
+						{Name = "jsonResponse",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"PromptExternalPurchase"},
 					Name = "PromptSubscriptionPurchaseFinished",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45412,6 +48331,15 @@ return {
 					Parameters = {
 						{Name = "player",Type = {Name = "Instance",Category = "Class"}},
 						{Name = "productId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "RobuxTransferCompleted",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				},
 				{
@@ -45446,8 +48374,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "ProductPurchaseDecision",Category = "Enum"},
-					MemberType = "Callback",
+					Capabilities = {"Monetization"},
 					Name = "ProcessReceipt",
+					MemberType = "Callback",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45526,470 +48455,513 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Asphalt",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "AsphaltName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Basalt",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "BasaltName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Brick",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "BrickName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Cardboard",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "CardboardName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Carpet",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "CarpetName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "CeramicTiles",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "CeramicTilesName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "ClayRoofTiles",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "ClayRoofTilesName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Cobblestone",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "CobblestoneName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Concrete",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "ConcreteName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "CorrodedMetal",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "CorrodedMetalName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "CrackedLava",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "CrackedLavaName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "DiamondPlate",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "DiamondPlateName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Fabric",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "FabricName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Foil",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "FoilName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Glacier",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "GlacierName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Granite",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "GraniteName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Grass",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "GrassName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Ground",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "GroundName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Ice",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "IceName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "LeafyGrass",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "LeafyGrassName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Leather",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "LeatherName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Limestone",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "LimestoneName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Marble",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "MarbleName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Metal",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "MetalName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Mud",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "MudName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Pavement",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "PavementName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Pebble",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "PebbleName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Plaster",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "PlasterName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Plastic",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "PlasticName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Rock",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "RockName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "RoofShingles",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "RoofShinglesName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Rubber",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "RubberName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Salt",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "SaltName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Sand",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "SandName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Sandstone",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "SandstoneName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Slate",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "SlateName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "SmoothPlastic",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "SmoothPlasticName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Snow",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "SnowName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Material Pack",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "Use2022Materials",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Material Pack",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "Use2022MaterialsXml",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Wood",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "WoodName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "WoodPlanks",
 					Category = "Material Overrides",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "WoodPlanksName",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "GetBaseMaterialOverride",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -45998,16 +48970,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "GetIsMaterialActionAsToolEnabled",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "RBXScriptSignal",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "GetMaterialOverrideChanged",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -46016,8 +48990,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "MaterialVariant",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "GetMaterialVariant",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -46027,8 +49002,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "PropertyStatus",Category = "Enum"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "GetOverrideStatus",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -46037,8 +49013,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "SetBaseMaterialOverride",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -46048,8 +49025,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "SetCurrentMaterial",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -46059,15 +49037,17 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Material"},
 					Name = "ToggleMaterialFillToolEnabled",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Material"},
 					Name = "MaterialFillToolEnabledChanged",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -46075,8 +49055,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Material"},
 					Name = "OverrideStatusChanged",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -46092,195 +49073,213 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "AlphaMode",Category = "Enum"},
-					MemberType = "Property",
-					Tags = {"NotBrowsable"},
+					Capabilities = {Read = {"Material"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Opaque",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "AlphaMode",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Internal",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "AvgMetalness",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "127",
 					Category = "Internal",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "AvgRoughness",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Material",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "Plastic",
 					Category = "Appearance",
-					Name = "BaseMaterial",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "BaseMaterial",
 					Security = {Write = "PluginSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
-					Name = "ColorMap",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ColorMap",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
-					Name = "ColorMapContent",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ColorMapContent",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "PhysicalProperties",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Material"},Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "default",
 					Category = "Material",
-					Name = "CustomPhysicalProperties",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "CustomPhysicalProperties",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
-					Name = "EmissiveMaskContent",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "EmissiveMaskContent",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Material"},Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Appearance",
-					Name = "EmissiveStrength",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "EmissiveStrength",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Material"},Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "1, 1, 1",
 					Category = "Appearance",
-					Name = "EmissiveTint",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "EmissiveTint",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "MaterialPattern",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "Regular",
 					Category = "Appearance",
-					Name = "MaterialPattern",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "MaterialPattern",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "MetalnessMap",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "MetalnessMapContent",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "NormalMap",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
-					Name = "NormalMapContent",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "NormalMapContent",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Appearance",
-					Name = "RoughnessMap",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "RoughnessMap",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
-					Name = "RoughnessMapContent",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "RoughnessMapContent",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Material"},Read = {"Material"}},
+					ThreadSafety = "ReadSafe",
 					Default = "10",
 					Category = "Appearance",
-					Name = "StudsPerTile",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "StudsPerTile",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Material"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Internal",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "TexturePack",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -47227,8 +50226,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "RBXScriptConnection",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Consequences"},
 					Name = "BindReviewableContentEventProcessor",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47238,8 +50238,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Consequences"},
 					Name = "CreateReviewableContentKey",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47248,9 +50249,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Consequences"},
 					Name = "CreateReviewableContentAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47259,7 +50261,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"InternalTest"},
+					Capabilities = {"Consequences","InternalTest"},
 					Name = "InternalRequestReviewableContentReviewAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -47270,9 +50272,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Consequences"},
 					Name = "TriggeredCaptureUpload",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47651,7 +50654,14 @@ return {
 			Tags = {"NotCreatable","NotBrowsable"},
 			MemoryCategory = "Instances",
 			Members = {
-				{MemberType = "Event",Name = "Received",Security = "None",ThreadSafety = "Unsafe",Parameters = {}}
+				{
+					Capabilities = {"Network"},
+					Name = "Received",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				}
 			},
 			Superclass = "Instance"
 		},
@@ -47687,8 +50697,9 @@ return {
 			MemoryCategory = "Instances",
 			Members = {
 				{
-					MemberType = "Event",
+					Capabilities = {"Network"},
 					Name = "ConnectionAccepted",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47697,8 +50708,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Network"},
 					Name = "ConnectionFailed",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47736,8 +50748,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"Network","Players"},
 					Name = "GetPlayer",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -47752,8 +50765,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "IsStreamedOut",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47762,8 +50776,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "RequestRCCProfilerData",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47773,8 +50788,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "RequestServerStats",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47782,8 +50798,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Network"},
 					Name = "RCCProfilerDataComplete",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47792,8 +50809,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Network"},
 					Name = "StatsReceived",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -47811,125 +50829,209 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "EmulatedTotalMemoryInMB",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "FreeMemoryMBytes",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Proxy Settings",
-					Name = "HttpProxyEnabled",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "HttpProxyEnabled",
 					Security = {Write = "RobloxScriptSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Proxy Settings",
-					Name = "HttpProxyURL",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "HttpProxyURL",
 					Security = {Write = "RobloxScriptSecurity",Read = "None"}
 				},
 				{
-					ValueType = {Name = "double",Category = "Primitive"},
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					Tags = {"NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
+					Name = "InboundNetworkJitterMs",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					Tags = {"NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "InboundNetworkLossPercent",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					Tags = {"NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "InboundNetworkMinDelayMs",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Diagnostics",
-					Name = "IncomingReplicationLag",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "IncomingReplicationLag",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Proxy Settings",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "OpenCertManagerDialog",
 					Security = {Write = "NotAccessibleSecurity",Read = "NotAccessibleSecurity"}
 				},
 				{
-					ValueType = {Name = "bool",Category = "Primitive"},
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					Tags = {"NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
+					Name = "OutboundNetworkJitterMs",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					Tags = {"NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "OutboundNetworkLossPercent",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					Tags = {"NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "OutboundNetworkMinDelayMs",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Diagnostics",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "PrintJoinSizeBreakdown",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Diagnostics",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "PrintPhysicsErrors",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Diagnostics",
-					Name = "PrintStreamInstanceQuota",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "PrintStreamInstanceQuota",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Advanced",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "RandomizeJoinInstanceOrder",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Network"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "RenderStreamedRegions",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Network","Animation"},Read = {"Network","Animation"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Appearance",
-					Name = "ShowActiveAnimationAsset",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ShowActiveAnimationAsset",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -47943,10 +51045,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Enabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -47954,10 +51057,11 @@ return {
 					ValueType = {Name = "BasePart",Category = "Class"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Parts",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Part0",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -47965,10 +51069,11 @@ return {
 					ValueType = {Name = "BasePart",Category = "Class"},
 					Capabilities = {Read = {"Physics"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Parts",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Part1",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -48031,52 +51136,57 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Players"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsConnected",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Players"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsLuaChatEnabled",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Players"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsLuaGameDetailsEnabled",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Players"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = false,CanLoad = true},
+					MemberType = "Property",
 					Name = "SelectedTheme",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "ActionEnabled",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48085,8 +51195,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "ActionTaken",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48095,8 +51206,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "CancelAllNotification",
+					MemberType = "Function",
 					Security = "LocalUserSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48105,8 +51217,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "CancelNotification",
+					MemberType = "Function",
 					Security = "LocalUserSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48116,8 +51229,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "ScheduleNotification",
+					MemberType = "Function",
 					Security = "LocalUserSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48129,8 +51243,20 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Players"},
+					Name = "SubscribeToRccEventNamespace",
 					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "eventNamespace",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Players"},
 					Name = "SwitchedToAppShellFeature",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48139,9 +51265,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "GetScheduledNotifications",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "LocalUserSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48149,8 +51276,33 @@ return {
 					}
 				},
 				{
+					Capabilities = {"Players"},
+					Name = "RccConnectionChanged",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "connectionName",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "connectionState",Type = {Name = "ConnectionState",Category = "Enum"}},
+						{Name = "rccSequenceNumber",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "userIdToNamespaceSequenceNumbers",Type = {Name = "Map",Category = "Group"}}
+					}
+				},
+				{
+					Capabilities = {"Players"},
+					Name = "RccEventReceived",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "eventData",Type = {Name = "Map",Category = "Group"}},
+						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Players"},
 					Name = "Roblox17sConnectionChanged",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48160,8 +51312,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players"},
 					Name = "Roblox17sEventReceived",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48169,8 +51322,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players"},
 					Name = "RobloxConnectionChanged",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48181,8 +51335,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Players"},
 					Name = "RobloxEventReceived",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48238,9 +51393,10 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "OpenCloudModel",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "CreateModel",
 					Tags = {"Deprecated","CustomLuaState"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48249,9 +51405,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "OpenCloudModel",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "CreateUserNotificationAsync",
 					Tags = {"Yields","Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48275,17 +51432,19 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "OpenCloudApiV1",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "GetApiV1",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "RegisterOpenCloud",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48296,17 +51455,19 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "RegistrationComplete",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "HttpRequestAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48315,9 +51476,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "InvokeAsync",
 					Tags = {"Yields","Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -48363,6 +51525,7 @@ return {
 					MemberType = "Function",
 					Name = "GetPivot",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -48371,6 +51534,7 @@ return {
 					MemberType = "Function",
 					Name = "PivotTo",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "targetCFrame",Type = {Name = "CFrame",Category = "DataType"}}
@@ -48387,11 +51551,12 @@ return {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Part",
-					Name = "Anchored",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Anchored",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -48402,6 +51567,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Assembly",
 					Serialization = {CanSave = false,CanLoad = true},
+					SimulationAccess = true,
 					Name = "AssemblyAngularVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48413,6 +51579,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Assembly",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "AssemblyCenterOfMass",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48424,6 +51591,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Assembly",
 					Serialization = {CanSave = false,CanLoad = true},
+					SimulationAccess = true,
 					Name = "AssemblyLinearVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48435,6 +51603,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Assembly",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "AssemblyMass",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48446,17 +51615,19 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Assembly",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "AssemblyRootPart",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Collision",
-					Name = "AudioCanCollide",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "AudioCanCollide",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -48559,41 +51730,45 @@ return {
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Transform",
+					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "CFrame",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Collision",
+					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "CanCollide",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Collision",
+					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "CanQuery",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Collision",
-					Name = "CanTouch",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "CanTouch",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -48614,6 +51789,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Part",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "CenterOfMass",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48625,6 +51801,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Collision",
 					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "CollisionGroup",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48640,6 +51817,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Collision",
 					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "CollisionGroupId",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48690,11 +51868,12 @@ return {
 				{
 					ValueType = {Name = "PhysicalProperties",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Part",
-					Name = "CustomPhysicalProperties",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "CustomPhysicalProperties",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -48722,11 +51901,12 @@ return {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
-					Name = "EnableFluidForces",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "EnableFluidForces",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -48737,6 +51917,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "ExtentsCFrame",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48748,6 +51929,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "ExtentsSize",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48849,17 +52031,6 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
-					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_class_not_creatable__",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "LocalSimulationValidation",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
 					ValueType = {Name = "float",Category = "Primitive"},
 					MemberType = "Property",
 					Tags = {"Hidden","NotReplicated"},
@@ -48873,11 +52044,12 @@ return {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
-					Name = "Locked",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Locked",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -48888,27 +52060,30 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Part",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "Mass",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Part",
-					Name = "Massless",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Massless",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Material",Category = "Enum"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
-					Name = "Material",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Material",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -48919,6 +52094,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "MaterialVariant",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48974,6 +52150,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "Orientation",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -48991,11 +52168,12 @@ return {
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Pivot",
-					Name = "PivotOffset",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "PivotOffset",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -49006,6 +52184,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = false},
+					SimulationAccess = true,
 					Name = "Position",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -49128,6 +52307,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "RotVelocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -49139,6 +52319,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = true},
+					SimulationAccess = true,
 					Name = "Rotation",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -49150,6 +52331,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Transform",
 					Serialization = {CanSave = false,CanLoad = true},
+					SimulationAccess = true,
 					Name = "Size",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -49234,6 +52416,7 @@ return {
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "Velocity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -49279,6 +52462,7 @@ return {
 					MemberType = "Function",
 					Name = "AngularAccelerationToTorque",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "angAcceleration",Type = {Name = "Vector3",Category = "DataType"}},
@@ -49290,6 +52474,7 @@ return {
 					MemberType = "Function",
 					Name = "ApplyAngularImpulse",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "impulse",Type = {Name = "Vector3",Category = "DataType"}}
@@ -49300,6 +52485,7 @@ return {
 					MemberType = "Function",
 					Name = "ApplyImpulse",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "impulse",Type = {Name = "Vector3",Category = "DataType"}}
@@ -49310,6 +52496,7 @@ return {
 					MemberType = "Function",
 					Name = "ApplyImpulseAtPosition",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "impulse",Type = {Name = "Vector3",Category = "DataType"}},
@@ -49322,6 +52509,7 @@ return {
 					Name = "BreakJoints",
 					Tags = {"Deprecated"},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -49330,6 +52518,7 @@ return {
 					MemberType = "Function",
 					Name = "CanCollideWith",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "part",Type = {Name = "BasePart",Category = "Class"}}
@@ -49340,6 +52529,7 @@ return {
 					MemberType = "Function",
 					Name = "CanSetNetworkOwnership",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -49348,6 +52538,7 @@ return {
 					MemberType = "Function",
 					Name = "GetClosestPointOnSurface",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "position",Type = {Name = "Vector3",Category = "DataType"}}
@@ -49368,6 +52559,7 @@ return {
 					MemberType = "Function",
 					Name = "GetJoints",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -49376,6 +52568,7 @@ return {
 					MemberType = "Function",
 					Name = "GetMass",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -49384,6 +52577,7 @@ return {
 					MemberType = "Function",
 					Name = "GetNetworkOwner",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -49392,6 +52586,7 @@ return {
 					MemberType = "Function",
 					Name = "GetNetworkOwnershipAuto",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -49400,6 +52595,7 @@ return {
 					MemberType = "Function",
 					Name = "GetNoCollisionConstraints",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -49429,6 +52625,7 @@ return {
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "AssemblyRootPart"}
 					},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -49437,6 +52634,7 @@ return {
 					MemberType = "Function",
 					Name = "GetTouchingParts",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -49445,6 +52643,7 @@ return {
 					MemberType = "Function",
 					Name = "GetVelocityAtPosition",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "position",Type = {Name = "Vector3",Category = "DataType"}}
@@ -49455,6 +52654,7 @@ return {
 					MemberType = "Function",
 					Name = "IsGrounded",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
@@ -49472,6 +52672,7 @@ return {
 					MemberType = "Function",
 					Name = "Resize",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "normalId",Type = {Name = "NormalId",Category = "Enum"}},
@@ -49483,6 +52684,7 @@ return {
 					MemberType = "Function",
 					Name = "SetNetworkOwner",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Type = {Name = "Player",Category = "Class"},Default = "nil",Name = "playerInstance"}
@@ -49493,6 +52695,7 @@ return {
 					MemberType = "Function",
 					Name = "SetNetworkOwnershipAuto",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -49501,6 +52704,7 @@ return {
 					MemberType = "Function",
 					Name = "TorqueToAngularAcceleration",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "torque",Type = {Name = "Vector3",Category = "DataType"}},
@@ -49776,7 +52980,7 @@ return {
 			MemoryCategory = "BaseParts",
 			Members = {
 				{
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "RemoteCreateMotor6D",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -49787,7 +52991,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "RemoteDestroyMotor6D",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -49804,30 +53008,32 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Disabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Humanoid",Category = "Class"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Occupant",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "Sit",
 					MemberType = "Function",
 					Security = "None",
@@ -49837,7 +53043,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "RemoteCreateSeatWeld",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -49848,7 +53054,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "RemoteDestroySeatWeld",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -50205,6 +53411,18 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "SharedString",Category = "DataType"},
+					Capabilities = {Write = {"Environment"},Read = {"Environment"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Materials",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "Region3int16",Category = "DataType"},
 					Capabilities = {Write = {"Environment"},Read = {"Environment"}},
 					Tags = {"ReadOnly","NotReplicated"},
@@ -50250,6 +53468,30 @@ return {
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
 					Name = "SmoothVoxelsUpgraded",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "AssetContentMap",Category = "DataType"},
+					Capabilities = {Read = {"Environment"}},
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ValidationAssetContentMap",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "AssetContentMap",Category = "DataType"},
+					Capabilities = {Read = {"Environment"}},
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "VoxelGridAssetContentMap",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
@@ -50409,6 +53651,15 @@ return {
 					Parameters = {}
 				},
 				{
+					ReturnType = {Name = "VoxelBuffer",Category = "Class"},
+					Capabilities = {"Environment"},
+					Name = "CreateVoxelBuffer_beta",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Environment"},
 					Name = "FillBall",
@@ -50475,6 +53726,17 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "int?",Category = "Primitive"},
+					Capabilities = {"Environment"},
+					Name = "GetBaseMaterialSlotIndex",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "baseMaterial",Type = {Name = "Material",Category = "Enum"}}
+					}
+				},
+				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
 					Capabilities = {"Environment"},
 					Name = "GetCell",
@@ -50485,6 +53747,15 @@ return {
 					Parameters = {{Name = "x",Type = {Name = "int",Category = "Primitive"}},{Name = "y",Type = {Name = "int",Category = "Primitive"}},{Name = "z",Type = {Name = "int",Category = "Primitive"}}}
 				},
 				{
+					ReturnType = {Name = "int",Category = "Primitive"},
+					Capabilities = {"Environment"},
+					Name = "GetFirstCustomMaterialSlotIndex",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "Color3",Category = "DataType"},
 					Capabilities = {"Environment"},
 					Name = "GetMaterialColor",
@@ -50493,6 +53764,17 @@ return {
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "material",Type = {Name = "Material",Category = "Enum"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"Environment"},
+					Name = "GetMaterialSlot",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "slotIndex",Type = {Name = "int",Category = "Primitive"}}
 					}
 				},
 				{
@@ -50645,6 +53927,17 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Environment"},
+					Name = "ResetMaterialSlot",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "slotIndex",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Environment"},
 					Name = "SetCell",
 					Tags = {"Deprecated"},
 					MemberType = "Function",
@@ -50711,6 +54004,20 @@ return {
 						{Name = "size",Type = {Name = "Vector3",Category = "DataType"}},
 						{Name = "targetMaterial",Type = {Name = "Material",Category = "Enum"}},
 						{Name = "targetRegion",Type = {Name = "Region3int16",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Environment"},
+					Name = "SetMaterialSlot",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "slotIndex",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "baseMaterial",Type = {Name = "Material",Category = "Enum"}},
+						{Name = "materialVariant",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "color",Type = {Name = "Color3",Category = "DataType"}}
 					}
 				},
 				{
@@ -50818,6 +54125,35 @@ return {
 						{Name = "resolution",Type = {Name = "int",Category = "Primitive"}},
 						{Name = "channelIds",Type = {Name = "Array",Category = "Group"}}
 					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Environment"},
+					Name = "DrawBufferAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "cframe",Type = {Name = "CFrame",Category = "DataType"}},
+						{Name = "scale",Type = {Name = "float",Category = "Primitive"}},
+						{Name = "resolution",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "source",Type = {Name = "VoxelBuffer",Category = "Class"}},
+						{Name = "mergeConfig",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "VoxelBuffer",Category = "Class"},
+					Capabilities = {"Environment"},
+					Name = "ReadBufferAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "region",Type = {Name = "Region3",Category = "DataType"}},
+						{Name = "resolution",Type = {Name = "int",Category = "Primitive"}}
+					}
 				}
 			},
 			Superclass = "BasePart"
@@ -50854,7 +54190,7 @@ return {
 				{
 					ValueType = {Name = "NetAssetRef",Category = "DataType"},
 					Capabilities = {Read = {"Basic"}},
-					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
@@ -51474,7 +54810,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
@@ -51486,18 +54822,19 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Disabled",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Control",
@@ -51508,98 +54845,106 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "25",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "MaxSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Humanoid",Category = "Class"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Control",
 					Serialization = {CanSave = false,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Occupant",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Steer",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SteerFloat",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Throttle",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "ThrottleFloat",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "10",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Torque",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"Basic","Avatar"}},
+					Capabilities = {Read = {"Basic","AvatarBehavior"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "1",
 					Category = "Control",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TurnSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "Sit",
 					MemberType = "Function",
 					Security = "None",
@@ -51609,7 +54954,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "RemoteCreateSeatWeld",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -51620,7 +54965,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Basic","Avatar"},
+					Capabilities = {"Basic","AvatarBehavior"},
 					Name = "RemoteDestroySeatWeld",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -51640,10 +54985,11 @@ return {
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 20, 20, 1, 0, -0, -0, 0.707106829, 0.707106829, 0, -0.707106829, 0.707106829",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CFrame",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -51679,10 +55025,11 @@ return {
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "CFrame"}
 					},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 20, 20, 1, 0, -0, -0, 0.707106829, 0.707106829, 0, -0.707106829, 0.707106829",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CoordinateFrame",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -51724,10 +55071,11 @@ return {
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, -5, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Focus",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -52281,6 +55629,7 @@ return {
 					MemberType = "Function",
 					Name = "GetScale",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -52615,10 +55964,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Input"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "State",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Enabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -52626,10 +55976,11 @@ return {
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					Capabilities = {Read = {"Input"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Transform",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Grip",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -52797,6 +56148,78 @@ return {
 			},
 			Superclass = "Tool"
 		},
+		{
+			MemoryCategory = "BaseParts",
+			Superclass = "Model",
+			Members = {
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Behavior",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Dirty",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Behavior",
+					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
+					Name = "GenerationError",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "ModuleScript",Category = "Class"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Behavior",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Generator",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					Default = "12, 12, 12",
+					Category = "Transform",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Size",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Basic"},
+					Name = "ForceGeneration",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Basic"},
+					Name = "WaitForGenerationAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				}
+			},
+			Name = "ProceduralModel"
+		},
 		{Name = "Status",Tags = {"NotCreatable","Deprecated"},MemoryCategory = "BaseParts",Members = {},Superclass = "Model"},
 		{
 			Name = "WorldRoot",
@@ -52819,6 +56242,7 @@ return {
 					MemberType = "Function",
 					Name = "ArePartsTouchingOthers",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "partList",Type = {Name = "Instances",Category = "DataType"}},
@@ -52830,6 +56254,7 @@ return {
 					MemberType = "Function",
 					Name = "Blockcast",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "cframe",Type = {Name = "CFrame",Category = "DataType"}},
@@ -52847,6 +56272,7 @@ return {
 					MemberType = "Function",
 					Name = "BulkMoveTo",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "partList",Type = {Name = "Instances",Category = "DataType"}},
@@ -53007,6 +56433,7 @@ return {
 					Name = "GetPartBoundsInBox",
 					Tags = {"CustomLuaState"},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "cframe",Type = {Name = "CFrame",Category = "DataType"}},
@@ -53024,6 +56451,7 @@ return {
 					Name = "GetPartBoundsInRadius",
 					Tags = {"CustomLuaState"},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "position",Type = {Name = "Vector3",Category = "DataType"}},
@@ -53041,6 +56469,7 @@ return {
 					Name = "GetPartsInPart",
 					Tags = {"CustomLuaState"},
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "part",Type = {Name = "BasePart",Category = "Class"}},
@@ -53056,6 +56485,7 @@ return {
 					MemberType = "Function",
 					Name = "IKMoveTo",
 					Security = "PluginSecurity",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "part",Type = {Name = "BasePart",Category = "Class"}},
@@ -53100,6 +56530,7 @@ return {
 					MemberType = "Function",
 					Name = "Raycast",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "origin",Type = {Name = "Vector3",Category = "DataType"}},
@@ -53139,6 +56570,7 @@ return {
 					MemberType = "Function",
 					Name = "Shapecast",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "part",Type = {Name = "BasePart",Category = "Class"}},
@@ -53155,6 +56587,7 @@ return {
 					MemberType = "Function",
 					Name = "Spherecast",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "position",Type = {Name = "Vector3",Category = "DataType"}},
@@ -53218,32 +56651,37 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Physics","Environment"},Read = {"Physics","Environment"}},
+					ThreadSafety = "ReadSafe",
 					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "AirProperties",
-					Name = "AirDensity",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "AirDensity",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Physics","Environment"},Read = {"Physics","Environment"}},
+					ThreadSafety = "ReadSafe",
 					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "AirProperties",
-					Name = "AirTurbulenceIntensity",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "AirTurbulenceIntensity",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Monetization"},Read = {"Monetization"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "AllowThirdPartySales",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -53270,12 +56708,13 @@ return {
 				},
 				{
 					ValueType = {Name = "ClientAnimatorThrottlingMode",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Animation"},Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
-					Name = "ClientAnimatorThrottling",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ClientAnimatorThrottling",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -53313,12 +56752,13 @@ return {
 				},
 				{
 					ValueType = {Name = "Camera",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic","Input"},Read = {"Basic"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "CurrentCamera",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -53335,13 +56775,26 @@ return {
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "DistributedGameTime",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "RolloutState",Category = "Enum"},
+					Capabilities = {Write = {"Players"},Read = {"Players"}},
+					Tags = {"NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Streaming",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "EnableSLIMAvatars",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -53357,32 +56810,35 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
-					Name = "FallHeightEnabled",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "FallHeightEnabled",
 					Security = {Write = "PluginSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
-					Name = "FallenPartsDestroyHeight",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "FallenPartsDestroyHeight",
 					Security = {Write = "PluginSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "FilteringEnabled",
 					Security = {Write = "PluginSecurity",Read = "None"}
 				},
@@ -53399,22 +56855,26 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
+					Capabilities = {Write = {"Basic","Physics"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
-					Name = "GlobalWind",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "GlobalWind",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Basic","Physics"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					MemberType = "Property",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
-					Name = "Gravity",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Gravity",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -53441,14 +56901,27 @@ return {
 				},
 				{
 					ValueType = {Name = "InterpolationThrottlingMode",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Physics"}},
 					Tags = {"Hidden","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "InterpolationThrottling",
 					Security = {Write = "PluginSecurity",Read = "None"}
+				},
+				{
+					ValueType = {Name = "RolloutState",Category = "Enum"},
+					Capabilities = {Write = {"AvatarAppearance"},Read = {"AvatarAppearance"}},
+					Tags = {"NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Behavior",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "LayeredClothingCacheOptimizations",
+					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "LuauTypeCheckMode",Category = "Enum"},
@@ -53472,6 +56945,17 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "RolloutState",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Behavior",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "MeshStreamingAndImprovedLods",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "ModelStreamingBehavior",Category = "Enum"},
 					MemberType = "Property",
 					Tags = {"NotScriptable"},
@@ -53480,17 +56964,6 @@ return {
 					Category = "Streaming",
 					Serialization = {CanSave = true,CanLoad = true},
 					Name = "ModelStreamingBehavior",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "MoverConstraintRootBehaviorMode",Category = "Enum"},
-					MemberType = "Property",
-					Tags = {"NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "__api_dump_class_not_creatable__",
-					Category = "Behavior",
-					Serialization = {CanSave = true,CanLoad = true},
-					Name = "MoverConstraintRootBehavior",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -53503,6 +56976,17 @@ return {
 					Serialization = {CanSave = true,CanLoad = true},
 					Name = "NextGenerationReplication",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "RolloutState",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Server Authority",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "NextGenerationReplicationAlias",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "PathfindingUseImprovedSearch",Category = "Enum"},
@@ -53560,6 +57044,17 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "RolloutState",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Server Authority",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "PlayerScriptsUseInputActionSystemAlias",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
 					ValueType = {Name = "PrimalPhysicsSolver",Category = "Enum"},
 					MemberType = "Property",
 					Tags = {"NotScriptable"},
@@ -53583,12 +57078,13 @@ return {
 				},
 				{
 					ValueType = {Name = "RenderingCacheOptimizationMode",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Physics"},Read = {"Physics"}},
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "RenderingCacheOptimizations",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -53605,12 +57101,13 @@ return {
 				},
 				{
 					ValueType = {Name = "AnimatorRetargetingMode",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Animation"},Read = {"Animation"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Behavior",
-					Name = "Retargeting",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Retargeting",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -53619,7 +57116,7 @@ return {
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
-					Category = "Behavior",
+					Category = "Permissions",
 					Serialization = {CanSave = true,CanLoad = true},
 					Name = "SandboxedInstanceMode",
 					Security = {Write = "None",Read = "None"}
@@ -53647,6 +57144,17 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "SignalBehavior",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Server Authority",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "SignalBehaviorAlias",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
 					ValueType = {Name = "StreamOutBehavior",Category = "Enum"},
 					MemberType = "Property",
 					Tags = {"NotScriptable"},
@@ -53666,6 +57174,17 @@ return {
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
 					Security = {Write = "PluginSecurity",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Server Authority",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "StreamingEnabledAlias",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "StreamingIntegrityMode",Category = "Enum"},
@@ -53734,6 +57253,17 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Behavior",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "ThrottleLevel",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
 					ValueType = {Name = "RolloutState",Category = "Enum"},
 					MemberType = "Property",
 					Tags = {"NotScriptable"},
@@ -53769,6 +57299,17 @@ return {
 				{
 					ValueType = {Name = "RolloutState",Category = "Enum"},
 					MemberType = "Property",
+					Tags = {"NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Server Authority",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "UseFixedSimulationAlias",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "RolloutState",Category = "Enum"},
+					MemberType = "Property",
 					Tags = {"NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
@@ -53776,6 +57317,29 @@ return {
 					Serialization = {CanSave = true,CanLoad = true},
 					Name = "UseNewLuauTypeSolver",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "RolloutState",Category = "Enum"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					Tags = {"NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Behavior",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ValidateEnabledProximityPrompt",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Behavior",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "WatermarkHash",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
@@ -53832,40 +57396,45 @@ return {
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "GetNumAwakeParts",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "GetPhysicsThrottling",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "double",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "GetRealPhysicsFPS",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "double",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "GetServerTimeNow",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Safe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Physics"},
 					Name = "JoinToOutsiders",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -53886,8 +57455,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "PGSIsEnabled",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -53924,8 +57494,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Physics"},
 					Name = "UnjoinFromOutsiders",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -53970,22 +57541,24 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Link",
-					Name = "AutoUpdate",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "AutoUpdate",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "State",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "CanAutoUpdate",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
@@ -54003,33 +57576,36 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Link",
-					Name = "DefaultName",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "DefaultName",
 					Security = {Write = "NotAccessibleSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "HasNewVersion",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Link",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "ModifiedState",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
@@ -54047,12 +57623,13 @@ return {
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"AssetRead"},Read = {"AssetRead"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Link",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "PackageGuid",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -54070,44 +57647,48 @@ return {
 				},
 				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"AssetRead"},Read = {"AssetRead"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Link",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "PackageIdSerialize",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "BinaryString",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Link",
-					Name = "SerializedDefaultAttributes",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "SerializedDefaultAttributes",
 					Security = {Write = "NotAccessibleSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"AssetRead"},Read = {"AssetRead"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Link",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "VersionIdSerialize",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Link",
 					Serialization = {CanSave = false,CanLoad = true},
+					MemberType = "Property",
 					Name = "VersionNumber",
 					Security = {Write = "NotAccessibleSecurity",Read = "None"}
 				},
@@ -54125,12 +57706,13 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"AssetRead"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "Up To Date",
 					Category = "Link",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "Status",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				}
@@ -54248,6 +57830,47 @@ return {
 			Superclass = "Instance"
 		},
 		{
+			Name = "Packages",
+			Tags = {"NotCreatable","Service"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "IsDehydrated",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "ShellPackagesCount",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "SkippedInstancesCount",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
 			Name = "Pages",
 			Tags = {"NotCreatable","NotReplicated"},
 			MemoryCategory = "Instances",
@@ -54331,7 +57954,6 @@ return {
 		{Name = "DataStoreVersionPages",Tags = {"NotCreatable","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Pages"},
 		{Name = "FriendPages",Tags = {"NotCreatable","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Pages"},
 		{Name = "InventoryPages",Tags = {"NotCreatable","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Pages"},
-		{Name = "EmotesPages",Tags = {"NotCreatable","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "InventoryPages"},
 		{Name = "MemoryStoreHashMapPages",Tags = {"NotCreatable","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Pages"},
 		{Name = "OutfitPages",Tags = {"NotCreatable","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Pages"},
 		{Name = "RecommendationPages",Tags = {"NotCreatable","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Pages"},
@@ -54433,6 +58055,17 @@ return {
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
 					Name = "Enabled",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					Default = "true",
+					Category = "Flipbook",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "FlipbookBlendFrames",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -55402,6 +59035,7 @@ return {
 					Name = "CollisionGroupSetCollidable",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "name1",Type = {Name = "string",Category = "Primitive"}},
@@ -55415,6 +59049,7 @@ return {
 					Name = "CollisionGroupsAreCollidable",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "name1",Type = {Name = "string",Category = "Primitive"}},
@@ -55485,6 +59120,7 @@ return {
 					Name = "GetMaxCollisionGroups",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -55494,6 +59130,7 @@ return {
 					Name = "GetRegisteredCollisionGroups",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -55517,6 +59154,7 @@ return {
 					Name = "IsCollisionGroupRegistered",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "name",Type = {Name = "string",Category = "Primitive"}}
@@ -55542,6 +59180,7 @@ return {
 					Name = "RegisterCollisionGroup",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "name",Type = {Name = "string",Category = "Primitive"}}
@@ -55568,6 +59207,7 @@ return {
 					Name = "RenameCollisionGroup",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "from",Type = {Name = "string",Category = "Primitive"}},
@@ -55596,6 +59236,7 @@ return {
 					Name = "UnregisterCollisionGroup",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "name",Type = {Name = "string",Category = "Primitive"}}
@@ -56222,6 +59863,35 @@ return {
 			Superclass = "Instance"
 		},
 		{
+			Name = "PlatformLibraries",
+			Tags = {"NotCreatable","Service"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					MemberType = "Event",
+					Name = "RemoteRequireRequest",
+					Tags = {"Hidden"},
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "libraryName",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "RemoteRequireResponse",
+					Tags = {"Hidden"},
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "libraryName",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "module",Type = {Name = "ModuleScript",Category = "Class"}}
+					}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
 			MemoryCategory = "Instances",
 			Superclass = "Instance",
 			Members = {
@@ -56619,6 +60289,17 @@ return {
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
 					MemberType = "Property",
+					Name = "HasRobloxSubscription",
+					Security = {Write = "RobloxSecurity",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Players"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "HasVerifiedBadge",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -56632,6 +60313,17 @@ return {
 					MemberType = "Property",
 					Name = "HealthDisplayDistance",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"Players"}},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "InputLatency",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
@@ -57001,6 +60693,15 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"AvatarAppearance","Players"},
+					Name = "ClearCachedAvatarAppearance",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Players"},
 					Name = "ClearCharacterAppearance",
 					MemberType = "Function",
@@ -57128,7 +60829,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Avatar","Players"},
+					Capabilities = {"AvatarAppearance","Players"},
 					Name = "LoadCharacterAppearance",
 					Tags = {"Deprecated"},
 					MemberType = "Function",
@@ -57404,6 +61105,17 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Players"},
+					Name = "SetHasRobloxSubscription",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "hasRobloxSubscription",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Players"},
 					Name = "SetMembershipType",
 					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
@@ -57633,6 +61345,16 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"Players","Social"},
+					Name = "GetFriendsWhoPlayedAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "int",Category = "Primitive"},
 					Capabilities = {"Players","Groups"},
 					Name = "GetRankInGroup",
@@ -57815,7 +61537,8 @@ return {
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "humanoidDescription",Type = {Name = "HumanoidDescription",Category = "Class"}}
+						{Name = "humanoidDescription",Type = {Name = "HumanoidDescription",Category = "Class"}},
+						{Type = {Name = "AssetTypeVerification",Category = "Enum"},Default = "Default",Name = "assetTypeVerification"}
 					}
 				},
 				{
@@ -57827,7 +61550,8 @@ return {
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "humanoidDescription",Type = {Name = "HumanoidDescription",Category = "Class"}}
+						{Name = "humanoidDescription",Type = {Name = "HumanoidDescription",Category = "Class"}},
+						{Type = {Name = "AssetTypeVerification",Category = "Enum"},Default = "Default",Name = "assetTypeVerification"}
 					}
 				},
 				{
@@ -57943,15 +61667,6 @@ return {
 					Parameters = {
 						{Name = "newSelection",Type = {Name = "Array",Category = "Group"}}
 					}
-				},
-				{
-					Capabilities = {"Players"},
-					Name = "ConnectDiedSignalBackend",
-					Tags = {"Hidden"},
-					MemberType = "Event",
-					Security = "RobloxSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {}
 				},
 				{
 					Capabilities = {"Players"},
@@ -58258,6 +61973,19 @@ return {
 					Parameters = {
 						{Name = "instance",Type = {Name = "Instance",Category = "Class"}},
 						{Name = "depth",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Players"},
+					Name = "iradDebugServerReceivedIradRequest",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "minRadius",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "targetRadius",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "interfaceExists",Type = {Name = "bool",Category = "Primitive"}}
 					}
 				}
 			},
@@ -58724,72 +62452,81 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "ClearComputerCameraMovementModes",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "ClearComputerMovementModes",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "ClearTouchCameraMovementModes",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "ClearTouchMovementModes",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "GetRegisteredComputerCameraMovementModes",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "GetRegisteredComputerMovementModes",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "GetRegisteredTouchCameraMovementModes",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Players"},
 					Name = "GetRegisteredTouchMovementModes",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "RegisterComputerCameraMovementMode",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -58798,8 +62535,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "RegisterComputerMovementMode",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -58808,8 +62546,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "RegisterTouchCameraMovementMode",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -58818,18 +62557,47 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Input","Players"},
 					Name = "RegisterTouchMovementMode",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "movementMode",Type = {Name = "TouchMovementMode",Category = "Enum"}}
 					}
 				},
-				{MemberType = "Event",Name = "ComputerCameraMovementModeRegistered",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "ComputerMovementModeRegistered",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "TouchCameraMovementModeRegistered",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "TouchMovementModeRegistered",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}}
+				{
+					Capabilities = {"Players"},
+					Name = "ComputerCameraMovementModeRegistered",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Players"},
+					Name = "ComputerMovementModeRegistered",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Players"},
+					Name = "TouchCameraMovementModeRegistered",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Players"},
+					Name = "TouchMovementModeRegistered",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				}
 			},
 			Superclass = "Instance"
 		},
@@ -59133,6 +62901,7 @@ return {
 					Name = "GetPlayerFromCharacter",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "character",Type = {Name = "Model",Category = "Class"}}
@@ -59229,7 +62998,8 @@ return {
 						{Name = "userName",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "displayName",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "membershipType",Type = {Name = "MembershipType",Category = "Enum"}},
-						{Name = "isUnder13",Type = {Name = "bool",Category = "Primitive"}}
+						{Name = "isUnder13",Type = {Name = "bool",Category = "Primitive"}},
+						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "hasRobloxSubscription"}
 					}
 				},
 				{
@@ -59310,7 +63080,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Model",Category = "Class"},
-					Capabilities = {"Avatar","Players"},
+					Capabilities = {"AvatarAppearance","Players"},
 					Name = "CreateHumanoidModelFromDescription",
 					Tags = {
 						"Yields",
@@ -59328,7 +63098,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "Model",Category = "Class"},
-					Capabilities = {"Avatar","Players"},
+					Capabilities = {"AvatarAppearance","Players"},
 					Name = "CreateHumanoidModelFromDescriptionAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -59418,7 +63188,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					Capabilities = {"Avatar","Players"},
+					Capabilities = {"AvatarAppearance","Players"},
 					Name = "GetHumanoidDescriptionFromOutfitId",
 					Tags = {
 						"Yields",
@@ -59434,7 +63204,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					Capabilities = {"Avatar","Players"},
+					Capabilities = {"AvatarAppearance","Players"},
 					Name = "GetHumanoidDescriptionFromOutfitIdAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -59446,7 +63216,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					Capabilities = {"Avatar","Players"},
+					Capabilities = {"AvatarAppearance","Players"},
 					Name = "GetHumanoidDescriptionFromUserId",
 					Tags = {
 						"Yields",
@@ -59462,7 +63232,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "HumanoidDescription",Category = "Class"},
-					Capabilities = {"Avatar","Players"},
+					Capabilities = {"AvatarAppearance","Players"},
 					Name = "GetHumanoidDescriptionFromUserIdAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -59544,16 +63314,6 @@ return {
 						{Name = "player",Type = {Name = "Player",Category = "Class"}},
 						{Name = "player",Type = {Name = "Player",Category = "Class"}},
 						{Name = "friendRequestEvent",Type = {Name = "FriendRequestEvent",Category = "Enum"}}
-					}
-				},
-				{
-					Capabilities = {"Players"},
-					Name = "GameAnnounce",
-					MemberType = "Event",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "message",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -59682,17 +63442,6 @@ return {
 				},
 				{
 					Capabilities = {"Players"},
-					Name = "RequestCloudEditImmediatePublishWithContext",
-					Tags = {"Hidden"},
-					MemberType = "Event",
-					Security = "RobloxSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "spanContext",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					Capabilities = {"Players"},
 					Name = "RequestCloudEditKick",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -59710,39 +63459,6 @@ return {
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
-				},
-				{
-					Capabilities = {"Players"},
-					Name = "RequestTeamCreateImmediateSaveWithContext",
-					Tags = {"Hidden"},
-					MemberType = "Event",
-					Security = "RobloxSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "spanContext",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					Capabilities = {"Players"},
-					Name = "TeamCreatePublishFinished",
-					Tags = {"Hidden"},
-					MemberType = "Event",
-					Security = "RobloxSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "publishSuccessful",Type = {Name = "bool",Category = "Primitive"}}
-					}
-				},
-				{
-					Capabilities = {"Players"},
-					Name = "TeamCreateSaveFinished",
-					Tags = {"Hidden"},
-					MemberType = "Event",
-					Security = "RobloxSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "saveSuccessful",Type = {Name = "bool",Category = "Primitive"}}
-					}
 				},
 				{
 					Capabilities = {"Players"},
@@ -59913,6 +63629,14 @@ return {
 					MemberType = "Function",
 					Name = "Deactivate",
 					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "FinishFullLoading",
+					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -60479,6 +64203,17 @@ return {
 					Name = "Text",
 					Security = {Write = "RobloxScriptSecurity",Read = "None"}
 				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "true",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "Visible",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
 				{MemberType = "Event",Name = "Triggered",Security = "PluginSecurity",ThreadSafety = "Unsafe",Parameters = {}}
 			},
 			Superclass = "Instance"
@@ -60499,6 +64234,43 @@ return {
 				}
 			},
 			Name = "PluginCapabilities"
+		},
+		{
+			Name = "PluginConnectionService",
+			Tags = {"NotCreatable","Service","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "CanHaveConnectionType",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "type",Type = {Name = "PluginConnectionTargetType",Category = "Enum"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetPluginConnectionsOfType",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "type",Type = {Name = "PluginConnectionTargetType",Category = "Enum"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "Connected",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "conn",Type = {Name = "PluginConnection",Category = "Class"}}
+					}
+				}
+			},
+			Superclass = "Instance"
 		},
 		{Name = "PluginDebugService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
@@ -60684,6 +64456,16 @@ return {
 					Serialization = {CanSave = false,CanLoad = true},
 					Name = "Title",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Name = "Visible",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
@@ -61341,6 +65123,8 @@ return {
 			},
 			Name = "SunRaysEffect"
 		},
+		{Name = "Preloaded",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
+		{Name = "ProceduralBehaviorSchedulerService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{Name = "ProcessInstancePhysicsService",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			MemoryCategory = "Instances",
@@ -61348,7 +65132,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Interact",
 					Category = "Data",
@@ -61359,7 +65143,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Localization",
@@ -61370,7 +65154,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Data",
@@ -61381,7 +65165,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Data",
@@ -61392,7 +65176,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ProximityPromptExclusivity",Category = "Enum"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "OnePerButton",
 					Category = "Data",
@@ -61403,7 +65187,7 @@ return {
 				},
 				{
 					ValueType = {Name = "KeyCode",Category = "Enum"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "ButtonX",
 					Category = "Data",
@@ -61414,7 +65198,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -61425,7 +65209,7 @@ return {
 				},
 				{
 					ValueType = {Name = "KeyCode",Category = "Enum"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "E",
 					Category = "Data",
@@ -61436,7 +65220,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "10",
 					Category = "Data",
@@ -61447,7 +65231,7 @@ return {
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
@@ -61458,7 +65242,7 @@ return {
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
@@ -61469,7 +65253,7 @@ return {
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Data",
@@ -61480,7 +65264,7 @@ return {
 				},
 				{
 					ValueType = {Name = "LocalizationTable",Category = "Class"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Localization",
@@ -61491,7 +65275,7 @@ return {
 				},
 				{
 					ValueType = {Name = "ProximityPromptStyle",Category = "Enum"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "Default",
 					Category = "Data",
@@ -61502,7 +65286,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					Capabilities = {Read = {"UI"}},
+					Capabilities = {Read = {"UI","Input"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0",
 					Category = "Data",
@@ -61513,7 +65297,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "InputHoldBegin",
 					MemberType = "Function",
 					Security = "None",
@@ -61522,7 +65306,7 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "InputHoldEnd",
 					MemberType = "Function",
 					Security = "None",
@@ -61530,7 +65314,7 @@ return {
 					Parameters = {}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "ButtonHoldBeganActionReplicated",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -61541,7 +65325,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "ButtonHoldEndedActionReplicated",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -61552,7 +65336,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "IndicatorHidden",
 					MemberType = "Event",
 					Security = "None",
@@ -61560,7 +65344,7 @@ return {
 					Parameters = {}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "IndicatorShown",
 					MemberType = "Event",
 					Security = "None",
@@ -61568,7 +65352,7 @@ return {
 					Parameters = {}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "PromptButtonHoldBegan",
 					MemberType = "Event",
 					Security = "None",
@@ -61578,7 +65362,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "PromptButtonHoldEnded",
 					MemberType = "Event",
 					Security = "None",
@@ -61588,7 +65372,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "PromptHidden",
 					MemberType = "Event",
 					Security = "None",
@@ -61596,7 +65380,7 @@ return {
 					Parameters = {}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "PromptShown",
 					MemberType = "Event",
 					Security = "None",
@@ -61606,7 +65390,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "TriggerEnded",
 					MemberType = "Event",
 					Security = "None",
@@ -61616,7 +65400,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "TriggerEndedActionReplicated",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -61627,7 +65411,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "Triggered",
 					MemberType = "Event",
 					Security = "None",
@@ -61637,7 +65421,7 @@ return {
 					}
 				},
 				{
-					Capabilities = {"UI"},
+					Capabilities = {"UI","Input"},
 					Name = "TriggeredActionReplicated",
 					Tags = {"Hidden"},
 					MemberType = "Event",
@@ -62216,14 +66000,132 @@ return {
 			Superclass = "Instance"
 		},
 		{
+			MemoryCategory = "Instances",
+			Superclass = "Instance",
+			Members = {
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"InternalTest"}},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ForwardInput",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Write = {"InternalTest"},Read = {"InternalTest"}},
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
+					Name = "IsConnected",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"InternalTest"},
+					Name = "Disconnect",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Instances",Category = "DataType"},
+					Capabilities = {"InternalTest"},
+					Name = "GetConnectedWires",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "pin",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"InternalTest"},
+					Name = "GetInputPins",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"InternalTest"},
+					Name = "GetOutputPins",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"InternalTest"},
+					Name = "SendMessage",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "binary",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"InternalTest"},
+					Name = "ConnectAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "serverUrl",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "connectParams"}
+					}
+				},
+				{
+					Capabilities = {"InternalTest"},
+					Name = "OnMessage",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "binary",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"InternalTest"},
+					Name = "WiringChanged",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "connected",Type = {Name = "bool",Category = "Primitive"}},
+						{Name = "pin",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "wire",Type = {Name = "Wire",Category = "Class"}},
+						{Name = "instance",Type = {Name = "Instance",Category = "Class"}}
+					}
+				}
+			},
+			Name = "RealtimeMedia"
+		},
+		{
 			Name = "RecommendationService",
 			Tags = {"NotCreatable","Service"},
 			MemoryCategory = "Instances",
 			Members = {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "LogActionEvent",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -62235,8 +66137,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "LogImpressionEvent",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -62247,10 +66150,29 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "RecommendationPages",Category = "Class"},
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"Basic"},
+					Name = "LogPreferenceEvent",
 					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "preferenceType",Type = {Name = "RecommendationPreferenceType",Category = "Enum"}},
+						{
+							Name = "targetType",
+							Type = {Name = "RecommendationPreferenceTargetType",Category = "Enum"}
+						},
+						{Name = "targetId",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "tracingId"},
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "itemId"}
+					}
+				},
+				{
+					ReturnType = {Name = "RecommendationPages",Category = "Class"},
+					Capabilities = {"Basic"},
 					Name = "GenerateItemListAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -62259,9 +66181,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "GetRecommendationItemAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -62270,9 +66193,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "RegisterItemAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -62282,9 +66206,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "RemoveItemAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -62293,9 +66218,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "UpdateItemAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -63105,160 +67031,176 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "RenderingTest",
-					Name = "CFrame",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "CFrame",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "10",
 					Category = "RenderingTest",
-					Name = "ComparisonDiffThreshold",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ComparisonDiffThreshold",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "RenderingTestComparisonMethod",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "psnr",
 					Category = "RenderingTest",
-					Name = "ComparisonMethod",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ComparisonMethod",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "50",
 					Category = "RenderingTest",
-					Name = "ComparisonPsnrThreshold",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ComparisonPsnrThreshold",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "RenderingTest",
-					Name = "Description",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Description",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "70",
 					Category = "RenderingTest",
-					Name = "FieldOfView",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "FieldOfView",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "-0, 0, 0",
 					Category = "RenderingTest",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "Orientation",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "RenderingTest",
-					Name = "PerfTest",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "PerfTest",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "RenderingTest",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "Position",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "RenderingTest",
-					Name = "QualityAuto",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "QualityAuto",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "21",
 					Category = "RenderingTest",
-					Name = "QualityLevel",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "QualityLevel",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "20",
 					Category = "RenderingTest",
-					Name = "RenderingTestFrameCount",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "RenderingTestFrameCount",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "RenderingTest",
-					Name = "ShouldSkip",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ShouldSkip",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "RenderingTest",
-					Name = "Ticket",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Ticket",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "30",
 					Category = "RenderingTest",
-					Name = "Timeout",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Timeout",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "RenderdocTriggerCapture",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -63379,6 +67321,202 @@ return {
 			Superclass = "Instance"
 		},
 		{Name = "RobloxServerStorage",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
+		{
+			Name = "RolloutValidation",
+			Tags = {"NotCreatable","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "AdditionalFluffOne",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "AdditionalFluffThree",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "AdditionalFluffTwo",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "CreationVersion",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "FirstBinaryExpectedValue",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "BinaryString",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "FirstBinaryString",
+					Security = {Write = "None",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "FirstSharedExpectedValue",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "SharedString",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "FirstSharedString",
+					Security = {Write = "None",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "GenerationStrategy",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "SecondBinaryExpectedValue",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "BinaryString",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "SecondBinaryString",
+					Security = {Write = "None",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "SecondSharedExpectedValue",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "SharedString",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "SecondSharedString",
+					Security = {Write = "None",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "ThirdBinaryExpectedValue",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "BinaryString",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "ThirdBinaryString",
+					Security = {Write = "None",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "ThirdSharedExpectedValue",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "SharedString",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_no_string_value__",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					Name = "ThirdSharedString",
+					Security = {Write = "None",Read = "RobloxSecurity"}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{Name = "RolloutValidationService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{Name = "RomarkRbxAnalyticsService",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			Name = "RomarkService",
@@ -63573,7 +67711,8 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "function",Type = {Name = "Function",Category = "DataType"}},
-						{Type = {Name = "StepFrequency",Category = "Enum"},Default = "Hz60",Name = "frequency"}
+						{Type = {Name = "StepFrequency",Category = "Enum"},Default = "Hz30",Name = "frequency"},
+						{Type = {Name = "int",Category = "Primitive"},Default = "2000",Name = "priority"}
 					}
 				},
 				{
@@ -63600,6 +67739,7 @@ return {
 					Name = "GetPredictionStatus",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "context",Type = {Name = "Instance",Category = "Class"}}
@@ -63808,14 +67948,15 @@ return {
 					}
 				},
 				{
-					Capabilities = {"Basic","InternalTest"},
+					Capabilities = {"Basic","PluginOrOpenCloud"},
 					Name = "Misprediction",
 					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "remoteWorldStepId",Type = {Name = "int",Category = "Primitive"}},
-						{Name = "mispredictedInstances",Type = {Name = "Array",Category = "Group"}}
+						{Name = "time",Type = {Name = "double",Category = "Primitive"}},
+						{Name = "instances",Type = {Name = "Array",Category = "Group"}},
+						{Name = "stats",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				},
 				{
@@ -63876,6 +68017,16 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "isRobloxGuiFocused",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Basic"},
+					Name = "Rollback",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "time",Type = {Name = "double",Category = "Primitive"}}
 					}
 				},
 				{
@@ -63970,6 +68121,54 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
+					Name = "ReportCapturesUIClose",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ReportCapturesUIOpen",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ReportChatLineReportingClose",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ReportChatLineReportingOpen",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ReportChatSuspensionDialogClose",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ReportChatSuspensionDialogOpen",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
 					Name = "ReportMenuTabClose",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -63979,6 +68178,22 @@ return {
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "ReportMenuTabOpen",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ReportPartyChatWindowClose",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ReportPartyChatWindowOpen",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -64025,6 +68240,68 @@ return {
 						{Name = "screenshotJobId",Type = {Name = "int64",Category = "Primitive"}},
 						{Name = "screenshotId",Type = {Name = "string",Category = "Primitive"}}
 					}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
+			Name = "SceneAnalysisService",
+			Tags = {"NotCreatable","Service","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetAnimationMemoryAsync",
+					Tags = {"Yields"},
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetAudioMemoryAsync",
+					Tags = {"Yields"},
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetInstanceCompositionAsync",
+					Tags = {"Yields"},
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetScriptMemoryAsync",
+					Tags = {"Yields"},
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetTriangleCompositionAsync",
+					Tags = {"Yields"},
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetUnparentedInstancesAsync",
+					Tags = {"Yields"},
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				}
 			},
 			Superclass = "Instance"
@@ -64306,10 +68583,22 @@ return {
 					Parameters = {}
 				},
 				{
-					ReturnType = {Name = "Array",Category = "Group"},
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"PluginOrOpenCloud"},
+					Name = "EnableCoverage",
 					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "instance",Type = {Name = "Instance",Category = "Class"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					Capabilities = {"PluginOrOpenCloud"},
 					Name = "GetCoverageStats",
-					Security = "RobloxScriptSecurity",
+					MemberType = "Function",
+					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
@@ -64354,8 +68643,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Logging"},
 					Name = "Error",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -64618,6 +68908,131 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "watch",Type = {Name = "Instance",Category = "Class"}}
+					}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
+			Name = "ScriptDebuggerService",
+			Tags = {"NotCreatable","Service","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "AddBreakpoint",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "scriptInstance",Type = {Name = "LuaSourceContainer",Category = "Class"}},
+						{Name = "breakpoint",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ClearBreakpoints",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "Evaluate",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "expression",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "int?",Category = "Primitive"},Default = "nil",Name = "frameId"}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetRootVariables",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "frameId",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetStackTrace",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "threadId",Type = {Name = "int",Category = "Primitive"}},
+						{Type = {Name = "int?",Category = "Primitive"},Default = "nil",Name = "startFrame"}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetThreads",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetVariables",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "variablesReference",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "Pause",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "RemoveBreakpoint",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "scriptInstance",Type = {Name = "LuaSourceContainer",Category = "Class"}},
+						{Name = "line",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SetExceptionBreakMode",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "breakMode",Type = {Name = "DebugBreakModeType",Category = "Enum"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "Resumed",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "threadIds",Type = {Name = "Array",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Callback",
+					Name = "OnStopped",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "stopped",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				}
 			},
@@ -65149,74 +69564,81 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "Instance",Category = "Class"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "ActiveInstance",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "SelectionRenderMode",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "RenderMode",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "SelectionBoxThickness",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "SelectionLineThickness",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Appearance",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "SelectionThickness",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"Hidden","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "ShowActiveInstanceHighlight",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "Add",
+					MemberType = "Function",
 					Security = "PluginSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -65225,8 +69647,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "RBXScriptConnection",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "AddFocusCallback",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -65236,24 +69659,27 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "ClearTerrainSelectionHack",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Instances",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "Get",
+					MemberType = "Function",
 					Security = "PluginSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "Remove",
+					MemberType = "Function",
 					Security = "PluginSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -65262,8 +69688,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "Set",
+					MemberType = "Function",
 					Security = "PluginSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -65272,8 +69699,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "SetTerrainSelectionHack",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -65281,8 +69709,22 @@ return {
 						{Name = "size",Type = {Name = "Vector3",Category = "DataType"}}
 					}
 				},
-				{MemberType = "Event",Name = "SelectionChanged",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "SelectionChangedThisFrame",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}}
+				{
+					Capabilities = {"Basic"},
+					Name = "SelectionChanged",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Basic"},
+					Name = "SelectionChangedThisFrame",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				}
 			},
 			Superclass = "Instance"
 		},
@@ -65295,11 +69737,12 @@ return {
 				{
 					ValueType = {Name = "SensorUpdateType",Category = "Enum"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Settings",
-					Name = "UpdateType",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "UpdateType",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -65324,10 +69767,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "AirDensity",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -65336,10 +69780,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "RelativeWindVelocity",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -65354,10 +69799,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "FullySubmerged",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -65365,10 +69811,11 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "TouchingSurface",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -65384,10 +69831,11 @@ return {
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "HitFrame",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -65395,32 +69843,71 @@ return {
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "HitNormal",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "6",
+					Category = "Input",
+					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
+					Name = "LadderSearchHeight",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "5",
+					Category = "Input",
+					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
+					Name = "LadderSearchOffset",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0",
 					Category = "Input",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SearchDistance",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Material",Category = "Enum"},
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Default = "Air",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
+					Name = "SensedMaterial",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "BasePart",Category = "Class"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SensedPart",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -65428,10 +69915,11 @@ return {
 					ValueType = {Name = "SensorMode",Category = "Enum"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "Floor",
 					Category = "Input",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "SensorMode",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -65447,10 +69935,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CenterOfPressure",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -65459,10 +69948,11 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Force",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -65471,26 +69961,28 @@ return {
 					Capabilities = {Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0",
 					Category = "Output",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Torque",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
 					Capabilities = {"Basic"},
-					Name = "EvaluateAsync",
 					Tags = {"Yields"},
-					MemberType = "Function",
-					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "linearVelocity",Type = {Name = "Vector3",Category = "DataType"}},
 						{Name = "angularVelocity",Type = {Name = "Vector3",Category = "DataType"}},
 						{Name = "cframe",Type = {Name = "CFrame",Category = "DataType"}}
-					}
+					},
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Name = "EvaluateAsync",
+					SimulationAccess = true,
+					MemberType = "Function",
+					Security = "None"
 				}
 			},
 			Name = "FluidForceSensor"
@@ -65534,12 +70026,13 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Basic"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "LoadStringEnabled",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -65805,7 +70298,7 @@ return {
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
-					ValueType = {Name = "Instance",Category = "Class"},
+					ValueType = {Name = "RunService",Category = "Class"},
 					MemberType = "Property",
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
@@ -66076,19 +70569,6 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
-					Name = "ReportInGoogleAnalytics",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "category",Type = {Name = "string",Category = "Primitive"}},
-						{Type = {Name = "string",Category = "Primitive"},Default = "custom",Name = "action"},
-						{Type = {Name = "string",Category = "Primitive"},Default = "none",Name = "label"},
-						{Type = {Name = "int",Category = "Primitive"},Default = "0",Name = "value"}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
 					Name = "SetFlagVersion",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -66141,8 +70621,7 @@ return {
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "url",Type = {Name = "ContentId",Category = "DataType"}},
-						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "binaryFormatOnly"}
+						{Name = "url",Type = {Name = "ContentId",Category = "DataType"}}
 					}
 				},
 				{
@@ -66312,6 +70791,16 @@ return {
 						{Name = "filename",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "success",Type = {Name = "bool",Category = "Primitive"}},
 						{Name = "message",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"ServerCommunication"},
+					Name = "ServerLifecycleChanged",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "serverLifecycleChangedEvent",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				},
 				{MemberType = "Event",Name = "UniverseMetadataLoaded",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
@@ -66500,6 +70989,14 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetBreadcrumbs",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "int64",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "GetCreatedTimestampUtcMs",
@@ -66508,6 +71005,14 @@ return {
 					Parameters = {
 						{Name = "sid",Type = {Name = "string",Category = "Primitive"}}
 					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetHistory",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Variant",Category = "Group"},
@@ -66646,6 +71151,19 @@ return {
 						{Name = "childSid",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "tag",Type = {Name = "string",Category = "Primitive"}},
 						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "context"}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "SessionChanged",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "structuralId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "currentTag",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "currentSessionId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "previousTag",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "previousSessionId",Type = {Name = "string",Category = "Primitive"}}
 					}
 				}
 			},
@@ -66926,6 +71444,17 @@ return {
 			MemoryCategory = "Instances",
 			Members = {
 				{
+					ValueType = {Name = "double",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "1",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "EntityScale",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
 					ValueType = {Name = "Instance",Category = "Class"},
 					MemberType = "Property",
 					Tags = {"Hidden","NotScriptable"},
@@ -66934,7 +71463,7 @@ return {
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
 					Name = "EntitySource",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
@@ -66945,7 +71474,7 @@ return {
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
 					Name = "Handle",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
@@ -66956,7 +71485,7 @@ return {
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
 					Name = "IsSlimEnabled",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
@@ -66967,359 +71496,29 @@ return {
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
 					Name = "NumBones",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
+					ValueType = {Name = "int",Category = "Primitive"},
 					MemberType = "Property",
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Default = "-1",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone0",
-					Security = {Write = "None",Read = "None"}
+					Name = "RootIndex",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
+					ValueType = {Name = "BinaryString",Category = "DataType"},
 					MemberType = "Property",
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
+					Default = "",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone1",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone10",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone11",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone12",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone13",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone14",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone15",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone16",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone17",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone18",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone19",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone2",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone20",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone21",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone22",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone23",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone24",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone25",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone26",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone27",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone28",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone29",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone3",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone30",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone31",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone4",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone5",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone6",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone7",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone8",
-					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "CFrame",Category = "DataType"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotScriptable"},
-					ThreadSafety = "ReadSafe",
-					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
-					Category = "Data",
-					Serialization = {CanSave = false,CanLoad = false},
-					Name = "SlimBone9",
-					Security = {Write = "None",Read = "None"}
+					Name = "SlimInstanceHashes",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
@@ -67330,13 +71529,31 @@ return {
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
 					Name = "SlimReplicationTimestampSec",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				}
 			},
 			Superclass = "Instance"
 		},
 		{Name = "SlimAnimationReplicationService",Tags = {"NotCreatable","Service"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
-		{Name = "SlimReplicationService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
+		{
+			Name = "SlimReplicationService",
+			Tags = {"NotCreatable","Service"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					MemberType = "Event",
+					Name = "ServerUpdateEntities",
+					Tags = {"Hidden"},
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "entities",Type = {Name = "Array",Category = "Group"}},
+						{Name = "poses",Type = {Name = "Array",Category = "Group"}}
+					}
+				}
+			},
+			Superclass = "Instance"
+		},
 		{Name = "SlimService",Tags = {"NotCreatable","Service","NotReplicated"},MemoryCategory = "Instances",Members = {},Superclass = "Instance"},
 		{
 			MemoryCategory = "Instances",
@@ -67941,8 +72158,32 @@ return {
 			Superclass = "Instance",
 			Members = {
 				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Write = {"LegacySound"},Read = {"LegacySound"}},
+					ThreadSafety = "ReadSafe",
+					Default = "true",
+					Category = "Emitter",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "AcousticSimulationEnabled",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "AssetRepresentation",Category = "Enum"},
+					Capabilities = {Read = {"LegacySound"}},
+					Tags = {"Hidden","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "FullLength",
+					Category = "Behavior",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "AssetRepresentation",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
 					ValueType = {Name = "Content",Category = "DataType"},
 					Capabilities = {Read = {"LegacySound"}},
+					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Asset",
@@ -67989,18 +72230,6 @@ return {
 					MemberType = "Property",
 					Name = "IsLoaded",
 					Security = {Write = "None",Read = "None"}
-				},
-				{
-					ValueType = {Name = "bool",Category = "Primitive"},
-					Capabilities = {Read = {"LegacySound"}},
-					Tags = {"Hidden"},
-					ThreadSafety = "ReadSafe",
-					Default = "false",
-					Category = "Data",
-					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
-					Name = "IsMutedForCapture",
-					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
@@ -68364,6 +72593,15 @@ return {
 					MemberType = "Property",
 					Name = "xmlRead_MinDistance_3",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ReturnType = {Name = "AudioPlayer",Category = "Class"},
+					Capabilities = {"LegacySound"},
+					Name = "GetUnderlyingAudioPlayer",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
@@ -69200,6 +73438,15 @@ return {
 					Parameters = {}
 				},
 				{
+					ReturnType = {Name = "double",Category = "Primitive"},
+					Capabilities = {"Audio"},
+					Name = "GetMixerTime",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
 					Capabilities = {"Audio"},
 					Name = "GetOutputDevice",
@@ -69285,14 +73532,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					Capabilities = {"Audio"},
+					Capabilities = {"Audio","InternalTest"},
 					Name = "SetInputDevice",
 					MemberType = "Function",
-					Security = "RobloxScriptSecurity",
+					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "name",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "guid",Type = {Name = "string",Category = "Primitive"}}
+						{Name = "nameOrInstance",Type = {Name = "Variant",Category = "Group"}},
+						{Name = "guidOrPin",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -69845,14 +74092,14 @@ return {
 				{
 					ValueType = {Name = "RolloutState",Category = "Enum"},
 					Capabilities = {Read = {"Players"}},
-					Tags = {"NotReplicated","NotScriptable"},
+					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "Default",
 					Category = "Character",
 					Serialization = {CanSave = false,CanLoad = false},
 					MemberType = "Property",
 					Name = "AvatarJointUpgrade",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "RolloutState",Category = "Enum"},
@@ -70816,237 +75063,6 @@ return {
 			Superclass = "Instance"
 		},
 		{
-			Name = "StreamingService",
-			Tags = {"NotCreatable","Service","NotReplicated"},
-			MemoryCategory = "Instances",
-			Members = {
-				{
-					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetEphemeralVariable",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "key",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Instance",Category = "Class"},
-					MemberType = "Function",
-					Name = "GetInstance",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "instanceId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "InvokeCommand",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "commandName",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "arg",Type = {Name = "Variant",Category = "Group"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "RegisterCommandInternal",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "commandName",Type = {Name = "string",Category = "Primitive"}},
-						{Type = {Name = "Function",Category = "DataType"},Default = "nil",Name = "function"},
-						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "isSequential"},
-						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "isPublic"}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "RegisterContextCollector",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "collectorName",Type = {Name = "string",Category = "Primitive"}},
-						{Type = {Name = "Function",Category = "DataType"},Default = "nil",Name = "function"}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "SetEphemeralVariable",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "key",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "value",Type = {Name = "Variant",Category = "Group"}},
-						{Type = {Name = "int",Category = "Primitive"},Default = "-1",Name = "timeToLive"}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "SetPluginInfoCallback",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Type = {Name = "Function",Category = "DataType"},Default = "nil",Name = "function"}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "UnregisterCommand",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "commandName",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "UnregisterContextCollector",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "collectorName",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "AttemptSaveAndSendPlaceTelemetry",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "toolSource",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
-					Name = "BindCodeToGuid",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "runCodeGuid",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "code",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Variant",Category = "Group"},
-					Capabilities = {"Assistant"},
-					Name = "ExecuteCommandAsync",
-					Tags = {"Yields"},
-					MemberType = "Function",
-					Security = "None",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "commandName",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "arg",Type = {Name = "Variant",Category = "Group"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetRequiredScripts",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "script",Type = {Name = "Instance",Category = "Class"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
-					Name = "RunSandboxedCode",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "runCodeGuid",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
-					Name = "SearchForAssets",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "body",Type = {Name = "Variant",Category = "Group"}}
-					}
-				},
-				{MemberType = "Event",Name = "ConversationCleared",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
-				{
-					MemberType = "Event",
-					Name = "RequestEnded",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "RequestError",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "errorType",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "RequestStarted",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "queryToProcess",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "SequentialCommandsFinished",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "success",Type = {Name = "bool",Category = "Primitive"}}
-					}
-				},
-				{
-					MemberType = "Event",
-					Name = "Stream",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "commandName",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "streamContent",Type = {Name = "string",Category = "Primitive"}}
-					}
-				}
-			},
-			Superclass = "Instance"
-		},
-		{
 			Name = "Studio",
 			Tags = {"NotCreatable","Service","NotReplicated"},
 			MemoryCategory = "Instances",
@@ -71290,6 +75306,26 @@ return {
 					MemberType = "Property",
 					Default = "__api_dump_skipped_class__",
 					Category = "Camera",
+					Name = "CameraMouseMultiplier",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "CameraNavigationModel",Category = "Enum"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Camera",
+					Name = "CameraNavigationModel",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Camera",
 					Name = "CameraOrbitSensitivity",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
@@ -71311,16 +75347,6 @@ return {
 					Default = "__api_dump_skipped_class__",
 					Category = "Camera",
 					Name = "CameraShiftFactor",
-					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
-					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
-				},
-				{
-					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
-					Default = "__api_dump_skipped_class__",
-					Category = "Camera",
-					Name = "CameraSpeedLockDefault",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
@@ -71393,7 +75419,7 @@ return {
 					Name = "Camera Speed Adjust Binding",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
@@ -71913,6 +75939,26 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "ExternalEditorMode",Category = "Enum"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Directories",
+					Name = "ExternalEditorMode",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "QDir",Category = "DataType"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Directories",
+					Name = "ExternalEditorSelection",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
 					ValueType = {Name = "Color3",Category = "DataType"},
 					MemberType = "Property",
 					Tags = {"NotReplicated"},
@@ -72351,6 +76397,16 @@ return {
 					Default = "__api_dump_skipped_class__",
 					Category = "Directories",
 					Name = "PluginsDir",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "PreferredTextSize",Category = "Enum"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "General",
+					Name = "PreferredTextSize",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
 					Security = {Write = "None",Read = "None"}
@@ -72833,7 +76889,7 @@ return {
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
 					MemberType = "Property",
-					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Script Editor Colors",
@@ -72856,8 +76912,28 @@ return {
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
 					Default = "__api_dump_skipped_class__",
+					Category = "Directories",
+					Name = "UseDefaultExternalEditor",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
 					Category = "Tools",
 					Name = "Use Bounding Box Move Handles",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "Color3",Category = "DataType"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Name = "VAxisColor",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
@@ -72883,6 +76959,36 @@ return {
 					Serialization = {CanSave = false,CanLoad = false},
 					Name = "Whitespace Color",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Color3",Category = "DataType"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Name = "XAxisColor",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "Color3",Category = "DataType"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Name = "YAxisColor",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "Color3",Category = "DataType"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Name = "ZAxisColor",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
@@ -72981,6 +77087,19 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
+					Name = "ResolveSaveInstanceToRoblox",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "assetId",Type = {Name = "int64?",Category = "Primitive"}},
+						{Name = "assetName",Type = {Name = "string?",Category = "Primitive"}},
+						{Name = "errorMessage",Type = {Name = "string?",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
 					Name = "ShowSaveToRoblox",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -73056,6 +77175,19 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					MemberType = "Function",
+					Name = "PromptSaveInstanceToRobloxAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "instance",Type = {Name = "Instance",Category = "Class"}},
+						{Name = "assetType",Type = {Name = "Variant",Category = "Group"}},
+						{Name = "groupId",Type = {Name = "int64?",Category = "Primitive"}}
+					}
+				},
+				{
 					ReturnType = {Name = "Instance",Category = "Class"},
 					MemberType = "Function",
 					Name = "RequestAvatarAutosetupAsync",
@@ -73089,6 +77221,18 @@ return {
 					Parameters = {
 						{Name = "isSuccessful",Type = {Name = "bool",Category = "Primitive"}},
 						{Name = "errorMessage",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					MemberType = "Event",
+					Name = "OnPromptSaveInstanceToRobloxAsync",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "instance",Type = {Name = "Instance",Category = "Class"}},
+						{Name = "assetType",Type = {Name = "Variant",Category = "Group"}},
+						{Name = "requestId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "groupId",Type = {Name = "int64?",Category = "Primitive"}}
 					}
 				},
 				{
@@ -73272,33 +77416,127 @@ return {
 			MemoryCategory = "Instances",
 			Members = {
 				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Name = "FocusDistance",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
-					Default = "false",
+					Default = "__api_dump_skipped_class__",
 					Category = "Data",
 					Name = "LockCameraSpeed",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
-					Default = "false",
+					Default = "__api_dump_skipped_class__",
 					Category = "Data",
 					Name = "LoggingEnabled",
 					Serialization = {CanSave = true,CanLoad = true},
 					ThreadSafety = "ReadSafe",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "InFocusMode",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "InterpolateView",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "target",Type = {Name = "CFrame",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SetFocusLock",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "value",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{MemberType = "Event",Name = "FocusStateChanged",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
+				{MemberType = "Event",Name = "OnMouseCaptureBegin",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
+				{MemberType = "Event",Name = "OnMouseCaptureEnd",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
+				{
+					MemberType = "Event",
+					Name = "PointFocused",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "point",Type = {Name = "Vector3",Category = "DataType"}}
+					}
 				},
 				{
 					MemberType = "Event",
 					Name = "ShowCameraSpeed",
-					Security = "None",
+					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "speed",Type = {Name = "float",Category = "Primitive"}}
 					}
+				},
+				{
+					MemberType = "Event",
+					Name = "UpdateUI",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "deltaTime",Type = {Name = "double",Category = "Primitive"}}
+					}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
+			Name = "StudioCaptureService",
+			Tags = {"NotCreatable","Service","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "CanCaptureScreenshot",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "StudioScreenshotCapture",Category = "Class"},
+					MemberType = "Function",
+					Name = "CaptureScreenshot",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "screenshotOptions",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "RequestScreenshotPermissionAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				}
 			},
 			Superclass = "Instance"
@@ -73466,6 +77704,179 @@ return {
 				{MemberType = "Event",Name = "OrientationChanged",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{MemberType = "Event",Name = "TouchInBoundsChanged",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{MemberType = "Event",Name = "TouchPositionsChanged",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}}
+			},
+			Superclass = "Instance"
+		},
+		{
+			Name = "StudioDeviceSimulatorService",
+			Tags = {"NotCreatable","Service","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "string",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "CreateDeviceAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "config",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "string",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "GetDeviceAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetDeviceInfoAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "deviceId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetDeviceListAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "ScreenOrientation",Category = "Enum"},
+					MemberType = "Function",
+					Name = "GetOrientationAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "float",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "GetPixelDensityAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Vector2",Category = "DataType"},
+					MemberType = "Function",
+					Name = "GetResolutionAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "DeviceSimulatorScalingMode",Category = "Enum"},
+					MemberType = "Function",
+					Name = "GetScalingModeAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "RemoveDeviceAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "deviceId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SetDeviceAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "deviceId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SetOrientationAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "orientation",Type = {Name = "ScreenOrientation",Category = "Enum"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SetPixelDensityAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "density",Type = {Name = "float",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SetResolutionAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "width",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "height",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SetScalingModeAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "mode",Type = {Name = "DeviceSimulatorScalingMode",Category = "Enum"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "StopSimulationAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "UpdateDeviceAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "deviceId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "config",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{MemberType = "Event",Name = "ConfigurationChanged",Security = "PluginSecurity",ThreadSafety = "Unsafe",Parameters = {}}
 			},
 			Superclass = "Instance"
 		},
@@ -73657,6 +78068,108 @@ return {
 						{Name = "showGameSelect",Type = {Name = "bool",Category = "Primitive"}},
 						{Name = "isPublish",Type = {Name = "bool",Category = "Primitive"}},
 						{Name = "closeMode",Type = {Name = "StudioCloseMode",Category = "Enum"}}
+					}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
+			Name = "StudioScreenshotCapture",
+			Tags = {"NotCreatable","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ValueType = {Name = "StudioCaptureScreenshotFormat",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "RGBA8",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					Name = "BufferFormat",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "StudioCaptureBufferStatus",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "NotStarted",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					Name = "BufferStatus",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "Vector2",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					Name = "OriginalSize",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "Vector2",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					Name = "Position",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "Vector2",Category = "DataType"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					Name = "Resolution",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "UICaptureMode",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "All",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = false},
+					Name = "UICaptureMode",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ReturnType = {Name = "buffer",Category = "DataType"},
+					MemberType = "Function",
+					Name = "GetBuffer",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetErrors",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "StudioScreenshotCapture",Category = "Class"},
+					MemberType = "Function",
+					Name = "ScaleAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "strategy",Type = {Name = "ResamplerMode",Category = "Enum"}},
+						{Name = "newSize",Type = {Name = "Vector2",Category = "DataType"}}
 					}
 				}
 			},
@@ -74014,17 +78527,6 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
-					Name = "ShowPlaceVersionHistoryDialog",
-					Tags = {"Deprecated"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "placeId",Type = {Name = "int64",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
 					Name = "ShowPublishToRoblox",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -74179,6 +78681,34 @@ return {
 			MemoryCategory = "Instances",
 			Members = {
 				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Default = "true",
+					Category = "Data",
+					Name = "EditModeActive",
+					Serialization = {CanSave = true,CanLoad = true},
+					ThreadSafety = "ReadSafe",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "AddPlayers",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "numPlayers",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "CanLeaveTest",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "EndTest",
@@ -74195,6 +78725,26 @@ return {
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "LeaveTest",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Variant",Category = "Group"},
+					MemberType = "Function",
+					Name = "ExecuteMultiplayerTestAsync",
+					Tags = {"Yields"},
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "numPlayers",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "args",Type = {Name = "Variant",Category = "Group"}}
+					}
 				},
 				{
 					ReturnType = {Name = "Variant",Category = "Group"},
@@ -74423,6 +78973,18 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "BinaryString",Category = "DataType"},
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
+					Tags = {"Hidden","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "PropertyTransitionsSerialize",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "string",Category = "Primitive"},
 					Capabilities = {Write = {"UI"},Read = {"UI"}},
 					ThreadSafety = "ReadSafe",
@@ -74444,6 +79006,15 @@ return {
 					MemberType = "Property",
 					Name = "SelectorError",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ReturnType = {Name = "Variant",Category = "Group"},
+					Capabilities = {"UI"},
+					Name = "GetDefaultPropertyTransition",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
@@ -74486,6 +79057,26 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"UI"},
+					Name = "GetPropertyTransitions",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"UI"},
+					Name = "SetDefaultPropertyTransition",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "transitionParams",Type = {Name = "Variant",Category = "Group"}}
+					}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"UI"},
 					Name = "SetProperties",
@@ -74506,6 +79097,29 @@ return {
 					Parameters = {
 						{Name = "name",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "value",Type = {Name = "Variant",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"UI"},
+					Name = "SetPropertyTransition",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "property",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "transitionParams",Type = {Name = "Variant",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"UI"},
+					Name = "SetPropertyTransitions",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "properties",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				},
 				{
@@ -74608,102 +79222,122 @@ return {
 			Name = "StyleLink"
 		},
 		{
-			Name = "StyleQuery",
-			Tags = {"NotReplicated","NotBrowsable"},
 			MemoryCategory = "Instances",
+			Superclass = "Instance",
 			Members = {
 				{
 					ValueType = {Name = "NumberRange",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0 inf ",
-					Category = "Behavior",
+					Category = "Conditions",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "AspectRatioRange",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "None",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "BinaryString",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
 					Name = "ConditionsSerialize",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsActive",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "INF, INF",
-					Category = "Behavior",
+					Category = "Conditions",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "MaxSize",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "None",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0",
-					Category = "Behavior",
+					Category = "Conditions",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "MinSize",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "None",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "PreferredInput",Category = "Enum"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					Capabilities = {Read = {"UI"}},
+					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "KeyboardAndMouse",
-					Category = "Data",
+					Category = "Conditions",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "PreferredInput",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "None",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "PreferredTextSize",Category = "Enum"},
+					Capabilities = {Read = {"UI"}},
+					Tags = {"NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "Medium",
+					Category = "Conditions",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "PreferredTextSize",
+					Security = {Write = "None",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"UI"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
-					Category = "Data",
+					Category = "Conditions",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "ReducedMotionEnabled",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "None",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "DisplaySize",Category = "Enum"},
-					MemberType = "Property",
-					Tags = {"Hidden","NotReplicated","NotScriptable"},
+					Capabilities = {Read = {"UI"}},
+					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "Small",
-					Category = "Data",
+					Category = "Conditions",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "ViewportDisplaySize",
-					Security = {Write = "None",Read = "None"}
+					Security = {Write = "None",Read = "RobloxSecurity"}
 				},
 				{
 					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetCondition",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -74712,16 +79346,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetConditions",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetCondition",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -74731,8 +79367,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "SetConditions",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -74740,7 +79377,7 @@ return {
 					}
 				}
 			},
-			Superclass = "Instance"
+			Name = "StyleQuery"
 		},
 		{
 			Name = "StylingService",
@@ -74927,6 +79564,17 @@ return {
 					Security = {Write = "PluginSecurity",Read = "None"}
 				},
 				{
+					ValueType = {Name = "ResamplerMode",Category = "Enum"},
+					Capabilities = {Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
+					Default = "Default",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ResampleMode",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
 					ValueType = {Name = "ContentId",Category = "DataType"},
 					Capabilities = {Read = {"Basic"}},
 					ThreadSafety = "ReadSafe",
@@ -74958,7 +79606,7 @@ return {
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
 					Name = "TexturePack",
-					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+					Security = {Write = "RobloxSecurity",Read = "RobloxScriptSecurity"}
 				}
 			},
 			Name = "SurfaceAppearance"
@@ -74968,6 +79616,14 @@ return {
 			Tags = {"NotCreatable","Service","NotReplicated"},
 			MemoryCategory = "Instances",
 			Members = {
+				{
+					ReturnType = {Name = "SystemThemeValue",Category = "Enum"},
+					MemberType = "Function",
+					Name = "getSystemTheme",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Function",
@@ -75014,44 +79670,48 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Diagnostics",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "SchedulerDutyCycle",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Diagnostics",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "SchedulerRate",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "ThreadPoolConfig",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Configuration",
-					Name = "ThreadPoolConfig",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "ThreadPoolConfig",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_skipped_class__",
 					Category = "Diagnostics",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "ThreadPoolSize",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -75416,43 +80076,48 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Teleport"}},
 					Tags = {"NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = true},
+					MemberType = "Property",
 					Name = "CustomizedTeleportUI",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "Block",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "GetArrivingTeleportGui",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "GetLocalPlayerTeleportData",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Variant",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "GetTeleportSetting",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75461,8 +80126,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "GetThirdPartyTeleportInfo",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75471,8 +80137,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "PromptExperienceDetailsCompleted",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75482,8 +80149,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "SetTeleportGui",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75492,8 +80160,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "SetTeleportSetting",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75503,8 +80172,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "Teleport",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75516,24 +80186,27 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "TeleportCancel",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "TeleportReconnect",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "TeleportToPlaceInstance",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75547,8 +80220,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "TeleportToPrivateServer",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75562,8 +80236,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "TeleportToSpawnByName",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75576,8 +80251,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "TeleportTrustedBackForth",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75586,8 +80262,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "TeleportTrustedBackHistory",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75596,25 +80273,28 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "TeleportedPlacesBackHistory",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "TeleportedUniversesBackHistory",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "GetPlayerPlaceInstanceAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75623,9 +80303,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "PromptExperienceDetailsResult",Category = "Enum"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "PromptExperienceDetailsAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75635,13 +80316,14 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "ReserveServer",
 					Tags = {
 						"Yields",
 						"Deprecated",
 						{ThreadSafety = "Unknown",PreferredDescriptorName = "ReserveServerAsync"}
 					},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75650,9 +80332,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "ReserveServerAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75661,9 +80344,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Instance",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "TeleportAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75674,9 +80358,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"UI","Teleport"},
 					Name = "TeleportPartyAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75688,16 +80373,18 @@ return {
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Teleport"},
 					Name = "UnblockAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Teleport"},
 					Name = "LocalPlayerArrivedFromTeleport",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75705,10 +80392,18 @@ return {
 						{Name = "dataTable",Type = {Name = "Variant",Category = "Group"}}
 					}
 				},
-				{MemberType = "Event",Name = "MenuTeleportAttempt",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Teleport"},
+					Name = "MenuTeleportAttempt",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Teleport"},
 					Name = "OpenExperienceDetailsPrompt",
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75716,8 +80411,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Teleport"},
 					Name = "ReconnectTeleportInitFailed",
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75729,9 +80425,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Teleport"},
 					Name = "SendVIPData",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75741,9 +80438,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Teleport"},
 					Name = "TeleportInProgress",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75752,8 +80450,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Teleport"},
 					Name = "TeleportInitFailed",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -75765,9 +80464,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Teleport"},
 					Name = "TeleportInitFailedInternal",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -76079,6 +80779,64 @@ return {
 			Name = "TerrainRegion"
 		},
 		{
+			Name = "TestCase",
+			Tags = {"NotCreatable"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "Assert",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "condition",Type = {Name = "bool",Category = "Primitive"}},
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "message"},
+						{Type = {Name = "Instance",Category = "Class"},Default = "nil",Name = "source"},
+						{Type = {Name = "int",Category = "Primitive"},Default = "0",Name = "line"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "EndTest",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "message"},
+						{Type = {Name = "Instance",Category = "Class"},Default = "nil",Name = "source"},
+						{Type = {Name = "int",Category = "Primitive"},Default = "0",Name = "line"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "Message",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "text",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Instance",Category = "Class"},Default = "nil",Name = "source"},
+						{Type = {Name = "int",Category = "Primitive"},Default = "0",Name = "line"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "Require",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "condition",Type = {Name = "bool",Category = "Primitive"}},
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "message"},
+						{Type = {Name = "Instance",Category = "Class"},Default = "nil",Name = "source"},
+						{Type = {Name = "int",Category = "Primitive"},Default = "0",Name = "line"}
+					}
+				}
+			},
+			Superclass = "Instance"
+		},
+		{
 			Name = "TestService",
 			Tags = {"Service"},
 			MemoryCategory = "Instances",
@@ -76332,6 +81090,16 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "TestCase",Category = "Class"},
+					MemberType = "Function",
+					Name = "RegisterTest",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "testOptions",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "Require",
@@ -76355,12 +81123,30 @@ return {
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"InternalTest"},
-					Name = "TakeSnapshot",
+					Name = "StartTestSession",
 					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					Capabilities = {"InternalTest"},
+					Name = "StopTestSession",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "TakeSnapshot",
+					Security = "None",
+					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "snapshotname",Type = {Name = "string",Category = "Primitive"}}
+						{Name = "snapshotname",Type = {Name = "string",Category = "Primitive"}},
+						{Type = {Name = "Instance",Category = "Class"},Default = "nil",Name = "source"}
 					}
 				},
 				{
@@ -76388,6 +81174,17 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					Capabilities = {"InternalTest"},
+					Name = "getTestSessionProviderStats",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "providerName",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "isFeatureEnabled",
@@ -76395,6 +81192,32 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "name",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"InternalTest"},
+					Name = "CaptureScreenshotAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Type = {Name = "string",Category = "Primitive"},Default = "",Name = "artifactName"},
+						{Type = {Name = "Dictionary",Category = "Group"},Default = "nil",Name = "options"}
+					}
+				},
+				{
+					ReturnType = {Name = "Tuple",Category = "Group"},
+					Capabilities = {"InternalTest"},
+					Name = "RequestValidationAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "artifactType",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "artifactName",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -77395,6 +82218,18 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "ChatActionType",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
 					ValueType = {Name = "ChatWindowMessageProperties",Category = "Class"},
 					Capabilities = {Read = {"Chat"}},
 					ThreadSafety = "ReadSafe",
@@ -77404,6 +82239,30 @@ return {
 					MemberType = "Property",
 					Name = "ChatWindowMessageProperties",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "ForModeration",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "IsHiddenMessage",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
@@ -77430,6 +82289,18 @@ return {
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
 					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "OriginalText",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
 					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
@@ -77437,6 +82308,30 @@ return {
 					MemberType = "Property",
 					Name = "PrefixText",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "RewrittenText",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "RewrittenTranslation",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "TextChatMessageStatus",Category = "Enum"},
@@ -77515,6 +82410,18 @@ return {
 					MemberType = "Property",
 					Name = "Verified",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden"},
+					ThreadSafety = "ReadSafe",
+					Default = "false",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "WasRewritten",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				}
 			},
 			Superclass = "Instance"
@@ -77817,6 +82724,17 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Chat"},
+					Name = "HasAllocatedUniverseChatContext",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "context",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
 					ReturnType = {Name = "null",Category = "Primitive"},
 					Capabilities = {"Chat"},
 					Name = "SendEnableChatButtonClicked",
@@ -77854,7 +82772,8 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "textChatMessage",Type = {Name = "TextChatMessage",Category = "Class"}},
-						{Type = {Name = "string",Category = "Primitive"},Default = "unknown",Name = "messageRenderedSurface"}
+						{Type = {Name = "string",Category = "Primitive"},Default = "unknown",Name = "messageRenderedSurface"},
+						{Type = {Name = "int64",Category = "Primitive"},Default = "-1",Name = "selectedChannelTab"}
 					}
 				},
 				{
@@ -77878,6 +82797,18 @@ return {
 						{Name = "timeOpen",Type = {Name = "int",Category = "Primitive"}},
 						{Name = "timeBackgroundIdle",Type = {Name = "int",Category = "Primitive"}},
 						{Name = "timeTextIdle",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Chat"},
+					Name = "setModerationModeEnabled",
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}},
+						{Name = "enabled",Type = {Name = "bool",Category = "Primitive"}}
 					}
 				},
 				{
@@ -77944,6 +82875,32 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					Capabilities = {"Chat"},
+					Name = "OnUserChatSettingUpdateAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "featureName",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "featureValue",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "TextChatMessage",Category = "Class"},
+					Capabilities = {"Chat"},
+					Name = "SendUniverseChatMessageAsync",
+					Tags = {"Yields"},
+					MemberType = "Function",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "text",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "metadata",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
 					Capabilities = {"Chat"},
 					Name = "BubbleDisplayed",
 					MemberType = "Event",
@@ -77952,6 +82909,16 @@ return {
 					Parameters = {
 						{Name = "partOrCharacter",Type = {Name = "Instance",Category = "Class"}},
 						{Name = "textChatMessage",Type = {Name = "TextChatMessage",Category = "Class"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
+					Name = "ChatActionReceived",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "chatActionMessage",Type = {Name = "TextChatMessage",Category = "Class"}}
 					}
 				},
 				{
@@ -77988,6 +82955,33 @@ return {
 				},
 				{
 					Capabilities = {"Chat"},
+					Name = "ClientToServerUniverseChatMessageSignalV1",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "text",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "metadata",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "messageId",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}},
+						{Name = "verified",Type = {Name = "bool",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
+					Name = "ExpChatFeatureValueChanged",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}},
+						{Name = "featureName",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "featureValue",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
 					Name = "MessageReceived",
 					MemberType = "Event",
 					Security = "None",
@@ -78008,12 +83002,44 @@ return {
 				},
 				{
 					Capabilities = {"Chat"},
+					Name = "OnUserChatSettingUpdateServer",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "featureName",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
 					Name = "SendingMessage",
 					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "textChatMessage",Type = {Name = "TextChatMessage",Category = "Class"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
+					Name = "SendingUniverseChatMessage",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "textChatMessage",Type = {Name = "TextChatMessage",Category = "Class"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
+					Name = "ServerToClientChatActionReplicateSignal",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "data",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				},
 				{
@@ -78047,15 +83073,44 @@ return {
 				},
 				{
 					Capabilities = {"Chat"},
-					Name = "UpdateChatTimeout",
+					Name = "ServerToClientUniverseChatChannelAllocatedSignalV1",
 					Tags = {"Hidden"},
 					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}},
-						{Name = "startTime",Type = {Name = "int64",Category = "Primitive"}},
-						{Name = "duration",Type = {Name = "int64",Category = "Primitive"}}
+						{Name = "context",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
+					Name = "ServerToClientUniverseChatMessageSignalV1",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "data",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
+					Name = "UniverseChatChannelAllocated",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "context",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					Capabilities = {"Chat"},
+					Name = "UniverseChatMessageReceived",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "textChatMessage",Type = {Name = "TextChatMessage",Category = "Class"}}
 					}
 				},
 				{
@@ -78222,49 +83277,54 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "int",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
-					Name = "Seed",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Seed",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
-					Name = "SystemPrompt",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "SystemPrompt",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "0.699999988",
 					Category = "Data",
-					Name = "Temperature",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Temperature",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Basic"},Read = {"Basic"}},
+					ThreadSafety = "ReadSafe",
 					Default = "0.899999976",
 					Category = "Data",
-					Name = "TopP",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "TopP",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "GenerateTextAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -78399,6 +83459,18 @@ return {
 					Security = {Write = "None",Read = "None"}
 				},
 				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "DisplayName",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
 					ValueType = {Name = "int64",Category = "Primitive"},
 					Capabilities = {Read = {"Chat"}},
 					Tags = {"ReadOnly","NotReplicated"},
@@ -78421,6 +83493,18 @@ return {
 					MemberType = "Property",
 					Name = "UserIdReplicated",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					Capabilities = {Read = {"Chat"}},
+					Tags = {"Hidden","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
+					Name = "Username",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				}
 			},
 			Superclass = "Instance"
@@ -79334,6 +84418,7 @@ return {
 					Name = "SmoothDamp",
 					MemberType = "Function",
 					Security = "None",
+					SimulationAccess = true,
 					ThreadSafety = "Safe",
 					Parameters = {
 						{Name = "current",Type = {Name = "Variant",Category = "Group"}},
@@ -79365,19 +84450,6 @@ return {
 						{Name = "refMesh",Type = {Name = "EditableMesh",Category = "Class"}},
 						{Name = "innerTransform",Type = {Name = "CFrame",Category = "DataType"}},
 						{Name = "outerTransform",Type = {Name = "CFrame",Category = "DataType"}}
-					}
-				},
-				{
-					ReturnType = {Name = "float",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "CalculateBodyPartMaxCageDistance",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "outerCage",Type = {Name = "EditableMesh",Category = "Class"}},
-						{Name = "renderMesh",Type = {Name = "EditableMesh",Category = "Class"}},
-						{Name = "outerTransform",Type = {Name = "CFrame",Category = "DataType"}},
-						{Name = "scale",Type = {Name = "Vector3",Category = "DataType"}}
 					}
 				},
 				{
@@ -79513,16 +84585,6 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "BinaryStringValue",Category = "Class"},
-					MemberType = "Function",
-					Name = "GetEditableImageData",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "editableImage",Type = {Name = "EditableImage",Category = "Class"}}
-					}
-				},
-				{
 					ReturnType = {Name = "Vector2",Category = "DataType"},
 					MemberType = "Function",
 					Name = "GetEditableImageSize",
@@ -79595,6 +84657,17 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "CFrame",Category = "DataType"},
+					MemberType = "Function",
+					Name = "GetExpectedTposeRotation",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "jointLabel",Type = {Name = "RigLabel",Category = "Enum"}},
+						{Name = "partsFolder",Type = {Name = "Instance",Category = "Class"}}
+					}
+				},
+				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
 					MemberType = "Function",
 					Name = "GetFacsDrivenJointNamesFromEditableMesh",
@@ -79605,19 +84678,31 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "float",Category = "Primitive"},
+					ReturnType = {Name = "Vector3",Category = "DataType"},
 					MemberType = "Function",
-					Name = "GetImageTransparencyWithByteString",
+					Name = "GetLayeredClothingPostDeformationSize",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "textureId",Type = {Name = "string",Category = "Primitive"}}
+						{Name = "accessory",Type = {Name = "Accessory",Category = "Class"}},
+						{Name = "editableMesh",Type = {Name = "EditableMesh",Category = "Class"}},
+						{Name = "meshScale",Type = {Name = "Vector3",Category = "DataType"}}
 					}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
 					MemberType = "Function",
 					Name = "GetMaximalJointDistancesWithinFacs",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "editableMesh",Type = {Name = "EditableMesh",Category = "Class"}}
+					}
+				},
+				{
+					ReturnType = {Name = "Array",Category = "Group"},
+					MemberType = "Function",
+					Name = "GetMinAndMaxMeshSizeAcrossAllFacs",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -79753,16 +84838,6 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "editableMesh",Type = {Name = "EditableMesh",Category = "Class"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateEditableImageSize",
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "editableImage",Type = {Name = "EditableImage",Category = "Class"}}
 					}
 				},
 				{
@@ -79939,6 +85014,31 @@ return {
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Function",
+					Name = "ValidateHSRMeshIds",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "wrapLayerInstance",Type = {Name = "Instance",Category = "Class"}},
+						{Name = "hsrInstance",Type = {Name = "Instance",Category = "Class"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ValidateLeaderSkinnedVertsNearCageIslands",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "renderMesh",Type = {Name = "EditableMesh",Category = "Class"}},
+						{Name = "innerCage",Type = {Name = "EditableMesh",Category = "Class"}},
+						{Name = "cageUVs",Type = {Name = "Array",Category = "Group"}},
+						{Name = "referenceOrigin",Type = {Name = "CFrame",Category = "DataType"}},
+						{Name = "distanceThreshold",Type = {Name = "float",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
 					Name = "ValidatePartBBoxAfterFullFacs",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -79994,27 +85094,14 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "Array",Category = "Group"},
+					ReturnType = {Name = "EditableImage",Category = "Class"},
 					MemberType = "Function",
-					Name = "CompareTextureOverlapByteString",
+					Name = "CreateEditableImageOriginalSizeAsync",
 					Tags = {"Yields"},
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
-						{Name = "byteStringBaseline",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "byteStringFollowup",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
-					Name = "CompareTextureOverlapTextureId",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "textureIdBaseline",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "textureIdFollowup",Type = {Name = "string",Category = "Primitive"}}
+						{Name = "textureId",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
 				{
@@ -80026,6 +85113,17 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "DoesSurfaceAppearanceMatchTexturePackAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "surfaceAppearance",Type = {Name = "SurfaceAppearance",Category = "Class"}}
 					}
 				},
 				{
@@ -80041,92 +85139,9 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetCagingRelevancyMetrics",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "innerCageMeshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "outerCageMeshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "refMeshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "offsetInner",Type = {Name = "Vector3",Category = "DataType"}},
-						{Name = "offsetOuter",Type = {Name = "Vector3",Category = "DataType"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetDynamicHeadMeshInactiveControls",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "controlNames",Type = {Name = "Array",Category = "Group"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetFacsDrivenJointNamesFromMeshId",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "float",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "GetImageTransparencyWithTextureID",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "textureId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "GetMaxNearbyVerticesCollisions",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "meshScale",Type = {Name = "Vector3",Category = "DataType"}}
-					}
-				},
-				{
 					ReturnType = {Name = "BinaryStringValue",Category = "Class"},
 					MemberType = "Function",
 					Name = "GetMeshDataBinaryString",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "GetMeshTriCount",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetMeshVertColors",
 					Tags = {"Yields"},
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
@@ -80146,39 +85161,6 @@ return {
 					}
 				},
 				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetSkinnedJointNamesFromMeshId",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
-					Name = "GetSkinningTransferJointsInfo",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Vector2",Category = "DataType"},
-					MemberType = "Function",
-					Name = "GetTextureSize",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "textureId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "IsDeformedLayeredClothingOutOfRenderBounds",
@@ -80187,211 +85169,6 @@ return {
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "accessory",Type = {Name = "Accessory",Category = "Class"}}
-					}
-				},
-				{
-					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
-					Name = "ValidateCageMeshIntersection",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "innerCageMeshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "outerCageMeshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "refMeshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateCageUVCoincident",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateCageUVTriangleArea",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateDynamicHeadMesh",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateFacialBounds",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "boundsScale",Type = {Name = "float",Category = "Primitive"}},
-						{Name = "partSize",Type = {Name = "Vector3",Category = "DataType"}}
-					}
-				},
-				{
-					ReturnType = {Name = "float",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateFacialExpressiveness",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "minDelta",Type = {Name = "float",Category = "Primitive"}},
-						{Name = "partSize",Type = {Name = "Vector3",Category = "DataType"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateImageTransparencyThresholdByteString",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "image",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "threshold",Type = {Name = "float",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateImageTransparencyThresholdByteString_V2",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "image",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "threshold",Type = {Name = "float",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateImageTransparencyThresholdTextureID",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "textureId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "threshold",Type = {Name = "float",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateImageTransparencyThresholdTextureID_V2",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "textureId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "threshold",Type = {Name = "float",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateMeshVertColors",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}},
-						{Type = {Name = "bool",Category = "Primitive"},Default = "true",Name = "includeAlpha"}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateOverlappingVertices",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidatePartBBoxAfterFullFacsFromMeshIds",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "headMeshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "partMeshId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "headScale",Type = {Name = "Vector3",Category = "DataType"}},
-						{Name = "partScale",Type = {Name = "Vector3",Category = "DataType"}},
-						{Name = "boundsMaxMultiplier",Type = {Name = "float",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateSkinnedMesh",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateTextureAlpha",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "textureId",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "pixelWidth",Type = {Name = "int",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateTextureAlphaByteString",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "byteString",Type = {Name = "string",Category = "Primitive"}},
-						{Name = "pixelWidth",Type = {Name = "int",Category = "Primitive"}}
-					}
-				},
-				{
-					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
-					Name = "ValidateUVValuesInReference",
-					Tags = {"Yields"},
-					Security = "RobloxScriptSecurity",
-					ThreadSafety = "Unsafe",
-					Parameters = {
-						{Name = "referenceValues",Type = {Name = "Array",Category = "Group"}},
-						{Name = "meshId",Type = {Name = "string",Category = "Primitive"}}
 					}
 				}
 			},
@@ -80507,10 +85284,55 @@ return {
 					Capabilities = {Read = {"UI"}},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 8",
-					Category = "Appearance",
+					Category = "Individual Corners",
 					Serialization = {CanSave = true,CanLoad = true},
 					MemberType = "Property",
+					Name = "BottomLeftRadius",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "UDim",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 8",
+					Category = "Individual Corners",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "BottomRightRadius",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "UDim",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					Tags = {"NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 8",
+					Category = "Appearance",
+					Serialization = {CanSave = false,CanLoad = true},
+					MemberType = "Property",
 					Name = "CornerRadius",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "UDim",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 8",
+					Category = "Individual Corners",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "TopLeftRadius",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "UDim",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 8",
+					Category = "Individual Corners",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "TopRightRadius",
 					Security = {Write = "None",Read = "None"}
 				}
 			},
@@ -81506,6 +86328,80 @@ return {
 			Name = "UIScale"
 		},
 		{
+			Name = "UIShadow",
+			Tags = {"NotBrowsable"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ValueType = {Name = "UDim",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "BlurRadius",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "Color3",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0, 0, 0",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Color",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "UDim2",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "{0, 0}, {0, 0}",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Offset",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "UDim2",Category = "DataType"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "{0, 0}, {0, 0}",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Spread",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "float",Category = "Primitive"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "0",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Transparency",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "int",Category = "Primitive"},
+					Capabilities = {Read = {"UI"}},
+					ThreadSafety = "ReadSafe",
+					Default = "-1",
+					Category = "Appearance",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "ZIndex",
+					Security = {Write = "None",Read = "None"}
+				}
+			},
+			Superclass = "UIComponent"
+		},
+		{
 			MemoryCategory = "Instances",
 			Superclass = "UIComponent",
 			Members = {
@@ -82302,6 +87198,17 @@ return {
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
+					ValueType = {Name = "PreferredTextSize",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"Hidden","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_skipped_class__",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "StudioPreferredTextSize",
+					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
+				},
+				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
@@ -82954,6 +87861,15 @@ return {
 					MemberType = "Property",
 					Name = "VREnabled",
 					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ReturnType = {Name = "Object",Category = "Class"},
+					Capabilities = {"Input"},
+					Name = "CreateVirtualInput",
+					MemberType = "Function",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
@@ -83931,6 +88847,7 @@ return {
 					Default = "",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = true},
+					SimulationAccess = true,
 					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -83953,11 +88870,12 @@ return {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -83992,11 +88910,12 @@ return {
 				{
 					ValueType = {Name = "BrickColor",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84031,11 +88950,12 @@ return {
 				{
 					ValueType = {Name = "CFrame",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84070,11 +88990,12 @@ return {
 				{
 					ValueType = {Name = "Color3",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84121,21 +89042,23 @@ return {
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Data",
-					Name = "MaxValue",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "MaxValue",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
-					Name = "MinValue",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "MinValue",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84146,6 +89069,7 @@ return {
 					Default = "0",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = true},
+					SimulationAccess = true,
 					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -84204,21 +89128,23 @@ return {
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "10",
 					Category = "Data",
-					Name = "MaxValue",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "MaxValue",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
-					Name = "MinValue",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "MinValue",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84229,6 +89155,7 @@ return {
 					Default = "0",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = true},
+					SimulationAccess = true,
 					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -84275,11 +89202,12 @@ return {
 				{
 					ValueType = {Name = "int64",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84314,11 +89242,12 @@ return {
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84353,11 +89282,12 @@ return {
 				{
 					ValueType = {Name = "Instance",Category = "Class"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84392,11 +89322,12 @@ return {
 				{
 					ValueType = {Name = "Ray",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "{0, 0, 0}, {0, 0, 0}",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84431,11 +89362,12 @@ return {
 				{
 					ValueType = {Name = "string",Category = "Primitive"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84470,11 +89402,12 @@ return {
 				{
 					ValueType = {Name = "Vector3",Category = "DataType"},
 					MemberType = "Property",
+					ThreadSafety = "ReadSafe",
 					Default = "0, 0, 0",
 					Category = "Data",
-					Name = "Value",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					SimulationAccess = true,
+					Name = "Value",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
@@ -84935,135 +89868,159 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Debug",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "AutoLoadInStudio",
 					Security = {Write = "RobloxScriptSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","UI"}},
 					Tags = {"NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Debug",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "AutoPlayInStudio",
 					Security = {Write = "RobloxScriptSecurity",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Asset",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsLoaded",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Playback",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "IsPlaying",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Playback",
-					Name = "Looping",
 					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "Looping",
+					Security = {Write = "None",Read = "None"}
+				},
+				{
+					ValueType = {Name = "VideoSampleSize",Category = "Enum"},
+					Capabilities = {Write = {"InternalTest"},Read = {"Audio","UI","InternalTest"}},
 					ThreadSafety = "ReadSafe",
+					Default = "Full",
+					Category = "Playback",
+					Serialization = {CanSave = true,CanLoad = true},
+					MemberType = "Property",
+					Name = "MaximumResolution",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "Playback",
-					Name = "PlaybackSpeed",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "PlaybackSpeed",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Playback",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "PlayingReplicating",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0, 0",
 					Category = "Asset",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "Resolution",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Asset",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "TimeLength",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "0",
 					Category = "Playback",
-					Name = "TimePosition",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "TimePosition",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Asset",
-					Name = "VideoContent",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "VideoContent",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "float",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio","UI"},Read = {"Audio","UI"}},
+					ThreadSafety = "ReadSafe",
 					Default = "1",
 					Category = "State",
-					Name = "Volume",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "Volume",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "Instances",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "GetConnectedWires",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85072,40 +90029,45 @@ return {
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "GetInputPins",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "GetOutputPins",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "Pause",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "Play",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "SetStudioPreview",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85114,26 +90076,43 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "Unload",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "AssetFetchStatus",Category = "Enum"},
-					MemberType = "Function",
+					Capabilities = {"Audio","UI"},
 					Name = "LoadAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
-				{MemberType = "Event",Name = "DidEnd",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
-				{MemberType = "Event",Name = "DidLoop",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Audio","UI"},
+					Name = "DidEnd",
 					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Audio","UI"},
+					Name = "DidLoop",
+					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Audio","UI"},
 					Name = "PlayFailed",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85141,8 +90120,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","UI"},
 					Name = "WiringChanged",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85163,14 +90143,28 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "VideoSampler",Category = "Class"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "CreateVideoSamplerAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "content",Type = {Name = "Content",Category = "DataType"}},
 						{Name = "options",Type = {Name = "Dictionary?",Category = "Group"}}
+					}
+				},
+				{
+					Capabilities = {"UI"},
+					Name = "PlaybackReport",
+					Tags = {"Hidden"},
+					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "timePlayedMs",Type = {Name = "Dictionary",Category = "Group"}},
+						{Name = "timeDownloadedMs",Type = {Name = "Dictionary",Category = "Group"}},
+						{Name = "timeVisibleMs",Type = {Name = "Dictionary",Category = "Group"}}
 					}
 				}
 			},
@@ -85698,132 +90692,147 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "VoiceChatState",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Audio"},Read = {"Audio"}},
 					Tags = {"Hidden","ReadOnly","NotReplicated","Deprecated"},
 					ThreadSafety = "ReadSafe",
 					Default = "Idle",
 					Category = "State",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "VoiceChatState",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetAndClearCallFailureMessage",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetAudioProcessingSettings",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetChannelId",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetGroupId",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetMicDevices",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetParticipants",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetSessionId",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Tuple",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetSpeakerDevices",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetVoiceChatApiVersion",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetVoiceChatAvailable",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "GetVoiceExperienceId",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "IsContextVoiceEnabled",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "IsPublishPaused",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "IsSubscribePaused",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85832,9 +90841,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "JoinByGroupId",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85844,9 +90854,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "JoinByGroupIdToken",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85857,34 +90868,38 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "Leave",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "LogPublisherWebRTCStats",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "LogSubscriptionWebRTCStats",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "PublishPause",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85893,9 +90908,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "SetMicDevice",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85905,9 +90921,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "SetSpeakerDevice",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85917,8 +90934,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "SubscribeBlock",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85927,9 +90945,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "SubscribePause",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85939,9 +90958,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "SubscribePauseAll",
 					Tags = {"Deprecated"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85950,8 +90970,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "SubscribeRetry",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85960,8 +90981,9 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "SubscribeUnblock",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85970,20 +90992,29 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio"},
 					Name = "IsVoiceEnabledForUserIdAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "userId",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "LocalPlayerModerated",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Audio"},
+					Name = "LocalPlayerModerated",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Audio"},
 					Name = "ParticipantsStateChanged",
 					Tags = {"Deprecated"},
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -85993,9 +91024,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio"},
 					Name = "PlayerMicActivitySignalChange",
 					Tags = {"Deprecated"},
+					MemberType = "Event",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86003,9 +91035,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio"},
 					Name = "StateChanged",
 					Tags = {"Deprecated"},
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86013,7 +91046,14 @@ return {
 						{Name = "new",Type = {Name = "VoiceChatState",Category = "Enum"}}
 					}
 				},
-				{MemberType = "Event",Name = "TempSetMicMutedToggleMic",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}}
+				{
+					Capabilities = {"Audio"},
+					Name = "TempSetMicMutedToggleMic",
+					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				}
 			},
 			Superclass = "Instance"
 		},
@@ -86024,136 +91064,150 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "VoiceChatDistanceAttenuationType",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
+					ThreadSafety = "ReadSafe",
 					Default = "Inverse",
 					Category = "Behavior",
-					Name = "DefaultDistanceAttenuation",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "DefaultDistanceAttenuation",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
+					ThreadSafety = "ReadSafe",
 					Default = "true",
 					Category = "Behavior",
-					Name = "EnableDefaultVoice",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "EnableDefaultVoice",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "AudioApiRollout",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
+					ThreadSafety = "ReadSafe",
 					Default = "Automatic",
 					Category = "Behavior",
-					Name = "UseAudioApi",
 					Serialization = {CanSave = true,CanLoad = true},
-					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
+					Name = "UseAudioApi",
 					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "UseNewAudioApi",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "UseNewControlPaths",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "UseNewJoinFlow",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "Data",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "UseStreamSwitching",
 					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "State",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "VoiceChatEnabledForPlaceOnRcc",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ValueType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Read = {"Audio","Chat"}},
 					Tags = {"Hidden"},
 					ThreadSafety = "ReadSafe",
 					Default = "false",
 					Category = "State",
 					Serialization = {CanSave = false,CanLoad = false},
+					MemberType = "Property",
 					Name = "VoiceChatEnabledForUniverseOnRcc",
 					Security = {Write = "RobloxScriptSecurity",Read = "RobloxScriptSecurity"}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "getInternalChannelId",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "getInternalGroupId",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "getInternalPublishPause",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "string",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "getInternalSessionId",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "getInternalSubscribePause",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86162,48 +91216,54 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "getInternalSubscribePauseAll",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "int",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "getInternalVoiceChatApiVersion",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "isInternalPublishPaused",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "joinVoice",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "lastVoiceChatStats",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "leaveVoice",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86212,23 +91272,25 @@ return {
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "notifyServerACSCleanup",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "rejoinVoice",
+					MemberType = "Function",
 					Security = "RobloxScriptSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					Capabilities = {"Chat"},
+					Capabilities = {"Audio","Chat"},
 					Name = "GetChatGroupsAsync",
 					Tags = {"Yields"},
 					MemberType = "Function",
@@ -86240,9 +91302,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Audio","Chat"},
 					Name = "IsVoiceEnabledForUserIdAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86250,25 +91313,28 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "ACSCleanup",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "ClientRetryJoin",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "ClientRetryJoinWithConfig",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86276,9 +91342,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "ClientStreamSwitchAck",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86287,9 +91354,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "FetchUserTurnAuthOperationFailed",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86297,9 +91365,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "JoinedVoice",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86310,9 +91379,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishStateChange",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86321,9 +91391,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishingHandshakeAcked",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86332,9 +91403,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishingHandshakeAckedWithBothSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86345,9 +91417,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishingHandshakeAckedWithCompressedSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86357,9 +91430,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishingHandshakeCompleted",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86367,9 +91441,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishingHandshakeInitiated",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86379,9 +91454,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishingHandshakeInitiatedWithBothSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86393,9 +91469,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "PublishingHandshakeInitiatedWithCompressedSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86406,9 +91483,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "ReJoinedVoice",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86419,9 +91497,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "RelayCandidatesGathered",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86434,22 +91513,25 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
-					Name = "SsrcFeedIdMappingUpdate",
+					Capabilities = {"Audio","Chat"},
+					Name = "SsrcUserIdMappingUpdate",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "ssrcs",Type = {Name = "Array",Category = "Group"}},
+						{Name = "userIds",Type = {Name = "Array",Category = "Group"}},
 						{Name = "feedIds",Type = {Name = "Array",Category = "Group"}},
 						{Name = "sessionId",Type = {Name = "string",Category = "Primitive"}},
 						{Name = "eventTag",Type = {Name = "int64",Category = "Primitive"}}
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscribeStateChange",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86459,9 +91541,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionFeedStarted",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86470,9 +91553,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionHandshakeAcked",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86483,9 +91567,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionHandshakeAckedWithBothSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86498,9 +91583,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionHandshakeAckedWithCompressedSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86512,9 +91598,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionHandshakeCompleted",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86523,9 +91610,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionHandshakeInitiated",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86537,9 +91625,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionHandshakeInitiatedWithBothSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86553,9 +91642,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionHandshakeInitiatedWithCompressedSdp",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86568,9 +91658,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "SubscriptionReset",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86578,17 +91669,19 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "UpdateTurnAuthInfoRequest",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "UserTurnAuth",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86600,17 +91693,19 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatClientVoiceCapability",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatClientVoiceCapabilityWithConfig",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86618,9 +91713,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatPlayerMuteStateChangedClientToServer",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86628,9 +91724,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatPlayerMuteStateChangedServerToClient",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86638,9 +91735,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatSampleTaggedEventClientToServer",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86649,9 +91747,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatSampleTaggedEventServerToClient",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86659,11 +91758,19 @@ return {
 						{Name = "value",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "VoiceChatStatsCollected",Security = "RobloxScriptSecurity",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Audio","Chat"},
+					Name = "VoiceChatStatsCollected",
 					MemberType = "Event",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatSubscriptionInitialBatchEmpty",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86671,9 +91778,10 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceChatplayerMuteStatusChangedEvent",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86683,9 +91791,21 @@ return {
 					}
 				},
 				{
+					Capabilities = {"Audio","Chat"},
+					Name = "VoiceMigration",
+					Tags = {"Hidden"},
 					MemberType = "Event",
+					Security = "RobloxSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "reason",Type = {Name = "VoiceRccReconnectReason",Category = "Enum"}}
+					}
+				},
+				{
+					Capabilities = {"Audio","Chat"},
 					Name = "VoiceSetupFailed",
 					Tags = {"Hidden"},
+					MemberType = "Event",
 					Security = "RobloxSecurity",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -86809,6 +91929,17 @@ return {
 					}
 				},
 				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "OpenWindowV2",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "url",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "params",Type = {Name = "WebViewParams?",Category = "DataType"}}
+					}
+				},
+				{
 					ReturnType = {Name = "bool",Category = "Primitive"},
 					MemberType = "Function",
 					Name = "IsAvailable",
@@ -86839,10 +91970,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "false",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = false},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Active",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -86851,10 +91983,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Parts",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CFrame0",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -86863,10 +91996,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Hidden","NotReplicated","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1",
 					Category = "Parts",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "CFrame1",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -86875,10 +92009,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "true",
 					Category = "Behavior",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Enabled",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -86887,10 +92022,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Parts",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Part0",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -86911,10 +92047,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"NotReplicated"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "__api_dump_no_string_value__",
 					Category = "Parts",
 					Serialization = {CanSave = false,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "Part1",
 					Security = {Write = "None",Read = "None"}
 				},
@@ -86935,10 +92072,11 @@ return {
 					Capabilities = {Read = {"Physics"}},
 					Tags = {"Hidden","NotScriptable"},
 					ThreadSafety = "ReadSafe",
+					MemberType = "Property",
 					Default = "3",
 					Category = "Behavior",
 					Serialization = {CanSave = true,CanLoad = true},
-					MemberType = "Property",
+					SimulationAccess = true,
 					Name = "State",
 					Security = {Write = "None",Read = "None"}
 				}
@@ -87024,7 +92162,7 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Appearance",
@@ -87035,7 +92173,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "-INF, -INF",
 					Category = "Appearance",
@@ -87046,7 +92184,7 @@ return {
 				},
 				{
 					ValueType = {Name = "Vector2",Category = "DataType"},
-					Capabilities = {Read = {"Avatar"}},
+					Capabilities = {Read = {"AvatarAppearance"}},
 					ThreadSafety = "ReadSafe",
 					Default = "INF, INF",
 					Category = "Appearance",
@@ -87065,13 +92203,106 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Basic"},
 					Name = "ForwardAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "data",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				}
+			},
+			Superclass = "Object"
+		},
+		{
+			Name = "OutputLink",
+			Tags = {"NotCreatable","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "Print",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "messageType",Type = {Name = "MessageType",Category = "Enum"}},
+						{Name = "message",Type = {Name = "string",Category = "Primitive"}},
+						{Name = "urlText",Type = {Name = "string",Category = "Primitive"}}
+					}
+				}
+			},
+			Superclass = "Object"
+		},
+		{
+			Name = "PluginConnection",
+			Tags = {"NotCreatable","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ValueType = {Name = "bool",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "Connected",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"Hidden","ReadOnly","NotReplicated","NotScriptable"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "GroupId",
+					Security = {Write = "RobloxSecurity",Read = "RobloxSecurity"}
+				},
+				{
+					ValueType = {Name = "string",Category = "Primitive"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "TargetId",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ValueType = {Name = "PluginConnectionTargetType",Category = "Enum"},
+					MemberType = "Property",
+					Tags = {"ReadOnly","NotReplicated"},
+					ThreadSafety = "ReadSafe",
+					Default = "__api_dump_class_not_creatable__",
+					Category = "Data",
+					Serialization = {CanSave = false,CanLoad = false},
+					Name = "Type",
+					Security = {Write = "PluginSecurity",Read = "PluginSecurity"}
+				},
+				{
+					ReturnType = {Name = "RBXScriptConnection",Category = "DataType"},
+					MemberType = "Function",
+					Name = "BindToMessage",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "callbackFunction",Type = {Name = "Function",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SendMessage",
+					Security = "PluginSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "message",Type = {Name = "Variant",Category = "Group"}}
 					}
 				}
 			},
@@ -87084,8 +92315,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "RBXScriptSignal",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Environment"},
 					Name = "CommitBlock",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87093,8 +92325,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Environment"},
 					Name = "Ready",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87111,8 +92344,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "RBXScriptSignal",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Environment"},
 					Name = "CommitBlock",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87120,8 +92354,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Environment"},
 					Name = "Ready",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87137,8 +92372,9 @@ return {
 			MemoryCategory = "Instances",
 			Members = {
 				{
-					MemberType = "Event",
+					Capabilities = {"Environment"},
 					Name = "Ready",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87155,8 +92391,9 @@ return {
 			Members = {
 				{
 					ReturnType = {Name = "RBXScriptSignal",Category = "DataType"},
-					MemberType = "Function",
+					Capabilities = {"Environment"},
 					Name = "CommitBlock",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87165,9 +92402,10 @@ return {
 				},
 				{
 					ReturnType = {Name = "Dictionary",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"Environment"},
 					Name = "GetBlock",
 					Tags = {"CustomLuaState"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
@@ -87177,39 +92415,214 @@ return {
 		},
 		{
 			Name = "VideoSampler",
-			Tags = {"NotCreatable"},
+			Tags = {"NotCreatable","NotReplicated"},
 			MemoryCategory = "Instances",
 			Members = {
 				{
 					ValueType = {Name = "double",Category = "Primitive"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_failed_to_create_class__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "TimeLength",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ValueType = {Name = "Content",Category = "DataType"},
-					MemberType = "Property",
+					Capabilities = {Write = {"UI"},Read = {"UI"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_no_string_value__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "VideoContent",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "Array",Category = "Group"},
-					MemberType = "Function",
+					Capabilities = {"UI"},
 					Name = "GetSamplesAtTimesAsync",
 					Tags = {"Yields"},
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {{Name = "times",Type = {Name = "Array",Category = "Group"}}}
+				}
+			},
+			Superclass = "Object"
+		},
+		{
+			Name = "VirtualInput",
+			Tags = {"NotCreatable","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SendKey",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "isPressed",Type = {Name = "bool",Category = "Primitive"}},
+						{Name = "keyCode",Type = {Name = "KeyCode",Category = "Enum"}},
+						{Type = {Name = "bool",Category = "Primitive"},Default = "false",Name = "isRepeatedKey"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SendMouseButton",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "position",Type = {Name = "Vector2",Category = "DataType"}},
+						{Name = "button",Type = {Name = "UserInputType",Category = "Enum"}},
+						{Name = "isDown",Type = {Name = "bool",Category = "Primitive"}},
+						{Type = {Name = "int",Category = "Primitive"},Default = "0",Name = "repeatCount"}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SendMouseDelta",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "positionDelta",Type = {Name = "Vector2",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SendMousePosition",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "position",Type = {Name = "Vector2",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SendPointerAction",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "position",Type = {Name = "Vector2",Category = "DataType"}},
+						{Name = "pointerAction",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "SendTextInput",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "text",Type = {Name = "string",Category = "Primitive"}}
+					}
+				}
+			},
+			Superclass = "Object"
+		},
+		{
+			Name = "VoxelBuffer",
+			Tags = {"NotCreatable","NotReplicated"},
+			MemoryCategory = "Instances",
+			Members = {
+				{
+					ReturnType = {Name = "Vector3",Category = "DataType"},
+					MemberType = "Function",
+					Name = "GetSizeInVoxels",
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "Dictionary",Category = "Group"},
+					MemberType = "Function",
+					Name = "ReadVoxels",
+					Tags = {"CustomLuaState"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "channelIds",Type = {Name = "Array",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "WriteVoxels",
+					Tags = {"CustomLuaState"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "channels",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "ClearAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "sizeInVoxels",Type = {Name = "Vector3?",Category = "DataType"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "DrawBufferAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "cframe",Type = {Name = "CFrame",Category = "DataType"}},
+						{Name = "scale",Type = {Name = "float",Category = "Primitive"}},
+						{Name = "source",Type = {Name = "VoxelBuffer",Category = "Class"}},
+						{Name = "mergeConfig",Type = {Name = "Dictionary",Category = "Group"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "FromHeightmapAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {
+						{Name = "heightMap",Type = {Name = "buffer",Category = "DataType"}},
+						{Name = "width",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "height",Type = {Name = "int",Category = "Primitive"}},
+						{Name = "heightMapRect",Type = {Name = "Rect",Category = "DataType"}},
+						{Name = "offset",Type = {Name = "float",Category = "Primitive"}},
+						{Name = "scale",Type = {Name = "float",Category = "Primitive"}},
+						{Name = "material",Type = {Name = "int",Category = "Primitive"}}
+					}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "NormalizeAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					ReturnType = {Name = "null",Category = "Primitive"},
+					MemberType = "Function",
+					Name = "UnclampAsync",
+					Tags = {"Yields"},
+					Security = "RobloxScriptSecurity",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
 				}
 			},
 			Superclass = "Object"
@@ -87221,37 +92634,48 @@ return {
 			Members = {
 				{
 					ValueType = {Name = "WebStreamClientState",Category = "Enum"},
-					MemberType = "Property",
+					Capabilities = {Write = {"Network"},Read = {"Network"}},
 					Tags = {"ReadOnly","NotReplicated"},
 					ThreadSafety = "ReadSafe",
 					Default = "__api_dump_class_not_creatable__",
 					Category = "Data",
 					Serialization = {CanSave = true,CanLoad = false},
+					MemberType = "Property",
 					Name = "ConnectionState",
 					Security = {Write = "None",Read = "None"}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "Close",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {}
 				},
 				{
 					ReturnType = {Name = "null",Category = "Primitive"},
-					MemberType = "Function",
+					Capabilities = {"Network"},
 					Name = "Send",
+					MemberType = "Function",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
 						{Name = "data",Type = {Name = "string",Category = "Primitive"}}
 					}
 				},
-				{MemberType = "Event",Name = "Closed",Security = "None",ThreadSafety = "Unsafe",Parameters = {}},
 				{
+					Capabilities = {"Network"},
+					Name = "Closed",
 					MemberType = "Event",
+					Security = "None",
+					ThreadSafety = "Unsafe",
+					Parameters = {}
+				},
+				{
+					Capabilities = {"Network"},
 					Name = "Error",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87260,8 +92684,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Network"},
 					Name = "MessageReceived",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87269,8 +92694,9 @@ return {
 					}
 				},
 				{
-					MemberType = "Event",
+					Capabilities = {"Network"},
 					Name = "Opened",
+					MemberType = "Event",
 					Security = "None",
 					ThreadSafety = "Unsafe",
 					Parameters = {
@@ -87323,6 +92749,17 @@ return {
 			Name = "ActionType"
 		},
 		{
+			Items = {
+				{Name = "Unknown",Value = 0},
+				{Name = "Never",Value = 1},
+				{Name = "Lapsed",Value = 2},
+				{Name = "Casual50Percent",Value = 3},
+				{Name = "Intermediate35Percent",Value = 4},
+				{Name = "Top15Percent",Value = 5}
+			},
+			Name = "ActivePayerStatus"
+		},
+		{
 			Items = {{Name = "Attachment0",Value = 0},{Name = "Attachment1",Value = 1},{Name = "World",Value = 2}},
 			Name = "ActuatorRelativeTo"
 		},
@@ -87344,12 +92781,12 @@ return {
 		},
 		{
 			Items = {
-				{Name = "RewardedAdLoaded",Value = 3},
-				{Name = "RewardedAdGrant",Value = 4},
-				{Name = "RewardedAdUnloaded",Value = 5},
 				{Value = 0,Name = "VideoLoaded",Tags = {"Deprecated"}},
 				{Value = 1,Name = "VideoRemoved",Tags = {"Deprecated"}},
-				{Value = 2,Name = "UserCompletedVideo",Tags = {"Deprecated"}}
+				{Value = 2,Name = "UserCompletedVideo",Tags = {"Deprecated"}},
+				{Name = "RewardedAdLoaded",Value = 3},
+				{Name = "RewardedAdGrant",Value = 4},
+				{Name = "RewardedAdUnloaded",Value = 5}
 			},
 			Name = "AdEventType"
 		},
@@ -87385,17 +92822,17 @@ return {
 		},
 		{
 			Items = {
+				{Value = 0,Name = "Parallel",Tags = {"Deprecated"}},
+				{Value = 1,Name = "Perpendicular",Tags = {"Deprecated"}},
 				{Name = "PrimaryAxisParallel",Value = 2},
 				{Name = "PrimaryAxisPerpendicular",Value = 3},
 				{Name = "PrimaryAxisLookAt",Value = 4},
-				{Name = "AllAxes",Value = 5},
-				{Value = 0,Name = "Parallel",Tags = {"Deprecated"}},
-				{Value = 1,Name = "Perpendicular",Tags = {"Deprecated"}}
+				{Name = "AllAxes",Value = 5}
 			},
 			Name = "AlignType"
 		},
 		{
-			Items = {{Name = "Overlay",Value = 0},{Name = "Transparency",Value = 1},{Name = "TintMask",Value = 2},{Value = 3,Name = "Opaque",Tags = {"NotBrowsable"}}},
+			Items = {{Name = "Overlay",Value = 0},{Name = "Transparency",Value = 1},{Name = "TintMask",Value = 2},{Name = "Opaque",Value = 3}},
 			Name = "AlphaMode"
 		},
 		{
@@ -87456,9 +92893,10 @@ return {
 		},
 		{Items = {{Name = "Cartesian",Value = 0},{Name = "Polar",Value = 1}},Name = "AnimationNodeBlend2DInputMode"},
 		{
-			Items = {{Name = "Always",Value = 0},{Name = "ClipFinished",Value = 1},{Name = "Expression",Value = 2}},
+			Items = {{Name = "Always",Value = 0},{Name = "Finished",Value = 1},{Name = "Trigger",Value = 2}},
 			Name = "AnimationNodeInterruptible"
 		},
+		{Items = {{Name = "Synced",Value = 0},{Name = "Unsynced",Value = 1}},Name = "AnimationNodePhaseSync"},
 		{
 			Items = {{Name = "Loop",Value = 0},{Name = "PingPong",Value = 1},{Name = "OnceAndHold",Value = 2},{Name = "OnceAndReset",Value = 3}},
 			Name = "AnimationNodePlayMode"
@@ -87471,7 +92909,7 @@ return {
 			Items = {
 				{Name = "InvalidNode",Value = 0},
 				{Name = "AddNode",Value = 1},
-				{Name = "BlendNode",Value = 2},
+				{Name = "OverNode",Value = 2},
 				{Name = "Blend1DNode",Value = 3},
 				{Name = "Blend2DNode",Value = 4},
 				{Name = "ClipNode",Value = 5},
@@ -87487,18 +92925,18 @@ return {
 			Name = "AnimationNodeType"
 		},
 		{
-			Items = {{Name = "ClipFinished",Value = 0},{Name = "Expression",Value = 1}},
+			Items = {{Name = "Finished",Value = 0},{Name = "Trigger",Value = 1}},
 			Name = "AnimationNodeWaitFor"
 		},
 		{
 			Items = {
-				{Name = "Core",Value = 1000},
 				{Name = "Idle",Value = 0},
 				{Name = "Movement",Value = 1},
 				{Name = "Action",Value = 2},
 				{Name = "Action2",Value = 3},
 				{Name = "Action3",Value = 4},
-				{Name = "Action4",Value = 5}
+				{Name = "Action4",Value = 5},
+				{Name = "Core",Value = 1000}
 			},
 			Name = "AnimationPriority"
 		},
@@ -87527,6 +92965,10 @@ return {
 			Name = "AnnotationRequestType"
 		},
 		{
+			Items = {{Name = "Disabled",Value = 0},{Name = "Enabled",Value = 1}},
+			Name = "AntiAliasing"
+		},
+		{
 			Items = {{Name = "Detached",Value = 0},{Name = "Active",Value = 1},{Name = "Inactive",Value = 2},{Name = "Hidden",Value = 3}},
 			Name = "AppLifecycleManagerState"
 		},
@@ -87542,7 +92984,8 @@ return {
 				{Name = "TapHomePageTab",Value = 7},
 				{Name = "GamePageLoaded",Value = 8},
 				{Name = "HomePageLoaded",Value = 9},
-				{Name = "AvatarEditorPageLoaded",Value = 10}
+				{Name = "AvatarEditorPageLoaded",Value = 10},
+				{Name = "HomePageInteractive",Value = 11}
 			},
 			Name = "AppShellActionType"
 		},
@@ -87582,6 +93025,10 @@ return {
 		{
 			Items = {{Name = "Success",Value = 0},{Name = "Failure",Value = 1},{Name = "None",Value = 2},{Name = "Loading",Value = 3},{Name = "TimedOut",Value = 4}},
 			Name = "AssetFetchStatus"
+		},
+		{
+			Items = {{Name = "FullLength",Value = 0},{Name = "ShortPreview",Value = 1}},
+			Name = "AssetRepresentation"
 		},
 		{
 			Items = {
@@ -87626,6 +93073,8 @@ return {
 				{Name = "SwimAnimation",Value = 54},
 				{Name = "WalkAnimation",Value = 55},
 				{Name = "PoseAnimation",Value = 56},
+				{Name = "EarAccessory",Value = 57},
+				{Name = "EyeAccessory",Value = 58},
 				{Name = "EmoteAnimation",Value = 61},
 				{Name = "Video",Value = 62},
 				{LegacyNames = {"TeeShirtAccessory"},Name = "TShirtAccessory",Value = 64},
@@ -87645,8 +93094,7 @@ return {
 				{Name = "FaceMakeup",Value = 88},
 				{Name = "LipMakeup",Value = 89},
 				{Name = "EyeMakeup",Value = 90},
-				{Name = "EarAccessory",Value = 57},
-				{Name = "EyeAccessory",Value = 58}
+				{Name = "VoxelFragment",Value = 91}
 			},
 			Name = "AssetType"
 		},
@@ -87737,7 +93185,6 @@ return {
 				{Name = "RunAnimation",Value = 53},
 				{Name = "SwimAnimation",Value = 54},
 				{Name = "WalkAnimation",Value = 55},
-				{Name = "MoodAnimation",Value = 78},
 				{Name = "EmoteAnimation",Value = 61},
 				{LegacyNames = {"TeeShirtAccessory"},Name = "TShirtAccessory",Value = 64},
 				{Name = "ShirtAccessory",Value = 65},
@@ -87750,6 +93197,7 @@ return {
 				{Name = "DressSkirtAccessory",Value = 72},
 				{Name = "EyebrowAccessory",Value = 76},
 				{Name = "EyelashAccessory",Value = 77},
+				{Name = "MoodAnimation",Value = 78},
 				{Name = "DynamicHead",Value = 79},
 				{Name = "FaceMakeup",Value = 88},
 				{Name = "LipMakeup",Value = 89},
@@ -87817,6 +93265,10 @@ return {
 		{
 			Items = {{Name = "PlayerChoice",Value = 0},{Name = "CustomBuild",Value = 1}},
 			Name = "AvatarSettingsBuildMode"
+		},
+		{
+			Items = {{Name = "LegacyHumanoid",Value = 0},{Name = "LuaCharacterController",Value = 1}},
+			Name = "AvatarSettingsCharacterControllerMode"
 		},
 		{
 			Items = {{Name = "PlayerChoice",Value = 0},{Name = "CustomLimit",Value = 1}},
@@ -87937,7 +93389,7 @@ return {
 			Items = {{Name = "BodyParts",Value = 1},{Name = "Animations",Value = 2},{Name = "Shoes",Value = 3},{Name = "DynamicHead",Value = 4},{Name = "DynamicHeadAvatar",Value = 5}},
 			Name = "BundleType"
 		},
-		{Items = {{Name = "Jump",Value = 32},{Name = "Dismount",Value = 8}},Name = "Button"},
+		{Items = {{Name = "Dismount",Value = 8},{Name = "Jump",Value = 32}},Name = "Button"},
 		{
 			Items = {
 				{Name = "Custom",Value = 0},
@@ -87953,6 +93405,10 @@ return {
 		{
 			Items = {{Name = "Classic",Value = 0},{Name = "LockFirstPerson",Value = 1}},
 			Name = "CameraMode"
+		},
+		{
+			Items = {{Name = "Roblox",Value = 0},{Name = "IndustryCompatible",Value = 1}},
+			Name = "CameraNavigationModel"
 		},
 		{
 			Items = {{Name = "Classic",Value = 0},{Name = "EdgeBump",Value = 1}},
@@ -87974,6 +93430,19 @@ return {
 				{Name = "Orbital",Value = 7}
 			},
 			Name = "CameraType"
+		},
+		{
+			Items = {
+				{Name = "Invalid",Value = 0},
+				{Name = "None",Value = 1},
+				{Name = "NotAgeVerified",Value = 2},
+				{Name = "OutsideAgeBucket",Value = 3},
+				{Name = "TooManyCollaborators",Value = 4},
+				{Name = "PCBlock",Value = 5},
+				{Name = "NotFound",Value = 6},
+				{Name = "OutsideOwnerAgeBucket",Value = 7}
+			},
+			Name = "CanCollaborateError"
 		},
 		{Items = {{Name = "ReadAndUpload",Value = 0}},Name = "CaptureGalleryPermission"},
 		{
@@ -88100,7 +93569,7 @@ return {
 			Name = "CollaboratorStatus"
 		},
 		{
-			Items = {{Name = "Default",Value = 0},{Name = "Hull",Value = 1},{Name = "Box",Value = 2},{Name = "PreciseConvexDecomposition",Value = 3}},
+			Items = {{Name = "Default",Value = 0},{Name = "Hull",Value = 1},{Name = "Box",Value = 2},{Name = "PreciseConvexDecomposition",Value = 3},{Name = "Scalable",Value = 4}},
 			Name = "CollisionFidelity"
 		},
 		{
@@ -88272,7 +93741,12 @@ return {
 				{Name = "PlacelaunchPartyCannotFit",Value = 528},
 				{Name = "PlacelaunchHttpError",Value = 529},
 				{Name = "PlacelaunchUserPrivacyUnauthorized",Value = 533},
+				{Name = "PlacelaunchVipOwnerNotPresent",Value = 541},
+				{Name = "PlacelaunchAgeVerificationRequired",Value = 542},
+				{Name = "PlacelaunchParentalApprovalRequired",Value = 543},
+				{Name = "PlacelaunchCoreGated",Value = 544},
 				{Name = "PlacelaunchCreatorBan",Value = 600},
+				{Name = "PlacelaunchDeviceBlock",Value = 601},
 				{Name = "PlacelaunchCustomMessage",Value = 610},
 				{Name = "PlacelaunchOtherError",Value = 611},
 				{Name = "TeleportErrors",Value = 768},
@@ -88316,13 +93790,18 @@ return {
 				{Name = "EmotesMenu",Value = 5},
 				{Name = "SelfView",Value = 6},
 				{Name = "Captures",Value = 7},
-				{Name = "AvatarSwitcher",Value = 8}
+				{Name = "AvatarSwitcher",Value = 8},
+				{Name = "ExperienceShop",Value = 9}
 			},
 			Name = "CoreGuiType"
 		},
 		{
 			Items = {{Name = "Success",Value = 1},{Name = "PermissionDenied",Value = 2},{Name = "UploadFailed",Value = 3},{Name = "Unknown",Value = 4}},
 			Name = "CreateAssetResult"
+		},
+		{
+			Items = {{Name = "Success",Value = 1},{Name = "PermissionDenied",Value = 2},{Name = "UploadFailed",Value = 3},{Name = "StorageLimitExceeded",Value = 4},{Name = "Unknown",Value = 5}},
+			Name = "CreateContentResult"
 		},
 		{
 			Items = {{Name = "InvalidName",Value = 1},{Name = "OutfitLimitReached",Value = 2},{Name = "Other",Value = 3}},
@@ -88368,6 +93847,10 @@ return {
 			Name = "DataStoreRequestType"
 		},
 		{
+			Items = {{Name = "Never",Value = 0},{Name = "Always",Value = 1},{Name = "Unhandled",Value = 2}},
+			Name = "DebugBreakModeType"
+		},
+		{
 			Items = {
 				{Name = "ClientRequest",Value = 0},
 				{Name = "Timeout",Value = 1},
@@ -88395,6 +93878,10 @@ return {
 				{Name = "Entrypoint",Value = 5}
 			},
 			Name = "DebuggerPauseReason"
+		},
+		{
+			Items = {{Name = "StepInto",Value = 0},{Name = "StepOut",Value = 1},{Name = "StepOver",Value = 2},{Name = "Resume",Value = 3}},
+			Name = "DebuggerResumeType"
 		},
 		{
 			Items = {
@@ -88478,7 +93965,11 @@ return {
 			Name = "DeviceLevel"
 		},
 		{
-			Items = {{Name = "Unknown",Value = 0},{Name = "Desktop",Value = 1},{Name = "Tablet",Value = 2},{Name = "Phone",Value = 3}},
+			Items = {{Name = "ScaleToPhysicalSize",Value = 0},{Name = "ActualResolution",Value = 1},{Name = "FitToWindow",Value = 2}},
+			Name = "DeviceSimulatorScalingMode"
+		},
+		{
+			Items = {{Name = "Unknown",Value = 0},{Name = "Desktop",Value = 1},{Name = "Tablet",Value = 2},{Name = "Phone",Value = 3},{Name = "TV",Value = 4}},
 			Name = "DeviceType"
 		},
 		{
@@ -88494,12 +93985,21 @@ return {
 			Name = "DialogTone"
 		},
 		{
+			Items = {{Name = "None",Value = 0},{Name = "Left",Value = 1},{Name = "Right",Value = 2}},
+			Name = "DigitsRigDescriptionSide"
+		},
+		{Items = {{Name = "Uncategorized",Value = 0}},Name = "DiscountType"},
+		{
 			Items = {{Name = "Default",Value = 0},{Name = "Legacy",Value = 1},{Name = "Responsive",Value = 2}},
 			Name = "DisplayScalingMode"
 		},
 		{
 			Items = {{Name = "Small",Value = 0},{Name = "Medium",Value = 1},{Name = "Large",Value = 2}},
 			Name = "DisplaySize"
+		},
+		{
+			Items = {{Name = "EXPERIENCE",Value = 1},{Name = "GROUP",Value = 2},{Name = "OAUTH",Value = 3}},
+			Name = "DomainType"
 		},
 		{Items = {{Name = "Width",Value = 0},{Name = "Height",Value = 1}},Name = "DominantAxis"},
 		{
@@ -88608,6 +94108,13 @@ return {
 				{LegacyNames = {"CratersAndDebris"},Name = "Craters",Value = 1}
 			},
 			Name = "ExplosionType"
+		},
+		{
+			Items = {
+				{Name = "SystemDefault",Value = 0},
+				{LegacyNames = {"CustomEditor"},Name = "UserSelectedEditor",Value = 1}
+			},
+			Name = "ExternalEditorMode"
 		},
 		{
 			Items = {{Name = "LOD0",Value = 0},{Name = "LOD1",Value = 1},{Name = "LODCount",Value = 2}},
@@ -88936,10 +94443,6 @@ return {
 			Items = {{Name = "Core",Value = 0},{Name = "Custom",Value = 1},{Name = "PlayerNameplates",Value = 2},{Name = "CustomBillboards",Value = 3},{Name = "CoreBillboards",Value = 4}},
 			Name = "GuiType"
 		},
-		{
-			Items = {{Name = "None",Value = 0},{Name = "Left",Value = 1},{Name = "Right",Value = 2}},
-			Name = "HandRigDescriptionSide"
-		},
 		{Items = {{Name = "Resize",Value = 0},{Name = "Movement",Value = 1}},Name = "HandlesStyle"},
 		{
 			Items = {
@@ -89076,7 +94579,14 @@ return {
 			Name = "ImageAlphaType"
 		},
 		{
-			Items = {{Name = "BlendSourceOver",Value = 1},{Name = "Overwrite",Value = 2},{Name = "Add",Value = 3},{Name = "Multiply",Value = 4},{Name = "AlphaBlend",Value = 5}},
+			Items = {
+				{Name = "BlendSourceOver",Value = 1},
+				{Name = "Overwrite",Value = 2},
+				{Name = "Add",Value = 3},
+				{Name = "Multiply",Value = 4},
+				{Name = "AlphaBlend",Value = 5},
+				{Name = "NormalMapBlend",Value = 6}
+			},
 			Name = "ImageCombineType"
 		},
 		{
@@ -89094,6 +94604,10 @@ return {
 		{
 			Items = {{Name = "Bool",Value = 0},{Name = "Direction1D",Value = 1},{Name = "Direction2D",Value = 2},{Name = "Direction3D",Value = 3},{Name = "ViewportPosition",Value = 4}},
 			Name = "InputActionType"
+		},
+		{
+			Items = {{Name = "None",Value = 0},{Name = "Activate",Value = 1},{Name = "All",Value = 100}},
+			Name = "InputSink"
 		},
 		{
 			Items = {
@@ -89120,7 +94634,7 @@ return {
 			Name = "InputType"
 		},
 		{
-			Items = {{Name = "NotSynced",Value = 0},{Name = "Errored",Value = 1},{Name = "SyncedAsRoot",Value = 2},{Name = "SyncedAsDescendant",Value = 3}},
+			Items = {{Name = "NotSynced",Value = 0},{Name = "Errored",Value = 1},{Name = "SyncedAsRoot",Value = 2},{Name = "SyncedAsDescendant",Value = 3},{Name = "AncestorErrored",Value = 4}},
 			Name = "InstanceFileSyncStatus"
 		},
 		{Items = {{Name = "HighQualityMesh",Value = 0}},Name = "IntermediateMeshGenerationResult"},
@@ -89219,104 +94733,6 @@ return {
 				{Name = "RightCurly",Value = 125},
 				{Name = "Tilde",Value = 126},
 				{Name = "Delete",Value = 127},
-				{Name = "KeypadZero",Value = 256},
-				{Name = "KeypadOne",Value = 257},
-				{Name = "KeypadTwo",Value = 258},
-				{Name = "KeypadThree",Value = 259},
-				{Name = "KeypadFour",Value = 260},
-				{Name = "KeypadFive",Value = 261},
-				{Name = "KeypadSix",Value = 262},
-				{Name = "KeypadSeven",Value = 263},
-				{Name = "KeypadEight",Value = 264},
-				{Name = "KeypadNine",Value = 265},
-				{Name = "KeypadPeriod",Value = 266},
-				{Name = "KeypadDivide",Value = 267},
-				{Name = "KeypadMultiply",Value = 268},
-				{Name = "KeypadMinus",Value = 269},
-				{Name = "KeypadPlus",Value = 270},
-				{Name = "KeypadEnter",Value = 271},
-				{Name = "KeypadEquals",Value = 272},
-				{Name = "Up",Value = 273},
-				{Name = "Down",Value = 274},
-				{Name = "Right",Value = 275},
-				{Name = "Left",Value = 276},
-				{Name = "Insert",Value = 277},
-				{Name = "Home",Value = 278},
-				{Name = "End",Value = 279},
-				{Name = "PageUp",Value = 280},
-				{Name = "PageDown",Value = 281},
-				{Name = "F1",Value = 282},
-				{Name = "F2",Value = 283},
-				{Name = "F3",Value = 284},
-				{Name = "F4",Value = 285},
-				{Name = "F5",Value = 286},
-				{Name = "F6",Value = 287},
-				{Name = "F7",Value = 288},
-				{Name = "F8",Value = 289},
-				{Name = "F9",Value = 290},
-				{Name = "F10",Value = 291},
-				{Name = "F11",Value = 292},
-				{Name = "F12",Value = 293},
-				{Name = "F13",Value = 294},
-				{Name = "F14",Value = 295},
-				{Name = "F15",Value = 296},
-				{Name = "NumLock",Value = 300},
-				{Name = "CapsLock",Value = 301},
-				{Name = "ScrollLock",Value = 302},
-				{Name = "RightShift",Value = 303},
-				{Name = "LeftShift",Value = 304},
-				{Name = "RightControl",Value = 305},
-				{Name = "LeftControl",Value = 306},
-				{Name = "RightAlt",Value = 307},
-				{Name = "LeftAlt",Value = 308},
-				{Name = "RightMeta",Value = 309},
-				{Name = "LeftMeta",Value = 310},
-				{Name = "LeftSuper",Value = 311},
-				{Name = "RightSuper",Value = 312},
-				{Name = "Mode",Value = 313},
-				{Name = "Compose",Value = 314},
-				{Name = "Help",Value = 315},
-				{Name = "Print",Value = 316},
-				{Name = "SysReq",Value = 317},
-				{Name = "Break",Value = 318},
-				{Name = "Menu",Value = 319},
-				{Name = "Power",Value = 320},
-				{Name = "Euro",Value = 321},
-				{Name = "Undo",Value = 322},
-				{Name = "ButtonX",Value = 1000},
-				{Name = "ButtonY",Value = 1001},
-				{Name = "ButtonA",Value = 1002},
-				{Name = "ButtonB",Value = 1003},
-				{Name = "ButtonR1",Value = 1004},
-				{Name = "ButtonL1",Value = 1005},
-				{Name = "ButtonR2",Value = 1006},
-				{Name = "ButtonL2",Value = 1007},
-				{Name = "ButtonR3",Value = 1008},
-				{Name = "ButtonL3",Value = 1009},
-				{Name = "ButtonStart",Value = 1010},
-				{Name = "ButtonSelect",Value = 1011},
-				{Name = "DPadLeft",Value = 1012},
-				{Name = "DPadRight",Value = 1013},
-				{Name = "DPadUp",Value = 1014},
-				{Name = "DPadDown",Value = 1015},
-				{Name = "Thumbstick1",Value = 1016},
-				{Name = "Thumbstick2",Value = 1017},
-				{Name = "Thumbstick1Up",Value = 1018},
-				{Name = "Thumbstick1Down",Value = 1019},
-				{Name = "Thumbstick1Left",Value = 1020},
-				{Name = "Thumbstick1Right",Value = 1021},
-				{Name = "Thumbstick2Up",Value = 1022},
-				{Name = "Thumbstick2Down",Value = 1023},
-				{Name = "Thumbstick2Left",Value = 1024},
-				{Name = "Thumbstick2Right",Value = 1025},
-				{Name = "MouseLeftButton",Value = 1026},
-				{Name = "MouseRightButton",Value = 1027},
-				{Name = "MouseMiddleButton",Value = 1028},
-				{Name = "MousePosition",Value = 1033},
-				{Name = "Touch",Value = 1034},
-				{Name = "MouseWheel",Value = 1035},
-				{Name = "TrackpadPan",Value = 1040},
-				{Name = "TrackpadPinch",Value = 1045},
 				{Value = 160,Name = "World0",Tags = {"Deprecated"}},
 				{Value = 161,Name = "World1",Tags = {"Deprecated"}},
 				{Value = 162,Name = "World2",Tags = {"Deprecated"}},
@@ -89413,10 +94829,111 @@ return {
 				{Value = 253,Name = "World93",Tags = {"Deprecated"}},
 				{Value = 254,Name = "World94",Tags = {"Deprecated"}},
 				{Value = 255,Name = "World95",Tags = {"Deprecated"}},
+				{Name = "KeypadZero",Value = 256},
+				{Name = "KeypadOne",Value = 257},
+				{Name = "KeypadTwo",Value = 258},
+				{Name = "KeypadThree",Value = 259},
+				{Name = "KeypadFour",Value = 260},
+				{Name = "KeypadFive",Value = 261},
+				{Name = "KeypadSix",Value = 262},
+				{Name = "KeypadSeven",Value = 263},
+				{Name = "KeypadEight",Value = 264},
+				{Name = "KeypadNine",Value = 265},
+				{Name = "KeypadPeriod",Value = 266},
+				{Name = "KeypadDivide",Value = 267},
+				{Name = "KeypadMultiply",Value = 268},
+				{Name = "KeypadMinus",Value = 269},
+				{Name = "KeypadPlus",Value = 270},
+				{Name = "KeypadEnter",Value = 271},
+				{Name = "KeypadEquals",Value = 272},
+				{Name = "Up",Value = 273},
+				{Name = "Down",Value = 274},
+				{Name = "Right",Value = 275},
+				{Name = "Left",Value = 276},
+				{Name = "Insert",Value = 277},
+				{Name = "Home",Value = 278},
+				{Name = "End",Value = 279},
+				{Name = "PageUp",Value = 280},
+				{Name = "PageDown",Value = 281},
+				{Name = "F1",Value = 282},
+				{Name = "F2",Value = 283},
+				{Name = "F3",Value = 284},
+				{Name = "F4",Value = 285},
+				{Name = "F5",Value = 286},
+				{Name = "F6",Value = 287},
+				{Name = "F7",Value = 288},
+				{Name = "F8",Value = 289},
+				{Name = "F9",Value = 290},
+				{Name = "F10",Value = 291},
+				{Name = "F11",Value = 292},
+				{Name = "F12",Value = 293},
+				{Name = "F13",Value = 294},
+				{Name = "F14",Value = 295},
+				{Name = "F15",Value = 296},
+				{Name = "NumLock",Value = 300},
+				{Name = "CapsLock",Value = 301},
+				{Name = "ScrollLock",Value = 302},
+				{Name = "RightShift",Value = 303},
+				{Name = "LeftShift",Value = 304},
+				{Name = "RightControl",Value = 305},
+				{Name = "LeftControl",Value = 306},
+				{Name = "RightAlt",Value = 307},
+				{Name = "LeftAlt",Value = 308},
+				{Name = "RightMeta",Value = 309},
+				{Name = "LeftMeta",Value = 310},
+				{Name = "LeftSuper",Value = 311},
+				{Name = "RightSuper",Value = 312},
+				{Name = "Mode",Value = 313},
+				{Name = "Compose",Value = 314},
+				{Name = "Help",Value = 315},
+				{Name = "Print",Value = 316},
+				{Name = "SysReq",Value = 317},
+				{Name = "Break",Value = 318},
+				{Name = "Menu",Value = 319},
+				{Name = "Power",Value = 320},
+				{Name = "Euro",Value = 321},
+				{Name = "Undo",Value = 322},
+				{Name = "ButtonX",Value = 1000},
+				{Name = "ButtonY",Value = 1001},
+				{Name = "ButtonA",Value = 1002},
+				{Name = "ButtonB",Value = 1003},
+				{Name = "ButtonR1",Value = 1004},
+				{Name = "ButtonL1",Value = 1005},
+				{Name = "ButtonR2",Value = 1006},
+				{Name = "ButtonL2",Value = 1007},
+				{Name = "ButtonR3",Value = 1008},
+				{Name = "ButtonL3",Value = 1009},
+				{Name = "ButtonStart",Value = 1010},
+				{Name = "ButtonSelect",Value = 1011},
+				{Name = "DPadLeft",Value = 1012},
+				{Name = "DPadRight",Value = 1013},
+				{Name = "DPadUp",Value = 1014},
+				{Name = "DPadDown",Value = 1015},
+				{Name = "Thumbstick1",Value = 1016},
+				{Name = "Thumbstick2",Value = 1017},
+				{Name = "Thumbstick1Up",Value = 1018},
+				{Name = "Thumbstick1Down",Value = 1019},
+				{Name = "Thumbstick1Left",Value = 1020},
+				{Name = "Thumbstick1Right",Value = 1021},
+				{Name = "Thumbstick2Up",Value = 1022},
+				{Name = "Thumbstick2Down",Value = 1023},
+				{Name = "Thumbstick2Left",Value = 1024},
+				{Name = "Thumbstick2Right",Value = 1025},
+				{Name = "MouseLeftButton",Value = 1026},
+				{Name = "MouseRightButton",Value = 1027},
+				{Name = "MouseMiddleButton",Value = 1028},
 				{Value = 1029,Name = "MouseBackButton",Tags = {"Deprecated"}},
 				{Value = 1030,Name = "MouseNoButton",Tags = {"Deprecated"}},
 				{Value = 1031,Name = "MouseX",Tags = {"Deprecated"}},
-				{Value = 1032,Name = "MouseY",Tags = {"Deprecated"}}
+				{Value = 1032,Name = "MouseY",Tags = {"Deprecated"}},
+				{Name = "MousePosition",Value = 1033},
+				{LegacyNames = {"Touch"},Name = "TouchPosition",Value = 1034},
+				{Name = "MouseWheel",Value = 1035},
+				{Name = "TrackpadPan",Value = 1040},
+				{Name = "TrackpadPinch",Value = 1045},
+				{Name = "MouseDelta",Value = 1048},
+				{Name = "TouchDelta",Value = 1049},
+				{Name = "TouchPinch",Value = 1050}
 			},
 			Name = "KeyCode"
 		},
@@ -89553,18 +95070,18 @@ return {
 				{Name = "Wood",Value = 512},
 				{Name = "WoodPlanks",Value = 528},
 				{Name = "Marble",Value = 784},
+				{Name = "Basalt",Value = 788},
 				{Name = "Slate",Value = 800},
+				{Name = "CrackedLava",Value = 804},
 				{Name = "Concrete",Value = 816},
+				{Name = "Limestone",Value = 820},
 				{Name = "Granite",Value = 832},
+				{Name = "Pavement",Value = 836},
 				{Name = "Brick",Value = 848},
 				{Name = "Pebble",Value = 864},
 				{Name = "Cobblestone",Value = 880},
 				{Name = "Rock",Value = 896},
 				{Name = "Sandstone",Value = 912},
-				{Name = "Basalt",Value = 788},
-				{Name = "CrackedLava",Value = 804},
-				{Name = "Limestone",Value = 820},
-				{Name = "Pavement",Value = 836},
 				{LegacyNames = {"Corroded Metal"},Name = "CorrodedMetal",Value = 1040},
 				{Name = "DiamondPlate",Value = 1056},
 				{LegacyNames = {"Aluminum"},Name = "Foil",Value = 1072},
@@ -89607,7 +95124,12 @@ return {
 				{Name = "Level01",Value = 2},
 				{Name = "Level02",Value = 3},
 				{Name = "Level03",Value = 4},
-				{Name = "Level04",Value = 5}
+				{Name = "Level04",Value = 5},
+				{Name = "Level05",Value = 6},
+				{Name = "Level06",Value = 7},
+				{Name = "Level07",Value = 8},
+				{Name = "Level08",Value = 9},
+				{Name = "Level09",Value = 10}
 			},
 			Name = "MeshPartDetailLevel"
 		},
@@ -89694,10 +95216,6 @@ return {
 		{
 			Items = {{Name = "Stopped",Value = 0},{Name = "Coasting",Value = 1},{Name = "Pushing",Value = 2},{Name = "Stopping",Value = 3},{Name = "AirFree",Value = 4}},
 			Name = "MoveState"
-		},
-		{
-			Items = {{Name = "Default",Value = 0},{Name = "Disabled",Value = 1},{Name = "Enabled",Value = 2}},
-			Name = "MoverConstraintRootBehaviorMode"
 		},
 		{Items = {{Name = "Unmuted",Value = 0},{Name = "Muted",Value = 1}},Name = "MuteState"},
 		{
@@ -89799,11 +95317,11 @@ return {
 		{
 			Items = {
 				{Name = "Success",Value = 0},
-				{Name = "NoPath",Value = 5},
 				{Value = 1,Name = "ClosestNoPath",Tags = {"Deprecated"}},
 				{Value = 2,Name = "ClosestOutOfRange",Tags = {"Deprecated"}},
 				{Value = 3,Name = "FailStartNotEmpty",Tags = {"Deprecated"}},
-				{Value = 4,Name = "FailFinishNotEmpty",Tags = {"Deprecated"}}
+				{Value = 4,Name = "FailFinishNotEmpty",Tags = {"Deprecated"}},
+				{Name = "NoPath",Value = 5}
 			},
 			Name = "PathStatus"
 		},
@@ -89823,6 +95341,10 @@ return {
 		{
 			Items = {{Name = "Game",Value = 0},{Name = "RobloxGame",Value = 1},{Name = "RobloxScript",Value = 2},{Name = "Studio",Value = 3},{Name = "Roblox",Value = 4}},
 			Name = "PermissionLevelShown"
+		},
+		{
+			Items = {{Name = "AnimationConstraint",Value = 0},{Name = "Motor6D",Value = 1}},
+			Name = "PhysicalConstraintType"
 		},
 		{
 			Items = {{Name = "Fixed240Hz",Value = 0},{Name = "Fixed120Hz",Value = 1},{Name = "Fixed60Hz",Value = 2}},
@@ -89904,6 +95426,11 @@ return {
 			Name = "PlayerExitReason"
 		},
 		{
+			Items = {{Name = "Unknown",Value = 0},{Name = "Active",Value = 1},{Name = "OtherPayer",Value = 2}},
+			Name = "PlayerPlatformSpenderStatus"
+		},
+		{Items = {{Name = "Edit",Value = 0},{Name = "Test",Value = 1}},Name = "PluginConnectionTargetType"},
+		{
 			Items = {{Name = "In",Value = 0},{Name = "Out",Value = 1},{Name = "InOut",Value = 2}},
 			Name = "PoseEasingDirection"
 		},
@@ -89939,6 +95466,10 @@ return {
 			Name = "PreferredTextSize"
 		},
 		{
+			Items = {{Name = "NotStarted",Value = 0},{Name = "InProgress",Value = 1},{Name = "Completed",Value = 2},{Name = "Failed",Value = 3}},
+			Name = "PrefetchDownloadStatus"
+		},
+		{
 			Items = {{Name = "Default",Value = 0},{Name = "Experimental",Value = 1},{Name = "Disabled",Value = 2}},
 			Name = "PrimalPhysicsSolver"
 		},
@@ -89954,7 +95485,7 @@ return {
 			Name = "PrimitiveType"
 		},
 		{
-			Items = {{Name = "Owner",Value = 255},{Name = "Admin",Value = 240},{Name = "Member",Value = 128},{Name = "Visitor",Value = 10},{Name = "Banned",Value = 0}},
+			Items = {{Name = "Banned",Value = 0},{Name = "Visitor",Value = 10},{Name = "Member",Value = 128},{Name = "Admin",Value = 240},{Name = "Owner",Value = 255}},
 			Name = "PrivilegeType",
 			Tags = {"Deprecated"}
 		},
@@ -90035,6 +95566,10 @@ return {
 		},
 		{Items = {{Name = "Default",Value = 0},{Name = "Custom",Value = 1}},Name = "ProximityPromptStyle"},
 		{
+			Items = {{Name = "TimedOption",Value = 1},{Name = "Permanent",Value = 2}},
+			Name = "PurchaseOption"
+		},
+		{
 			Items = {
 				{Name = "Automatic",Value = 0},
 				{LegacyNames = {"Level  1"},Name = "Level01",Value = 1},
@@ -90074,6 +95609,14 @@ return {
 			Name = "ReadCapturesFromGalleryResult"
 		},
 		{
+			Items = {{Name = "NotProcessedYet",Value = 0},{Name = "Processed",Value = 1}},
+			Name = "ReceiptDecision"
+		},
+		{
+			Items = {{Name = "DeveloperProduct",Value = 0},{Name = "RobuxTransferSender",Value = 1},{Name = "RobuxTransferReceiver",Value = 2}},
+			Name = "ReceiptType"
+		},
+		{
 			Items = {
 				{Name = "AddReaction",Value = 0},
 				{Name = "RemoveReaction",Value = 1},
@@ -90098,6 +95641,14 @@ return {
 			Name = "RecommendationItemContentType"
 		},
 		{Items = {{Name = "Private",Value = 0},{Name = "Public",Value = 1}},Name = "RecommendationItemVisibility"},
+		{
+			Items = {{Name = "User",Value = 0},{Name = "Universe",Value = 1},{Name = "CustomTag",Value = 2}},
+			Name = "RecommendationPreferenceTargetType"
+		},
+		{
+			Items = {{Name = "AddFollow",Value = 0},{Name = "RemoveFollow",Value = 1},{Name = "AddMute",Value = 2},{Name = "RemoveMute",Value = 3}},
+			Name = "RecommendationPreferenceType"
+		},
 		{
 			Items = {{Name = "Default",Value = 0},{Name = "Disabled",Value = 1},{Name = "Enabled",Value = 2}},
 			Name = "RejectCharacterDeletions"
@@ -90124,7 +95675,7 @@ return {
 			Name = "ResamplerMode"
 		},
 		{
-			Items = {{Name = "Standard",Value = 0},{Name = "Selection",Value = 524288},{Name = "Hover",Value = 262144},{Name = "Active",Value = 131072},{Name = "NegatedPart",Value = 1048576}},
+			Items = {{Name = "Standard",Value = 0},{Name = "Active",Value = 131072},{Name = "Hover",Value = 262144},{Name = "Selection",Value = 524288},{Name = "NegatedPart",Value = 1048576}},
 			Name = "ReservedHighlightId"
 		},
 		{
@@ -90198,28 +95749,43 @@ return {
 		{
 			Items = {
 				{Name = "Invalid",Value = 0},
-				{Name = "Root",Value = 1},
-				{Name = "Pelvis",Value = 2},
-				{Name = "Waist",Value = 3},
-				{Name = "Chest",Value = 4},
-				{Name = "Neck",Value = 5},
-				{Name = "HeadBase",Value = 6},
-				{Name = "LeftClavicle",Value = 7},
-				{Name = "LeftShoulder",Value = 8},
-				{Name = "LeftElbow",Value = 9},
-				{Name = "LeftWrist",Value = 10},
-				{Name = "RightClavicle",Value = 11},
-				{Name = "RightShoulder",Value = 12},
-				{Name = "RightElbow",Value = 13},
-				{Name = "RightWrist",Value = 14},
-				{Name = "LeftHip",Value = 15},
-				{Name = "LeftKnee",Value = 16},
-				{Name = "LeftAnkle",Value = 17},
-				{Name = "LeftToes",Value = 18},
-				{Name = "RightHip",Value = 19},
-				{Name = "RightKnee",Value = 20},
-				{Name = "RightAnkle",Value = 21},
-				{Name = "RightToes",Value = 22}
+				{Name = "Root",Value = 2},
+				{Name = "LeftHip",Value = 3},
+				{Name = "LeftKnee",Value = 4},
+				{Name = "LeftAnkle",Value = 5},
+				{Name = "RightHip",Value = 7},
+				{Name = "RightKnee",Value = 8},
+				{Name = "RightAnkle",Value = 9},
+				{Name = "Waist",Value = 11},
+				{Name = "LeftShoulder",Value = 12},
+				{Name = "LeftElbow",Value = 13},
+				{Name = "LeftWrist",Value = 14},
+				{Name = "RightShoulder",Value = 16},
+				{Name = "RightElbow",Value = 17},
+				{Name = "RightWrist",Value = 18},
+				{Name = "Neck",Value = 20},
+				{Name = "Spine",Value = 23},
+				{Name = "Chest",Value = 24},
+				{Name = "HeadBase",Value = 25},
+				{Name = "LeftClavicle",Value = 26},
+				{Name = "RightClavicle",Value = 27},
+				{Name = "LeftToeBase",Value = 28},
+				{Name = "RightToeBase",Value = 29},
+				{Name = "Thumb1",Value = 30},
+				{Name = "Thumb2",Value = 31},
+				{Name = "Thumb3",Value = 32},
+				{Name = "Index1",Value = 33},
+				{Name = "Index2",Value = 34},
+				{Name = "Index3",Value = 35},
+				{Name = "Middle1",Value = 36},
+				{Name = "Middle2",Value = 37},
+				{Name = "Middle3",Value = 38},
+				{Name = "Ring1",Value = 39},
+				{Name = "Ring2",Value = 40},
+				{Name = "Ring3",Value = 41},
+				{Name = "Pinky1",Value = 42},
+				{Name = "Pinky2",Value = 43},
+				{Name = "Pinky3",Value = 44}
 			},
 			Name = "RigLabel"
 		},
@@ -90348,6 +95914,14 @@ return {
 			Name = "ScreenshotCaptureResult"
 		},
 		{
+			Items = {{Name = "Breakpoint",Value = 0},{Name = "Exception",Value = 1},{Name = "Pause",Value = 2},{Name = "Step",Value = 3},{Name = "Entry",Value = 4}},
+			Name = "ScriptStoppedReason"
+		},
+		{
+			Items = {{Name = "Local",Value = 0},{Name = "Upvalue",Value = 1},{Name = "Global",Value = 2}},
+			Name = "ScriptVariableScope"
+		},
+		{
 			Items = {{Name = "None",Value = 0},{Name = "ScrollBar",Value = 1},{Name = "Always",Value = 2}},
 			Name = "ScrollBarInset"
 		},
@@ -90360,7 +95934,7 @@ return {
 				{Name = "RunClientScript",Value = 0},
 				{Name = "RunServerScript",Value = 1},
 				{Name = "AccessOutsideWrite",Value = 2},
-				{Name = "AssetRequire",Value = 3},
+				{Value = 3,Name = "AssetRequire",Tags = {"Deprecated"}},
 				{Name = "LoadString",Value = 4},
 				{Name = "ScriptGlobals",Value = 5},
 				{Name = "CreateInstances",Value = 6},
@@ -90373,7 +95947,7 @@ return {
 				{Name = "CSG",Value = 13},
 				{Name = "Chat",Value = 14},
 				{Name = "Animation",Value = 15},
-				{Name = "Avatar",Value = 16},
+				{Value = 16,Name = "Avatar",Tags = {"Deprecated"}},
 				{Name = "Input",Value = 17},
 				{Name = "Environment",Value = 18},
 				{Name = "RemoteEvent",Value = 19},
@@ -90407,7 +95981,9 @@ return {
 				{Name = "Teleport",Value = 47},
 				{Name = "Consequences",Value = 48},
 				{Name = "Material",Value = 49},
-				{Name = "AvatarBehavior",Value = 50}
+				{Name = "AvatarBehavior",Value = 50},
+				{Name = "AvatarAppearance",Value = 51},
+				{Name = "LoadUnownedAsset",Value = 52}
 			},
 			Name = "SecurityCapability"
 		},
@@ -90420,7 +95996,10 @@ return {
 			Items = {{Name = "LastPosition",Value = 0},{Name = "TopLeft",Value = 1},{Name = "TopRight",Value = 2},{Name = "BottomLeft",Value = 3},{Name = "BottomRight",Value = 4}},
 			Name = "SelfViewPosition"
 		},
-		{Items = {{Name = "Floor",Value = 0},{Name = "Ladder",Value = 1}},Name = "SensorMode"},
+		{
+			Items = {{Name = "Floor",Value = 0},{Name = "Ladder",Value = 1},{Name = "ClassicFloor",Value = 2},{Name = "ClassicLadder",Value = 3}},
+			Name = "SensorMode"
+		},
 		{Items = {{Name = "OnRead",Value = 0},{Name = "Manual",Value = 1}},Name = "SensorUpdateType"},
 		{
 			Items = {{Name = "Uninitialized",Value = 0},{Name = "Enabled",Value = 1},{Name = "Disabled",Value = 2}},
@@ -90452,6 +96031,10 @@ return {
 		{
 			Items = {{Name = "RelativeXY",Value = 0},{Name = "RelativeXX",Value = 1},{Name = "RelativeYY",Value = 2}},
 			Name = "SizeConstraint"
+		},
+		{
+			Items = {{Name = "Capsule",Value = 5},{Name = "Cone",Value = 6},{Name = "RoundedBox",Value = 7}},
+			Name = "SolidPrimitiveType"
 		},
 		{
 			Items = {{Name = "IterationBased",Value = 0},{Name = "AlgorithmAgnostic",Value = 1}},
@@ -90534,6 +96117,11 @@ return {
 			Items = {{Name = "FixedSize",Value = 0},{Name = "ScaledSize",Value = 1}},
 			Name = "StrokeSizingMode"
 		},
+		{
+			Items = {{Name = "NotStarted",Value = 0},{Name = "Pending",Value = 1},{Name = "Ready",Value = 2},{Name = "Error",Value = 3}},
+			Name = "StudioCaptureBufferStatus"
+		},
+		{Items = {{Name = "RGBA8",Value = 0},{Name = "PNG",Value = 1}},Name = "StudioCaptureScreenshotFormat"},
 		{
 			Items = {{Name = "None",Value = 0},{Name = "CloseStudio",Value = 1},{Name = "CloseDoc",Value = 2},{Name = "LogOut",Value = 3}},
 			Name = "StudioCloseMode"
@@ -90798,17 +96386,18 @@ return {
 			Items = {{Name = "RowMajor",Value = 0},{Name = "ColumnMajor",Value = 1}},
 			Name = "TableMajorAxis"
 		},
+		{Items = {},Name = "TagReplicability"},
 		{
 			Items = {{Name = "PlaceSizeTooLarge",Value = 0},{Name = "PlaceSizeApproachingLimit",Value = 1},{Name = "PlaceUploadFailing",Value = 2},{Name = "NoError",Value = 3}},
 			Name = "TeamCreateErrorState"
 		},
 		{
 			Items = {
+				{Value = 0,Name = "Legacy",Tags = {"Deprecated"}},
 				{Name = "Voxel",Value = 1},
 				{Name = "Compatibility",Value = 2},
 				{Name = "ShadowMap",Value = 3},
 				{Name = "Future",Value = 4},
-				{Value = 0,Name = "Legacy",Tags = {"Deprecated"}},
 				{Value = 5,Name = "Unified",Tags = {"Deprecated"}}
 			},
 			Name = "Technology"
@@ -90897,6 +96486,24 @@ return {
 			Name = "TerrainFace"
 		},
 		{
+			Items = {{Name = "None",Value = 0},{Name = "Source",Value = 1},{Name = "Union",Value = 2},{Name = "Difference",Value = 3},{Name = "Intersect",Value = 4}},
+			Name = "TerrainLiquidMergeOperation"
+		},
+		{
+			Items = {
+				{Name = "None",Value = 0},
+				{Name = "Paint",Value = 1},
+				{Name = "Source",Value = 2},
+				{Name = "Union",Value = 3},
+				{Name = "Dig",Value = 4},
+				{Name = "Difference",Value = 5},
+				{Name = "Intersect",Value = 6},
+				{Name = "Cut",Value = 7},
+				{Name = "Place",Value = 8}
+			},
+			Name = "TerrainSolidMergeOperation"
+		},
+		{
 			Items = {
 				{Name = "Unknown",Value = 1},
 				{Name = "Success",Value = 2},
@@ -90956,22 +96563,22 @@ return {
 		},
 		{
 			Items = {
-				{Name = "PerCore4",Value = 104},
-				{Name = "PerCore3",Value = 103},
-				{Name = "PerCore2",Value = 102},
-				{Name = "PerCore1",Value = 101},
 				{LegacyNames = {"PartialThread"},Name = "Auto",Value = 0},
 				{Name = "Threads1",Value = 1},
 				{Name = "Threads2",Value = 2},
 				{Name = "Threads3",Value = 3},
 				{Name = "Threads4",Value = 4},
 				{Name = "Threads8",Value = 8},
-				{Name = "Threads16",Value = 16}
+				{Name = "Threads16",Value = 16},
+				{Name = "PerCore1",Value = 101},
+				{Name = "PerCore2",Value = 102},
+				{Name = "PerCore3",Value = 103},
+				{Name = "PerCore4",Value = 104}
 			},
 			Name = "ThreadPoolConfig"
 		},
 		{
-			Items = {{Name = "Extreme",Value = 2},{Name = "ElevatedOnServer",Value = 1},{Name = "Default",Value = 0}},
+			Items = {{Name = "Default",Value = 0},{Name = "ElevatedOnServer",Value = 1},{Name = "Extreme",Value = 2}},
 			Name = "ThrottlingPriority"
 		},
 		{
@@ -91031,7 +96638,7 @@ return {
 			Name = "TrackerError"
 		},
 		{
-			Items = {{Name = "Auto",Value = 3},{Name = "ForceDisabled",Value = 0},{Name = "ExtrapolateFacsAndPose",Value = 1},{Name = "ExtrapolateFacsOnly",Value = 2}},
+			Items = {{Name = "ForceDisabled",Value = 0},{Name = "ExtrapolateFacsAndPose",Value = 1},{Name = "ExtrapolateFacsOnly",Value = 2},{Name = "Auto",Value = 3}},
 			Name = "TrackerExtrapolationFlagMode"
 		},
 		{
@@ -91047,11 +96654,11 @@ return {
 			Name = "TrackerFaceTrackingStatus"
 		},
 		{
-			Items = {{Name = "Auto",Value = 2},{Name = "ForceFalse",Value = 0},{Name = "ForceTrue",Value = 1}},
+			Items = {{Name = "ForceFalse",Value = 0},{Name = "ForceTrue",Value = 1},{Name = "Auto",Value = 2}},
 			Name = "TrackerLodFlagMode"
 		},
 		{
-			Items = {{Name = "Auto",Value = 2},{Name = "Force0",Value = 0},{Name = "Force1",Value = 1}},
+			Items = {{Name = "Force0",Value = 0},{Name = "Force1",Value = 1},{Name = "Auto",Value = 2}},
 			Name = "TrackerLodValueMode"
 		},
 		{
@@ -91064,7 +96671,7 @@ return {
 			Name = "TrackerType"
 		},
 		{
-			Items = {{Name = "False",Value = 2},{Name = "True",Value = 1},{Name = "Unknown",Value = 0}},
+			Items = {{Name = "Unknown",Value = 0},{Name = "True",Value = 1},{Name = "False",Value = 2}},
 			Name = "TriStateBoolean"
 		},
 		{
@@ -91123,7 +96730,9 @@ return {
 				{Name = "CaptureModerated",Value = 2},
 				{Name = "CaptureNotInGallery",Value = 3},
 				{Name = "IneligibleCapture",Value = 4},
-				{Name = "UploadQuotaReached",Value = 5}
+				{Name = "UploadQuotaReached",Value = 5},
+				{Name = "UploadPending",Value = 6},
+				{Name = "UploadFailed",Value = 7}
 			},
 			Name = "UploadCaptureResult"
 		},
@@ -91296,6 +96905,10 @@ return {
 			Name = "VoiceControlPath"
 		},
 		{
+			Items = {{Name = "Unknown",Value = 0},{Name = "Migration",Value = 1},{Name = "CloseRoom",Value = 2},{Name = "FAEUpdate",Value = 3}},
+			Name = "VoiceRccReconnectReason"
+		},
+		{
 			Items = {{Name = "Disabled",Value = 0},{Name = "Automatic",Value = 1},{Name = "Enabled",Value = 2}},
 			Name = "VolumetricAudio"
 		},
@@ -91330,6 +96943,17 @@ return {
 			Items = {{Name = "All",Value = 0},{Name = "None",Value = 1},{Name = "Touching",Value = 2}},
 			Name = "WeldConstraintPreserve"
 		},
+		{
+			Items = {
+				{Name = "Unknown",Value = 0},
+				{Name = "Days0To30",Value = 1},
+				{Name = "Days31To90",Value = 2},
+				{Name = "Days91To180",Value = 3},
+				{Name = "Days181To365",Value = 4},
+				{Name = "Days366Plus",Value = 5}
+			},
+			Name = "WhenUserFirstPlayed"
+		},
 		{Items = {{Name = "AllUsers",Value = 0},{Name = "NoOne",Value = 1}},Name = "WhisperChatPrivacyMode"},
 		{
 			Items = {{Name = "Disabled",Value = 0},{Name = "EnabledPreserve",Value = 1},{Name = "EnabledOverride",Value = 2}},
@@ -91351,7 +96975,8 @@ return {
 				{Name = "HSRInnerReverse",Value = 11},
 				{Name = "LayerCageFittedToBase",Value = 12},
 				{Name = "LayerCageFittedToPrev",Value = 13},
-				{Name = "PreWrapDeformerOuterCage",Value = 14}
+				{Name = "PreWrapDeformerOuterCage",Value = 14},
+				{Name = "SkinningTransfer",Value = 15}
 			},
 			Name = "WrapLayerDebugMode"
 		},
