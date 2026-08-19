@@ -175,6 +175,18 @@ local function IgnoreGuiInsetMigrate()
     }
 end
 
+local StringToSharedMigrate = {
+    loader = function(self: object.object, from: string, property: any?)
+        if (not property) then
+            return;
+        end
+        if (property and property.type == roblox.PropertyTypes.String) then
+            property.type = roblox.PropertyTypes.SharedString;
+            property.raw = true
+        end
+    end,
+}
+
 return {
     AudioPlayer = {
         Asset = ContentMigrate "AudioContent",
@@ -241,6 +253,7 @@ return {
 
     Instance = {
         archivable = Alias "Archivable",
+        Tags = StringToSharedMigrate,
     },
 
     JointInstance = {

@@ -82,7 +82,11 @@ function manager.instancesFromDOM(doc: dom.DOM): {Instance}
                     property.value.Object = instances[property.value.Object];
                 end
             elseif (property.type == dom.roblox.PropertyTypes.SharedString and property.value) then
-                property.value = doc.sharedstrings[property.value];
+                if (not property.raw) then
+                    property.value = doc.sharedstrings[property.value];
+                else
+                    property.raw = nil;
+                end
             end
         end
     end
@@ -170,7 +174,7 @@ function manager.domFromInstances(
                             end
                         end
                     elseif (property.type == dom.roblox.PropertyTypes.SharedString) then
-                        local data = property.value;
+                        local data = value;
                         local hash_base64 = cached_sharedstrings[data];
                         if (not hash_base64) then
                             hash_base64 = blake2.b128(data, "base64");
