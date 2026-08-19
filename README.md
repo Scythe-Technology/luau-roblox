@@ -129,3 +129,8 @@ capabilities:
 **Goals**:
 - High performance + compatibility
 - Up to date Roblox instances
+
+---
+
+[**Luau**](https://luau.org) is a trademark of Roblox Corporation.
+This is an independent project and is not affiliated with or endorsed by Roblox or the Luau team.
