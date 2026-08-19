@@ -9,6 +9,7 @@ local xml = require("@roblox/dom/xml");
 local binary = require("@roblox/dom/binary");
 local roblox = require("@roblox/dom/roblox");
 local reflection = require("@roblox/reflection");
+local blake2 = require("@roblox/polyfill").blake2;
 
 local RobloxPropertyTypeNameMap = {}
 for name: string, value: number in roblox.PropertyTypes::{[string]: number} do
@@ -24,6 +25,15 @@ local function isSimilarType(a: number, b: number)
         return true;
     end
     return false;
+end
+
+local function getSharedStringHash(prop: roblox.Property): string
+    if (prop.type == roblox.PropertyTypes.String) then
+        return blake2.b128(prop.value, "base64");
+    elseif (prop.type == roblox.PropertyTypes.SharedString) then
+        return prop.value;
+    end
+    error(`Property is not a string or sharedstring`);
 end
 
 local function similarProperties(
@@ -55,6 +65,20 @@ local function similarProperties(
                 return false, `Property '{name}' not found`;
             end
             return true, "Supressed";
+        end
+        if (name == "Tags") then
+            if (p1.type ~= 1 and p1.type ~= 28) then
+                return false, `Property '{name}' type mismatch (expected string or SharedString)`;
+            end
+            if (p2.type ~= 1 and p2.type ~= 28) then
+                return false, `Property '{name}' type mismatch (expected string or SharedString)`;
+            end
+            local hash1 = getSharedStringHash(p1);
+            local hash2 = getSharedStringHash(p2);
+            if (hash1 ~= hash2) then
+                return false, `Property '{name}' value mismatch ({hash1} != {hash2})`;
+            end
+            return true, "";
         end
         if (not isSimilarType(p1.type, p2.type)) then
             return false, `{getPropertyTypeName(p1.type)} != {getPropertyTypeName(p2.type)}`;
@@ -104,7 +128,7 @@ local function isSimilar(
                 end
             end
             if (_matched == 1) then
-                return false, `No outdated match for instance {i} ({inst1.className})`;
+                return false, `No outdated match for instance {i} ({inst1.className})`, i;
             end
         else
             local inst2 = instances2[i];

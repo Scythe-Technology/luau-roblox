@@ -442,6 +442,8 @@ local function serialize(doc: Document): buffer
 
     local xml_instances: {xml.Node} = {};
 
+    local sharedstrings_registry = table.clone(doc.sharedstrings)
+
     for i, instance in doc.instances do
         local properties: xml.Node = {
             tag = "Properties",
@@ -484,6 +486,13 @@ local function serialize(doc: Document): buffer
                         },
                         children = prop.value,
                     };
+                    if (prop.type == 1) then
+                        local hash = blake2.b128(prop.value, "base64");
+                        if (not sharedstrings_registry[hash]) then
+                            sharedstrings_registry[hash] = prop.value;
+                        end
+                        node.children = hash;
+                    end
                     table.insert(properties.children :: any, node);
                     continue;
                 elseif (member.ValueType.Name == "NetAssetRef") then
@@ -534,7 +543,7 @@ local function serialize(doc: Document): buffer
         attributes = {},
         children = {},
     }
-    for md5, value in doc.sharedstrings do
+    for md5, value in sharedstrings_registry do
         local base64 = base64.encode(value):gsub(("."):rep(72), function(s)
             return `{s}\n`;
         end);
@@ -571,8 +580,9 @@ local TRANSLATE_CLASS_PROP = {
     ["CFrame"] = {"CoordinateFrame"};
     ["OptionalCFrame"] = {"OptionalCoordinateFrame"};
     ["Rect"] = {"Rect2D"};
-    ["BrickColor"] = {"int", "BrickColor"};
+    ["BrickColor"] = {"BrickColor", "int"};
     ["ContentId"] = {"Content"};
+    ["SharedString"] = {"SharedString", "BinaryString"};
 }
 
 local function findNode(prop: xml.Node, search: string): xml.Node?
@@ -1109,11 +1119,26 @@ local function deserialize(slice: buffer): Document
                         local decoder_name = prop_api.ValueType.Name;
                         if (decoder_name == "SharedString") then
                             assert(type(prop_node.children) == "string", "SharedString property without text");
-                            instance.properties[prop_name] = {
+                            local inst_prop = {
                                 type = roblox.PropertyTypes.SharedString,
                                 value = prop_node.children,
                             }
-                            if (not sharedstrings[prop_node.children]) then
+                            instance.properties[prop_name] = inst_prop;
+
+                            local shared_index = prop_node.children
+
+                            if (prop_node.tag == "BinaryString") then
+                                local value = PropertyDeserializerMap["BinaryString"](instance, prop_node);
+                                local hash = blake2.b128(value.value, "base64")
+                                shared_index = hash
+                                if (not sharedstrings[hash]) then
+                                    sharedstrings[hash] = value.value;
+                                end
+                            end
+
+                            inst_prop.value = shared_index
+
+                            if (not sharedstrings[shared_index]) then
                                 error(`{DES_TAG} Missing SharedString '{prop_node.children}' ('{instance.className}.{prop_name}')`);
                             end
                             continue
