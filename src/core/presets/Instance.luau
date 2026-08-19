@@ -1,4 +1,6 @@
 --!strict
+local roblox = require("../../dom/roblox");
+
 local Attributes = require("../instance/attributes");
 local Event = require("../instance/event");
 local Tags = require("../instance/tags");
@@ -167,7 +169,7 @@ function impl.method.GetAttribute(self: any, name: string): any
     assert(type(name) == "string", "Argument #1 must be a string");
     local instance = rawget(self, "@instance") :: any;
     local attributes = instance.properties["AttributesSerialize"] or {
-        type = 1,
+        type = roblox.PropertyTypes.String,
         value = "",
     };
     local decoded = Attributes.decodeAttributes(attributes.value);
@@ -181,7 +183,7 @@ function impl.method.SetAttribute(self: any, name: string, value: any): ()
     local attributes = instance.properties["AttributesSerialize"];
     if (not attributes) then
         attributes = {
-            type = 1,
+            type = roblox.PropertyTypes.String,
             value = "",
         };
         instance.properties["AttributesSerialize"] = attributes;
@@ -208,7 +210,7 @@ end
 function impl.method.GetAttributes(self: any, name: string, value: any): any
     local instance = rawget(self, "@instance") :: any;
     local attributes = instance.properties["AttributesSerialize"] or {
-        type = 1,
+        type = roblox.PropertyTypes.String,
         value = "",
     };
     local map = {}
@@ -221,7 +223,7 @@ end
 function impl.method.HasTag(self: any, tag: string): any
     local instance = rawget(self, "@instance") :: any;
     local tags = instance.properties["Tags"] or {
-        type = 1,
+        type = roblox.PropertyTypes.SharedString,
         value = "",
     };
     return table.find(Tags.decodeTags(tags.value), tag) ~= nil;
@@ -229,7 +231,7 @@ end
 function impl.method.GetTags(self: any, tag: string): any
     local instance = rawget(self, "@instance") :: any;
     local tags = instance.properties["Tags"] or {
-        type = 1,
+        type = roblox.PropertyTypes.SharedString,
         value = "",
     };
     return Tags.decodeTags(tags.value);
@@ -237,7 +239,7 @@ end
 function impl.method.AddTag(self: any, tag: string): ()
     local instance = rawget(self, "@instance") :: any;
     local tags = instance.properties["Tags"] or {
-        type = 1,
+        type = roblox.PropertyTypes.SharedString,
         value = "",
     };
     local decoded = Tags.decodeTags(tags.value);
@@ -247,7 +249,7 @@ end
 function impl.method.RemoveTag(self: any, tag: string): ()
     local instance = rawget(self, "@instance") :: any;
     local tags = instance.properties["Tags"] or {
-        type = 1,
+        type = roblox.PropertyTypes.SharedString,
         value = "",
     };
     local decoded = Tags.decodeTags(tags.value);
