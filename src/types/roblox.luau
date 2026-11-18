@@ -14,6 +14,20 @@ export type Object = {
 export type AnimationNode = Object & {
 }
 
+export type AppHandle = Object & {
+    Call: (self: AppHandle, name: string, args: {[string]: any}) -> string,
+    Close: (self: AppHandle) -> string,
+    ExecuteLuau: (self: AppHandle, source: string) -> string,
+    RunTest: (self: AppHandle, testName: string, args: {[string]: any}) -> string,
+}
+
+export type Blob = Object & {
+    Destroy: (self: Blob) -> (),
+    GetMimeType: (self: Blob) -> string,
+    GetSizeBytes: (self: Blob) -> buffer,
+    ReadBytesAsync: (self: Blob, start: buffer, length: buffer) -> any,
+}
+
 export type Capture = Object & {
     CaptureTime: datatypes.DateTime,
     CaptureType: enum.Enum_CaptureType,
@@ -40,6 +54,7 @@ export type ConfigSnapshot = Object & {
 }
 
 export type DataModelDiff = Object & {
+    GetAttributeNames: (self: DataModelDiff, identity: any) -> {any},
     GetChangeType: (self: DataModelDiff, identity: any) -> enum.Enum_DataModelChangeType??,
     GetIdentities: (self: DataModelDiff) -> {any},
     GetPropertyNames: (self: DataModelDiff, identity: any) -> {any},
@@ -50,15 +65,15 @@ export type EditableImage = Object & {
     IsReplicatedCopy: boolean,
     Size: datatypes.Vector2,
     Destroy: (self: EditableImage) -> (),
-    DrawCircle: (self: EditableImage, center: datatypes.Vector2, radius: number, color: datatypes.Color3, transparency: number, combineType: enum.Enum_ImageCombineType, antiAliasing: enum.Enum_AntiAliasing) -> (),
-    DrawImage: (self: EditableImage, position: datatypes.Vector2, image: EditableImage, combineType: enum.Enum_ImageCombineType) -> (),
-    DrawImageProjected: (self: EditableImage, mesh: EditableMesh, projection: {[string]: any}, brushConfig: {[string]: any}) -> (),
+    DrawCircle: (self: EditableImage, center: datatypes.Vector2, radius: number, color: datatypes.Color3, transparency: number, combineType: enum.Enum_ImageCombineType, antiAliasing: enum.Enum_AntiAliasing, alphaBlendType: enum.Enum_ImageAlphaType) -> (),
+    DrawImage: (self: EditableImage, position: datatypes.Vector2, image: EditableImage, combineType: enum.Enum_ImageCombineType, alphaBlendType: enum.Enum_ImageAlphaType) -> (),
+    DrawImageProjected: (self: EditableImage, projectionSource: Object, projection: {[string]: any}, brushConfig: {[string]: any}) -> (),
     DrawImageTransformed: (self: EditableImage, position: datatypes.Vector2, scale: datatypes.Vector2, rotation: number, image: EditableImage, options: {[string]: any}) -> (),
-    DrawLine: (self: EditableImage, p1: datatypes.Vector2, p2: datatypes.Vector2, color: datatypes.Color3, transparency: number, combineType: enum.Enum_ImageCombineType, antiAliasing: enum.Enum_AntiAliasing) -> (),
-    DrawRectangle: (self: EditableImage, position: datatypes.Vector2, size: datatypes.Vector2, color: datatypes.Color3, transparency: number, combineType: enum.Enum_ImageCombineType) -> (),
+    DrawLine: (self: EditableImage, p1: datatypes.Vector2, p2: datatypes.Vector2, color: datatypes.Color3, transparency: number, combineType: enum.Enum_ImageCombineType, antiAliasing: enum.Enum_AntiAliasing, alphaBlendType: enum.Enum_ImageAlphaType) -> (),
+    DrawRectangle: (self: EditableImage, position: datatypes.Vector2, size: datatypes.Vector2, color: datatypes.Color3, transparency: number, combineType: enum.Enum_ImageCombineType, alphaBlendType: enum.Enum_ImageAlphaType) -> (),
     DrawTriangle: (self: EditableImage, p1: datatypes.Vector2, p2: datatypes.Vector2, p3: datatypes.Vector2, color: datatypes.Color3, transparency: number) -> (),
     ReadPixelsBuffer: (self: EditableImage, position: datatypes.Vector2, size: datatypes.Vector2) -> any,
-    SampleImageProjected: (self: EditableImage, sourceMesh: EditableMesh, sourceTexture: EditableImage, projectionConfig: {[string]: any}, brushConfig: {[string]: any}) -> (),
+    SampleImageProjected: (self: EditableImage, projectionSource: Object, sourceTexture: EditableImage, projectionConfig: {[string]: any}, brushConfig: {[string]: any}) -> (),
     WritePixelsBuffer: (self: EditableImage, position: datatypes.Vector2, size: datatypes.Vector2, buffer: any) -> (),
 }
 
@@ -67,7 +82,7 @@ export type EditableMesh = Object & {
     IsReplicatedCopy: boolean,
     AddBone: (self: EditableMesh, boneProperties: {[string]: any}) -> buffer,
     AddColor: (self: EditableMesh, color: datatypes.Color3, alpha: number) -> buffer,
-    AddFace: (self: EditableMesh, vertexIds: {any}) -> buffer,
+    AddFace: (self: EditableMesh, ...any) -> buffer,
     AddNormal: (self: EditableMesh, normal: datatypes.Vector3?) -> buffer,
     AddTriangle: (self: EditableMesh, vertexId0: buffer, vertexId1: buffer, vertexId2: buffer) -> buffer,
     AddUV: (self: EditableMesh, uv: datatypes.Vector2) -> buffer,
@@ -166,6 +181,41 @@ export type ExecutedRemoteCommand = Object & {
     Stop: (self: ExecutedRemoteCommand) -> (),
 }
 
+export type FeatureMatchingSession = Object & {
+    GetChannels: (self: FeatureMatchingSession) -> {any},
+    GetDimensionCount: (self: FeatureMatchingSession) -> number,
+    GetFeatureRow: (self: FeatureMatchingSession, row: number) -> any,
+    GetFeatureRows: (self: FeatureMatchingSession, rows: {any}) -> {any},
+    GetMetadataRow: (self: FeatureMatchingSession, row: number) -> {[string]: any},
+    GetRowCount: (self: FeatureMatchingSession) -> number,
+    GetSchemaName: (self: FeatureMatchingSession) -> string,
+    GetTagColumns: (self: FeatureMatchingSession) -> {any},
+    Search: (self: FeatureMatchingSession, query: any, params: FeatureSearchParams) -> {[string]: any},
+    SearchBatch: (self: FeatureMatchingSession, queries: {any}, sharedParams: FeatureSearchParams, perQueryParams: {any}) -> {any},
+    StandardizeQuery: (self: FeatureMatchingSession, query: any) -> any,
+}
+
+export type FeatureSearchParams = Object & {
+    AnchorCostScale: number,
+    AnchorIgnoresTagFilters: boolean,
+    AnchorRow: number,
+    MaxDistance: number,
+    MaxResults: number,
+    NormalizationKey: buffer,
+    ReturnChannelCosts: boolean,
+    SelectionMode: enum.Enum_FeatureSelectionMode,
+    SelectionSeed: buffer,
+    SelectionTemperature: number,
+    GetChannelWeights: (self: FeatureSearchParams) -> {[string]: any},
+    GetCostBiases: (self: FeatureSearchParams) -> {any},
+    GetFilters: (self: FeatureSearchParams) -> {[string]: any},
+    GetReturnedFields: (self: FeatureSearchParams) -> {any},
+    SetChannelWeights: (self: FeatureSearchParams, weights: {[string]: any}) -> (),
+    SetCostBiases: (self: FeatureSearchParams, costBiases: {any}) -> (),
+    SetFilters: (self: FeatureSearchParams, filters: {[string]: any}) -> (),
+    SetReturnedFields: (self: FeatureSearchParams, fieldNames: {any}) -> (),
+}
+
 export type Instance = Object & {
     Archivable: boolean,
     Attributes: string,
@@ -254,12 +304,23 @@ export type Hat = Accoutrement & {
 }
 
 export type AchievementService = Instance & {
+    IsAchievementAvailable: (self: AchievementService, achievementName: string) -> boolean,
     IsAvailable: (self: AchievementService) -> boolean,
     GrantAchievement: (self: AchievementService, achievementName: string) -> boolean,
     HasAchieved: (self: AchievementService, achievementName: string) -> boolean,
 }
 
 export type ActivityHistoryEventService = Instance & {
+}
+
+export type AdPlacement = Instance & {
+    ActivationInstance: any,
+    AdFormat: enum.Enum_AdFormat,
+    PlacementId: buffer,
+    RewardId: string,
+    RewardImageContent: any,
+    RewardName: string,
+    Visible: boolean,
 }
 
 export type AdPortal = Instance & {
@@ -269,6 +330,7 @@ export type AdPortal = Instance & {
 }
 
 export type AdService = Instance & {
+    CompleteRewardedVideoGrant: (self: AdService, userId: buffer, productId: buffer) -> (),
     CreateAdRewardFromDevProductId: (self: AdService, devProductId: buffer) -> any,
     GetAdTeleportInfo: (self: AdService) -> ...any,
     GetReportAdInfo: (self: AdService) -> {any},
@@ -277,7 +339,9 @@ export type AdService = Instance & {
     HideEudsaDisclosure: (self: AdService) -> (),
     IsAdLoaded: (self: AdService, adFormat: enum.Enum_AdFormat) -> boolean,
     OnDemandVideoCompleteFromUI: (self: AdService, result: enum.Enum_ShowAdResult, encryptedAdTrackingData: string, encryptionMetadata: string, rewardDetails: string) -> (),
+    PlayRewardedVideoAdOnClient: (self: AdService, player: Player, rewardDetails: {[string]: any}, placementId: buffer) -> (),
     RegisterDisclosureButton: (self: AdService, disclosureButton: GuiButton, adIntegrationPlacementId: string) -> (),
+    RegisterImpressionSource: (self: AdService, instance: any, adIntegrationPlacementId: string) -> (),
     ReturnToPublisherExperience: (self: AdService, adTeleportMethod: enum.Enum_AdTeleportMethod) -> (),
     SetAdGuiInteractivityHandlerInitialized: (self: AdService) -> (),
     SubmitAdNotification: (self: AdService, universeId: buffer, isShowAdSuccessful: boolean, earnedReward: boolean, rewardProductName: string, rewardProductImageAssetId: buffer) -> (),
@@ -307,6 +371,9 @@ export type AnalyticsService = Instance & {
     GetPlayerSegmentsAsync: (self: AnalyticsService, player: Player) -> {[string]: any},
 }
 
+export type AnimatedImageService = Instance & {
+}
+
 export type Animation = Instance & {
     AnimationContent: any,
     AnimationId: any,
@@ -334,14 +401,22 @@ export type KeyframeSequence = AnimationClip & {
 }
 
 export type AnimationClipProvider = Instance & {
+    GetAnimatedImageClipsChangedSignal: (self: AnimationClipProvider, content: any) -> any,
     GetAnimationNodeDefinition: (self: AnimationClipProvider, type: enum.Enum_AnimationNodeType) -> {[string]: any},
     GetAnimationNodeTypes: (self: AnimationClipProvider) -> {any},
+    GetAnimationValueNodeDefinition: (self: AnimationClipProvider, type: enum.Enum_AnimationValueNodeType) -> {[string]: any},
+    GetAnimationValueNodeTypes: (self: AnimationClipProvider) -> {any},
     GetMemStats: (self: AnimationClipProvider) -> {[string]: any},
     RegisterActiveAnimationClip: (self: AnimationClipProvider, animationClip: AnimationClip) -> any,
     RegisterAnimationClip: (self: AnimationClipProvider, animationClip: AnimationClip) -> any,
+    AddAnimatedImageClipAsync: (self: AnimationClipProvider, content: any, clipName: string, frames: {any}) -> (),
+    GetAnimatedImageClipFramesAsync: (self: AnimationClipProvider, content: any, clipName: string) -> {any},
+    GetAnimatedImageClipsAsync: (self: AnimationClipProvider, content: any) -> {any},
+    GetAnimatedImageFrameIndexAtTimeAsync: (self: AnimationClipProvider, content: any, clipName: string, timePosition: number) -> number,
     GetAnimationClipAsync: (self: AnimationClipProvider, assetId: any) -> AnimationClip,
     GetAnimationsAsync: (self: AnimationClipProvider, userId: any) -> any,
     GetClipEvaluatorAsync: (self: AnimationClipProvider, assetId: any) -> any,
+    ReloadAnimationClipAsync: (self: AnimationClipProvider, assetId: any) -> AnimationClip,
 }
 
 export type AnimationController = Instance & {
@@ -370,6 +445,26 @@ export type AnimationNodeDefinition = Instance & {
     SetOrderedInputPinNames: (self: AnimationNodeDefinition, pins: {any}) -> (),
 }
 
+export type AnimationPlayer = Instance & {
+    AnimationContent: any,
+    AutoPlay: boolean,
+    CurrentFrame: number,
+    Enabled: boolean,
+    IsPlaying: boolean,
+    Loop: boolean,
+    Parameters: boolean,
+    ParametersSerialize: buffer,
+    Speed: number,
+    TimePosition: number,
+    Track: string,
+    GetParameter: (self: AnimationPlayer, name: string) -> any,
+    GetParameterDefaults: (self: AnimationPlayer) -> {[string]: any},
+    Pause: (self: AnimationPlayer) -> (),
+    Play: (self: AnimationPlayer) -> (),
+    SetParameter: (self: AnimationPlayer, name: string, value: any) -> (),
+    Stop: (self: AnimationPlayer) -> (),
+}
+
 export type AnimationRigData = Instance & {
     Generic: buffer,
     label: buffer,
@@ -385,9 +480,9 @@ export type AnimationRigData = Instance & {
     GetPostTransforms: (self: AnimationRigData) -> {any},
     GetPreTransforms: (self: AnimationRigData) -> {any},
     GetTransforms: (self: AnimationRigData) -> {any},
+    Inspect: (self: AnimationRigData) -> {any},
     IsValidR15: (self: AnimationRigData) -> boolean,
     IsValidR15Plus: (self: AnimationRigData) -> boolean,
-    LoadFromHumanoid: (self: AnimationRigData, humanoid: any) -> boolean,
     LoadFromModel: (self: AnimationRigData, model: any) -> boolean,
 }
 
@@ -430,7 +525,16 @@ export type AnimationTrack = Instance & {
     SetParameter: (self: AnimationTrack, key: string, value: any) -> (),
     SetTargetInstance: (self: AnimationTrack, name: string, target: any) -> (),
     Stop: (self: AnimationTrack, fadeTime: number) -> (),
+    UpdateGraphNodeDefinition: (self: AnimationTrack, nodeId: string, nodeDefinition: any) -> boolean,
     UpdateGraphNodeProperty: (self: AnimationTrack, nodeId: string, propertyName: string, value: any, inputPinName: string) -> boolean,
+}
+
+export type AnimationValueNodeDefinition = Instance & {
+    NodeId: string,
+    NodeType: enum.Enum_AnimationValueNodeType,
+}
+
+export type AnimationValueOutputDefinition = Instance & {
 }
 
 export type Animator = Instance & {
@@ -560,13 +664,15 @@ export type AssetImportService = Instance & {
     StartSingleFileWatch: (self: AssetImportService, filePath: string) -> (),
     StopSingleFileWatch: (self: AssetImportService, filePath: string) -> (),
     GetFilesInDirAsync: (self: AssetImportService, path: string) -> {any},
+    PickAnimatedImageFileWithPromptAsync: (self: AssetImportService) -> string,
     PickFileWithPromptAsync: (self: AssetImportService) -> string,
     PickImageFileWithPrompt: (self: AssetImportService) -> string,
     PickMeshFileWithPrompt: (self: AssetImportService) -> string,
     PickMultipleFilesWithPrompt: (self: AssetImportService) -> {any},
+    PickTextDocumentFileWithPromptAsync: (self: AssetImportService) -> string,
     StartSessionWithPathAsync: (self: AssetImportService, filePath: string) -> AssetImportSession,
     UploadVersionedAssetFromContentAsync: (self: AssetImportService, content: string, createAssetRequest: {[string]: any}, assetId: buffer) -> ...any,
-    UploadVersionedAssetFromPathAsync: (self: AssetImportService, filepath: string, createAssetRequest: {[string]: any}, assetId: buffer) -> ...any,
+    UploadVersionedAssetFromPathAsync: (self: AssetImportService, filepath: string, createAssetRequest: {[string]: any}, assetId: buffer, progressCallback: any) -> ...any,
 }
 
 export type AssetManagerService = Instance & {
@@ -604,6 +710,8 @@ export type AssetPatchSettings = Instance & {
 export type AssetQualityService = Instance & {
     FetchAssetQualitySummaryFromGltfAsync: (self: AssetQualityService, gltfData: string, desiredQualityChecks: {any}) -> {[string]: any},
     FetchAssetQualitySummaryFromJobIdAsync: (self: AssetQualityService, jobId: string, desiredQualityChecks: {any}) -> {[string]: any},
+    FetchAssetQualitySummaryFromJobIdV2Async: (self: AssetQualityService, jobId: string, desiredQualityChecks: {any}) -> {[string]: any},
+    FetchAssetQualitySummaryFromUrlAsync: (self: AssetQualityService, summaryUrl: string, jobId: string, desiredQualityChecks: {any}) -> {[string]: any},
     FetchAssetQualityValidationEntriesFromModelsAsync: (self: AssetQualityService, models: {any}, assetTypeIds: {any}, settings: {[string]: any}) -> {[string]: any},
     FetchAssetQualityValidationRawFromModelsAsync: (self: AssetQualityService, models: {any}, assetTypeIds: {any}, settings: {[string]: any}) -> {[string]: any},
     FetchAssetQualityVisualizationDataFromUrlAsync: (self: AssetQualityService, visualizationUrl: string) -> {[string]: any},
@@ -622,6 +730,7 @@ export type AssetService = Instance & {
     CreateAssetAsync: (self: AssetService, object: Object, assetType: enum.Enum_AssetType, requestParameters: {[string]: any}) -> ...any,
     CreateAssetVersionAsync: (self: AssetService, object: Object, assetType: enum.Enum_AssetType, assetId: buffer, requestParameters: {[string]: any}) -> ...any,
     CreateDataModelContentAsync: (self: AssetService, content: any, options: {[string]: any}) -> ...any,
+    CreateDecalAsync: (self: AssetService, content: {[string]: any}) -> Decal,
     CreateEditableImageAsync: (self: AssetService, content: any, editableImageOptions: {[string]: any}) -> EditableImage,
     CreateEditableImageFromDownloadAsync: (self: AssetService, url: string) -> EditableImage,
     CreateEditableMeshAsync: (self: AssetService, content: any, editableMeshOptions: {[string]: any}) -> EditableMesh,
@@ -629,13 +738,18 @@ export type AssetService = Instance & {
     CreatePlaceAsync: (self: AssetService, placeName: string, templatePlaceID: buffer, description: string) -> buffer,
     CreatePlaceInPlayerInventoryAsync: (self: AssetService, player: any, placeName: string, templatePlaceID: buffer, description: string) -> buffer,
     CreateSurfaceAppearanceAsync: (self: AssetService, content: {[string]: any}) -> SurfaceAppearance,
+    CreateTextContentAsync: (self: AssetService, text: string) -> any,
+    CreateTextureAsync: (self: AssetService, content: {[string]: any}) -> Texture,
+    FetchAssetWithFormat: (self: AssetService, url: any, assetFormat: string, options: {[string]: any}) -> any,
     GetAssetIdsForPackageAsync: (self: AssetService, packageAssetId: buffer) -> {any},
     GetAudioMetadataAsync: (self: AssetService, idList: {any}) -> {any},
     GetBundleDetailsAsync: (self: AssetService, bundleId: buffer) -> {[string]: any},
     GetGamePlacesAsync: (self: AssetService) -> any,
+    GetLatestVersionUriAsync: (self: AssetService, asset: any) -> any,
     LoadAssetAsync: (self: AssetService, assetId: buffer) -> any,
-    PromptCreateAssetAsync: (self: AssetService, player: Player, instance: any, assetType: enum.Enum_AssetType) -> ...any,
+    PromptCreatePlatformContentAsync: (self: AssetService, player: Player, object: Object, assetType: enum.Enum_AssetType) -> ...any,
     PromptImportAnimationClipFromVideoAsync: (self: AssetService, player: Player, progressCallback: any) -> ...any,
+    ReadTextContentAsync: (self: AssetService, content: any) -> string,
     SavePlaceAsync: (self: AssetService, requestParameters: {[string]: any}) -> (),
     SearchAudioAsync: (self: AssetService, searchParameters: AudioSearchParams) -> AudioPages,
 }
@@ -722,6 +836,7 @@ export type AudioDeviceInput = Instance & {
     AccessList: buffer,
     AccessType: enum.Enum_AccessModifierType,
     Active: boolean,
+    DictationEnabled: boolean,
     EchoCancellation: boolean,
     GainControl: boolean,
     IsReady: boolean,
@@ -729,6 +844,7 @@ export type AudioDeviceInput = Instance & {
     MutedByLocalUser: boolean,
     NoiseSuppression: boolean,
     Player: Player,
+    Streaming: boolean,
     Volume: number,
     GetConnectedWires: (self: AudioDeviceInput, pin: string) -> any,
     GetInputPins: (self: AudioDeviceInput) -> {any},
@@ -784,6 +900,7 @@ export type AudioEmitter = Instance & {
     GetInputPins: (self: AudioEmitter) -> {any},
     GetInteractingListeners: (self: AudioEmitter) -> any,
     GetOutputPins: (self: AudioEmitter) -> {any},
+    GetWorldCFrame: (self: AudioEmitter) -> any,
     SetAngleAttenuation: (self: AudioEmitter, curve: {[string]: any}) -> (),
     SetDistanceAttenuation: (self: AudioEmitter, curve: {[string]: any}) -> (),
 }
@@ -877,6 +994,7 @@ export type AudioListener = Instance & {
     GetInputPins: (self: AudioListener) -> {any},
     GetInteractingEmitters: (self: AudioListener) -> any,
     GetOutputPins: (self: AudioListener) -> {any},
+    GetWorldCFrame: (self: AudioListener) -> any,
     Reset: (self: AudioListener) -> (),
     SetAngleAttenuation: (self: AudioListener, curve: {[string]: any}) -> (),
     SetDistanceAttenuation: (self: AudioListener, curve: {[string]: any}) -> (),
@@ -910,6 +1028,7 @@ export type AudioPlayer = Instance & {
     GetConnectedWires: (self: AudioPlayer, pin: string) -> any,
     GetInputPins: (self: AudioPlayer) -> {any},
     GetOutputPins: (self: AudioPlayer) -> {any},
+    GetPlaybackState: (self: AudioPlayer) -> string,
     Play: (self: AudioPlayer, atTime: number) -> buffer,
     Stop: (self: AudioPlayer, atTime: number) -> buffer,
     GetWaveformAsync: (self: AudioPlayer, timeRange: datatypes.NumberRange, samples: number) -> {any},
@@ -954,8 +1073,10 @@ export type AudioSearchParams = Instance & {
     Artist: string,
     AudioSubType: enum.Enum_AudioSubType,
     MaxDuration: number,
+    MaxPageSize: number,
     MinDuration: number,
     SearchKeyword: string,
+    SortType: enum.Enum_AudioSortType,
     Tag: string,
     Title: string,
 }
@@ -965,7 +1086,10 @@ export type AudioSpeechToText = Instance & {
     DisableVoiceDetection: boolean,
     EnableVolumeCheck: boolean,
     Enabled: boolean,
+    Locale: string,
+    Streaming: boolean,
     Text: string,
+    UsageType: string,
     VoiceDetected: boolean,
     VoiceDetectedOverride: boolean,
     GetConnectedWires: (self: AudioSpeechToText, pin: string) -> any,
@@ -973,7 +1097,32 @@ export type AudioSpeechToText = Instance & {
     GetOutputPins: (self: AudioSpeechToText) -> {any},
 }
 
+export type AudioStreamReader = Instance & {
+    Layout: enum.Enum_AudioChannelLayout,
+    SampleFormat: enum.Enum_AudioSampleFormat,
+    SampleRate: number,
+    WindowSize: enum.Enum_AudioWindowSize,
+    GetConnectedWires: (self: AudioStreamReader, pin: string) -> any,
+    GetInputPins: (self: AudioStreamReader) -> {any},
+    GetOutputPins: (self: AudioStreamReader) -> {any},
+    Peek: (self: AudioStreamReader, into: {any}) -> number,
+    Read: (self: AudioStreamReader, into: {any}) -> number,
+}
+
+export type AudioStreamWriter = Instance & {
+    Layout: enum.Enum_AudioChannelLayout,
+    SampleFormat: enum.Enum_AudioSampleFormat,
+    SampleRate: number,
+    WindowSize: enum.Enum_AudioWindowSize,
+    GetConnectedWires: (self: AudioStreamWriter, pin: string) -> any,
+    GetInputPins: (self: AudioStreamWriter) -> {any},
+    GetOutputPins: (self: AudioStreamWriter) -> {any},
+    Space: (self: AudioStreamWriter) -> number,
+    Write: (self: AudioStreamWriter, audioBuffer: {any}) -> number,
+}
+
 export type AudioTextToSpeech = Instance & {
+    AutoLocalize: boolean,
     IsLoaded: boolean,
     IsPlaying: boolean,
     Looping: boolean,
@@ -1082,93 +1231,58 @@ export type AvatarAbilityRules = Instance & {
     EnableSitting: boolean,
     EnableSprinting: boolean,
     EnableSwimming: boolean,
+    EnableTurning: boolean,
 }
 
 export type AvatarAccessoryRules = Instance & {
     AccessoryMode: enum.Enum_AvatarSettingsAccessoryMode,
-    CustomAccessoryMode: enum.Enum_AvatarSettingsCustomAccessoryMode,
-    CustomBackAccessoryEnabled: boolean,
-    CustomBackAccessoryId: buffer,
-    CustomFaceAccessoryEnabled: boolean,
-    CustomFaceAccessoryId: buffer,
-    CustomFrontAccessoryEnabled: boolean,
-    CustomFrontAccessoryId: buffer,
-    CustomHairAccessoryEnabled: boolean,
-    CustomHairAccessoryId: buffer,
-    CustomHeadAccessoryEnabled: boolean,
-    CustomHeadAccessoryId: buffer,
-    CustomNeckAccessoryEnabled: boolean,
-    CustomNeckAccessoryId: buffer,
-    CustomShoulderAccessoryEnabled: boolean,
-    CustomShoulderAccessoryId: buffer,
-    CustomWaistAccessoryEnabled: boolean,
-    CustomWaistAccessoryId: buffer,
+    BackAccessoryOverride: buffer,
     EnableEmissives: boolean,
     EnableSound: boolean,
+    EnableSpawnEffects: boolean,
     EnableVFX: boolean,
+    FaceAccessoryOverride: buffer,
+    FrontAccessoryOverride: buffer,
+    HairAccessoryOverride: buffer,
+    HeadAccessoryOverride: buffer,
     LimitBounds: datatypes.Vector3,
     LimitMethod: enum.Enum_AvatarSettingsAccessoryLimitMethod,
+    NeckAccessoryOverride: buffer,
+    ShoulderAccessoryOverride: buffer,
+    WaistAccessoryOverride: buffer,
     willRemoveAccessory: (self: AvatarAccessoryRules, humanoid: Humanoid, accessory: Accoutrement) -> boolean,
 }
 
 export type AvatarAnimationRules = Instance & {
-    AnimationClipsMode: enum.Enum_AvatarSettingsAnimationClipsMode,
     AnimationPacksMode: enum.Enum_AvatarSettingsAnimationPacksMode,
-    CustomClimbAnimationEnabled: boolean,
-    CustomClimbAnimationId: buffer,
-    CustomFallAnimationEnabled: boolean,
-    CustomFallAnimationId: buffer,
-    CustomIdleAlt1AnimationEnabled: boolean,
-    CustomIdleAlt1AnimationId: buffer,
-    CustomIdleAlt2AnimationEnabled: boolean,
-    CustomIdleAlt2AnimationId: buffer,
-    CustomIdleAnimationEnabled: boolean,
-    CustomIdleAnimationId: buffer,
-    CustomJumpAnimationEnabled: boolean,
-    CustomJumpAnimationId: buffer,
-    CustomRunAnimationEnabled: boolean,
-    CustomRunAnimationId: buffer,
-    CustomSwimAnimationEnabled: boolean,
-    CustomSwimAnimationId: buffer,
-    CustomSwimIdleAnimationEnabled: boolean,
-    CustomSwimIdleAnimationId: buffer,
-    CustomWalkAnimationEnabled: boolean,
-    CustomWalkAnimationId: buffer,
+    ClimbAnimationOverride: buffer,
+    FallAnimationOverride: buffer,
+    IdleAltAnimationOverride: buffer,
+    IdleAnimationOverride: buffer,
+    JumpAnimationOverride: buffer,
+    MoodAnimationOverride: buffer,
+    RunAnimationOverride: buffer,
+    SwimAnimationOverride: buffer,
+    SwimIdleAnimationOverride: buffer,
+    WalkAnimationOverride: buffer,
 }
 
 export type AvatarBodyRules = Instance & {
-    AppearanceMode: enum.Enum_AvatarSettingsAppearanceMode,
+    AvatarType: enum.Enum_GameAvatarType,
     BuildMode: enum.Enum_AvatarSettingsBuildMode,
-    CustomBodyBundleId: buffer,
-    CustomBodyType: enum.Enum_AvatarSettingsCustomBodyType,
-    CustomBodyTypeScale: datatypes.NumberRange,
-    CustomEyebrowEnabled: boolean,
-    CustomEyebrowId: buffer,
-    CustomEyelashEnabled: boolean,
-    CustomEyelashId: buffer,
-    CustomFaceEnabled: boolean,
-    CustomFaceId: buffer,
-    CustomHeadEnabled: boolean,
-    CustomHeadId: buffer,
-    CustomHeadScale: datatypes.NumberRange,
-    CustomHeight: datatypes.NumberRange,
-    CustomHeightScale: datatypes.NumberRange,
-    CustomLeftArmEnabled: boolean,
-    CustomLeftArmId: buffer,
-    CustomLeftLegEnabled: boolean,
-    CustomLeftLegId: buffer,
-    CustomMoodEnabled: boolean,
-    CustomMoodId: buffer,
-    CustomProportionsScale: datatypes.NumberRange,
-    CustomRightArmEnabled: boolean,
-    CustomRightArmId: buffer,
-    CustomRightLegEnabled: boolean,
-    CustomRightLegId: buffer,
-    CustomTorsoEnabled: boolean,
-    CustomTorsoId: buffer,
-    CustomWidthScale: datatypes.NumberRange,
-    KeepPlayerHead: boolean,
+    CustomBuildBodyType: datatypes.NumberRange,
+    CustomBuildHead: datatypes.NumberRange,
+    CustomBuildHeight: datatypes.NumberRange,
+    CustomBuildProportions: datatypes.NumberRange,
+    CustomBuildWidth: datatypes.NumberRange,
+    CustomWorldHeight: datatypes.NumberRange,
+    HeadOverride: buffer,
+    LeftArmOverride: buffer,
+    LeftLegOverride: buffer,
+    RightArmOverride: buffer,
+    RightLegOverride: buffer,
     ScaleMode: enum.Enum_AvatarSettingsScaleMode,
+    TorsoOverride: buffer,
 }
 
 export type AvatarChatService = Instance & {
@@ -1188,40 +1302,29 @@ export type AvatarChatService = Instance & {
 }
 
 export type AvatarClothingRules = Instance & {
+    ClassicPantsOverride: buffer,
+    ClassicShirtOverride: buffer,
+    ClassicTShirtOverride: buffer,
     ClothingMode: enum.Enum_AvatarSettingsClothingMode,
-    CustomClassicPantsAccessoryEnabled: boolean,
-    CustomClassicPantsAccessoryId: buffer,
-    CustomClassicShirtsAccessoryEnabled: boolean,
-    CustomClassicShirtsAccessoryId: buffer,
-    CustomClassicTShirtsAccessoryEnabled: boolean,
-    CustomClassicTShirtsAccessoryId: buffer,
-    CustomClothingMode: enum.Enum_AvatarSettingsCustomClothingMode,
-    CustomDressSkirtAccessoryEnabled: boolean,
-    CustomDressSkirtAccessoryId: buffer,
-    CustomJacketAccessoryEnabled: boolean,
-    CustomJacketAccessoryId: buffer,
-    CustomLeftShoesAccessoryEnabled: boolean,
-    CustomLeftShoesAccessoryId: buffer,
-    CustomPantsAccessoryEnabled: boolean,
-    CustomPantsAccessoryId: buffer,
-    CustomRightShoesAccessoryEnabled: boolean,
-    CustomRightShoesAccessoryId: buffer,
-    CustomShirtAccessoryEnabled: boolean,
-    CustomShirtAccessoryId: buffer,
-    CustomShortsAccessoryEnabled: boolean,
-    CustomShortsAccessoryId: buffer,
-    CustomSweaterAccessoryEnabled: boolean,
-    CustomSweaterAccessoryId: buffer,
-    CustomTShirtAccessoryEnabled: boolean,
-    CustomTShirtAccessoryId: buffer,
+    DressSkirtAccessoryOverride: buffer,
+    JacketAccessoryOverride: buffer,
+    LeftShoeAccessoryOverride: buffer,
     LimitBounds: datatypes.Vector3,
+    PantsAccessoryOverride: buffer,
+    RightShoeAccessoryOverride: buffer,
+    ShirtAccessoryOverride: buffer,
+    ShortsAccessoryOverride: buffer,
+    SweaterAccessoryOverride: buffer,
+    TShirtAccessoryOverride: buffer,
+    WillLimitLayeredAccessoryAsync: (self: AvatarClothingRules, humanoid: Humanoid, accessory: Accoutrement) -> boolean,
 }
 
 export type AvatarCollisionRules = Instance & {
+    BodyPartsCollidableOnDeath: boolean,
     CollisionMode: enum.Enum_AvatarSettingsCollisionMode,
-    HitAndTouchDetectionMode: enum.Enum_AvatarSettingsHitAndTouchDetectionMode,
-    LegacyCollisionMode: enum.Enum_AvatarSettingsLegacyCollisionMode,
+    HitboxSize: datatypes.Vector3,
     SingleColliderSize: datatypes.Vector3,
+    TouchAndQueryDetectionMode: enum.Enum_AvatarSettingsTouchAndQueryDetectionMode,
 }
 
 export type AvatarCreationService = Instance & {
@@ -1301,6 +1404,11 @@ export type AvatarEditorService = Instance & {
     SearchCatalogAsync: (self: AvatarEditorService, searchParameters: any) -> CatalogPages,
 }
 
+export type AvatarEffectDescription = Instance & {
+    AssetId: buffer,
+    EffectType: enum.Enum_AvatarEffectType,
+}
+
 export type AvatarImportService = Instance & {
     ImportFBXAnimationFromFilePathUserMayChooseModel: (self: AvatarImportService, fbxFilePath: string, selectedRig: any, userChooseModelThenImportCB: any) -> any,
     ImportFBXAnimationUserMayChooseModel: (self: AvatarImportService, selectedRig: any, userChooseModelThenImportCB: any) -> any,
@@ -1310,13 +1418,22 @@ export type AvatarImportService = Instance & {
 }
 
 export type AvatarRules = Instance & {
-    AvatarType: enum.Enum_GameAvatarType,
 }
 
 export type AvatarSettings = Instance & {
     Loaded: boolean,
+    RulesSchemaVersion: number,
     Discard: (self: AvatarSettings) -> (),
     Publish: (self: AvatarSettings) -> (),
+}
+
+export type BackendReplicatedStorage = Instance & {
+}
+
+export type BackendServerScriptService = Instance & {
+}
+
+export type BackendServerStorage = Instance & {
 }
 
 export type Backpack = Instance & {
@@ -1356,6 +1473,8 @@ export type BaseImportData = Instance & {
 }
 
 export type AnimationImportData = BaseImportData & {
+    ForceNewVersion: boolean,
+    VersionedAssetId: buffer,
 }
 
 export type FacsImportData = BaseImportData & {
@@ -1522,19 +1641,25 @@ export type WrapLayer = BaseWrap & {
     DebugMode: enum.Enum_WrapLayerDebugMode,
     Enabled: boolean,
     MaxSize: datatypes.Vector3,
+    NonUniformScaleContent: any,
     Offset: datatypes.Vector3,
     Order: number,
     ReferenceMeshContent: any,
     ReferenceMeshId: any,
     ReferenceOrigin: datatypes.CFrame,
     ReferenceOriginWorld: datatypes.CFrame,
+    RotateUniformScaleContent: any,
+    TargetShaping: number,
     TemporaryReferenceId: any,
     TemporaryReferenceMeshContent: any,
+    UniformScaleContent: any,
 }
 
 export type WrapTarget = BaseWrap & {
     Color: datatypes.Color3,
     DebugMode: enum.Enum_WrapTargetDebugMode,
+    CreateTextureInCageSpaceAsync: (self: WrapTarget, texture: EditableImage, options: {[string]: any}) -> EditableImage,
+    CreateTextureInTargetSpaceAsync: (self: WrapTarget, texture: EditableImage, wrapTextureTransfer: WrapTextureTransfer) -> EditableImage,
 }
 
 export type Beam = Instance & {
@@ -1637,6 +1762,19 @@ export type BodyPartDescription = Instance & {
 }
 
 export type BranchService = Instance & {
+    CompleteMerge: (self: BranchService) -> (),
+    GetInstanceConflicts: (self: BranchService) -> {any},
+    GetMergeChanges: (self: BranchService) -> DataModelDiff,
+    GetMergeResolution: (self: BranchService, identity: any, propName: string) -> enum.Enum_MergeResolution,
+    GetMergeStatus: (self: BranchService) -> enum.Enum_MergeStatus,
+    SetMergeResolution: (self: BranchService, identity: any, propName: string, resolution: enum.Enum_MergeResolution) -> (),
+    ArchiveBranchAsync: (self: BranchService, branchPlaceId: buffer) -> (),
+    CreateBranchAsync: (self: BranchService, sourcePlaceId: buffer, sourceVersionNumber: buffer, name: string) -> {[string]: any},
+    GetBranchesAsync: (self: BranchService, placeId: buffer, archived: boolean) -> {[string]: any},
+    GetDiffAsync: (self: BranchService, placeId: buffer, baseVersion: buffer, targetVersion: buffer) -> DataModelDiff,
+    RestoreBranchAsync: (self: BranchService, branchPlaceId: buffer) -> (),
+    StartMergeAsync: (self: BranchService, sourcePlaceId: buffer, ancestorVersion: buffer) -> (),
+    UpdateBranchAsync: (self: BranchService, branchPlaceId: buffer, status: enum.Enum_BranchStatus, name: string) -> {[string]: any},
 }
 
 export type Breakpoint = Instance & {
@@ -1669,11 +1807,6 @@ export type BugReporterService = Instance & {
     IsAvailable: (self: BugReporterService) -> boolean,
 }
 
-export type BulkImportService = Instance & {
-    LaunchBulkImport: (self: BulkImportService, assetTypeToImport: number) -> (),
-    ShowBulkImportView: (self: BulkImportService) -> (),
-}
-
 export type CacheableContentProvider = Instance & {
 }
 
@@ -1691,6 +1824,17 @@ export type SlimContentProvider = CacheableContentProvider & {
 export type SolidModelContentProvider = CacheableContentProvider & {
 }
 
+export type WrapContentProvider = CacheableContentProvider & {
+}
+
+export type CallingService = Instance & {
+    AnswerIncomingCall: (self: CallingService, callId: string) -> (),
+    EndCall: (self: CallingService, callId: string, reason: string) -> (),
+    GetCallingState: (self: CallingService, callId: string) -> {[string]: any},
+    ReceiveIncomingCall: (self: CallingService, pushPayloadJson: string) -> (),
+    CreateCallAsync: (self: CallingService, participantIds: {any}, chatChannelId: string) -> {[string]: any},
+}
+
 export type CalloutService = Instance & {
     AttachCallout: (self: CalloutService, definitionId: string, locationId: string, target: any) -> (),
     DefineCallout: (self: CalloutService, definitionId: string, title: string, description: string, learnMoreURL: string) -> (),
@@ -1700,6 +1844,7 @@ export type CalloutService = Instance & {
 export type CaptureService = Instance & {
     CanCaptureVideo: (self: CaptureService) -> boolean,
     CaptureScreenshot: (self: CaptureService, onCaptureReady: any) -> (),
+    CloneForSnapshot: (self: CaptureService, instances: any, includeNonArchivable: boolean) -> SceneSnapshot,
     DeleteCapture: (self: CaptureService, capturePath: string) -> (),
     DeleteVideoCapture: (self: CaptureService, videoCapture: VideoCapture) -> (),
     GetDeviceInfo: (self: CaptureService) -> {[string]: any},
@@ -1723,15 +1868,17 @@ export type CaptureService = Instance & {
     SaveScreenshotCapture: (self: CaptureService, additionalInfo: string) -> (),
     SaveVideoCaptureToExternalStorage: (self: CaptureService, videoCapture: VideoCapture) -> (),
     StopVideoCapture: (self: CaptureService) -> (),
+    StopVideoCaptureForMCP: (self: CaptureService) -> (),
     StopVideoCaptureInternal: (self: CaptureService) -> (),
     TakeScreenshotCaptureAsync: (self: CaptureService, onCaptureReady: any, captureParams: {[string]: any}) -> (),
     UploadCaptureAndPostMoment: (self: CaptureService, capture: Capture, momentMetadata: {[string]: any}, feedRegistrationInfo: {[string]: any}) -> (),
     CheckMomentTextStatusAsync: (self: CaptureService, token: string) -> ...any,
     CheckUploadCaptureStatusAsync: (self: CaptureService, token: string) -> ...any,
+    CheckUploadCaptureStatusForSupportTicketAsync: (self: CaptureService, operationId: string) -> ...any,
     CreatePostAsync: (self: CaptureService, pathArr: {any}, caption: string) -> {[string]: any},
     DeleteCapturesAsync: (self: CaptureService, pathArr: {any}) -> buffer,
     DeleteVideoCaptureAsync: (self: CaptureService, videoCapture: VideoCapture) -> boolean,
-    GenerateMomentTextAsync: (self: CaptureService, capture: Capture) -> ...any,
+    GenerateMomentTextAsync: (self: CaptureService, capture: Capture, tone: string) -> ...any,
     GetCaptureFilePathAsync: (self: CaptureService, captureContent: any) -> string,
     GetCaptureSizeAsync: (self: CaptureService, captureContent: any) -> datatypes.Vector2,
     GetCaptureStorageSizeAsync: (self: CaptureService, pathArr: {any}) -> buffer,
@@ -1744,6 +1891,7 @@ export type CaptureService = Instance & {
     StartUploadCaptureAsync: (self: CaptureService, capture: Capture) -> ...any,
     StartUploadCaptureForSupportTicketAsync: (self: CaptureService, capture: Capture) -> ...any,
     StartVideoCaptureAsync: (self: CaptureService, onCaptureReady: any, captureParams: {[string]: any}) -> enum.Enum_VideoCaptureStartedResult,
+    StartVideoCaptureForMCPAsync: (self: CaptureService, onCaptureReady: any) -> enum.Enum_VideoCaptureStartedResult,
     StartVideoCaptureInternalAsync: (self: CaptureService) -> enum.Enum_VideoCaptureStartedResult,
     UploadCaptureAsync: (self: CaptureService, capture: Capture) -> ...any,
     UploadPostAsync: (self: CaptureService, capture: Capture, postMetadata: {[string]: any}) -> {[string]: any},
@@ -1895,6 +2043,21 @@ export type ClientStorageService = Instance & {
 export type CloudCRUDService = Instance & {
 }
 
+export type CloudClientService = Instance & {
+    IsCloudClient: boolean,
+    IsRobloxRealityEnvironment: boolean,
+    RobloxRealityFilterEnabled: boolean,
+    SessionTimeLimit: number,
+    CheckOfferEligibility: (self: CloudClientService, offerType: string) -> boolean,
+    GetSessionElapsedTime: (self: CloudClientService) -> number,
+    ReleaseReservation: (self: CloudClientService, reservationToken: string) -> (),
+    ReportOfferDecision: (self: CloudClientService, reservationToken: string, decision: string) -> (),
+    CheckEligibilityAsync: (self: CloudClientService, pool: string) -> boolean,
+    CheckOfferEligibilityAsync: (self: CloudClientService, offerType: string) -> boolean,
+    MakeOfferReservationAsync: (self: CloudClientService, placeId: buffer, offerType: string) -> string,
+    MakeReservationAsync: (self: CloudClientService, placeId: buffer, pool: string) -> string,
+}
+
 export type CloudExecutionService = Instance & {
 }
 
@@ -1931,7 +2094,9 @@ export type CollaboratorsService = Instance & {
 export type CollectionService = Instance & {
     AddTag: (self: CollectionService, instance: any, tag: string) -> (),
     CreateCollection: (self: CollectionService, query: string, root: any) -> any,
+    GetAllCollections: (self: CollectionService) -> {any},
     GetAllTags: (self: CollectionService) -> {any},
+    GetCollections: (self: CollectionService, instance: any) -> {any},
     GetInstanceAddedSignal: (self: CollectionService, tag: string) -> any,
     GetInstanceRemovedSignal: (self: CollectionService, tag: string) -> any,
     GetTagAddedSignal: (self: CollectionService, instance: any) -> any,
@@ -2248,6 +2413,25 @@ export type ContextActionService = Instance & {
     GetButton: (self: ContextActionService, actionName: string) -> any,
 }
 
+export type ControlState = Instance & {
+    Owner: Player,
+    StateSchema: buffer,
+    AddBoolField: (self: ControlState, name: string, defaultValue: boolean) -> (),
+    AddCFrameField: (self: ControlState, name: string, defaultValue: datatypes.CFrame) -> (),
+    AddInstanceField: (self: ControlState, name: string) -> (),
+    AddIntField: (self: ControlState, name: string, defaultValue: number, min: number, max: number) -> (),
+    AddNumberField: (self: ControlState, name: string, defaultValue: number, min: number, max: number) -> (),
+    AddUnitVector3Field: (self: ControlState, name: string, defaultValue: datatypes.Vector3) -> (),
+    AddVector2Field: (self: ControlState, name: string, defaultValue: datatypes.Vector2, maxMagnitude: number) -> (),
+    AddVector3Field: (self: ControlState, name: string, defaultValue: datatypes.Vector3, maxMagnitude: number) -> (),
+    GetChangedState: (self: ControlState, prev: enum.Enum_StateReferenceFrame, next: enum.Enum_StateReferenceFrame) -> {[string]: any},
+    GetReplicationWeight: (self: ControlState) -> number,
+    GetState: (self: ControlState, ref: enum.Enum_StateReferenceFrame) -> {[string]: any},
+    HasField: (self: ControlState, name: string) -> boolean,
+    SetField: (self: ControlState, name: string, value: any) -> (),
+    UpdateFields: (self: ControlState, state: {[string]: any}) -> (),
+}
+
 export type Controller = Instance & {
     BindButton: (self: Controller, button: enum.Enum_Button, caption: string) -> (),
     GetButton: (self: Controller, button: enum.Enum_Button) -> boolean,
@@ -2404,13 +2588,6 @@ export type FileMesh = DataModelMesh & {
 
 export type SpecialMesh = FileMesh & {
     MeshType: enum.Enum_MeshType,
-}
-
-export type DataModelPatchService = Instance & {
-    GetLuaVersion: (self: DataModelPatchService, patchName: string) -> string,
-    GetPatch: (self: DataModelPatchService, patchName: string) -> any,
-    RegisterPatch: (self: DataModelPatchService, patchName: string, behaviorName: string, localConfigPath: string, userId: buffer) -> (),
-    UpdatePatch: (self: DataModelPatchService, userId: buffer, patchName: string, callbackFunction: any) -> (),
 }
 
 export type DataModelSession = Instance & {
@@ -2780,16 +2957,22 @@ export type ExperienceNotificationService = Instance & {
 }
 
 export type ExperienceService = Instance & {
+    ConsumePendingExperienceLeaveWithReason: (self: ExperienceService) -> {[string]: any},
     ExecuteCrossExperienceCall: (self: ExperienceService, callId: string, params: {[string]: any}, successCallback: any, errorCallback: any) -> (),
+    GetConnectedServerInfo: (self: ExperienceService) -> {[string]: any},
+    GetConnectedServerProbeSnapshot: (self: ExperienceService) -> {any},
     GetFollowUserId: (self: ExperienceService) -> buffer,
     GetPendingJoinAttempt: (self: ExperienceService) -> {[string]: any},
     GetPlaceJoinState: (self: ExperienceService) -> string,
     GetQueuePosition: (self: ExperienceService) -> number,
+    IsInExperience: (self: ExperienceService) -> boolean,
     LaunchExperience: (self: ExperienceService, params: {[string]: any}) -> string,
     LaunchExperienceFromSource: (self: ExperienceService, params: {[string]: any}, source: string) -> string,
     LaunchExperienceFromSourceWithCallback: (self: ExperienceService, params: {[string]: any}, source: string, callback: any) -> (),
+    LeaveExperienceWithReason: (self: ExperienceService, reason: string) -> (),
     RegisterForExperienceJoin: (self: ExperienceService, callback: any) -> any,
     RegisterForExperienceLeave: (self: ExperienceService, callback: any) -> any,
+    SetConnectedServerProbingActive: (self: ExperienceService, active: boolean) -> boolean,
     StartCrossExperience: (self: ExperienceService, type: string, params: {[string]: any}) -> (),
     StopCrossExperience: (self: ExperienceService, type: string, params: {[string]: any}) -> (),
 }
@@ -2846,6 +3029,12 @@ export type Explosion = Instance & {
     Position: datatypes.Vector3,
     TimeScale: number,
     Visible: boolean,
+}
+
+export type ExternalIdentityService = Instance & {
+    CancelActiveOperation: (self: ExternalIdentityService) -> (),
+    AcquireProofAsync: (self: ExternalIdentityService, provider: string, nonce: string, browserStartUrl: string) -> ...any,
+    GetCapabilitiesAsync: (self: ExternalIdentityService) -> {[string]: any},
 }
 
 export type FaceAnimatorService = Instance & {
@@ -2925,11 +3114,16 @@ export type Decal = FaceInstance & {
     Color3: datatypes.Color3,
     ColorMap: any,
     ColorMapContent: any,
+    EmissiveMaskContent: any,
+    EmissiveStrength: number,
+    EmissiveTint: datatypes.Color3,
     LocalTransparencyModifier: number,
+    LocalizedTextureContent: any,
     MetalnessMap: any,
     MetalnessMapContent: any,
     NormalMap: any,
     NormalMapContent: any,
+    ResampleMode: enum.Enum_ResamplerMode,
     Rotation: number,
     RoughnessMap: any,
     RoughnessMapContent: any,
@@ -2993,6 +3187,18 @@ export type Hole = Feature & {
 export type MotorFeature = Feature & {
 }
 
+export type FeatureMatchingService = Instance & {
+    CreateSearchParams: (self: FeatureMatchingService) -> FeatureSearchParams,
+    CreateTable: (self: FeatureMatchingService, schema: {[string]: any}, rawFeatures: any, offset: any, scale: any, metadataColumns: {[string]: any}) -> FeatureMatchingTable,
+    Load: (self: FeatureMatchingService, featureTable: FeatureMatchingTable) -> FeatureMatchingSession,
+    LoadAsync: (self: FeatureMatchingService, source: any) -> FeatureMatchingSession,
+}
+
+export type FeatureMatchingTable = Instance & {
+    SchemaName: string,
+    GetSchema: (self: FeatureMatchingTable) -> {[string]: any},
+}
+
 export type FeatureRestrictionManager = Instance & {
 }
 
@@ -3007,6 +3213,11 @@ export type FileManagerService = Instance & {
     OpenFolder: (self: FileManagerService, folder: enum.Enum_EngineFolder) -> (),
     RevealFileInFolder: (self: FileManagerService, folder: enum.Enum_EngineFolder, fileName: string) -> (),
     ListFilesInFolderAsync: (self: FileManagerService, folder: enum.Enum_EngineFolder) -> {any},
+}
+
+export type FilePickerService = Instance & {
+    IsSupported: (self: FilePickerService, options: {[string]: any}) -> boolean,
+    PickFilesAsync: (self: FilePickerService, options: {[string]: any}) -> {[string]: any},
 }
 
 export type FileSyncReplicationService = Instance & {
@@ -3050,11 +3261,29 @@ export type NonReplicatedCSGDictionaryService = FlyweightService & {
 }
 
 export type Folder = Instance & {
+    ExplorerIconContent: any,
+    IconTint: datatypes.Color3,
     ReplicatedGuiInsertionOrder: number,
 }
 
 export type GeneratedFolder = Folder & {
     SetPrimaryPart: (self: GeneratedFolder, part: BasePart) -> (),
+}
+
+export type FollowRotationBoneBehavior = Instance & {
+    CounterRotate: boolean,
+    Driver: any,
+    Weight: number,
+}
+
+export type FollowTwistBoneBehavior = Instance & {
+    Axis: enum.Enum_Axis,
+    AxisMode: enum.Enum_FollowTwistBoneAxisMode,
+    CounterRotate: boolean,
+    Driver: any,
+    EndBone: any,
+    StartBone: any,
+    Weight: number,
 }
 
 export type ForceField = Instance & {
@@ -3063,6 +3292,35 @@ export type ForceField = Instance & {
 
 export type FriendService = Instance & {
     GetPlatformFriends: (self: FriendService) -> {any},
+}
+
+export type FriendsCallingInstance = Instance & {
+    CallId: string,
+    ConversationId: buffer,
+    EndReason: enum.Enum_FriendsCallingEndReason,
+    InitiatorUserId: buffer,
+    IsDeafened: boolean,
+    Phase: enum.Enum_FriendsCallingPhase,
+    Volume: number,
+}
+
+export type FriendsCallingParticipant = Instance & {
+    Error: enum.Enum_FriendsCallingParticipantErrors,
+    IsLocalMuted: boolean,
+    IsSpeaking: boolean,
+    LeaveReason: enum.Enum_FriendsCallingParticipantLeaveReason,
+    Status: enum.Enum_FriendsCallingParticipantStatus,
+    UserId: buffer,
+    Volume: number,
+}
+
+export type FriendsCallingService = Instance & {
+    AnswerCall: (self: FriendsCallingService, callId: string) -> (),
+    EndCall: (self: FriendsCallingService, callId: string, reason: string) -> (),
+    ReceiveCall: (self: FriendsCallingService, pushPayloadJson: string) -> (),
+    SetMuted: (self: FriendsCallingService, muted: boolean) -> (),
+    SetVolume: (self: FriendsCallingService, volume: number) -> (),
+    StartCall: (self: FriendsCallingService, params: {[string]: any}) -> (),
 }
 
 export type FunctionalTest = Instance & {
@@ -3079,6 +3337,12 @@ export type FunctionalTest = Instance & {
     Warn: (self: FunctionalTest, message: string) -> (),
 }
 
+export type GameDownloaderService = Instance & {
+    CancelGameDownload: (self: GameDownloaderService, universeId: buffer) -> (),
+    DownloadGame: (self: GameDownloaderService, universeId: buffer) -> enum.Enum_GameDownloadStartResult,
+    GetGameDownloadStatus: (self: GameDownloaderService, universeId: buffer) -> {[string]: any},
+}
+
 export type GamePassService = Instance & {
 }
 
@@ -3089,7 +3353,7 @@ export type GamepadService = Instance & {
     GamepadCursorEnabled: boolean,
     AutoSelectGui: (self: GamepadService) -> (),
     DisableGamepadCursor: (self: GamepadService) -> (),
-    EnableGamepadCursor: (self: GamepadService, guiObject: any) -> (),
+    EnableGamepadCursor: (self: GamepadService, guiObject: GuiObject) -> (),
     GetGamepadCursorPosition: (self: GamepadService) -> datatypes.Vector2,
     SetGamepadCursorPosition: (self: GamepadService, position: datatypes.Vector2) -> (),
 }
@@ -3097,7 +3361,9 @@ export type GamepadService = Instance & {
 export type GenerationService = Instance & {
     ConnectAsync: (self: GenerationService, sessionId: string, sdp: string, type: string, relay: string) -> ...any,
     DisconnectAsync: (self: GenerationService, sessionId: string) -> boolean,
+    ExportInstanceToGlbAsync: (self: GenerationService, rootInstance: any, userId: buffer) -> string,
     ExportMeshToGlbAsync: (self: GenerationService, meshPart: MeshPart) -> string,
+    GenerateAnimationAsync: (self: GenerationService, inputs: {[string]: any}, options: {[string]: any}, progressCallback: any) -> ...any,
     GenerateMeshAsync: (self: GenerationService, inputs: {[string]: any}, player: Player, options: {[string]: any}, intermediateResultCallback: any) -> ...any,
     GenerateModelAsync: (self: GenerationService, inputs: {[string]: any}, schema: {[string]: any}, options: {[string]: any}) -> ...any,
     GetVideoGenSessionAsync: (self: GenerationService) -> ...any,
@@ -3125,13 +3391,17 @@ export type Geometry = Instance & {
 
 export type GeometryService = Instance & {
     CalculateConstraintsToPreserve: (self: GeometryService, source: any, destination: {any}, options: {[string]: any}) -> {any},
-    CreateSolidPrimitive: (self: GeometryService, type: enum.Enum_SolidPrimitiveType, options: {[string]: any}) -> MeshPart,
+    CreateBasicMeshPart: (self: GeometryService, shape: enum.Enum_BasicMeshPartShape, options: {[string]: any}) -> MeshPart,
     GenerateFragmentSites: (self: GeometryService, part: BasePart, options: {[string]: any}) -> {any},
     TranscodeMesh: (self: GeometryService, instance: any) -> (),
     TranscodeModel: (self: GeometryService, instance: any) -> {any},
+    BakeToMeshAsync: (self: GeometryService, input: any, options: {[string]: any}) -> MeshPart,
     FragmentAsync: (self: GeometryService, part: BasePart, sites: {any}, options: {[string]: any}) -> {any},
     HashMeshAsync: (self: GeometryService, meshId: any) -> string,
     IntersectAsync: (self: GeometryService, part: any, parts: {any}, options: {[string]: any}) -> {any},
+    NegateAsync: (self: GeometryService, parts: any) -> {any},
+    SeparateAsync: (self: GeometryService, parts: any) -> {any},
+    SplitApartAsync: (self: GeometryService, parts: {any}, options: {[string]: any}) -> {any},
     SubtractAsync: (self: GeometryService, part: any, parts: {any}, options: {[string]: any}) -> {any},
     SweepPartAsync: (self: GeometryService, part: BasePart, cframes: {any}, options: {[string]: any}) -> MeshPart,
     UnionAsync: (self: GeometryService, part: any, parts: {any}, options: {[string]: any}) -> {any},
@@ -3231,15 +3501,12 @@ export type GuiObject = GuiBase2d & {
     SelectionImageObject: GuiObject,
     SelectionOrder: number,
     SelectionRect2D: datatypes.Rect,
+    Sink: enum.Enum_InputSink,
     Size: datatypes.UDim2,
     SizeConstraint: enum.Enum_SizeConstraint,
-    Transparency: number,
     Visible: boolean,
     ZIndex: number,
-    TweenPosition: (self: GuiObject, endPosition: datatypes.UDim2, easingDirection: enum.Enum_EasingDirection, easingStyle: enum.Enum_EasingStyle, time: number, override: boolean, callback: any) -> boolean,
     TweenPositionInternal: (self: GuiObject, endPosition: datatypes.UDim2, easingDirection: enum.Enum_EasingDirection, easingStyle: enum.Enum_EasingStyle, time: number, override: boolean, callback: any) -> boolean,
-    TweenSize: (self: GuiObject, endSize: datatypes.UDim2, easingDirection: enum.Enum_EasingDirection, easingStyle: enum.Enum_EasingStyle, time: number, override: boolean, callback: any) -> boolean,
-    TweenSizeAndPosition: (self: GuiObject, endSize: datatypes.UDim2, endPosition: datatypes.UDim2, easingDirection: enum.Enum_EasingDirection, easingStyle: enum.Enum_EasingStyle, time: number, override: boolean, callback: any) -> boolean,
     TweenSizeAndPositionInternal: (self: GuiObject, endSize: datatypes.UDim2, endPosition: datatypes.UDim2, easingDirection: enum.Enum_EasingDirection, easingStyle: enum.Enum_EasingStyle, time: number, override: boolean, callback: any) -> boolean,
     TweenSizeInternal: (self: GuiObject, endSize: datatypes.UDim2, easingDirection: enum.Enum_EasingDirection, easingStyle: enum.Enum_EasingStyle, time: number, override: boolean, callback: any) -> boolean,
 }
@@ -3476,8 +3743,10 @@ export type TextBox = GuiObject & {
 }
 
 export type TextChannelWindow = GuiObject & {
+    FontFace: datatypes.Font,
     IsRendering: boolean,
     Target: TextChannel,
+    UseDefaultFont: boolean,
 }
 
 export type VideoDisplay = GuiObject & {
@@ -3530,6 +3799,7 @@ export type ViewportFrame = GuiObject & {
 
 export type LayerCollector = GuiBase2d & {
     Enabled: boolean,
+    InputSinkEnabled: enum.Enum_RolloutState,
     ResetOnSpawn: boolean,
     TabKeyboardNavigation: boolean,
     ZIndexBehavior: enum.Enum_ZIndexBehavior,
@@ -3570,6 +3840,7 @@ export type DockWidgetPluginGui = PluginGui & {
 }
 
 export type QWidgetPluginGui = PluginGui & {
+    CloseButtonEnabled: boolean,
 }
 
 export type ScreenGui = LayerCollector & {
@@ -3659,11 +3930,13 @@ export type HandleAdornment = PVAdornment & {
 }
 
 export type BoxHandleAdornment = HandleAdornment & {
+    DoubleSided: boolean,
     Shading: enum.Enum_AdornShading,
     Size: datatypes.Vector3,
 }
 
 export type ConeHandleAdornment = HandleAdornment & {
+    DoubleSided: boolean,
     Height: number,
     Hollow: boolean,
     Radius: number,
@@ -3672,6 +3945,7 @@ export type ConeHandleAdornment = HandleAdornment & {
 
 export type CylinderHandleAdornment = HandleAdornment & {
     Angle: number,
+    DoubleSided: boolean,
     Height: number,
     InnerRadius: number,
     Radius: number,
@@ -3679,6 +3953,7 @@ export type CylinderHandleAdornment = HandleAdornment & {
 }
 
 export type ImageHandleAdornment = HandleAdornment & {
+    DoubleSided: boolean,
     Image: any,
     ImageContent: any,
     Size: datatypes.Vector2,
@@ -3690,6 +3965,7 @@ export type LineHandleAdornment = HandleAdornment & {
 }
 
 export type PyramidHandleAdornment = HandleAdornment & {
+    DoubleSided: boolean,
     Height: number,
     Shading: enum.Enum_AdornShading,
     Sides: number,
@@ -3697,6 +3973,7 @@ export type PyramidHandleAdornment = HandleAdornment & {
 }
 
 export type SphereHandleAdornment = HandleAdornment & {
+    DoubleSided: boolean,
     Radius: number,
     Shading: enum.Enum_AdornShading,
 }
@@ -3797,12 +4074,19 @@ export type GuiService = Instance & {
     CoreEffectFolder: Folder,
     CoreGuiFolder: Folder,
     CoreGuiNavigationEnabled: boolean,
+    CoreUISafeAreaInsetBottomRight: datatypes.Vector2,
+    CoreUISafeAreaInsetTopLeft: datatypes.Vector2,
     DisplayScalingMode: enum.Enum_DisplayScalingMode,
+    FullscreenViewport: datatypes.Rect,
     GuiNavigationEnabled: boolean,
+    HardwareSafeAreaInsetBottomRight: datatypes.Vector2,
+    HardwareSafeAreaInsetTopLeft: datatypes.Vector2,
     MenuIsOpen: boolean,
     PreferredTextSize: enum.Enum_PreferredTextSize,
     PreferredTransparency: number,
     ReducedMotionEnabled: boolean,
+    ScreenContextRawScreenScale: number,
+    ScreenContextTopbarInset: datatypes.Rect,
     SelectedCoreObject: GuiObject,
     SelectedObject: GuiObject,
     TopbarInset: datatypes.Rect,
@@ -3818,9 +4102,11 @@ export type GuiService = Instance & {
     CloseStatsBasedOnInputString: (self: GuiService, input: string) -> boolean,
     DismissNotification: (self: GuiService, notificationId: string) -> boolean,
     ForceTenFootInterface: (self: GuiService, isForced: boolean) -> (),
+    GetAutoUIScaleHundredths: (self: GuiService) -> number,
     GetBrickCount: (self: GuiService) -> number,
     GetClosestDialogToPosition: (self: GuiService, position: datatypes.Vector3) -> any,
     GetClosestVisibleDialogToPosition: (self: GuiService, position: datatypes.Vector3) -> Dialog,
+    GetEffectiveUIScaleHundredths: (self: GuiService) -> number,
     GetEmotesMenuOpen: (self: GuiService) -> boolean,
     GetErrorCode: (self: GuiService) -> enum.Enum_ConnectionError,
     GetErrorDetails: (self: GuiService) -> {[string]: any},
@@ -3835,7 +4121,7 @@ export type GuiService = Instance & {
     GetRawScreenScale: (self: GuiService) -> number,
     GetResolutionScale: (self: GuiService) -> number,
     GetSafeZoneOffsets: (self: GuiService) -> {[string]: any},
-    GetUIScaleMultiplier: (self: GuiService) -> number,
+    GetUIScaleOptions: (self: GuiService) -> {[string]: any},
     GetUiMessage: (self: GuiService) -> string,
     InspectPlayerFromHumanoidDescription: (self: GuiService, humanoidDescription: any, name: string) -> (),
     InspectPlayerFromUserId: (self: GuiService, userId: any) -> (),
@@ -3877,6 +4163,7 @@ export type HapticEffect = Instance & {
     Radius: number,
     Type: enum.Enum_HapticEffectType,
     WaveformData: buffer,
+    GetWaveformKeys: (self: HapticEffect) -> {any},
     Play: (self: HapticEffect) -> (),
     SetWaveformKeys: (self: HapticEffect, keys: {any}) -> (),
     Stop: (self: HapticEffect) -> (),
@@ -3910,6 +4197,11 @@ export type HeightmapImporterService = Instance & {
     SetImportHeightmapPaused: (self: HeightmapImporterService, paused: boolean) -> (),
     GetHeightmapPreviewAsync: (self: HeightmapImporterService, heightmapAssetId: any) -> ...any,
     ImportHeightmap: (self: HeightmapImporterService, region: any, heightmapAssetId: any, colormapAssetId: any, defaultMaterial: enum.Enum_Material) -> (),
+    ImportHeightmapWithMaterialSlotsAsync: (self: HeightmapImporterService, region: any, heightmapAssetId: any, colormapAssetId: any, defaultMaterialIndex: number) -> (),
+}
+
+export type HiddenPlayerService = Instance & {
+    LocalHiddenPlayer: Player,
 }
 
 export type HiddenSurfaceRemovalAsset = Instance & {
@@ -3972,6 +4264,7 @@ export type Humanoid = Instance & {
     AutoJumpEnabled: boolean,
     AutoRotate: boolean,
     AutomaticScalingEnabled: boolean,
+    BodyPartsCollidableOnDeath: boolean,
     BreakJointsOnDeath: boolean,
     CameraMaxDistance: number,
     CameraMinDistance: number,
@@ -3987,6 +4280,9 @@ export type Humanoid = Instance & {
     HealthDisplayType: enum.Enum_HumanoidHealthDisplayType,
     Health_XML: number,
     HipHeight: number,
+    InternalAnimationHipHeight: number,
+    InternalAvatarRulesRootPartSize: datatypes.Vector3,
+    InternalAvatarRulesRootPartSizeScalesWithBody: boolean,
     InternalBodyScale: datatypes.Vector3,
     InternalDisplayName: string,
     InternalHeadScale: number,
@@ -4003,7 +4299,6 @@ export type Humanoid = Instance & {
     NameOcclusion: enum.Enum_NameOcclusion,
     NetworkHumanoidState: enum.Enum_HumanoidStateType,
     NoFloorTimerState: number,
-    OverrideDefaultCollisions: boolean,
     PlatformStand: boolean,
     RequiresNeck: boolean,
     RigType: enum.Enum_HumanoidRigType,
@@ -4015,6 +4310,7 @@ export type Humanoid = Instance & {
     TargetPoint: datatypes.Vector3,
     TimerState: number,
     UseJumpPower: boolean,
+    UsesAvatarCollider: boolean,
     WalkAngleError: number,
     WalkDirection: datatypes.Vector3,
     WalkSpeed: number,
@@ -4030,6 +4326,7 @@ export type Humanoid = Instance & {
     GetAccessoryHandleScale: (self: Humanoid, instance: any, partType: enum.Enum_BodyPartR15) -> datatypes.Vector3,
     GetAppliedDescription: (self: Humanoid) -> HumanoidDescription,
     GetBodyPartR15: (self: Humanoid, part: any) -> enum.Enum_BodyPartR15,
+    GetCanCollideOnDeath: (self: Humanoid, part: BasePart, fallback: boolean) -> boolean,
     GetLimb: (self: Humanoid, part: any) -> enum.Enum_Limb,
     GetMoveVelocity: (self: Humanoid) -> datatypes.Vector3,
     GetRelativeVelocityAtFloor: (self: Humanoid) -> datatypes.Vector3,
@@ -4044,9 +4341,10 @@ export type Humanoid = Instance & {
     TakeDamage: (self: Humanoid, amount: number) -> (),
     UnequipTools: (self: Humanoid) -> (),
     CacheDefaults: (self: Humanoid) -> (),
-    ApplyAvatarRules: (self: Humanoid, avatarRules: AvatarRules) -> (),
+    ApplyAvatarRulesAsync: (self: Humanoid, avatarRules: any) -> (),
     ApplyDescriptionAsync: (self: Humanoid, humanoidDescription: HumanoidDescription, assetTypeVerification: enum.Enum_AssetTypeVerification) -> (),
     ApplyDescriptionResetAsync: (self: Humanoid, humanoidDescription: HumanoidDescription, assetTypeVerification: enum.Enum_AssetTypeVerification) -> (),
+    PlayAvatarEffectAsync: (self: Humanoid, assetId: buffer) -> any,
     PlayEmoteAndGetAnimTrackById: (self: Humanoid, emoteId: buffer) -> ...any,
     PlayEmoteAsync: (self: Humanoid, emoteName: string) -> boolean,
 }
@@ -4335,6 +4633,8 @@ export type InputAction = Instance & {
     Direction1DState: number,
     Direction2DState: datatypes.Vector2,
     Direction3DState: datatypes.Vector3,
+    DisplayName: string,
+    Editor: boolean,
     Enabled: boolean,
     PreferredBinding: InputBinding,
     Type: enum.Enum_InputActionType,
@@ -4347,9 +4647,11 @@ export type InputAction = Instance & {
 export type InputBinding = Instance & {
     Backward: enum.Enum_KeyCode,
     ClampMagnitudeToOne: boolean,
+    Deadzone: datatypes.NumberRange,
     DisplayImage: any,
     DisplayName: string,
     Down: enum.Enum_KeyCode,
+    Editor: boolean,
     Forward: enum.Enum_KeyCode,
     KeyCode: enum.Enum_KeyCode,
     Left: enum.Enum_KeyCode,
@@ -4371,6 +4673,7 @@ export type InputBinding = Instance & {
 }
 
 export type InputContext = Instance & {
+    Editor: boolean,
     Enabled: boolean,
     Priority: number,
     Sink: boolean,
@@ -4384,6 +4687,9 @@ export type InputObject = Instance & {
     UserInputState: enum.Enum_UserInputState,
     UserInputType: enum.Enum_UserInputType,
     IsModifierKeyDown: (self: InputObject, modifierKey: enum.Enum_ModifierKey) -> boolean,
+}
+
+export type InputReplayService = Instance & {
 }
 
 export type InsertService = Instance & {
@@ -4410,6 +4716,13 @@ export type InstanceFileSyncService = Instance & {
     GetSyncedInstance: (self: InstanceFileSyncService, filePath: string) -> any,
     GetSyncingCollaborators: (self: InstanceFileSyncService, instance: any) -> {any},
     GetTooltip: (self: InstanceFileSyncService, instance: any) -> string,
+}
+
+export type InstanceRegistryService = Instance & {
+    GetIdentity: (self: InstanceRegistryService, scopeRoot: any, instance: any) -> any,
+}
+
+export type IntegrityService = Instance & {
 }
 
 export type IntentService = Instance & {
@@ -4575,11 +4888,11 @@ export type Lighting = Instance & {
     FogStart: number,
     GeographicLatitude: number,
     GlobalShadows: boolean,
+    LightAttenuationMode: enum.Enum_LightAttenuationMode,
     LightingStyle: enum.Enum_LightingStyle,
     OutdoorAmbient: datatypes.Color3,
     PrioritizeLightingQuality: boolean,
     ShadowSoftness: number,
-    Technology: enum.Enum_Technology,
     TimeOfDay: string,
     GetMinutesAfterMidnight: (self: Lighting) -> number,
     GetMoonDirection: (self: Lighting) -> datatypes.Vector3,
@@ -4589,11 +4902,14 @@ export type Lighting = Instance & {
 }
 
 export type LinkingService = Instance & {
+    CreateInternalDlic: (self: LinkingService, url: string, source: string) -> string,
+    DetectDlic: (self: LinkingService, deeplinkId: string) -> (),
     DetectUrl: (self: LinkingService, url: string) -> (),
     GetAndClearLastPendingUrl: (self: LinkingService) -> {[string]: any},
     GetLastLuaUrl: (self: LinkingService) -> string,
     IsUrlRegistered: (self: LinkingService, url: string) -> boolean,
     RegisterLuaUrl: (self: LinkingService, url: string) -> (),
+    RegisterLuaUrlWithPolicy: (self: LinkingService, url: string, policy: string) -> (),
     StartLuaUrlDelivery: (self: LinkingService) -> {[string]: any},
     StopLuaUrlDelivery: (self: LinkingService) -> (),
     OpenUrl: (self: LinkingService, url: string) -> boolean,
@@ -4634,11 +4950,11 @@ export type LocalizationService = Instance & {
     RobloxForcePlayModeRobloxLocaleId: string,
     RobloxLocaleId: string,
     ShouldUseCloudTable: boolean,
+    ShouldUseImageLocalizationTable: boolean,
     SystemLocaleId: string,
     GetCorescriptLocalizations: (self: LocalizationService) -> any,
     GetIsLoadingInternalTranslations: (self: LocalizationService) -> boolean,
     GetTableEntries: (self: LocalizationService, instance: any) -> {any},
-    GetTranslatorForPlayer: (self: LocalizationService, player: any) -> any,
     IsLoadingInternalTranslationsSettingChanged: (self: LocalizationService, newIsLoadingInternalTranslations: boolean) -> (),
     SetRobloxLocaleId: (self: LocalizationService, locale: string) -> (),
     StartTextScraper: (self: LocalizationService) -> (),
@@ -4818,6 +5134,7 @@ export type MarketplaceService = Instance & {
     PromptCollectiblesPurchase: (self: MarketplaceService, player: any, assetId: buffer, collectibleItemId: string, collectibleItemInstanceId: string, collectibleProductId: string, expectedPrice: number) -> (),
     PromptGamePassPurchase: (self: MarketplaceService, player: any, gamePassId: buffer) -> (),
     PromptNativePurchase: (self: MarketplaceService, player: any, productId: string) -> (),
+    PromptNativePurchaseWithContext: (self: MarketplaceService, productId: string, context: {[string]: any}) -> (),
     PromptNativePurchaseWithLocalPlayer: (self: MarketplaceService, productId: string) -> (),
     PromptNativePurchaseWithLocalPlayerWithPaymentSessionId: (self: MarketplaceService, productId: string, paymentSessionId: string) -> (),
     PromptNativePurchaseWithPaymentSessionId: (self: MarketplaceService, player: any, productId: string, paymentSessionId: string) -> (),
@@ -4827,6 +5144,9 @@ export type MarketplaceService = Instance & {
     PromptRobloxSubscriptionPurchase: (self: MarketplaceService, user: Player) -> (),
     PromptSubscriptionPurchase: (self: MarketplaceService, user: Player, subscriptionId: string) -> (),
     PromptThirdPartyPurchase: (self: MarketplaceService, player: any, productId: string) -> (),
+    PromptVIPServerPurchase: (self: MarketplaceService, player: Player) -> (),
+    RedeemGamePassFreeTrial: (self: MarketplaceService, user: Player, gamePassId: buffer, startTime: string, endTime: string) -> (),
+    RefreshBulkPurchase: (self: MarketplaceService, batchPurchaseAuthToken: string, options: {[string]: any}) -> (),
     ReportAssetSale: (self: MarketplaceService, assetId: string, robuxAmount: number) -> (),
     ReportRobuxUpsellStarted: (self: MarketplaceService) -> (),
     SignalAssetTypePurchased: (self: MarketplaceService, player: any, assetType: enum.Enum_AssetType) -> (),
@@ -4845,8 +5165,10 @@ export type MarketplaceService = Instance & {
     SignalRobuxTransferCompleted: (self: MarketplaceService, userId: buffer) -> (),
     SignalServerLuaDialogClosed: (self: MarketplaceService, value: boolean) -> (),
     SignalUserSubscriptionStatusChanged: (self: MarketplaceService, subscriptionId: string) -> (),
+    CanUsersTransferRobuxAsync: (self: MarketplaceService, sender: Player, receiverUser: any) -> enum.Enum_RobuxTransferEligibility,
     GetAvailableSubscriptionProductsAsync: (self: MarketplaceService, productType: string) -> {any},
     GetDeveloperProductsAsync: (self: MarketplaceService) -> any,
+    GetPassOwnershipAsync: (self: MarketplaceService, user: Player, gamePassId: buffer) -> {[string]: any},
     GetProductInfoAsync: (self: MarketplaceService, assetId: buffer, infoType: enum.Enum_InfoType) -> {[string]: any},
     GetRobloxSubscriptionDetailsAsync: (self: MarketplaceService, user: Player) -> {[string]: any},
     GetRobuxBalance: (self: MarketplaceService) -> number,
@@ -4863,7 +5185,7 @@ export type MarketplaceService = Instance & {
     PerformPurchaseV2: (self: MarketplaceService, infoType: enum.Enum_InfoType, productId: buffer, expectedPrice: number, requestId: string, isRobloxPurchase: boolean, collectiblesProductDetails: {[string]: any}) -> {[string]: any},
     PerformSubscriptionPurchase: (self: MarketplaceService, subscriptionId: string) -> string,
     PerformSubscriptionPurchaseV2: (self: MarketplaceService, subscriptionId: string, paymentProvider: string) -> (),
-    PerformSubscriptionPurchaseV3Async: (self: MarketplaceService, productType: string, productId: string, paymentProvider: string, paymentSessionId: string) -> (),
+    PerformSubscriptionPurchaseV3Async: (self: MarketplaceService, productType: string, productId: string, paymentProvider: string, paymentSessionId: string, referrerId: buffer) -> (),
     PerformSubscriptionPurchaseWithRobuxAsync: (self: MarketplaceService, subscriptionId: string, priceInRobux: number) -> (),
     PlayerOwnsAssetAsync: (self: MarketplaceService, player: any, assetId: buffer) -> boolean,
     PlayerOwnsBundleAsync: (self: MarketplaceService, player: Player, bundleId: buffer) -> boolean,
@@ -5081,11 +5403,24 @@ export type MicroProfilerService = Instance & {
     DumpToFileAsync: (self: MicroProfilerService, secondsToDelay: number, framesToDump: number) -> string,
 }
 
+export type ModelInfoService = Instance & {
+    GetModelTriangleCount: (self: ModelInfoService, model: Model) -> number,
+}
+
 export type ModerationService = Instance & {
     BindReviewableContentEventProcessor: (self: ModerationService, priority: number, callback: any) -> any,
+    BindViolationProcessor: (self: ModerationService, priority: number, callback: any) -> any,
     CreateReviewableContentKey: (self: ModerationService, content: any) -> string,
+    MockViolationCallbackAsync: (self: ModerationService, report: {[string]: any}) -> (),
     CreateReviewableContentAsync: (self: ModerationService, config: {[string]: any}) -> string,
     InternalRequestReviewableContentReviewAsync: (self: ModerationService, config: {[string]: any}) -> (),
+}
+
+export type MomentsService = Instance & {
+    CheckMomentTextStatusAsync: (self: MomentsService, token: string) -> ...any,
+    CreatePostAsync: (self: MomentsService, postRequest: {[string]: any}) -> {[string]: any},
+    FetchPostAsync: (self: MomentsService, assetId: buffer) -> any,
+    GenerateMomentTextAsync: (self: MomentsService, capture: Capture, tone: string) -> ...any,
 }
 
 export type Mouse = Instance & {
@@ -5189,7 +5524,9 @@ export type NotificationService = Instance & {
     CancelNotification: (self: NotificationService, userId: buffer, alertId: number) -> (),
     ScheduleNotification: (self: NotificationService, userId: buffer, alertId: number, alertMsg: string, minutesToFire: number) -> (),
     SubscribeToRccEventNamespace: (self: NotificationService, eventNamespace: string) -> (),
+    SubscribeToTopic: (self: NotificationService, token: string, replaceToken: string) -> (),
     SwitchedToAppShellFeature: (self: NotificationService, appShellFeature: enum.Enum_AppShellFeature) -> (),
+    UnsubscribeFromTopic: (self: NotificationService, token: string) -> (),
     GetScheduledNotifications: (self: NotificationService, userId: buffer) -> {any},
 }
 
@@ -5269,7 +5606,6 @@ export type BasePart = PVInstance & {
     Size: datatypes.Vector3,
     TopSurface: enum.Enum_SurfaceType,
     Transparency: number,
-    siz: datatypes.Vector3,
     size: datatypes.Vector3,
     AngularAccelerationToTorque: (self: BasePart, angAcceleration: datatypes.Vector3, angVelocity: datatypes.Vector3) -> datatypes.Vector3,
     ApplyAngularImpulse: (self: BasePart, impulse: datatypes.Vector3) -> (),
@@ -5307,7 +5643,6 @@ export type FormFactorPart = BasePart & {
 
 export type Part = FormFactorPart & {
     Shape: enum.Enum_PartType,
-    shap: enum.Enum_PartType,
     shape: enum.Enum_PartType,
 }
 
@@ -5351,12 +5686,14 @@ export type Terrain = BasePart & {
     ClusterGridV2: string,
     ClusterGridV3: buffer,
     Decoration: boolean,
+    ExpandedTerrainResolved: boolean,
     GrassLength: number,
     LastUsedModificationMethod: enum.Enum_TerrainAcquisitionMethod,
     MaterialColors: buffer,
     PhysicsGrid: buffer,
     SmoothGrid: buffer,
     SmoothVoxelsUpgraded: boolean,
+    VoxelGridAssetContentMap: datatypes.AssetContentMap,
     WaterColor: datatypes.Color3,
     WaterReflectance: number,
     WaterTransparency: number,
@@ -5384,6 +5721,7 @@ export type Terrain = BasePart & {
     GetMaterialColor: (self: Terrain, material: enum.Enum_Material) -> datatypes.Color3,
     GetMaterialSlot: (self: Terrain, slotIndex: number) -> ...any,
     GetTerrainWireframe: (self: Terrain, cframe: datatypes.CFrame, size: datatypes.Vector3) -> {any},
+    IsMaterialSlotInvalid: (self: Terrain, slotIndex: number) -> boolean,
     IterateVoxelsAsync_beta: (self: Terrain, region: any, resolution: number, channelIds: {any}) -> TerrainIterateOperation,
     ModifyVoxelsAsync_beta: (self: Terrain, region: any, resolution: number, channelIds: {any}) -> TerrainModifyOperation,
     PasteRegion: (self: Terrain, region: TerrainRegion, corner: datatypes.Vector3int16, pasteEmptyCells: boolean) -> (),
@@ -5393,13 +5731,16 @@ export type Terrain = BasePart & {
     ReplaceMaterial: (self: Terrain, region: any, resolution: number, sourceMaterial: enum.Enum_Material, targetMaterial: enum.Enum_Material) -> (),
     ReplaceMaterialInTransform: (self: Terrain, cframe: datatypes.CFrame, size: datatypes.Vector3, sourceMaterial: enum.Enum_Material, targetMaterial: enum.Enum_Material) -> (),
     ReplaceMaterialInTransformSubregion: (self: Terrain, cframe: datatypes.CFrame, size: datatypes.Vector3, sourceMaterial: enum.Enum_Material, targetMaterial: enum.Enum_Material, targetRegion: any) -> (),
+    ReplaceMaterialInTransformSubregionSlot: (self: Terrain, cframe: datatypes.CFrame, size: datatypes.Vector3, sourceMaterialIndex: number, targetMaterialIndex: number, targetRegion: any) -> (),
     ResetMaterialSlot: (self: Terrain, slotIndex: number) -> (),
     ResetWaterFlowMap: (self: Terrain) -> (),
     SetMaterialColor: (self: Terrain, material: enum.Enum_Material, value: datatypes.Color3) -> (),
     SetMaterialInTransform: (self: Terrain, cframe: datatypes.CFrame, size: datatypes.Vector3, targetMaterial: enum.Enum_Material) -> (),
     SetMaterialInTransformSubregion: (self: Terrain, cframe: datatypes.CFrame, size: datatypes.Vector3, targetMaterial: enum.Enum_Material, targetRegion: any) -> (),
+    SetMaterialInTransformSubregionSlot: (self: Terrain, cframe: datatypes.CFrame, size: datatypes.Vector3, targetMaterialIndex: number, targetRegion: any) -> (),
     SetMaterialSlot: (self: Terrain, slotIndex: number, baseMaterial: enum.Enum_Material, materialVariant: string, color: datatypes.Color3) -> (),
     SmoothRegion: (self: Terrain, region: any, resolution: number, strength: number) -> ...any,
+    SmoothRegionMaterialSlots: (self: Terrain, region: any, resolution: number, strength: number) -> ...any,
     WorldToCell: (self: Terrain, position: datatypes.Vector3) -> datatypes.Vector3,
     WorldToCellPreferEmpty: (self: Terrain, position: datatypes.Vector3) -> datatypes.Vector3,
     WorldToCellPreferSolid: (self: Terrain, position: datatypes.Vector3) -> datatypes.Vector3,
@@ -5412,10 +5753,12 @@ export type Terrain = BasePart & {
 
 export type TriangleMeshPart = BasePart & {
     CollisionFidelity: enum.Enum_CollisionFidelity,
+    CollisionPrecision: number,
     FluidFidelity: enum.Enum_FluidFidelity,
     FluidFidelityInternal: enum.Enum_FluidFidelity,
     InertiaMigrated: boolean,
     MeshSize: datatypes.Vector3,
+    PCDRequestId: number,
     UnscaledCofm: datatypes.Vector3,
     UnscaledVolInertiaDiags: datatypes.Vector3,
     UnscaledVolInertiaOffDiags: datatypes.Vector3,
@@ -5436,6 +5779,7 @@ export type MeshPart = TriangleMeshPart & {
     TextureID: any,
     VertexCount: number,
     ApplyMesh: (self: MeshPart, meshPart: any) -> (),
+    GetSurfaceSlotsAsync: (self: MeshPart) -> {any},
 }
 
 export type PartOperation = TriangleMeshPart & {
@@ -5497,7 +5841,11 @@ export type Camera = PVInstance & {
     HeadScale: number,
     MaxAxisFieldOfView: number,
     NearPlaneZ: number,
+    OrthographicMode: enum.Enum_OrthographicMode,
+    OrthographicSize: number,
+    ProjectionType: enum.Enum_ProjectionType,
     VRTiltAndRollEnabled: boolean,
+    ViewStretch: number,
     ViewportSize: datatypes.Vector2,
     GetPartsObscuringTarget: (self: Camera, castPoints: {any}, ignoreList: any) -> any,
     GetRenderCFrame: (self: Camera) -> datatypes.CFrame,
@@ -5516,6 +5864,7 @@ export type ViewportCamera = Camera & {
 }
 
 export type Model = PVInstance & {
+    ExplorerIconContent: any,
     LevelOfDetail: enum.Enum_ModelLevelOfDetail,
     LodEntity: LodDataEntity,
     ModelMeshCFrame: datatypes.CFrame,
@@ -5590,8 +5939,13 @@ export type Status = Model & {
 }
 
 export type WorldRoot = Model & {
+    AutoSimulate: boolean,
     CollisionGroupData: buffer,
+    GravityDirection: datatypes.Vector3,
     PhysicsStepTime: number,
+    SimulationRate: number,
+    Wind: number,
+    WindDirection: datatypes.Vector3,
     ArePartsTouchingOthers: (self: WorldRoot, partList: any, overlapIgnored: number) -> boolean,
     Blockcast: (self: WorldRoot, cframe: datatypes.CFrame, size: datatypes.Vector3, direction: datatypes.Vector3, params: any) -> any,
     BulkMoveTo: (self: WorldRoot, partList: any, cframeList: {any}, eventMode: enum.Enum_BulkMoveMode) -> (),
@@ -5615,7 +5969,8 @@ export type WorldRoot = Model & {
     RegisterCollisionGroup: (self: WorldRoot, name: string) -> (),
     RenameCollisionGroup: (self: WorldRoot, from: string, to: string) -> (),
     SetInsertPoint: (self: WorldRoot, point: datatypes.Vector3) -> (),
-    Shapecast: (self: WorldRoot, part: BasePart, direction: datatypes.Vector3, params: any) -> any,
+    Shapecast: (self: WorldRoot, part: BasePart, direction: datatypes.Vector3, params: any, cframeOverride: any, sizeOverride: datatypes.Vector3?) -> any,
+    Simulate: (self: WorldRoot, dt: number) -> (),
     Spherecast: (self: WorldRoot, position: datatypes.Vector3, radius: number, direction: datatypes.Vector3, params: any) -> any,
     StepPhysics: (self: WorldRoot, dt: number, parts: any) -> (),
     UnregisterCollisionGroup: (self: WorldRoot, name: string) -> (),
@@ -5641,34 +5996,43 @@ export type Workspace = WorldRoot & {
     GlobalWind: datatypes.Vector3,
     Gravity: number,
     IKControlConstraintSupport: enum.Enum_IKControlConstraintSupport,
-    ImprovedAnimationConstraint: enum.Enum_RolloutState,
     ImprovedPhysicsReplication: enum.Enum_RolloutState,
+    InputSinkEnabled: enum.Enum_RolloutState,
     InsertPoint: datatypes.Vector3,
     LayeredClothingCacheOptimizations: enum.Enum_RolloutState,
     LuauTypeCheckMode: enum.Enum_LuauTypeCheckMode,
+    MapTVRemoteToGamepadKeycodes: enum.Enum_RolloutState,
     MeshPartHeadsAndAccessories: enum.Enum_MeshPartHeadsAndAccessories,
     MeshStreamingAndImprovedLods: enum.Enum_RolloutState,
     ModelStreamingBehavior: enum.Enum_ModelStreamingBehavior,
+    NextGenerationPhysicsSolver: enum.Enum_RolloutState,
     NextGenerationReplication: enum.Enum_RolloutState,
     NextGenerationReplicationAlias: enum.Enum_RolloutState,
+    NextGenerationReplicationStorage: enum.Enum_RolloutState,
+    ParticlesUseDynamicWind: enum.Enum_RolloutState,
     PathfindingUseImprovedSearch: enum.Enum_PathfindingUseImprovedSearch,
     PhysicsSteppingMethod: enum.Enum_PhysicsSteppingMethod,
     PlayerCharacterDestroyBehavior: enum.Enum_PlayerCharacterDestroyBehavior,
     PlayerScriptsUseInputActionSystem: enum.Enum_RolloutState,
     PlayerScriptsUseInputActionSystemAlias: enum.Enum_RolloutState,
+    PlayerScriptsUseInputActionSystemStorage: enum.Enum_RolloutState,
     PredictiveStreamingMode: enum.Enum_PredictiveStreamingMode,
-    PrimalPhysicsSolver: enum.Enum_PrimalPhysicsSolver,
     RejectCharacterDeletions: enum.Enum_RejectCharacterDeletions,
     RenderingCacheOptimizations: enum.Enum_RenderingCacheOptimizationMode,
     ReplicateInstanceDestroySetting: enum.Enum_ReplicateInstanceDestroySetting,
+    ReplicationFrequency: enum.Enum_ReplicationMode,
+    ReplicationThroughput: enum.Enum_ReplicationMode,
     Retargeting: enum.Enum_AnimatorRetargetingMode,
     SandboxedInstanceMode: enum.Enum_SandboxedInstanceMode,
     SignalBehavior: enum.Enum_SignalBehavior,
     SignalBehavior2: enum.Enum_SignalBehavior,
     SignalBehaviorAlias: enum.Enum_SignalBehavior,
+    SignalBehaviorStorage: enum.Enum_SignalBehavior,
     StreamOutBehavior: enum.Enum_StreamOutBehavior,
+    StreamingAdaptiveRadius: boolean,
     StreamingEnabled: boolean,
     StreamingEnabledAlias: boolean,
+    StreamingEnabledStorage: boolean,
     StreamingIntegrityMode: enum.Enum_StreamingIntegrityMode,
     StreamingMinRadius: number,
     StreamingPauseMode: enum.Enum_StreamingPauseMode,
@@ -5680,6 +6044,7 @@ export type Workspace = WorldRoot & {
     TouchesUseCollisionGroups: boolean,
     UseFixedSimulation: enum.Enum_RolloutState,
     UseFixedSimulationAlias: enum.Enum_RolloutState,
+    UseFixedSimulationStorage: enum.Enum_RolloutState,
     UseNewLuauTypeSolver: enum.Enum_RolloutState,
     ValidateEnabledProximityPrompt: enum.Enum_RolloutState,
     WatermarkHash: string,
@@ -5723,11 +6088,13 @@ export type PackageLink = Instance & {
     VersionNumber: buffer,
     PermissionLevel: enum.Enum_PackagePermission,
     Status: string,
-    getOverrides: (self: PackageLink) -> DataModelDiff,
 }
 
 export type PackageService = Instance & {
     GetOverrides: (self: PackageService, scopeRoot: any) -> DataModelDiff,
+    RevertAttributeOverridesAsync: (self: PackageService, scopeRoot: any, identities: {any}, attributeNames: {any}) -> (),
+    RevertInstanceOverridesAsync: (self: PackageService, scopeRoot: any, identities: {any}) -> (),
+    RevertPropertyOverridesAsync: (self: PackageService, scopeRoot: any, identities: {any}, propertyNames: {any}) -> (),
     UpdateAsync: (self: PackageService, packageRoot: any, version: buffer) -> any,
 }
 
@@ -5743,6 +6110,7 @@ export type PackageUIService = Instance & {
 
 export type Packages = Instance & {
     IsDehydrated: boolean,
+    OverridesRecalculated: boolean,
     ShellPackagesCount: number,
     SkippedInstancesCount: number,
 }
@@ -5846,6 +6214,43 @@ export type ParticleEmitter = Instance & {
     FastForward: (self: ParticleEmitter, numFrames: number) -> (),
 }
 
+export type ParticleEmitter2D = Instance & {
+    Acceleration: datatypes.Vector2,
+    Blend: number,
+    Brightness: number,
+    Color: datatypes.ColorSequence,
+    Drag: number,
+    EmissionAngle: number,
+    EmissionMode: enum.Enum_ParticleEmitter2DEmissionMode,
+    EmissionOffset: datatypes.Vector2,
+    EmissionSpread: datatypes.Vector2,
+    Enabled: boolean,
+    FlipbookBlendFrames: boolean,
+    FlipbookFramerate: datatypes.NumberRange,
+    FlipbookLayout: enum.Enum_ParticleFlipbookLayout,
+    FlipbookMode: enum.Enum_ParticleFlipbookMode,
+    FlipbookSizeX: number,
+    FlipbookSizeY: number,
+    FlipbookStartRandom: boolean,
+    Lifetime: datatypes.NumberRange,
+    LightInfluence: number,
+    LockedToParent: boolean,
+    Rate: number,
+    RotSpeed: datatypes.NumberRange,
+    Rotation: datatypes.NumberRange,
+    Size: datatypes.NumberSequence,
+    Speed: datatypes.NumberRange,
+    SpreadAngle: number,
+    Squash: datatypes.NumberSequence,
+    TextureContent: any,
+    TimeScale: number,
+    Transparency: datatypes.NumberSequence,
+    ZIndex: number,
+    Clear: (self: ParticleEmitter2D) -> (),
+    Emit: (self: ParticleEmitter2D, particleCount: number) -> (),
+    FastForward: (self: ParticleEmitter2D, numFrames: number) -> (),
+}
+
 export type PartyEmulatorService = Instance & {
     CreateNewParty: (self: PartyEmulatorService) -> string,
     DeleteParty: (self: PartyEmulatorService, partyId: string) -> (),
@@ -5923,6 +6328,7 @@ export type PausedStateException = PausedState & {
 
 export type PerformanceControlService = Instance & {
     IsCrossExperienceLaunchFeasible: (self: PerformanceControlService, type: string) -> boolean,
+    SetUserActivity: (self: PerformanceControlService, state: enum.Enum_ScrollState) -> (),
 }
 
 export type PermissionsService = Instance & {
@@ -5984,6 +6390,7 @@ export type PhysicsSettings = Instance & {
     DisableCSGv3ForPlugins: boolean,
     DrawConstraintsNetForce: boolean,
     DrawContactsNetForce: boolean,
+    DrawShapecast: boolean,
     DrawTotalNetForce: boolean,
     EnableForceVisualizationSmoothing: boolean,
     FluidForceDrawScale: number,
@@ -6006,10 +6413,19 @@ export type PhysicsSettings = Instance & {
 
 export type PinShortcutService = Instance & {
     IsAvailable: (self: PinShortcutService) -> boolean,
+    IsRevealPinnedExperienceAvailable: (self: PinShortcutService) -> boolean,
     PinExperience: (self: PinShortcutService, placeId: buffer, universeId: buffer, experienceName: string) -> (),
+    RevealPinnedExperience: (self: PinShortcutService, placeId: buffer) -> (),
+    ShouldShowLuaNotificationOnPinExperienceCompleted: (self: PinShortcutService) -> boolean,
 }
 
 export type PlaceAssetIdsService = Instance & {
+}
+
+export type PlaceSettings = Instance & {
+    GetActiveRollouts: (self: PlaceSettings) -> {any},
+    GetRolloutState: (self: PlaceSettings, rolloutName: string) -> any,
+    SetRolloutState: (self: PlaceSettings, rolloutName: string, state: any) -> (),
 }
 
 export type PlaceStatsService = Instance & {
@@ -6064,6 +6480,7 @@ export type Player = Instance & {
     DevEnableMouseLock: boolean,
     DevTouchCameraMode: enum.Enum_DevTouchCameraMovementMode,
     DevTouchMovementMode: enum.Enum_DevTouchMovementMode,
+    DeviceTrustLevel: enum.Enum_PlayerDeviceTrustLevel,
     DisplayName: string,
     FollowUserId: buffer,
     FollowUserIdReplicated: buffer,
@@ -6075,6 +6492,7 @@ export type Player = Instance & {
     HealthDisplayDistance: number,
     InputLatency: number,
     InternalCharacterAppearanceLoaded: boolean,
+    InternalSpawnEffectPlayed: boolean,
     LocaleId: string,
     MaxSimulationRadius: number,
     MaximumSimulationRadius: number,
@@ -6091,7 +6509,6 @@ export type Player = Instance & {
     ReplicationFocus: any,
     RespawnLocation: SpawnLocation,
     SimulationRadius: number,
-    StepIdOffset: number,
     SuperSafeChatReplicate: boolean,
     Team: Team,
     TeamColor: datatypes.BrickColor,
@@ -6112,7 +6529,6 @@ export type Player = Instance & {
     DistanceFromCharacter: (self: Player, point: datatypes.Vector3) -> number,
     GetBlockListInitialized: (self: Player) -> boolean,
     GetCameraState: (self: Player) -> {[string]: any},
-    GetData: (self: Player) -> PlayerData,
     GetFriendStatus: (self: Player, player: Player) -> enum.Enum_FriendStatus,
     GetGameSessionID: (self: Player) -> string,
     GetGlobalUserId: (self: Player) -> buffer,
@@ -6124,6 +6540,7 @@ export type Player = Instance & {
     GetUnder13: (self: Player) -> boolean,
     HasAppearanceLoaded: (self: Player) -> boolean,
     HasBlockedPlayer: (self: Player, fromPlayer: buffer) -> boolean,
+    HasSpawnEffectPlayed: (self: Player) -> boolean,
     IsVerified: (self: Player, level: enum.Enum_VerifiedLevel) -> boolean,
     Kick: (self: Player, message: string) -> (),
     Move: (self: Player, walkDirection: datatypes.Vector3, relativeToCamera: boolean) -> (),
@@ -6151,6 +6568,7 @@ export type Player = Instance & {
     UnpinStreamingForInstance: (self: Player, instance: any, depth: number) -> (),
     UpdatePlayerBlocked: (self: Player, userId: buffer, blocked: boolean) -> (),
     GetCanManageAsync: (self: Player) -> boolean,
+    GetFriendsInServerAsync: (self: Player) -> {any},
     GetFriendsInUniverseAsync: (self: Player) -> {any},
     GetFriendsOnlineAsync: (self: Player, maxFriends: number) -> {any},
     GetFriendsWhoPlayedAsync: (self: Player) -> {any},
@@ -6158,65 +6576,16 @@ export type Player = Instance & {
     IsInGroupAsync: (self: Player, groupId: buffer) -> boolean,
     LoadCharacterAsync: (self: Player) -> (),
     LoadCharacterBlocking: (self: Player) -> (),
-    LoadCharacterWithAvatarRules: (self: Player, avatarRules: AvatarRules) -> (),
+    LoadCharacterWithAvatarRulesAsync: (self: Player, avatarRules: any) -> (),
     LoadCharacterWithHumanoidDescriptionAsync: (self: Player, humanoidDescription: HumanoidDescription, assetTypeVerification: enum.Enum_AssetTypeVerification) -> (),
     PromptSecurityChallengeAsync: (self: Player) -> boolean,
     RequestStreamAroundAsync: (self: Player, position: datatypes.Vector3, timeOut: number) -> (),
 }
 
-export type PlayerControlState = Instance & {
-    Owner: Player,
-    StateSchema: buffer,
-    AddBoolField: (self: PlayerControlState, name: string, defaultValue: boolean) -> (),
-    AddCFrameField: (self: PlayerControlState, name: string, defaultValue: datatypes.CFrame) -> (),
-    AddInstanceField: (self: PlayerControlState, name: string) -> (),
-    AddIntField: (self: PlayerControlState, name: string, defaultValue: number, min: number, max: number) -> (),
-    AddNumberField: (self: PlayerControlState, name: string, defaultValue: number, min: number, max: number) -> (),
-    AddUnitVector3Field: (self: PlayerControlState, name: string, defaultValue: datatypes.Vector3) -> (),
-    AddVector2Field: (self: PlayerControlState, name: string, defaultValue: datatypes.Vector2, maxMagnitude: number) -> (),
-    AddVector3Field: (self: PlayerControlState, name: string, defaultValue: datatypes.Vector3, maxMagnitude: number) -> (),
-    GetChangedState: (self: PlayerControlState, prev: enum.Enum_StateReferenceFrame, next: enum.Enum_StateReferenceFrame) -> {[string]: any},
-    GetReplicationWeight: (self: PlayerControlState) -> number,
-    GetState: (self: PlayerControlState, ref: enum.Enum_StateReferenceFrame) -> {[string]: any},
-    SetField: (self: PlayerControlState, name: string, value: any) -> (),
-    UpdateFields: (self: PlayerControlState, state: {[string]: any}) -> (),
-}
-
 export type PlayerData = Instance & {
-    GetPlayer: (self: PlayerData) -> Player,
-    GetRecordAsync: (self: PlayerData, recordName: string) -> PlayerDataRecord,
-}
-
-export type PlayerDataRecord = Instance & {
-    CreatedTime: buffer,
-    DefaultRecordName: boolean,
-    Dirty: boolean,
-    Error: enum.Enum_PlayerDataErrorState,
-    FlushedTime: buffer,
-    LoadedTime: buffer,
-    ModifiedTime: buffer,
-    NewRecord: boolean,
-    Readable: boolean,
-    RecordName: string,
-    Writable: boolean,
-    GetPlayer: (self: PlayerDataRecord) -> Player,
-    GetValue: (self: PlayerDataRecord, key: string) -> any,
-    GetValueChangedSignal: (self: PlayerDataRecord, key: string) -> any,
-    RemoveValue: (self: PlayerDataRecord, key: string) -> (),
-    SetValue: (self: PlayerDataRecord, key: string, value: any) -> (),
-    ReleaseAsync: (self: PlayerDataRecord) -> (),
-    RequestFlushAsync: (self: PlayerDataRecord) -> (),
-}
-
-export type PlayerDataRecordConfig = Instance & {
-    RecordName: string,
-    GetDefaultValue: (self: PlayerDataRecordConfig, key: string) -> any,
-    SetDefaultValue: (self: PlayerDataRecordConfig, key: string, value: any) -> (),
 }
 
 export type PlayerDataService = Instance & {
-    LoadFailureBehavior: enum.Enum_PlayerDataLoadFailureBehavior,
-    GetRecordConfig: (self: PlayerDataService, recordName: string) -> PlayerDataRecordConfig,
 }
 
 export type PlayerEmulatorService = Instance & {
@@ -6315,11 +6684,12 @@ export type Plugin = Instance & {
     CreatePluginMenu: (self: Plugin, id: string, title: string, icon: string) -> PluginMenu,
     CreateToolbar: (self: Plugin, name: string) -> PluginToolbar,
     Deactivate: (self: Plugin) -> (),
-    FinishFullLoading: (self: Plugin) -> (),
+    FinishFullLoading: (self: Plugin, payload: any) -> (),
     GetItem: (self: Plugin, key: string, defaultValue: any) -> any,
     GetJoinMode: (self: Plugin) -> enum.Enum_JointCreationMode,
     GetMouse: (self: Plugin) -> PluginMouse,
     GetPluginComponent: (self: Plugin, name: string) -> any,
+    GetPreinitPayload: (self: Plugin) -> any,
     GetSelectedRibbonTool: (self: Plugin) -> enum.Enum_RibbonTool,
     GetSetting: (self: Plugin, key: string) -> any,
     GetUri: (self: Plugin) -> {[string]: any},
@@ -6391,6 +6761,7 @@ export type PluginGuiService = Instance & {
 export type PluginManagementService = Instance & {
     SetAutoUpdate: (self: PluginManagementService, pluginId: buffer, state: boolean) -> (),
     GetOTAPluginVersion: (self: PluginManagementService, pluginName: string) -> buffer,
+    ListPluginGuisAsync: (self: PluginManagementService) -> {[string]: any},
 }
 
 export type PluginManager = Instance & {
@@ -6445,8 +6816,10 @@ export type PolicyService = Instance & {
 }
 
 export type PopLatencyService = Instance & {
+    GetForcedPop: (self: PopLatencyService) -> string,
     GetSnapshot: (self: PopLatencyService) -> any,
     IsEnabled: (self: PopLatencyService) -> boolean,
+    SetForcedPop: (self: PopLatencyService, popCode: string) -> (),
 }
 
 export type PoseBase = Instance & {
@@ -6482,6 +6855,8 @@ export type BlurEffect = PostEffect & {
 
 export type ColorCorrectionEffect = PostEffect & {
     Brightness: number,
+    ColorLutContent: any,
+    ColorLutIntensity: number,
     Contrast: number,
     Saturation: number,
     TintColor: datatypes.Color3,
@@ -6512,6 +6887,21 @@ export type ProceduralBehaviorSchedulerService = Instance & {
 export type ProcessInstancePhysicsService = Instance & {
 }
 
+export type ProjectService = Instance & {
+    CreateFolder: (self: ProjectService, path: string) -> (),
+    Exists: (self: ProjectService, path: string) -> boolean,
+    GetContentMapMemoryBytes: (self: ProjectService) -> buffer,
+    GetOrphanPathSubscribers: (self: ProjectService) -> {any},
+    GetPathSubscribers: (self: ProjectService, path: string) -> {any},
+    GetPaths: (self: ProjectService, folderPath: string) -> {any},
+    Move: (self: ProjectService, fromPath: string, toPath: string) -> (),
+    RemovePath: (self: ProjectService, path: string) -> (),
+    RemovePathSubscribers: (self: ProjectService, path: string) -> (),
+    ResolveContent: (self: ProjectService, path: string) -> any,
+    SetContent: (self: ProjectService, path: string, value: any) -> (),
+    GetMetaDataAsync: (self: ProjectService, path: string) -> {any},
+}
+
 export type ProximityPrompt = Instance & {
     ActionText: string,
     AutoLocalize: boolean,
@@ -6540,12 +6930,17 @@ export type ProximityPromptService = Instance & {
 
 export type PublishService = Instance & {
     PublishDescendantAssets: (self: PublishService, instance: any) -> boolean,
-    CreateAssetAndWaitForAssetId: (self: PublishService, instances: any, operationId: string, creatorType: enum.Enum_AssetCreatorType, creatorId: buffer, assetType: string, name: string, description: string, expectedPrice: number) -> buffer,
+    TagEmoteAnimation: (self: PublishService, instance: any) -> (),
+    CreateAssetAndWaitForAssetId: (self: PublishService, instances: any, operationId: string, creatorType: enum.Enum_AssetCreatorType, creatorId: buffer, assetType: string, name: string, description: string, expectedPrice: number, additionalParameters: {[string]: any}) -> buffer,
     CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsync: (self: PublishService, serializedInstance: string, creatorType: enum.Enum_AssetCreatorType, creatorId: buffer, assetType: string, assetId: buffer, name: string, description: string, token: string, contentType: string, expectedPrice: number) -> {[string]: any},
     CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParam: (self: PublishService, serializedInstance: string, publishInfo: {[string]: any}) -> {[string]: any},
     CreateAssetOrAssetVersionAndPollAssetWithTelemetryAsyncWithAddParamErrorJson: (self: PublishService, serializedInstance: string, publishInfo: {[string]: any}) -> {[string]: any},
     PublishCageMeshAsync: (self: PublishService, wrap: any, cageType: enum.Enum_CageType) -> any,
     PublishDescendantAssetsAsync: (self: PublishService, instance: any) -> boolean,
+}
+
+export type QueueService = Instance & {
+    GetStandardQueue: (self: QueueService, name: string) -> StandardQueue,
 }
 
 export type RTAnimationTracker = Instance & {
@@ -6585,6 +6980,7 @@ export type RealtimeMedia = Instance & {
     AudioInputActive: boolean,
     ForwardInput: boolean,
     IsConnected: boolean,
+    IsConnectionWeak: boolean,
     Disconnect: (self: RealtimeMedia) -> (),
     GetConnectedWires: (self: RealtimeMedia, pin: string) -> any,
     GetInputPins: (self: RealtimeMedia) -> {any},
@@ -6816,13 +7212,17 @@ export type RunService = Instance & {
     ClientGitHash: string,
     FrameNumber: buffer,
     RunState: enum.Enum_RunState,
+    BindToAnimation: (self: RunService, callback: any, frequency: enum.Enum_StepFrequency, priority: number) -> any,
+    BindToAnimationParallel: (self: RunService, callback: any, frequency: enum.Enum_StepFrequency, priority: number) -> any,
     BindToRenderStep: (self: RunService, name: string, priority: number, callback: any) -> (),
     BindToSimulation: (self: RunService, callback: any, frequency: enum.Enum_StepFrequency, priority: number) -> any,
+    BindToSimulationParallel: (self: RunService, callback: any, frequency: enum.Enum_StepFrequency, priority: number) -> any,
     GetControlAndVariantRolloutFlags: (self: RunService) -> ...any,
     GetCoreScriptVersion: (self: RunService) -> string,
     GetPhysicsStepId: (self: RunService) -> buffer,
     GetPredictionStatus: (self: RunService, context: any) -> enum.Enum_PredictionStatus,
     GetRobloxClientChannel: (self: RunService) -> string,
+    GetRobloxClientIxpEnrolledExperiments: (self: RunService) -> string,
     GetRobloxGuiFocused: (self: RunService) -> boolean,
     GetRobloxVersion: (self: RunService) -> string,
     GetTotalScriptPlusExecutionTime: (self: RunService) -> number,
@@ -6833,6 +7233,8 @@ export type RunService = Instance & {
     IsRunning: (self: RunService) -> boolean,
     IsServer: (self: RunService) -> boolean,
     IsStudio: (self: RunService) -> boolean,
+    IsTeamCreateViewer: (self: RunService) -> boolean,
+    IsTeamTest: (self: RunService) -> boolean,
     Pause: (self: RunService) -> (),
     Run: (self: RunService) -> (),
     Set3dRenderingEnabled: (self: RunService, enable: boolean) -> (),
@@ -6871,6 +7273,7 @@ export type SafetyService = Instance & {
 export type SceneAnalysisService = Instance & {
     GetAnimationMemoryAsync: (self: SceneAnalysisService) -> {[string]: any},
     GetAudioMemoryAsync: (self: SceneAnalysisService) -> {[string]: any},
+    GetCollisionGeometryMemoryAsync: (self: SceneAnalysisService) -> {[string]: any},
     GetInstanceCompositionAsync: (self: SceneAnalysisService) -> {[string]: any},
     GetScriptMemoryAsync: (self: SceneAnalysisService) -> {[string]: any},
     GetTriangleCompositionAsync: (self: SceneAnalysisService) -> {[string]: any},
@@ -6960,6 +7363,7 @@ export type ScriptDocument = Instance & {
     GetInternalUri: (self: ScriptDocument) -> string,
     GetLine: (self: ScriptDocument, lineIndex: number) -> string,
     GetLineCount: (self: ScriptDocument) -> number,
+    GetReadOnlyReasons: (self: ScriptDocument) -> {any},
     GetScript: (self: ScriptDocument) -> LuaSourceContainer,
     GetSelectedText: (self: ScriptDocument) -> string,
     GetSelection: (self: ScriptDocument) -> ...any,
@@ -6969,10 +7373,13 @@ export type ScriptDocument = Instance & {
     GetViewport: (self: ScriptDocument) -> ...any,
     HasSelectedText: (self: ScriptDocument) -> boolean,
     IsCommandBar: (self: ScriptDocument) -> boolean,
+    IsReadOnly: (self: ScriptDocument) -> boolean,
+    AddReadOnlyReasonsAsync: (self: ScriptDocument, reasons: {any}) -> (),
     CloseAsync: (self: ScriptDocument) -> ...any,
     EditTextAsync: (self: ScriptDocument, newText: string, startLine: number, startCharacter: number, endLine: number, endCharacter: number) -> ...any,
     ForceSetSelectionAsync: (self: ScriptDocument, cursorLine: number, cursorCharacter: number, anchorLine: number, anchorCharacter: number) -> ...any,
     MultiEditTextAsync: (self: ScriptDocument, edits: {any}) -> ...any,
+    RemoveReadOnlyReasonsAsync: (self: ScriptDocument, reasons: {any}) -> (),
     RequestSetSelectionAsync: (self: ScriptDocument, cursorLine: number, cursorCharacter: number, anchorLine: number, anchorCharacter: number) -> ...any,
     ReviewableTextEditsAsync: (self: ScriptDocument, changes: {any}) -> ...any,
 }
@@ -6983,6 +7390,7 @@ export type ScriptEditorService = Instance & {
     DeregisterScriptAnalysisCallback: (self: ScriptEditorService, name: string) -> (),
     FindScriptDocument: (self: ScriptEditorService, script: LuaSourceContainer) -> ScriptDocument,
     ForceReloadSource: (self: ScriptEditorService, uri: string, newsrc: string) -> (),
+    GetActiveScriptDocument: (self: ScriptEditorService) -> ScriptDocument,
     GetEditorSource: (self: ScriptEditorService, script: LuaSourceContainer) -> string,
     GetScriptDocuments: (self: ScriptEditorService) -> any,
     IsAutocompleteCallbackRegistered: (self: ScriptEditorService, name: string) -> boolean,
@@ -6993,6 +7401,9 @@ export type ScriptEditorService = Instance & {
     StripComments: (self: ScriptEditorService, code: string) -> string,
     EditSourceAsyncWithRanges: (self: ScriptEditorService, script: LuaSourceContainer, newText: string, startLine: number, startCharacter: number, endLine: number, endCharacter: number) -> ...any,
     OpenScriptDocumentAsync: (self: ScriptEditorService, script: LuaSourceContainer, options: {[string]: any}) -> ...any,
+    OpenStringValueDocumentAsync: (self: ScriptEditorService, stringValue: StringValue, options: {[string]: any}) -> ...any,
+    OpenTemporaryDocumentAsync: (self: ScriptEditorService, scriptId: string, initialContent: string, options: {[string]: any}) -> ...any,
+    OpenTextDocumentAsync: (self: ScriptEditorService, textDocument: TextDocument, options: {[string]: any}) -> ...any,
     UpdateSourceAsync: (self: ScriptEditorService, script: LuaSourceContainer, callback: any) -> (),
 }
 
@@ -7018,6 +7429,7 @@ export type ScriptScannerService = Instance & {
 }
 
 export type ScriptService = Instance & {
+    ResolveModulePath: (self: ScriptService, relativeTo: any, path: string) -> any,
 }
 
 export type Selection = Instance & {
@@ -7065,16 +7477,27 @@ export type ControllerPartSensor = ControllerSensor & {
     SensedMaterial: enum.Enum_Material,
     SensedPart: BasePart,
     SensorMode: enum.Enum_SensorMode,
+    GetExtents: (self: ControllerPartSensor) -> ...any,
 }
 
 export type FluidForceSensor = SensorBase & {
+    BuoyancyForce: datatypes.Vector3,
+    BuoyancyTorque: datatypes.Vector3,
     CenterOfPressure: datatypes.Vector3,
     Force: datatypes.Vector3,
     Torque: datatypes.Vector3,
     EvaluateAsync: (self: FluidForceSensor, linearVelocity: datatypes.Vector3, angularVelocity: datatypes.Vector3, cframe: datatypes.CFrame) -> ...any,
 }
 
+export type PhysicsActivitySensor = SensorBase & {
+    Active: boolean,
+    Position: datatypes.Vector3,
+    Size: datatypes.Vector3,
+}
+
 export type SerializationService = Instance & {
+    DeserializeValue: (self: SerializationService, buffer: any, format: enum.Enum_SerializationFormat) -> any,
+    SerializeValue: (self: SerializationService, value: any, format: enum.Enum_SerializationFormat) -> any,
     DeserializeInstancesAsync: (self: SerializationService, buffer: any) -> any,
     SerializeInstancesAsync: (self: SerializationService, inputInstances: any) -> any,
 }
@@ -7098,20 +7521,22 @@ export type DataModel = ServiceProvider & {
     ForceR15: boolean,
     GameId: buffer,
     Genre: enum.Enum_Genre,
-    IsPioneerBuild: boolean,
     IsSFFlagsLoaded: boolean,
     JobId: string,
     MatchmakingType: enum.Enum_MatchmakingType,
-    PioneerSource: enum.Enum_PioneerSource,
     PlaceId: buffer,
     PlaceVersion: number,
     PrivateServerId: string,
     PrivateServerOwnerId: buffer,
+    ServerRegion: string,
     RunService: RunService,
     Workspace: Workspace,
     getGameTime: (self: DataModel) -> number,
     SetPlaceId: (self: DataModel, placeId: buffer) -> (),
     SetUniverseId: (self: DataModel, universeId: buffer) -> (),
+    GetObjects: (self: DataModel, url: any) -> any,
+    GetObjectsAllOrNone: (self: DataModel, url: any) -> any,
+    GetObjectsList: (self: DataModel, urls: {any}) -> {any},
     BindToClose: (self: DataModel, callback: any) -> (),
     DefineFastFlag: (self: DataModel, name: string, defaultValue: boolean) -> boolean,
     DefineFastInt: (self: DataModel, name: string, defaultValue: number) -> number,
@@ -7121,9 +7546,12 @@ export type DataModel = ServiceProvider & {
     GetFastInt: (self: DataModel, name: string) -> number,
     GetFastString: (self: DataModel, name: string) -> string,
     GetJobsInfo: (self: DataModel) -> {any},
+    GetPioneerRootPlaceId: (self: DataModel) -> buffer,
+    GetPioneerSource: (self: DataModel) -> enum.Enum_PioneerSource,
     GetPlaySessionId: (self: DataModel) -> string,
     IsContentLoaded: (self: DataModel) -> boolean,
     IsLoaded: (self: DataModel) -> boolean,
+    IsPioneerApp: (self: DataModel) -> boolean,
     IsUniverseMetadataLoaded: (self: DataModel) -> boolean,
     Load: (self: DataModel, url: any) -> (),
     OpenLogsFolder: (self: DataModel) -> (),
@@ -7135,13 +7563,10 @@ export type DataModel = ServiceProvider & {
     SetFastFlagForTesting: (self: DataModel, name: string, newValue: boolean) -> boolean,
     SetFastIntForTesting: (self: DataModel, name: string, newValue: number) -> number,
     SetFastStringForTesting: (self: DataModel, name: string, newValue: string) -> string,
-    GetObjects: (self: DataModel, url: any) -> any,
-    GetObjectsAllOrNone: (self: DataModel, url: any) -> any,
-    GetObjectsList: (self: DataModel, urls: {any}) -> {any},
-    HttpGetAsync: (self: DataModel, url: string, httpRequestType: enum.Enum_HttpRequestType) -> string,
-    HttpPostAsync: (self: DataModel, url: string, data: string, contentType: string, httpRequestType: enum.Enum_HttpRequestType) -> string,
     GetObjectsAsync: (self: DataModel, url: any) -> any,
     InsertObjectsAndJoinIfLegacyAsync: (self: DataModel, url: any) -> any,
+    HttpGetAsync: (self: DataModel, url: string, httpRequestType: enum.Enum_HttpRequestType) -> string,
+    HttpPostAsync: (self: DataModel, url: string, data: string, contentType: string, httpRequestType: enum.Enum_HttpRequestType) -> string,
 }
 
 export type GenericSettings = ServiceProvider & {
@@ -7189,6 +7614,9 @@ export type SessionService = Instance & {
     SessionExists: (self: SessionService, sid: string) -> boolean,
     SetMetadata: (self: SessionService, sid: string, key: string, value: any, context: string) -> (),
     SetSession: (self: SessionService, parentSid: string, childSid: string, tag: string, context: string) -> (),
+}
+
+export type SessionStorage = Instance & {
 }
 
 export type SharedTableRegistry = Instance & {
@@ -7266,9 +7694,6 @@ export type SmoothVoxelsUpgraderService = Instance & {
     Start: (self: SmoothVoxelsUpgraderService) -> (),
 }
 
-export type SnippetService = Instance & {
-}
-
 export type SocialService = Instance & {
     GetPlayersByPartyId: (self: SocialService, partyId: string) -> any,
     HideSelfView: (self: SocialService) -> (),
@@ -7279,6 +7704,7 @@ export type SocialService = Instance & {
     PromptGameInvite: (self: SocialService, player: any, experienceInviteOptions: any) -> (),
     PromptPhoneBook: (self: SocialService, player: any, tag: string) -> (),
     PromptRsvpToEventCompleted: (self: SocialService, eventId: string, success: boolean, rsvpStatus: enum.Enum_RsvpStatus, previousRsvpStatus: enum.Enum_RsvpStatus) -> (),
+    RateExperiencePromptCompleted: (self: SocialService, result: enum.Enum_ExperienceRatingResult) -> (),
     ShowSelfView: (self: SocialService, selfViewPosition: enum.Enum_SelfViewPosition) -> (),
     SignalFeedbackSubmissionCompleted: (self: SocialService, feedback: string, options: {[string]: any}) -> (),
     SignalFeedbackSubmissionPermissionDenied: (self: SocialService) -> (),
@@ -7291,6 +7717,7 @@ export type SocialService = Instance & {
     GetUpcomingExperienceEventsAsync: (self: SocialService) -> {any},
     PromptFeedbackSubmissionAsync: (self: SocialService, options: {[string]: any}) -> (),
     PromptLinkSharingAsync: (self: SocialService, player: Player, options: {[string]: any}) -> ...any,
+    PromptRateExperienceAsync: (self: SocialService) -> enum.Enum_ExperienceRatingResult,
     PromptRsvpToEventAsync: (self: SocialService, eventId: string) -> enum.Enum_RsvpStatus,
 }
 
@@ -7323,7 +7750,9 @@ export type Sound = Instance & {
     TimePositionReplicator: number,
     UsageContextPermission: enum.Enum_UsageContext,
     Volume: number,
+    GetPlaybackState: (self: Sound) -> string,
     GetUnderlyingAudioPlayer: (self: Sound) -> AudioPlayer,
+    GetWorldCFrame: (self: Sound) -> any,
     Pause: (self: Sound) -> (),
     Play: (self: Sound) -> (),
     Resume: (self: Sound) -> (),
@@ -7424,14 +7853,19 @@ export type SoundService = Instance & {
     RolloffScale: number,
     VolumetricAudio: enum.Enum_VolumetricAudio,
     BeginRecording: (self: SoundService) -> boolean,
+    DebugClearDetachedPlaybacks: (self: SoundService) -> (),
+    EnableDetachedPlaybackMetadata: (self: SoundService) -> (),
     GetAudioApiByDefault: (self: SoundService) -> boolean,
     GetAudioInstances: (self: SoundService) -> {any},
+    GetDetachedPlaybackData: (self: SoundService) -> {[string]: any},
     GetInputDevice: (self: SoundService) -> ...any,
     GetInputDevices: (self: SoundService) -> ...any,
     GetListener: (self: SoundService) -> ...any,
+    GetListenerWorldCFrame: (self: SoundService) -> any,
     GetMixerTime: (self: SoundService) -> number,
     GetOutputDevice: (self: SoundService) -> ...any,
     GetOutputDevices: (self: SoundService) -> ...any,
+    GetPeakLevel: (self: SoundService) -> number,
     GetSoundMemoryData: (self: SoundService) -> {[string]: any},
     InsertAsset: (self: SoundService, assetId: any, assetName: string, useSelection: boolean) -> any,
     OpenAttenuationCurveEditor: (self: SoundService, selectedCurveObjects: any) -> (),
@@ -7477,6 +7911,12 @@ export type StackFrame = Instance & {
 export type StandalonePluginScripts = Instance & {
 }
 
+export type StandardQueue = Instance & {
+    BatchCommitAsync: (self: StandardQueue, group: string, messageIds: {any}) -> (),
+    PublishAsync: (self: StandardQueue, data: any, messageKey: string) -> (),
+    SubscribeAsync: (self: StandardQueue, group: string, callback: any) -> any,
+}
+
 export type StartPageService = Instance & {
     generateTempUrlInContentProvider: (self: StartPageService, url: string) -> (),
     getDaysSinceFirstUserLogin: (self: StartPageService) -> number,
@@ -7498,6 +7938,7 @@ export type StartPageService = Instance & {
 }
 
 export type StarterGear = Instance & {
+    Loaded: boolean,
 }
 
 export type StarterPack = Instance & {
@@ -7526,30 +7967,17 @@ export type StarterPlayer = Instance & {
     DevTouchMovementMode: enum.Enum_DevTouchMovementMode,
     EnableDynamicHeads: enum.Enum_LoadDynamicHeads,
     EnableMouseLockOption: boolean,
-    GameSettingsAssetIDFace: buffer,
-    GameSettingsAssetIDHead: buffer,
-    GameSettingsAssetIDLeftArm: buffer,
-    GameSettingsAssetIDLeftLeg: buffer,
-    GameSettingsAssetIDPants: buffer,
-    GameSettingsAssetIDRightArm: buffer,
-    GameSettingsAssetIDRightLeg: buffer,
-    GameSettingsAssetIDShirt: buffer,
-    GameSettingsAssetIDTeeShirt: buffer,
-    GameSettingsAssetIDTorso: buffer,
     GameSettingsAvatar: enum.Enum_GameAvatarType,
     GameSettingsR15Collision: enum.Enum_R15CollisionType,
-    GameSettingsScaleRangeBodyType: datatypes.NumberRange,
-    GameSettingsScaleRangeHead: datatypes.NumberRange,
-    GameSettingsScaleRangeHeight: datatypes.NumberRange,
-    GameSettingsScaleRangeProportion: datatypes.NumberRange,
-    GameSettingsScaleRangeWidth: datatypes.NumberRange,
     HealthDisplayDistance: number,
     LoadCharacterAppearance: boolean,
     LoadCharacterLayeredClothing: enum.Enum_LoadCharacterLayeredClothing,
     ["LoadCharacterLayeredClothing "]: enum.Enum_LoadCharacterLayeredClothing,
     LuaCharacterController: enum.Enum_CharacterControlMode,
     NameDisplayDistance: number,
+    PlaceAvatarRules: any,
     PlayerModuleStatus: number,
+    UseImprovedCharacterEvents: enum.Enum_RolloutState,
     UserEmotesEnabled: boolean,
     ClearDefaults: (self: StarterPlayer) -> (),
 }
@@ -7563,6 +7991,17 @@ export type StarterCharacterScripts = StarterPlayerScripts & {
 export type StartupMessageService = Instance & {
     ExecuteActionButton: (self: StartupMessageService) -> (),
     GetStartupMessage: (self: StartupMessageService) -> any,
+}
+
+export type StateMachineDefinition = Instance & {
+    NodeId: string,
+}
+
+export type StateMachineTransitionDefinition = Instance & {
+    From: any,
+    Priority: number,
+    To: any,
+    TransitionId: string,
 }
 
 export type Stats = Instance & {
@@ -7592,6 +8031,8 @@ export type Stats = Instance & {
     GetHarmonyQualityLevel: (self: Stats) -> number,
     GetMemoryCategoryNames: (self: Stats) -> {any},
     GetMemoryUsageMbAllCategories: (self: Stats) -> {any},
+    GetMemoryUsageMbAllCategoriesFiltered: (self: Stats, dmId: number, vmClass: number) -> {any},
+    GetMemoryUsageMbFiltered: (self: Stats, dmId: number, vmClass: number) -> number,
     GetMemoryUsageMbForTag: (self: Stats, tag: enum.Enum_DeveloperMemoryTag) -> number,
     GetTotalMemoryUsageMb: (self: Stats) -> number,
     ResetHarmonyMemoryTarget: (self: Stats) -> (),
@@ -7632,6 +8073,7 @@ export type Studio = Instance & {
     ["Animate Hover Over"]: boolean,
     ["Animation Skeleton Scale"]: number,
     ["Animation Skeleton Transparency"]: number,
+    AutoPlayAnimatedImages: boolean,
     AutoResumeSyncOnPlaceOpen: boolean,
     AutoUpdateEnabled: boolean,
     ["Auto Clean Empty Line"]: boolean,
@@ -7649,14 +8091,18 @@ export type Studio = Instance & {
     ["Bracket Color"]: datatypes.Color3,
     ["Built-in Function Color"]: datatypes.Color3,
     CameraAltLeftMouseToRotate: boolean,
+    CameraFocusFillPercent: number,
     CameraKeyMoveSmoothing: boolean,
     CameraMouseMultiplier: number,
     CameraNavigationModel: enum.Enum_CameraNavigationModel,
+    CameraNavigationModelLocked: boolean,
+    CameraRotateCursorLock: enum.Enum_CameraRotateCursorLock,
     CameraRotateShiftFactor: number,
     CameraShiftFactor: number,
     CameraTweenFocus: boolean,
     CameraZoomToMousePosition: boolean,
     ["Camera Mouse Wheel Speed"]: number,
+    ["Camera Orbit Speed"]: number,
     ["Camera Pan Speed"]: number,
     ["Camera Shift Speed"]: number,
     ["Camera Speed"]: number,
@@ -7703,6 +8149,7 @@ export type Studio = Instance & {
     ["Enable Autocomplete Doc View"]: boolean,
     ["Enable Client/Server MDI"]: boolean,
     ["Enable CoreScript Debugger"]: boolean,
+    ["Enable Flag Editor"]: boolean,
     ["Enable Http Sandboxing"]: boolean,
     ["Enable Internal Beta Features"]: boolean,
     ["Enable Internal Features"]: boolean,
@@ -7759,6 +8206,8 @@ export type Studio = Instance & {
     ReloadBuiltinPluginsOnChange: boolean,
     ReloadLocalPluginsOnChange: boolean,
     ["Respect Studio shortcuts when game has focus"]: boolean,
+    ReviewableChangeAddedTextColor: datatypes.Color3,
+    ReviewableChangeRemovedTextColor: datatypes.Color3,
     ["Ruler Color"]: datatypes.Color3,
     Rulers: string,
     RuntimeUndoBehavior: enum.Enum_RuntimeUndoBehavior,
@@ -7804,7 +8253,7 @@ export type Studio = Instance & {
     ["Tab Width"]: number,
     ["Text Color"]: datatypes.Color3,
     ["Text Wrapping"]: boolean,
-    Theme: any,
+    Theme: StudioTheme,
     TypeColor: datatypes.Color3,
     UseDefaultExternalEditor: boolean,
     ["Use Bounding Box Move Handles"]: boolean,
@@ -7835,6 +8284,7 @@ export type StudioAssetService = Instance & {
     PromptSaveInstanceToRobloxAsync: (self: StudioAssetService, instance: any, assetType: any, groupId: buffer) -> ...any,
     RequestAvatarAutosetupAsync: (self: StudioAssetService, meshId: any, textureId: any, progressCallback: any) -> any,
     SerializeInstances: (self: StudioAssetService, instances: any, groupId: buffer, isPackage: boolean) -> string,
+    UploadAndInsertAssetForJobAsync: (self: StudioAssetService, jobId: string) -> any,
 }
 
 export type StudioAttachment = Instance & {
@@ -7857,6 +8307,7 @@ export type StudioCallout = Instance & {
 
 export type StudioCameraService = Instance & {
     FocusDistance: number,
+    GraspDistance: number,
     LockCameraSpeed: boolean,
     LoggingEnabled: boolean,
     InFocusMode: (self: StudioCameraService) -> boolean,
@@ -7868,6 +8319,7 @@ export type StudioCaptureService = Instance & {
     CanCaptureScreenshot: (self: StudioCaptureService) -> boolean,
     CapturePluginGui: (self: StudioCaptureService, pluginGui: PluginGui) -> StudioScreenshotCapture,
     CaptureScreenshot: (self: StudioCaptureService, screenshotOptions: {[string]: any}) -> StudioScreenshotCapture,
+    CapturePluginGuiByPluginGuiIdAsync: (self: StudioCaptureService, pluginGuiId: string) -> StudioScreenshotCapture,
     RequestScreenshotPermissionAsync: (self: StudioCaptureService) -> boolean,
 }
 
@@ -7885,9 +8337,6 @@ export type StudioDeviceEmulatorService = Instance & {
 }
 
 export type StudioDeviceSimulatorService = Instance & {
-    GetRegisteredSimulators: (self: StudioDeviceSimulatorService) -> {any},
-    RegisterSimulator: (self: StudioDeviceSimulatorService, name: string, config: {[string]: any}) -> {[string]: any},
-    UnregisterSimulator: (self: StudioDeviceSimulatorService, handle: {[string]: any}) -> (),
     CreateDeviceAsync: (self: StudioDeviceSimulatorService, config: {[string]: any}) -> string,
     GetDeviceAsync: (self: StudioDeviceSimulatorService) -> string,
     GetDeviceInfoAsync: (self: StudioDeviceSimulatorService, deviceId: string) -> {[string]: any},
@@ -7912,6 +8361,7 @@ export type StudioObjectBase = Instance & {
 export type StudioWidget = StudioObjectBase & {
     Resize: (self: StudioWidget, width: number, height: number) -> (),
     SetFixedSize: (self: StudioWidget, width: number, height: number) -> (),
+    SetMinSize: (self: StudioWidget, width: number, height: number) -> (),
 }
 
 export type StudioPublishService = Instance & {
@@ -7968,7 +8418,6 @@ export type StudioService = Instance & {
     GetBadgeConfigureUrl: (self: StudioService, badgeId: buffer) -> string,
     GetBadgeUploadUrl: (self: StudioService) -> string,
     GetClassIcon: (self: StudioService, className: string) -> {[string]: any},
-    GetPlaceIsPersistedToCloud: (self: StudioService) -> boolean,
     GetResourceByCategory: (self: StudioService, category: string) -> {[string]: any},
     GetStartupAssetId: (self: StudioService) -> string,
     GetStartupPluginId: (self: StudioService) -> string,
@@ -8098,6 +8547,7 @@ export type SurfaceAppearance = Instance & {
     ResampleMode: enum.Enum_ResamplerMode,
     RoughnessMap: any,
     RoughnessMapContent: any,
+    SurfaceSlot: number,
     TexturePack: any,
     TexturePackContent: any,
 }
@@ -8105,6 +8555,8 @@ export type SurfaceAppearance = Instance & {
 export type SystemThemeService = Instance & {
     getSystemTheme: (self: SystemThemeService) -> enum.Enum_SystemThemeValue,
     isSystemThemeAvailable: (self: SystemThemeService) -> boolean,
+    setAppIcon: (self: SystemThemeService, iconName: string) -> (),
+    setClassicThemeActive: (self: SystemThemeService, active: boolean) -> (),
     setTheme: (self: SystemThemeService, theme: enum.Enum_SystemThemeValue) -> (),
     getSystemThemeAsync: (self: SystemThemeService) -> enum.Enum_SystemThemeValue,
 }
@@ -8152,9 +8604,10 @@ export type TeleportAsyncResult = Instance & {
 }
 
 export type TeleportOptions = Instance & {
-    ReservedServerAccessCode: string,
+    ForcePublicServer: boolean,
+    ReservedServerId: string,
     ServerInstanceId: string,
-    ShouldReserveServer: boolean,
+    VipServerId: string,
     GetTeleportData: (self: TeleportOptions) -> any,
     SetTeleportData: (self: TeleportOptions, teleportData: any) -> (),
 }
@@ -8171,13 +8624,13 @@ export type TeleportService = Instance & {
     Teleport: (self: TeleportService, placeId: buffer, player: any, teleportData: any, customLoadingScreen: any) -> (),
     TeleportCancel: (self: TeleportService) -> (),
     TeleportReconnect: (self: TeleportService) -> (),
+    TeleportSwitchServer: (self: TeleportService, gameIdsToExclude: {any}) -> (),
     TeleportTrustedBackForth: (self: TeleportService, goForth: boolean) -> (),
     TeleportTrustedBackHistory: (self: TeleportService, placeId: buffer) -> (),
     TeleportedPlacesBackHistory: (self: TeleportService) -> {any},
     TeleportedUniversesBackHistory: (self: TeleportService) -> {any},
     GetPlayerPlaceInstanceAsync: (self: TeleportService, userId: any) -> ...any,
     PromptExperienceDetailsAsync: (self: TeleportService, player: Player, universeId: buffer) -> enum.Enum_PromptExperienceDetailsResult,
-    ReserveServerAsync: (self: TeleportService, placeId: buffer) -> ...any,
     TeleportAsync: (self: TeleportService, placeId: buffer, players: any, teleportOptions: any) -> any,
     UnblockAsync: (self: TeleportService) -> ...any,
 }
@@ -8218,18 +8671,19 @@ export type TerrainRegion = Instance & {
     GetRegionWireframe: (self: TerrainRegion) -> {any},
 }
 
-export type TestCase = Instance & {
-    Assert: (self: TestCase, condition: boolean, message: string, source: any, line: number) -> (),
-    AssertLegacy: (self: TestCase, condition: boolean, message: string, source: any, line: number) -> (),
-    EndTest: (self: TestCase, message: string, source: any, line: number) -> (),
-    Message: (self: TestCase, text: string, source: any, line: number) -> (),
-    Require: (self: TestCase, condition: boolean, message: string, source: any, line: number) -> (),
-    RequireLegacy: (self: TestCase, condition: boolean, message: string, source: any, line: number) -> (),
+export type TestCoordinatorService = Instance & {
+    Participant: (self: TestCoordinatorService, id: string) -> ParticipantHandle,
+    Signal: (self: TestCoordinatorService, topic: string, payload: {[string]: any}) -> (),
+    AwaitAllAsync: (self: TestCoordinatorService, pendingIds: {any}) -> {any},
+    AwaitAnyAsync: (self: TestCoordinatorService, pendingIds: {any}) -> {[string]: any},
+    AwaitSignalAsync: (self: TestCoordinatorService, topic: string) -> {[string]: any},
+    BarrierAsync: (self: TestCoordinatorService, name: string, participantIds: {any}) -> (),
 }
 
 export type TestService = Instance & {
     AutoRuns: boolean,
     Description: string,
+    Enabled: boolean,
     ErrorCount: number,
     ExecuteWithStudioRun: boolean,
     IsPhysicsEnvironmentalThrottled: boolean,
@@ -8251,13 +8705,18 @@ export type TestService = Instance & {
     FetchExtraAssets: (self: TestService, extraAssetsFileName: string) -> string,
     GetTestControlSchema: (self: TestService, providerName: string) -> {[string]: any},
     GetTestControls: (self: TestService, providerName: string) -> {[string]: any},
+    ListTests: (self: TestService) -> {any},
     Message: (self: TestService, text: string, source: any, line: number) -> (),
-    RegisterTest: (self: TestService, testOptions: {[string]: any}) -> TestCase,
-    RegisterTestLegacy: (self: TestService, testOptions: {[string]: any}) -> TestCase,
+    RegisterSuite: (self: TestService, suiteName: string, options: {[string]: any}) -> TestSuite,
+    RegisterTest: (self: TestService, testName: string, callback: any, options: {[string]: any}) -> TestCase,
     Require: (self: TestService, condition: boolean, description: string, source: any, line: number) -> (),
     ResetTestControl: (self: TestService, providerName: string, controlName: string) -> (),
+    ResetTestRegistry: (self: TestService) -> (),
     ScopeTime: (self: TestService) -> {[string]: any},
     SetTestControl: (self: TestService, providerName: string, controlName: string, value: any) -> (),
+    SignalProfilingCapture: (self: TestService, target: string, options: {[string]: any}) -> (),
+    SignalProfilingStart: (self: TestService, target: string, options: {[string]: any}) -> (),
+    SignalProfilingStop: (self: TestService, target: string) -> (),
     StartTestSession: (self: TestService) -> (),
     StopTestSession: (self: TestService) -> (),
     TakeSnapshot: (self: TestService, snapshotname: string, source: any) -> (),
@@ -8267,9 +8726,12 @@ export type TestService = Instance & {
     isFeatureEnabled: (self: TestService, name: string) -> boolean,
     CaptureScreenshotAsync: (self: TestService, artifactName: string, options: {[string]: any}) -> ...any,
     FetchTestControlsAsync: (self: TestService, category: string) -> ...any,
-    RequestValidationAsync: (self: TestService, artifactType: string, artifactName: string, timeoutSeconds: number) -> ...any,
+    RequestValidationAsync: (self: TestService, module: string, artifactName: string, options: any) -> ...any,
     RunAsync: (self: TestService) -> (),
+    RunTestsAsync: (self: TestService, filter: {[string]: any}) -> TestRunResult,
+    StartAudioCaptureAsync: (self: TestService, artifactName: string, options: {[string]: any}) -> ...any,
     StartVideoCaptureAsync: (self: TestService, artifactName: string, options: {[string]: any}) -> ...any,
+    StopAudioCaptureAsync: (self: TestService) -> ...any,
     StopVideoCaptureAsync: (self: TestService) -> ...any,
 }
 
@@ -8277,7 +8739,9 @@ export type TextBoxService = Instance & {
 }
 
 export type TextChannel = Instance & {
+    AddPlayersOnJoin: boolean,
     DirectChatRequester: Player,
+    IsDefaultTextChannel: boolean,
     DisplaySystemMessage: (self: TextChannel, systemMessage: string, metadata: string) -> TextChatMessage,
     SetDirectChatRequester: (self: TextChannel, requester: Player) -> (),
     AddUserAsync: (self: TextChannel, userId: any) -> ...any,
@@ -8366,6 +8830,7 @@ export type ChatWindowConfiguration = TextChatConfigurations & {
     FontFace: datatypes.Font,
     HeightScale: number,
     HorizontalAlignment: enum.Enum_HorizontalAlignment,
+    TextChannelDisplayMode: enum.Enum_TextChannelDisplayMode,
     TextColor3: datatypes.Color3,
     TextSize: buffer,
     TextStrokeColor3: datatypes.Color3,
@@ -8381,6 +8846,7 @@ export type TextChatMessage = Instance & {
     ChatWindowMessageProperties: ChatWindowMessageProperties,
     ForModeration: boolean,
     IsHiddenMessage: boolean,
+    IsHistorical: boolean,
     MessageId: string,
     Metadata: string,
     OriginalText: string,
@@ -8436,6 +8902,7 @@ export type TextChatService = Instance & {
     HasSeenDeprecationDialog: boolean,
     IsLegacyChatDisabled: boolean,
     PlatformIntegratedChat: enum.Enum_RolloutState,
+    ChatIsLoaded: (self: TextChatService) -> (),
     DisplayBubble: (self: TextChatService, partOrCharacter: any, message: string) -> (),
     GetTextChannelWindows: (self: TextChatService) -> {any},
     HasAllocatedUniverseChatContext: (self: TextChatService, context: string) -> boolean,
@@ -8443,7 +8910,7 @@ export type TextChatService = Instance & {
     SendEnableChatButtonClicked: (self: TextChatService) -> (),
     SendEnableChatButtonShown: (self: TextChatService) -> (),
     SendExpChatLoadSuccess: (self: TextChatService, loadingLatency: number, extras: {[string]: any}, chatWindowType: string, textChannelWindowName: string) -> (),
-    SendExpChatMessageClientRendered: (self: TextChatService, textChatMessage: TextChatMessage, messageRenderedSurface: string, selectedChannelTab: buffer, textChannelWindowName: string) -> (),
+    SendExpChatMessageClientRendered: (self: TextChatService, textChatMessage: TextChatMessage, messageRenderedSurface: string, selectedChannelTab: buffer, textChannelWindowName: string, specialEffects: {any}) -> (),
     SendExpChatWindowScroll: (self: TextChatService, chatWindowType: string, textChannelWindowName: string) -> (),
     SendExpChatWindowStatusChange: (self: TextChatService, timeClosed: number, timeOpen: number, timeBackgroundIdle: number, timeTextIdle: number, chatWindowType: string, textChannelWindowName: string) -> (),
     SendTextChatCommandClientSent: (self: TextChatService, textChatCommandName: string, chatWindowType: string, textChannelWindowName: string) -> (),
@@ -8459,6 +8926,11 @@ export type TextChatService = Instance & {
     SendDictatedSpeechUniverseChatAsync: (self: TextChatService, text: string) -> TextChatMessage,
     SendUniverseChatMessageAsync: (self: TextChatService, text: string, metadata: string) -> TextChatMessage,
     SendUniverseChatPresetAsync: (self: TextChatService, presetId: string) -> TextChatMessage,
+}
+
+export type TextDocument = Instance & {
+    TextContent: any,
+    ReadAsync: (self: TextDocument) -> string,
 }
 
 export type TextFilterResult = Instance & {
@@ -8635,6 +9107,7 @@ export type UGCAvatarService = Instance & {
 }
 
 export type UGCValidationService = Instance & {
+    AreInstanceTreesEquivalent: (self: UGCValidationService, expectedTree: any, candidateTree: any) -> boolean,
     CalculateAverageEditableCageMeshDistance: (self: UGCValidationService, innerCage: EditableMesh, outerCage: EditableMesh, refMesh: EditableMesh, innerTransform: datatypes.CFrame, outerTransform: datatypes.CFrame) -> number,
     CalculateEditableMeshInsideMeshPercentage: (self: UGCValidationService, editableMeshRoot: EditableMesh, editableMeshQuery: EditableMesh, meshQueryTransform: datatypes.CFrame, meshQueryScale: datatypes.Vector3) -> number,
     CalculateEditableMeshModifiedCageBoundingBox: (self: UGCValidationService, referenceUVValues: {any}, innerCage: EditableMesh, innerTransform: datatypes.CFrame, outerCage: EditableMesh, outerTransform: datatypes.CFrame) -> ...any,
@@ -8645,6 +9118,7 @@ export type UGCValidationService = Instance & {
     CreateEditableImageFromBinaryStringRobloxOnly: (self: UGCValidationService, value: BinaryStringValue) -> EditableImage,
     CreateEditableMeshFromBinaryStringRobloxOnly: (self: UGCValidationService, value: BinaryStringValue) -> EditableMesh,
     GetBoundingBoxManipulationData: (self: UGCValidationService, partMeshObjects: {any}, partCFs: {any}, meshScales: {any}) -> any,
+    GetCurveAnimationRenderedFrames: (self: UGCValidationService, curveAnimation: any, templateRig: Model, classicTemplateRig: Model, maxDuration: number) -> {[string]: any},
     GetDynamicHeadEditableMeshInactiveControls: (self: UGCValidationService, editableMesh: EditableMesh, controlNames: {any}) -> ...any,
     GetEditableCagingRelevancyMetrics: (self: UGCValidationService, innerCage: EditableMesh, outerCage: EditableMesh, refMesh: EditableMesh, offsetInner: datatypes.Vector3, offsetOuter: datatypes.Vector3) -> ...any,
     GetEditableImageSize: (self: UGCValidationService, editableImage: EditableImage) -> datatypes.Vector2,
@@ -8672,16 +9146,13 @@ export type UGCValidationService = Instance & {
     SetMeshIdBlocking: (self: UGCValidationService, meshPart: any, meshId: string) -> (),
     ValidateDynamicHeadEditableMesh: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
     ValidateEditableMeshCageMeshIntersection: (self: UGCValidationService, innerCage: EditableMesh, outerCage: EditableMesh, refMesh: EditableMesh) -> ...any,
-    ValidateEditableMeshCageNonManifoldAndHoles: (self: UGCValidationService, editableMesh: EditableMesh) -> ...any,
     ValidateEditableMeshCageUVCoincident: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
     ValidateEditableMeshCageUVTriangleArea: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
     ValidateEditableMeshFacialBounds: (self: UGCValidationService, editableMesh: EditableMesh, boundsScale: number, partSize: datatypes.Vector3) -> boolean,
     ValidateEditableMeshFacialExpressiveness: (self: UGCValidationService, editableMesh: EditableMesh, minDelta: number, partSize: datatypes.Vector3) -> number,
-    ValidateEditableMeshFullBodyCageDeletion: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
     ValidateEditableMeshMisMatchUV: (self: UGCValidationService, innerCage: EditableMesh, outerCage: EditableMesh) -> boolean,
     ValidateEditableMeshOverlappingVertices: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
     ValidateEditableMeshTriangleArea: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
-    ValidateEditableMeshTriangles: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
     ValidateEditableMeshUVDuplicates: (self: UGCValidationService, referenceValues: {any}, editableMesh: EditableMesh) -> number,
     ValidateEditableMeshUVSpace: (self: UGCValidationService, editableMesh: EditableMesh) -> boolean,
     ValidateEditableMeshUVValuesInReference: (self: UGCValidationService, referenceValues: {any}, editableMesh: EditableMesh) -> boolean,
@@ -8698,8 +9169,10 @@ export type UGCValidationService = Instance & {
     DoesMeshHaveSkinningData: (self: UGCValidationService, meshId: string) -> boolean,
     DoesSurfaceAppearanceMatchTexturePackAsync: (self: UGCValidationService, surfaceAppearance: SurfaceAppearance) -> boolean,
     FetchAssetWithFormat: (self: UGCValidationService, url: any, assetFormat: string) -> any,
+    GetLayeredClothingPostDeformationSizeAsync: (self: UGCValidationService, accessory: Accessory, editableMesh: EditableMesh, meshScale: datatypes.Vector3) -> datatypes.Vector3,
     GetMeshDataBinaryString: (self: UGCValidationService, meshId: string) -> BinaryStringValue,
     GetMeshVerts: (self: UGCValidationService, meshId: string) -> {any},
+    GetSerializedSizeExcludingCollisionAsync: (self: UGCValidationService, inputInstances: any) -> number,
     IsDeformedLayeredClothingOutOfRenderBounds: (self: UGCValidationService, accessory: Accessory) -> boolean,
 }
 
@@ -8707,6 +9180,13 @@ export type UIBase = Instance & {
 }
 
 export type UIComponent = UIBase & {
+}
+
+export type UIBlur = UIComponent & {
+    Color: datatypes.Color3,
+    Enabled: boolean,
+    Strength: enum.Enum_UIBlurStrength,
+    Transparency: number,
 }
 
 export type UIConstraint = UIComponent & {
@@ -8756,6 +9236,7 @@ export type UIDragDetector = UIComponent & {
     MinDragTranslation: datatypes.UDim2,
     ReferenceUIInstance: GuiObject,
     ResponseStyle: enum.Enum_UIDragDetectorResponseStyle,
+    Selectable: boolean,
     SelectionModeDragSpeed: datatypes.UDim2,
     SelectionModeRotateSpeed: number,
     UIDragSpeedAxisMapping: enum.Enum_UIDragSpeedAxisMapping,
@@ -9004,7 +9485,8 @@ export type UserInputService = Instance & {
     TouchEnabled: boolean,
     TouchScreenEnabled: boolean,
     VREnabled: boolean,
-    CreateVirtualInput: (self: UserInputService) -> Object,
+    CreateVirtualInput: (self: UserInputService, target: any) -> Object,
+    CreateVirtualInputForPluginGuiId: (self: UserInputService, pluginGuiId: string) -> Object,
     GamepadSupports: (self: UserInputService, gamepadNum: enum.Enum_UserInputType, gamepadKeyCode: enum.Enum_KeyCode) -> boolean,
     GetConnectedGamepads: (self: UserInputService) -> {any},
     GetDeviceAcceleration: (self: UserInputService) -> InputObject,
@@ -9050,12 +9532,14 @@ export type VRService = Instance & {
     LaserDistance: number,
     LaserPointer: enum.Enum_VRLaserPointerMode,
     PointerHitCFrame: datatypes.CFrame,
+    PresentationMode: enum.Enum_VRPresentationMode,
     QuestASWState: boolean,
     QuestDisplayRefreshRate: number,
     ThirdPersonFollowCamEnabled: boolean,
     VRDeviceAvailable: boolean,
     VRDeviceName: string,
     VREnabled: boolean,
+    VRSessionActive: boolean,
     VRSessionState: enum.Enum_VRSessionState,
     GetTouchpadMode: (self: VRService, pad: enum.Enum_VRTouchpad) -> enum.Enum_VRTouchpadMode,
     GetUserCFrame: (self: VRService, type: enum.Enum_UserCFrame) -> datatypes.CFrame,
@@ -9162,7 +9646,9 @@ export type VersionControlService = Instance & {
 export type VideoCaptureService = Instance & {
     Active: boolean,
     CameraID: string,
+    ClearMockInput: (self: VideoCaptureService) -> (),
     GetCameraDevices: (self: VideoCaptureService) -> any,
+    SetMockInputAsync: (self: VideoCaptureService, videoContent: any) -> ...any,
 }
 
 export type VideoDeviceInput = Instance & {
@@ -9304,7 +9790,10 @@ export type VoiceChatService = Instance & {
     getInternalVoiceChatApiVersion: (self: VoiceChatService) -> number,
     isInternalPublishPaused: (self: VoiceChatService) -> boolean,
     joinVoice: (self: VoiceChatService) -> (),
+    lastVoiceChatConnectivity: (self: VoiceChatService) -> {[string]: any},
+    lastVoiceChatRemoteOperations: (self: VoiceChatService) -> {[string]: any},
     lastVoiceChatStats: (self: VoiceChatService) -> {[string]: any},
+    lastVoiceChatSubscriptions: (self: VoiceChatService) -> {[string]: any},
     leaveVoice: (self: VoiceChatService, leaveReason: enum.Enum_VoiceClientLeaveReasons) -> (),
     notifyServerACSCleanup: (self: VoiceChatService) -> (),
     rejoinVoice: (self: VoiceChatService) -> (),
@@ -9370,13 +9859,11 @@ export type Wire = Instance & {
     RenameToDefault: (self: Wire) -> (),
 }
 
-export type WrapDeformMeshProvider = Instance & {
-}
-
 export type WrapTextureTransfer = Instance & {
     ReferenceCageMeshContent: any,
     UVMaxBound: datatypes.Vector2,
     UVMinBound: datatypes.Vector2,
+    PrepareProjectionMeshDataAsync: (self: WrapTextureTransfer) -> (),
 }
 
 export type Logger = Object & {
@@ -9392,6 +9879,7 @@ export type Logger = Object & {
 
 export type LuauExpression = Object & {
     Evaluate: (self: LuauExpression, args: {[string]: any}) -> {[string]: any},
+    References: (self: LuauExpression, variableName: string) -> boolean,
 }
 
 export type MLSession = Object & {
@@ -9402,6 +9890,24 @@ export type OutputLink = Object & {
     Print: (self: OutputLink, messageType: enum.Enum_MessageType, message: string, urlText: string) -> (),
 }
 
+export type ParticipantHandle = Object & {
+    Click: (self: ParticipantHandle, x: number, y: number) -> string,
+    InputText: (self: ParticipantHandle, text: string, enter: boolean) -> string,
+    InvokePluginCommand: (self: ParticipantHandle, command: string, args: {[string]: any}) -> string,
+    Launch: (self: ParticipantHandle, options: {[string]: any}) -> string,
+    Screenshot: (self: ParticipantHandle, name: string) -> string,
+    Scroll: (self: ParticipantHandle, direction: string, power: number) -> string,
+    Shutdown: (self: ParticipantHandle) -> string,
+}
+
+export type PickedFile = Object & {
+    Destroy: (self: PickedFile) -> (),
+    GetExtension: (self: PickedFile) -> string,
+    GetMimeType: (self: PickedFile) -> string,
+    GetName: (self: PickedFile) -> string,
+    LoadAsync: (self: PickedFile, options: {[string]: any}) -> {[string]: any},
+}
+
 export type PluginConnection = Object & {
     Connected: boolean,
     GroupId: string,
@@ -9409,6 +9915,11 @@ export type PluginConnection = Object & {
     Type: enum.Enum_PluginConnectionTargetType,
     BindToMessage: (self: PluginConnection, callbackFunction: any) -> any,
     SendMessage: (self: PluginConnection, message: any) -> (),
+}
+
+export type SceneSnapshot = Object & {
+    GetRoots: (self: SceneSnapshot) -> any,
+    GetSourceGuid: (self: SceneSnapshot, instance: any) -> string,
 }
 
 export type StudioActionOverride = Object & {
@@ -9432,6 +9943,67 @@ export type TerrainReadOperation = Object & {
 export type TerrainWriteOperation = Object & {
     CommitBlock: (self: TerrainWriteOperation, block: {[string]: any}) -> any,
     GetBlock: (self: TerrainWriteOperation) -> {[string]: any},
+}
+
+export type TestCase = Object & {
+    SuiteName: string,
+    TestId: string,
+    TestName: string,
+    TimeoutSec: number,
+    Assert: (self: TestCase, condition: boolean, message: string, source: any, line: number) -> (),
+    AssertLegacy: (self: TestCase, condition: boolean, message: string, source: any, line: number) -> (),
+    Check: (self: TestCase, actualValue: any, expectedValue: any, message: string) -> (),
+    EndTest: (self: TestCase, message: string, source: any, line: number) -> (),
+    GetTestTags: (self: TestCase) -> {any},
+    Message: (self: TestCase, text: string, source: any, line: number) -> (),
+    Require: (self: TestCase, actualValue: any, expectedValue: any, message: string) -> (),
+    RequireLegacy: (self: TestCase, condition: boolean, message: string, source: any, line: number) -> (),
+}
+
+export type TestExecutionContext = Object & {
+    Skip: (self: TestExecutionContext, reason: string) -> (),
+}
+
+export type TestFailure = Object & {
+    Line: number,
+    Matcher: string,
+    Message: string,
+    StackTrace: string,
+    GetActual: (self: TestFailure) -> any,
+    GetExpected: (self: TestFailure) -> any,
+    GetSource: (self: TestFailure) -> any,
+}
+
+export type TestResult = Object & {
+    Duration: number,
+    FailedChecks: number,
+    PassedChecks: number,
+    SkipReason: string,
+    Status: enum.Enum_TestCaseStatus,
+    SuiteName: string,
+    TestId: string,
+    TestName: string,
+    UncaughtError: string,
+    GetFailures: (self: TestResult) -> {any},
+    GetTestTags: (self: TestResult) -> {any},
+}
+
+export type TestRunResult = Object & {
+    Duration: number,
+    Failed: number,
+    Passed: number,
+    Skipped: number,
+    Status: enum.Enum_TestRunStatus,
+    Summary: string,
+    Total: number,
+    GetTests: (self: TestRunResult) -> {any},
+}
+
+export type TestSuite = Object & {
+    SuiteName: string,
+    TimeoutSec: number,
+    GetTestTags: (self: TestSuite) -> {any},
+    RegisterTest: (self: TestSuite, testName: string, callback: any, options: {[string]: any}) -> TestCase,
 }
 
 export type VideoSampler = Object & {
@@ -9471,6 +10043,7 @@ export type NewConstructor =
     & (("Accoutrement", parent: Instance?) -> Accoutrement)
     & (("Accessory", parent: Instance?) -> Accessory)
     & (("Hat", parent: Instance?) -> Hat)
+    & (("AdPlacement", parent: Instance?) -> AdPlacement)
     & (("AdPortal", parent: Instance?) -> AdPortal)
     & (("AdvancedDragger", parent: Instance?) -> AdvancedDragger)
     & (("Animation", parent: Instance?) -> Animation)
@@ -9479,7 +10052,10 @@ export type NewConstructor =
     & (("KeyframeSequence", parent: Instance?) -> KeyframeSequence)
     & (("AnimationController", parent: Instance?) -> AnimationController)
     & (("AnimationNodeDefinition", parent: Instance?) -> AnimationNodeDefinition)
+    & (("AnimationPlayer", parent: Instance?) -> AnimationPlayer)
     & (("AnimationRigData", parent: Instance?) -> AnimationRigData)
+    & (("AnimationValueNodeDefinition", parent: Instance?) -> AnimationValueNodeDefinition)
+    & (("AnimationValueOutputDefinition", parent: Instance?) -> AnimationValueOutputDefinition)
     & (("Animator", parent: Instance?) -> Animator)
     & (("Annotation", parent: Instance?) -> Annotation)
     & (("WorkspaceAnnotation", parent: Instance?) -> WorkspaceAnnotation)
@@ -9509,6 +10085,8 @@ export type NewConstructor =
     & (("AudioReverb", parent: Instance?) -> AudioReverb)
     & (("AudioSearchParams", parent: Instance?) -> AudioSearchParams)
     & (("AudioSpeechToText", parent: Instance?) -> AudioSpeechToText)
+    & (("AudioStreamReader", parent: Instance?) -> AudioStreamReader)
+    & (("AudioStreamWriter", parent: Instance?) -> AudioStreamWriter)
     & (("AudioTextToSpeech", parent: Instance?) -> AudioTextToSpeech)
     & (("AudioTremolo", parent: Instance?) -> AudioTremolo)
     & (("AudioWindSynthesizer", parent: Instance?) -> AudioWindSynthesizer)
@@ -9518,6 +10096,7 @@ export type NewConstructor =
     & (("AvatarBodyRules", parent: Instance?) -> AvatarBodyRules)
     & (("AvatarClothingRules", parent: Instance?) -> AvatarClothingRules)
     & (("AvatarCollisionRules", parent: Instance?) -> AvatarCollisionRules)
+    & (("AvatarEffectDescription", parent: Instance?) -> AvatarEffectDescription)
     & (("AvatarRules", parent: Instance?) -> AvatarRules)
     & (("Backpack", parent: Instance?) -> Backpack)
     & (("RemoteEvent", parent: Instance?) -> RemoteEvent)
@@ -9568,6 +10147,7 @@ export type NewConstructor =
     & (("TorsionSpringConstraint", parent: Instance?) -> TorsionSpringConstraint)
     & (("UniversalConstraint", parent: Instance?) -> UniversalConstraint)
     & (("VectorForce", parent: Instance?) -> VectorForce)
+    & (("ControlState", parent: Instance?) -> ControlState)
     & (("HumanoidController", parent: Instance?) -> HumanoidController)
     & (("SkateboardController", parent: Instance?) -> SkateboardController)
     & (("VehicleController", parent: Instance?) -> VehicleController)
@@ -9601,6 +10181,7 @@ export type NewConstructor =
     & (("Texture", parent: Instance?) -> Texture)
     & (("Hole", parent: Instance?) -> Hole)
     & (("MotorFeature", parent: Instance?) -> MotorFeature)
+    & (("FeatureMatchingTable", parent: Instance?) -> FeatureMatchingTable)
     & (("Fire", parent: Instance?) -> Fire)
     & (("FloatCurve", parent: Instance?) -> FloatCurve)
     & (("FlyweightService", parent: Instance?) -> FlyweightService)
@@ -9608,6 +10189,8 @@ export type NewConstructor =
     & (("NonReplicatedCSGDictionaryService", parent: Instance?) -> NonReplicatedCSGDictionaryService)
     & (("Folder", parent: Instance?) -> Folder)
     & (("GeneratedFolder", parent: Instance?) -> GeneratedFolder)
+    & (("FollowRotationBoneBehavior", parent: Instance?) -> FollowRotationBoneBehavior)
+    & (("FollowTwistBoneBehavior", parent: Instance?) -> FollowTwistBoneBehavior)
     & (("ForceField", parent: Instance?) -> ForceField)
     & (("FunctionalTest", parent: Instance?) -> FunctionalTest)
     & (("GetTextBoundsParams", parent: Instance?) -> GetTextBoundsParams)
@@ -9715,11 +10298,11 @@ export type NewConstructor =
     & (("WorldModel", parent: Instance?) -> WorldModel)
     & (("PartOperationAsset", parent: Instance?) -> PartOperationAsset)
     & (("ParticleEmitter", parent: Instance?) -> ParticleEmitter)
+    & (("ParticleEmitter2D", parent: Instance?) -> ParticleEmitter2D)
     & (("Path3D", parent: Instance?) -> Path3D)
     & (("PathfindingLink", parent: Instance?) -> PathfindingLink)
     & (("PathfindingModifier", parent: Instance?) -> PathfindingModifier)
     & (("Player", parent: Instance?) -> Player)
-    & (("PlayerControlState", parent: Instance?) -> PlayerControlState)
     & (("PluginAction", parent: Instance?) -> PluginAction)
     & (("PluginCapabilities", parent: Instance?) -> PluginCapabilities)
     & (("NumberPose", parent: Instance?) -> NumberPose)
@@ -9753,6 +10336,7 @@ export type NewConstructor =
     & (("BuoyancySensor", parent: Instance?) -> BuoyancySensor)
     & (("ControllerPartSensor", parent: Instance?) -> ControllerPartSensor)
     & (("FluidForceSensor", parent: Instance?) -> FluidForceSensor)
+    & (("PhysicsActivitySensor", parent: Instance?) -> PhysicsActivitySensor)
     & (("Sky", parent: Instance?) -> Sky)
     & (("Smoke", parent: Instance?) -> Smoke)
     & (("Sound", parent: Instance?) -> Sound)
@@ -9769,6 +10353,8 @@ export type NewConstructor =
     & (("Sparkles", parent: Instance?) -> Sparkles)
     & (("StandalonePluginScripts", parent: Instance?) -> StandalonePluginScripts)
     & (("StarterGear", parent: Instance?) -> StarterGear)
+    & (("StateMachineDefinition", parent: Instance?) -> StateMachineDefinition)
+    & (("StateMachineTransitionDefinition", parent: Instance?) -> StateMachineTransitionDefinition)
     & (("StudioAttachment", parent: Instance?) -> StudioAttachment)
     & (("StudioCallout", parent: Instance?) -> StudioCallout)
     & (("StyleRule", parent: Instance?) -> StyleRule)
@@ -9786,10 +10372,12 @@ export type NewConstructor =
     & (("TextChatCommand", parent: Instance?) -> TextChatCommand)
     & (("TextChatMessageProperties", parent: Instance?) -> TextChatMessageProperties)
     & (("BubbleChatMessageProperties", parent: Instance?) -> BubbleChatMessageProperties)
+    & (("TextDocument", parent: Instance?) -> TextDocument)
     & (("TextGenerator", parent: Instance?) -> TextGenerator)
     & (("TrackerStreamAnimation", parent: Instance?) -> TrackerStreamAnimation)
     & (("Trail", parent: Instance?) -> Trail)
     & (("Tween", parent: Instance?) -> Tween)
+    & (("UIBlur", parent: Instance?) -> UIBlur)
     & (("UIAspectRatioConstraint", parent: Instance?) -> UIAspectRatioConstraint)
     & (("UISizeConstraint", parent: Instance?) -> UISizeConstraint)
     & (("UITextSizeConstraint", parent: Instance?) -> UITextSizeConstraint)
