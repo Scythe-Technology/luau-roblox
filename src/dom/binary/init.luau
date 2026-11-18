@@ -692,6 +692,41 @@ local PropertySerializerMap = {
 
         stream:writeu32(0);
     end,
+    [RobloxPropertyType.AssetContentMap] = function(values: {Property}, stream: polyfill.IoWritable)
+        local HAS_BUNDLE_ID = 0x01;
+        local HAS_ENTRIES = 0x02;
+
+        local function writeLengthPrefixedString(text: string)
+            stream:writeu32(#text);
+            stream:write(text);
+        end
+
+        for _, value in values do
+            if (not datatypes.AssetContentMap.Is(value.value)) then
+                error("AssetContentMap property value has the wrong type");
+            end
+            local bundle_asset_id, entries = datatypes.AssetContentMap.Serialize(value.value);
+            local write_entries = #entries > 0 or bundle_asset_id == nil;
+            local flags = 0;
+            if (bundle_asset_id ~= nil) then
+                flags = bit32.bor(flags, HAS_BUNDLE_ID);
+            end
+            if (write_entries) then
+                flags = bit32.bor(flags, HAS_ENTRIES);
+            end
+            stream:writeu8(flags);
+            if (bundle_asset_id ~= nil) then
+                writeLengthPrefixedString(int64.to_dec_string(int64.from_f64(bundle_asset_id)));
+            end
+            if (write_entries) then
+                stream:write(int64.to_buffer(int64.from_u32(#entries)));
+                for _, entry in entries do
+                    writeLengthPrefixedString(entry.Key);
+                    writeLengthPrefixedString(entry.Data);
+                end
+            end
+        end
+    end,
 }
 
 local function getMemberProperty(class: string, member: string): reflection.PropertyMemberInfo?
@@ -1447,6 +1482,53 @@ local PropertyDeserializerMap = {
                 if (source_types[i] == 1) then table.remove(uris) else nil,
                 if (source_types[i] == 2) then table.remove(objects) else nil
             );
+        end
+    end,
+    [RobloxPropertyType.AssetContentMap] = function(values: {any}, property_name: string, stream: polyfill.IoReadable)
+        local HAS_BUNDLE_ID = 0x01;
+        local HAS_ENTRIES = 0x02;
+
+        for i = 1, #values do
+            local flags = stream:readu8();
+            local bundle_asset_id: number? = nil;
+            if (bit32.band(flags, HAS_BUNDLE_ID) ~= 0) then
+                local text = stream:read(stream:readu32(), false);
+                if (string.match(text, "^%d+$") == nil) then
+                    error(`AssetContentMap bundle asset id '{text}' is not a decimal integer`);
+                end
+                local parsed = int64.from_dec_string(text);
+                if (not int64.is_zero(parsed)) then
+                    local as_number = int64.to_f64(parsed);
+                    if (int64.to_dec_string(int64.from_f64(as_number)) ~= int64.to_dec_string(parsed)) then
+                        error(`AssetContentMap bundle asset id '{text}' exceeds the exact integer range`);
+                    end
+                    bundle_asset_id = as_number;
+                end
+            end
+
+            local entries: { { Key: string, Data: string } } = {};
+            if (bit32.band(flags, HAS_ENTRIES) ~= 0) then
+                local count_bytes = stream:read(8) :: buffer;
+                local most, least = int64.to_pair(int64.from_buffer(count_bytes));
+                if (most ~= 0) then
+                    error("AssetContentMap entry count is out of range");
+                end
+                local seen: { [string]: boolean } = {};
+                for _ = 1, least do
+                    local key = stream:read(stream:readu32(), false);
+                    local data = stream:read(stream:readu32(), false);
+                    if (seen[key]) then
+                        continue;
+                    end
+                    seen[key] = true;
+                    table.insert(entries, {
+                        Key = key,
+                        Data = data,
+                    });
+                end
+            end
+
+            values[i] = datatypes.AssetContentMap.Deserialize(bundle_asset_id, entries);
         end
     end,
 }

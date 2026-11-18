@@ -12,6 +12,7 @@ return {
         end
     },
     datetime = require("@self/datetime"),
+    json = require("./luau/json"),
     lz4 = zune.serde.lz4,
     md5 = function(input: string)
         local hash = zune.crypto.createHash("md5");

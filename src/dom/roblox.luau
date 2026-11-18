@@ -80,6 +80,7 @@ local PROPERTY_TYPES = {
     Font = 32,
     SecurityCapabilities = 33,
     Content = 34,
+    AssetContentMap = 35,
 }
 
 return {

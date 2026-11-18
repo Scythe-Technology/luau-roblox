@@ -603,6 +603,7 @@ SET_MAP[dom.roblox.PropertyTypes.Color3uint8] = generateSetDataType(dom_datatype
 SET_MAP[dom.roblox.PropertyTypes.UniqueId] = generateSetDataType(dom_datatypes.UniqueId);
 SET_MAP[dom.roblox.PropertyTypes.Font] = generateSetDataType(dom_datatypes.Font);
 SET_MAP[dom.roblox.PropertyTypes.Content] = generateSetDataType(dom_datatypes.Content);
+SET_MAP[dom.roblox.PropertyTypes.AssetContentMap] = generateSetDataType(dom_datatypes.AssetContentMap);
 
 local function resolveSetProperty(self: object, className: string, key: string, value: any)
     if (self["@destroyed"]) then

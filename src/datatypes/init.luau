@@ -50,6 +50,9 @@ local Content = require("@self/Content");
 export type Content = Content.Content;
 local UniqueId = require("@self/UniqueId");
 export type UniqueId = UniqueId.UniqueId;
+local AssetContentMap = require("@self/AssetContentMap");
+export type AssetContentMap = AssetContentMap.AssetContentMap;
+export type AssetContentMapEntry = AssetContentMap.Entry;
 
 return {
     Axes = Axes,
@@ -78,4 +81,5 @@ return {
     Vector3int16 = Vector3int16,
     Content = Content,
     UniqueId = UniqueId,
+    AssetContentMap = AssetContentMap,
 };

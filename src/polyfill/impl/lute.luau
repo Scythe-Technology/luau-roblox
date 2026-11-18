@@ -8,6 +8,7 @@ return {
     base64 = require("./luau/base64"), -- fallback
     blake2 = require("./luau/blake2"), -- fallback
     datetime = require("./luau/datetime"), -- fallback
+    json = require("./luau/json"),
     lz4 = require("./luau/lz4"), -- fallback
     md5 = function(value: string): string
         return buffer.tostring(crypto.digest(crypto.hash.md5, value));

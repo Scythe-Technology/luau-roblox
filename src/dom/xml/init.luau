@@ -4,6 +4,7 @@
 local polyfill = require("@polyfill");
 local base64 = polyfill.base64;
 local blake2 = polyfill.blake2;
+local json = polyfill.json;
 
 local ansi = require("./lib/ansi");
 local int64 = require("./lib/int64");
@@ -418,6 +419,22 @@ local PropertySerializerMap: {[string]: (Property) -> xml.Node} = {
         else
             return newRawStringNode("Content", xml.stringify(newStringNode("url", url)));
         end
+    end,
+    ["AssetContentMap"] = function(value: Property): xml.Node
+        local bundle_asset_id, entries = datatypes.AssetContentMap.Serialize(value.value);
+        if (bundle_asset_id ~= nil) then
+            error("AssetContentMap bundle asset id cannot be written as XML");
+        end
+        if (#entries == 0) then
+            return newStringNode("AssetContentMap", json.serialize({}));
+        end
+        local parts = table.create(#entries);
+        for index, entry in entries do
+            local encoded = base64.encode(entry.Data);
+            local encoded_text = if (type(encoded) == "string") then encoded else buffer.tostring(encoded);
+            parts[index] = `\{"key":{json.serialize(entry.Key)},"data":{json.serialize(encoded_text)}\}`;
+        end
+        return newStringNode("AssetContentMap", `[{table.concat(parts, ",")}]`);
     end,
 }
 
@@ -1000,6 +1017,62 @@ local PropertyDeserializerMap = {
         return {
             type = roblox.PropertyTypes.String,
             value = url,
+        }
+    end,
+    ["AssetContentMap"] = function(inst: roblox.Instance, prop: xml.Node): roblox.Property
+        local function parseEntries(text: string): { { Key: string, Data: string } }
+            local parsed = json.deserialize(text);
+            local array = json.asArray(parsed);
+            if (array == nil) then
+                error("AssetContentMap property must be a JSON array");
+            end
+            local entries: { { Key: string, Data: string } } = {};
+            local existing: { [string]: boolean } = {};
+            for _, item in array do
+                local obj = json.asObject(item);
+                if (obj == nil) then
+                    error("AssetContentMap entry must be a JSON object");
+                end
+                local key = obj.key;
+                local data = obj.data;
+                if (type(key) ~= "string" or type(data) ~= "string") then
+                    error("AssetContentMap entry must have string 'key' and 'data' fields");
+                end
+                for field in obj do
+                    if (type(field) == "string" and field ~= "key" and field ~= "data") then
+                        error(`AssetContentMap entry has an unknown field '{field}'`);
+                    end
+                end
+                if (existing[key]) then
+                    error(`AssetContentMap has a duplicate key '{key}'`);
+                end
+                existing[key] = true;
+
+                local stripped = string.gsub(data, "%s+", "");
+                if (#stripped > 0) then
+                    if (#stripped % 4 ~= 0 or string.match(stripped, "^[A-Za-z0-9+/]+=?=?$") == nil) then
+                        error("AssetContentMap data is not valid base64");
+                    end
+                    data = base64.decode(stripped);
+                else
+                    data = "";
+                end
+                table.insert(entries, {
+                    Key = key,
+                    Data = data,
+                });
+            end
+            return entries;
+        end
+
+        if (type(prop.children) ~= "string") then
+            error("AssetContentMap property must be a JSON array");
+        end
+        local text = prop.children;
+        local entries = if (string.match(text, "^%s*$") ~= nil) then {} else parseEntries(text);
+        return {
+            type = roblox.PropertyTypes.AssetContentMap,
+            value = datatypes.AssetContentMap.Deserialize(nil, entries),
         }
     end,
 }

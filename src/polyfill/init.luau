@@ -34,6 +34,7 @@ type Impl = {
     base64: typeof(require("@self/impl/luau/base64")),
     blake2: typeof(require("@self/impl/luau/blake2")),
     datetime: typeof(require("@self/impl/luau/datetime")),
+    json: typeof(require("@self/impl/luau/json")),
     lz4: typeof(require("@self/impl/luau/lz4")),
     md5: typeof(require("@self/impl/luau/md5")),
     mem: typeof(require("@self/impl/luau/mem")),
